@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://8lvw8eyoxog3"]
+
+[ext_resource type="PackedScene" uid="uid://sj8ltrkoocdg" path="res://Objects/Laser Turret.glb" id="1_ejo56"]
+[ext_resource type="Script" uid="uid://6nv4xu8sdv04" path="res://Scripts/Game/Turret.gd" id="1_hxdwn"]
+[ext_resource type="PackedScene" uid="uid://balo3f7xvn2hc" path="res://Scenes/Towers/Laser.tscn" id="2_7b141"]
+
+[node name="Turret" type="Node3D" unique_id=2073233604]
+script = ExtResource("1_hxdwn")
+ProjectileResource = ExtResource("2_7b141")
+
+[node name="Laser Turret" parent="." unique_id=1242589113 instance=ExtResource("1_ejo56")]

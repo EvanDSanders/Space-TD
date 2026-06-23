@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cb6th52ve51t3"]
+
+[ext_resource type="Script" uid="uid://bu0eg44jo0e2n" path="res://main.gd" id="1_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://bnymp03h1qh3x" path="res://Scenes/Ship/TheStarShip.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://b20kwqx8cxlh8" path="res://Scripts/Game/BlenderCameraHub.gd" id="2_r0du0"]
+[ext_resource type="Script" uid="uid://do4cqrqccayv5" path="res://Scripts/Game/BlenderCamera.gd" id="3_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://8lvw8eyoxog3" path="res://Scenes/Towers/LaserTurret.tscn" id="5_fos0i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cm0pq"]
+sky_top_color = Color(0.42789423, 0.5501186, 0.6700301, 1)
+sky_horizon_color = Color(0.74984777, 0.7802675, 0.8170768, 1)
+ground_bottom_color = Color(0.18245074, 0.18190518, 0.20923123, 1)
+ground_horizon_color = Color(0.74984777, 0.7802675, 0.8170768, 1)
+
+[sub_resource type="Sky" id="Sky_fos0i"]
+sky_material = SubResource("ProceduralSkyMaterial_cm0pq")
+
+[sub_resource type="Environment" id="Environment_3dxm6"]
+background_mode = 2
+sky = SubResource("Sky_fos0i")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
+radius = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fos0i"]
+size = Vector3(7074.168, 0.001, 6204.9414)
+
+[node name="Main" type="Node3D" unique_id=410800660]
+script = ExtResource("1_cm0pq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=971927991]
+environment = SubResource("Environment_3dxm6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1839927792]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="The Star Ship" parent="." unique_id=81731908 instance=ExtResource("1_glv2v")]
+
+[node name="Camera Hub" type="Node3D" parent="." unique_id=693096939]
+script = ExtResource("2_r0du0")
+
+[node name="Camera Mount" type="Node3D" parent="Camera Hub" unique_id=40490541]
+script = ExtResource("3_cm0pq")
+
+[node name="Camera3D" type="Camera3D" parent="Camera Hub/Camera Mount" unique_id=168778442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 37)
+
+[node name="Targets" type="Node3D" parent="." unique_id=2030373078]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Targets" unique_id=1474722444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.40543, 6.4354935, -110.35072)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Targets/CharacterBody3D" unique_id=1414245793]
+shape = SubResource("SphereShape3D_r0du0")
+
+[node name="Turret" parent="." unique_id=2073233604 instance=ExtResource("5_fos0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.32826, 0.41417313, 20.195887)
+
+[node name="Turret2" parent="." unique_id=874451893 instance=ExtResource("5_fos0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.77875, 0.4141655, -32.08808)
+
+[node name="Cursor Plane" type="Area3D" parent="." unique_id=599834955]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor Plane" unique_id=1005280936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.50049996, 0)
+shape = SubResource("BoxShape3D_fos0i")
+
+[node name="CursorCast3D" type="RayCast3D" parent="." unique_id=866926861]
+collision_mask = 128
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 0.3764706, 0.3764706, 0)
+debug_shape_thickness = 1

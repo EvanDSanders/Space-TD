@@ -1,0 +1,9 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Blender Backups
+*.blend[0-9]
+# nohup command output
+nohup.out
+

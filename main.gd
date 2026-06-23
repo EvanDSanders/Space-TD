@@ -1,0 +1,17 @@
+extends Node3D
+
+@onready var pointer  : RayCast3D = $CursorCast3D
+@onready var camera   : Camera3D  = $"Camera Hub/Camera Mount/Camera3D"
+@onready var viewport             = get_viewport()
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	G.root = self
+
+
+# Move and point RayCast3D away from camera
+func _process(_delta: float) -> void:
+	var mouse_position = viewport.get_mouse_position()
+
+	pointer.global_position = camera.global_position
+	pointer.target_position = camera.project_ray_normal(mouse_position) * 2000

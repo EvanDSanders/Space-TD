@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://clhg14csbgts3"]
+
+[ext_resource type="Shader" uid="uid://dnip1mai8npyq" path="res://Shaders/Shield.gdshader" id="1_ol5hn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ol5hn")

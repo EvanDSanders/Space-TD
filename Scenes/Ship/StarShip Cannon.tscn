@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://chcp7646wod0j"]
+
+[ext_resource type="Script" uid="uid://c8fsd52crwdet" path="res://Scripts/Ship/star_ship_cannon.gd" id="1_6nvpc"]
+[ext_resource type="PackedScene" uid="uid://bwhmeryl0wpbp" path="res://Objects/Laser Proj.glb" id="2_sq4f5"]
+[ext_resource type="PackedScene" uid="uid://dsd3tae57ayo2" path="res://Objects/Main Cannon.glb" id="2_yc4fc"]
+[ext_resource type="PackedScene" uid="uid://g5vpfym6kfk2" path="res://Objects/Cannon Target.glb" id="4_sq4f5"]
+
+[node name="Main Cannon" type="Node3D" unique_id=1573750634]
+script = ExtResource("1_6nvpc")
+YawObject = &"Origin Cannon Hub"
+PitchObject = &"Cannon Pitch"
+RecoilObject = &"Cannon Head"
+ProjectileResource = ExtResource("2_sq4f5")
+
+[node name="Main Cannon" parent="." unique_id=693902262 instance=ExtResource("2_yc4fc")]
+
+[node name="RayCast3D" type="RayCast3D" parent="Main Cannon/Origin Cannon Hub/Cannon Pitch" parent_id_path=PackedInt32Array(693902262, 627943898) index="2" unique_id=534270764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.113707)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 128
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0.4745098, 0.45882353, 0)
+debug_shape_thickness = 1
+
+[node name="Cannon Target" parent="." unique_id=1294575314 instance=ExtResource("4_sq4f5")]
+
+[editable path="Main Cannon"]

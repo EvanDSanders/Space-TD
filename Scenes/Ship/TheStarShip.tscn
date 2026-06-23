@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bnymp03h1qh3x"]
+
+[ext_resource type="PackedScene" uid="uid://cybejwdbiygn7" path="res://Objects/Star Ship.glb" id="1_tfdsr"]
+[ext_resource type="Script" uid="uid://7k4idlblxpeq" path="res://Scripts/Ship/star_ship.gd" id="2_vxvel"]
+[ext_resource type="PackedScene" uid="uid://8lvw8eyoxog3" path="res://Scenes/Towers/LaserTurret.tscn" id="3_vxvel"]
+[ext_resource type="PackedScene" uid="uid://chcp7646wod0j" path="res://Scenes/Ship/StarShip Cannon.tscn" id="4_re7vq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_re7vq"]
+size = Vector3(12.481445, 8.208008, 13.192383)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jnxn3"]
+size = Vector3(19.734375, 8.208008, 15.549133)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_67cvg"]
+size = Vector3(14.326172, 5.8046875, 4.424881)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vbsd5"]
+size = Vector3(19.734375, 8.208008, 20.554718)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_50x4y"]
+size = Vector3(4, 4, 18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crttl"]
+size = Vector3(4, 3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x050v"]
+size = Vector3(8, 5, 8)
+
+[node name="The Star Ship" type="CharacterBody3D" unique_id=387251550]
+script = ExtResource("2_vxvel")
+
+[node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, -0.0010299683)
+
+[node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16)
+idleAngleRange = 120
+
+[node name="TurretL" parent="Star Ship" unique_id=18677659 instance=ExtResource("3_vxvel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 8, 14)
+idleAngle = 120
+idleAngleRange = 120
+
+[node name="TurretR" parent="Star Ship" unique_id=510374793 instance=ExtResource("3_vxvel")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 12, 8, 14)
+idleAngle = -120
+idleAngleRange = 120
+
+[node name="Main Cannon" parent="Star Ship" unique_id=1573750634 instance=ExtResource("4_re7vq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -14)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639702785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, -0.0010299683)
+shape = SubResource("BoxShape3D_re7vq")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=918876028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, -14.187096)
+shape = SubResource("BoxShape3D_jnxn3")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1660595842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, -24.173874)
+shape = SubResource("BoxShape3D_67cvg")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=1555620757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, 16.7816)
+shape = SubResource("BoxShape3D_vbsd5")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." unique_id=181569443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.017603, 6.016903, 18.05896)
+shape = SubResource("BoxShape3D_50x4y")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="." unique_id=717844000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.982397, 6.016903, 18.05897)
+shape = SubResource("BoxShape3D_50x4y")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="." unique_id=1084345448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.982397, 9.416903, 14.0589695)
+shape = SubResource("BoxShape3D_crttl")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="." unique_id=682017746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.017603, 9.416903, 14.05897)
+shape = SubResource("BoxShape3D_crttl")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="." unique_id=1080275278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 5.4169025, -15.94103)
+shape = SubResource("BoxShape3D_crttl")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="." unique_id=755367028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, -6.483097, -13.94103)
+shape = SubResource("BoxShape3D_x050v")
+debug_color = Color(0, 0.6, 0.69803923, 0)

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://q1u8vlw53hd7"]
+
+[ext_resource type="Shader" uid="uid://dyanin8rvfvxo" path="res://Scenes/Ship/StarShipEngineTrail.tres" id="1_colgv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ltnxq"]
+render_priority = 0
+shader = ExtResource("1_colgv")
+
+[sub_resource type="Curve" id="Curve_colgv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_colgv"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="EngineTrail" type="BoneAttachment3D" unique_id=1413829401]
+
+[node name="VaporTrail" type="VaporTrail" parent="." unique_id=1961751073]
+config/num_points = 10
+config/update_interval = 0.017
+visual/material = SubResource("ShaderMaterial_ltnxq")
+visual/size = 0.4
+visual/size_curve = SubResource("Curve_colgv")
+visual/color_gradient = SubResource("Gradient_colgv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815, 0)
