@@ -1,6 +1,8 @@
 import os
 import bpy
 
+problems = []
+
 def find_collection(name: str):
     for collection in bpy.data.collections:
         if collection.name == name:
@@ -25,11 +27,14 @@ def export_collection(collection, export_dir):
     objects = collection_objects(collection)
     if not objects:
         print(f"Skipping empty collection: {collection.name}")
+        problems.append(f"Skipping empty collection: {collection.name}")
         return
 
     origin = find_origin_object(objects)
     if origin is None:
         print(f"Skipping {collection.name}: no object starting with 'Origin.'")
+        problems.append(f"Skipping {collection.name}: no object starting with 'Origin.'")
+
         return
 
     center_objects_at_world_origin(objects, origin)
@@ -76,6 +81,9 @@ def main():
 
     for collection in auto_export.children:
         export_collection(collection, export_dir)
+
+    for each in problems:
+        print(each)
 
 if __name__ == "__main__":
     main()

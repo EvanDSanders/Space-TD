@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bskqx7mlhox6h"]
+
+[ext_resource type="PackedScene" uid="uid://c4lykumyfuw1w" path="res://Objects/Pylon.glb" id="1_p32cg"]
+
+[node name="Pylon" type="Node3D" unique_id=198919222]
+
+[node name="Pylon" parent="." unique_id=1801404425 instance=ExtResource("1_p32cg")]

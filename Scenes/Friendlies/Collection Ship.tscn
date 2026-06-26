@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dnw0vb8iwsd1m"]
+
+[ext_resource type="Script" uid="uid://cei316x0g800r" path="res://Scripts/Friendlies/CollectionShip.gd" id="1_25xm6"]
+[ext_resource type="PackedScene" uid="uid://c5d77mt6mt34o" path="res://Objects/Cargo Shiplet.glb" id="1_b6f2e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b6f2e"]
+size = Vector3(2.0107422, 1.4296875, 2.8393555)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_25xm6"]
+size = Vector3(2.0107422, 1, 2.8393555)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_since"]
+size = Vector3(3.6103516, 0.13183594, 1.6933594)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45s1l"]
+size = Vector3(6.0021973, 0.1015625, 1.6933594)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_va4js"]
+size = Vector3(2, 1.4257813, 2)
+
+[node name="Node3D" type="RigidBody3D" unique_id=1076245999]
+collision_layer = 11
+collision_mask = 4
+script = ExtResource("1_25xm6")
+
+[node name="Cargo Shiplet" parent="." unique_id=847024505 instance=ExtResource("1_b6f2e")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1107533606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.4770508)
+shape = SubResource("BoxShape3D_b6f2e")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=509002072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.442627)
+shape = SubResource("BoxShape3D_25xm6")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." unique_id=1984764817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.1647017)
+shape = SubResource("BoxShape3D_since")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="." unique_id=707706194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.158063)
+shape = SubResource("BoxShape3D_45s1l")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=23318048]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -0.7356188, 0, 0.24788165)
+shape = SubResource("BoxShape3D_va4js")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=765225458]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 0.736, 0, 0.248)
+shape = SubResource("BoxShape3D_va4js")

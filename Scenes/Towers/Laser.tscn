@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://balo3f7xvn2hc"]
 
-[ext_resource type="PackedScene" uid="uid://u8th1bjw4jv0" path="res://Objects/Laser Proj.glb" id="1_t3l4y"]
+[ext_resource type="PackedScene" uid="uid://cuchphqxwwtrp" path="res://Objects/Laser Proj.glb" id="1_t3l4y"]
 [ext_resource type="Script" uid="uid://0hs4x0gfgydw" path="res://Scripts/Game/projectile.gd" id="2_0lrym"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0lrym"]

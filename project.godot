@@ -146,3 +146,7 @@ StarShipEngineBrightness={
 "type": "float",
 "value": 1.0
 }
+StarShipShield={
+"type": "color",
+"value": Color(0, 0.7123289, 1, 1)
+}

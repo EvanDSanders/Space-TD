@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dm6bsn5ha1aki"]
+
+[ext_resource type="Shader" uid="uid://bs63qthaa7fvf" path="res://Shaders/Crystal.tres" id="1_ugxv2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ugxv2")

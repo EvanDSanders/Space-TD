@@ -14,7 +14,6 @@ var currentShipHeading := 0.
 
 @onready var Bones : Skeleton3D = $"Star Ship/Brmature/Skeleton3D"
 
-@onready var ShieldMat = load("res://Shaders/Shield.gdshader")
 	
 @onready var EngineL = Bones.find_bone('Engine.Hub.L')
 @onready var EngineR = Bones.find_bone('Engine.Hub.R')
@@ -25,6 +24,7 @@ var currentShipHeading := 0.
 
 var _turbineAngle := 0.0
 
+@onready var EngineTurnRegEx : RegEx = RegEx.create_from_string("Engine.[A-D].I.[LR]")
 @onready var EnginePostRegEx : RegEx = RegEx.create_from_string("Engine.[A-D].[LR]")
 
 enum ShipModes {
@@ -47,6 +47,8 @@ var movementScaleYaw := 50
 var movementClampYaw := 0.5
 
 @onready var EngineTrailLoader = preload("res://Scenes/Ship/StarShipEngineTrail.tscn")
+@onready var ShieldMat : ShaderMaterial = load("res://Materials/Shield.tres")
+
 
 @onready var Turrets := [
 		$"Star Ship/TurretF",
@@ -67,8 +69,10 @@ func _ready() -> void:
 		var BName : String = Bones.get_bone_name( x )
 		print(BName)
 		# Add engine posts to list
-		if EnginePostRegEx.search(BName):
+		if EngineTurnRegEx.search(BName):
 			EngineDisks.append(x)
+			
+		if EnginePostRegEx.search(BName):
 			# And add mesh trails to them
 			var trail: BoneAttachment3D = EngineTrailLoader.instantiate()
 			Bones.add_child(trail)
@@ -91,7 +95,7 @@ func _ready() -> void:
 		T.RangingOrigin = self
 		T.ExtraFiringCondition = TurretCheck
 	
-	for each: MeshInstance3D in find_children("*", "MeshInstance", true, true):
+	for each: MeshInstance3D in find_children("*", "MeshInstance3D"):
 		each.material_overlay = ShieldMat
 
 # For slow and acurate, per-axis movent

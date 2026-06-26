@@ -65,7 +65,15 @@ func EaseIOCubic(x: float) -> float:
 		return 1 - pow(-2 * x + 2, 3) / 2
 
 
-
+func getNearest(origin: Vector3, objects: Array[Node]) -> Node3D:
+	var dist = 10000
+	var targ = null
+	for obj in objects:
+		if origin.distance_to(obj.global_position) < dist:
+			dist = origin.distance_to(obj.global_position)
+			targ = obj
+	
+	return targ
 
 func BoneRotate(armature: Skeleton3D, bone_idx:int, axis:String, angle:float):
 	# Apply rotation in bone's local space using the specified axis.

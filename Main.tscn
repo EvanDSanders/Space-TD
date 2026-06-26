@@ -5,12 +5,17 @@
 [ext_resource type="Script" uid="uid://b20kwqx8cxlh8" path="res://Scripts/Game/BlenderCameraHub.gd" id="2_r0du0"]
 [ext_resource type="Script" uid="uid://do4cqrqccayv5" path="res://Scripts/Game/BlenderCamera.gd" id="3_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://8lvw8eyoxog3" path="res://Scenes/Towers/LaserTurret.tscn" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://c2nt3qsw4cnfi" path="res://Scenes/Enemies/Scout.tscn" id="6_lgr22"]
+[ext_resource type="PackedScene" uid="uid://c4lykumyfuw1w" path="res://Objects/Pylon.glb" id="6_trn2v"]
+[ext_resource type="PackedScene" uid="uid://ca5csnc7pa1oq" path="res://Scenes/Friendlies/Crystal.tscn" id="8_03owx"]
+[ext_resource type="PackedScene" uid="uid://dnw0vb8iwsd1m" path="res://Scenes/Friendlies/Collection Ship.tscn" id="8_trn2v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cm0pq"]
-sky_top_color = Color(0.42789423, 0.5501186, 0.6700301, 1)
-sky_horizon_color = Color(0.74984777, 0.7802675, 0.8170768, 1)
-ground_bottom_color = Color(0.18245074, 0.18190518, 0.20923123, 1)
-ground_horizon_color = Color(0.74984777, 0.7802675, 0.8170768, 1)
+sky_top_color = Color(0.3071158, 0.417807, 0.52849823, 1)
+sky_horizon_color = Color(0.46457556, 0.5565534, 0.6600285, 1)
+sky_cover_modulate = Color(0.51972955, 0.51972955, 0.51972955, 1)
+ground_bottom_color = Color(0.0536013, 0.044601303, 0.107601285, 1)
+ground_horizon_color = Color(0.13390738, 0.13390738, 0.13390738, 1)
 
 [sub_resource type="Sky" id="Sky_fos0i"]
 sky_material = SubResource("ProceduralSkyMaterial_cm0pq")
@@ -19,8 +24,14 @@ sky_material = SubResource("ProceduralSkyMaterial_cm0pq")
 background_mode = 2
 sky = SubResource("Sky_fos0i")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
-radius = 3.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
+shading_mode = 0
+albedo_color = Color(1, 0.6177956, 0.27420634, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lgr22"]
+material = SubResource("StandardMaterial3D_3dxm6")
+radius = 1000.0
+height = 2000.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fos0i"]
 size = Vector3(7074.168, 0.001, 6204.9414)
@@ -32,10 +43,14 @@ script = ExtResource("1_cm0pq")
 environment = SubResource("Environment_3dxm6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1839927792]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.8205009, -0.49237865, 0.29041612, 0.13867272, 0.321419, 0.9367282, -0.55457014, 0.80885917, -0.19544509, 50.64409, 21.234032, -15.807462)
 shadow_enabled = true
+sky_mode = 1
 
-[node name="The Star Ship" parent="." unique_id=81731908 instance=ExtResource("1_glv2v")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=920708927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3624.3572, 0)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_lgr22")
 
 [node name="Camera Hub" type="Node3D" parent="." unique_id=693096939]
 script = ExtResource("2_r0du0")
@@ -45,16 +60,6 @@ script = ExtResource("3_cm0pq")
 
 [node name="Camera3D" type="Camera3D" parent="Camera Hub/Camera Mount" unique_id=168778442]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 37)
-
-[node name="Targets" type="Node3D" parent="." unique_id=2030373078]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Targets" unique_id=1474722444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.40543, 6.4354935, -110.35072)
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Targets/CharacterBody3D" unique_id=1414245793]
-shape = SubResource("SphereShape3D_r0du0")
 
 [node name="Turret" parent="." unique_id=2073233604 instance=ExtResource("5_fos0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.32826, 0.41417313, 20.195887)
@@ -76,3 +81,39 @@ collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 0.3764706, 0.3764706, 0)
 debug_shape_thickness = 1
+
+[node name="Crystal Ores" type="Marker3D" parent="." unique_id=1051958745]
+
+[node name="Enemies" type="Marker3D" parent="." unique_id=2055970417]
+
+[node name="CharacterBody3D" parent="Enemies" unique_id=1191271266 instance=ExtResource("6_lgr22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.40543, 6.4354935, -110.35072)
+
+[node name="CharacterBody3D2" parent="Enemies" unique_id=1338875909 instance=ExtResource("6_lgr22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.93149, 2.0568962, -148.16646)
+
+[node name="CharacterBody3D4" parent="Enemies" unique_id=2062875632 instance=ExtResource("6_lgr22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.45535, 2.0568962, -77.84918)
+
+[node name="CharacterBody3D3" parent="Enemies" unique_id=1744625271 instance=ExtResource("6_lgr22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.492805, 1.2589264, -25.796715)
+
+[node name="Pylon" parent="." unique_id=1801404425 instance=ExtResource("6_trn2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.29261, 0, -9.409502)
+
+[node name="Friendlies" type="Marker3D" parent="." unique_id=1848505711]
+
+[node name="The Star Ship" parent="Friendlies" unique_id=81731908 instance=ExtResource("1_glv2v")]
+faceWithCamera = true
+
+[node name="Raw Crystal" parent="Friendlies" unique_id=1299967828 instance=ExtResource("8_03owx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.84602, 0, 0)
+
+[node name="Raw Crystal2" parent="Friendlies" unique_id=1801017022 instance=ExtResource("8_03owx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.105072, 0, 21.702087)
+
+[node name="Node3D" parent="." unique_id=1076245999 instance=ExtResource("8_trn2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.599455, 0, 7.6533136)
+gravity_scale = 0.0
+linear_damp = 1.0
+angular_damp = 1.0

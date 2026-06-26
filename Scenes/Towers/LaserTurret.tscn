@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://8lvw8eyoxog3"]
 
-[ext_resource type="PackedScene" uid="uid://sj8ltrkoocdg" path="res://Objects/Laser Turret.glb" id="1_ejo56"]
+[ext_resource type="PackedScene" uid="uid://iyo2304jo8pi" path="res://Objects/Laser Turret.glb" id="1_ejo56"]
 [ext_resource type="Script" uid="uid://6nv4xu8sdv04" path="res://Scripts/Game/Turret.gd" id="1_hxdwn"]
 [ext_resource type="PackedScene" uid="uid://balo3f7xvn2hc" path="res://Scenes/Towers/Laser.tscn" id="2_7b141"]
 

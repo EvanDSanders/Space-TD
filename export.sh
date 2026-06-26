@@ -18,7 +18,7 @@ if [[ -z "$blend_file" ]]; then
 fi
 
 
-rm -rf ./Objects
+# rm -rf ./Objects
 
 # blender -b "$blend_file" --python AutoExport.py
 blenderEXP -b "$blend_file" --python AutoExport.py

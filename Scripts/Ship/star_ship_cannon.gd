@@ -1,7 +1,5 @@
 extends Node3D
 
-@onready var Targets	= get_node('/root/Main/Targets')
-
 func stub(): return true;
 
 @export var YawObject: StringName = "Laser Turret Base"
@@ -13,6 +11,7 @@ func stub(): return true;
 ]
 @export var ProjectileResource: Resource 
 @export var ExtraFiringCondition: Callable = stub
+@export var Damage: float = 10
 
 @onready var Yaw	 = find_child(YawObject)
 @onready var Pitch	 = find_child(PitchObject)
@@ -59,35 +58,34 @@ var priorX := 0.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Targets.get_child_count() != 0:
-		
-		var mouse: RayCast3D = get_node('/root/Main/CursorCast3D')
-		
-		if not mouse.is_colliding(): return
-		var Target = mouse.get_collision_point()
-		
-		var t = G.get_intercept( Pitch.global_position, 50, Target, Vector3.ZERO )
-		
-		var y = get_heading(Yaw,   "Y", t)
-		var x = get_heading(Pitch, "X", t)
+	
+	var mouse: RayCast3D = get_node('/root/Main/CursorCast3D')
+	
+	if not mouse.is_colliding(): return
+	var Target = mouse.get_collision_point()
+	
+	var t = G.get_intercept( Pitch.global_position, 50, Target, Vector3.ZERO )
+	
+	var y = get_heading(Yaw,   "Y", t)
+	var x = get_heading(Pitch, "X", t)
 
-		Yaw.rotation.y += clamp(angle_difference(Yaw.rotation.y, y), -.025, .025)
-		Pitch.rotation.x += clamp(x - Pitch.rotation.x, -.025, .025)
+	Yaw.rotation.y += clamp(angle_difference(Yaw.rotation.y, y), -.025, .025)
+	Pitch.rotation.x += clamp(x - Pitch.rotation.x, -.025, .025)
 
-		priorY = Yaw.rotation.y
-		priorX = Pitch.rotation.x	
+	priorY = Yaw.rotation.y
+	priorX = Pitch.rotation.x	
+	
+	Aimed = is_zero_approx(angle_difference(Yaw.rotation.y, y)) and is_zero_approx(angle_difference(Pitch.rotation.x, x))
 		
-		Aimed = is_zero_approx(angle_difference(Yaw.rotation.y, y)) and is_zero_approx(angle_difference(Pitch.rotation.x, x))
-			
-		if CDown <= 0 and Aimed:
-			CDown = 10
-			
-			#for emtr in Emitters:
-				#
-				#var projectile : Node3D = Projectile.instantiate()
-				#G.root.add_child(projectile)
-				#projectile.global_transform = emtr.global_transform
+	if CDown <= 0 and Aimed:
+		CDown = 10
 		
+		#for emtr in Emitters:
+			#
+			#var projectile : Node3D = Projectile.instantiate()
+			#G.root.add_child(projectile)
+			#projectile.global_transform = emtr.global_transform
+	
 	CDown -= _delta;
 	
 	if Pointer.is_colliding():

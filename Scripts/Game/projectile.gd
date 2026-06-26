@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 var speed := 500.
 var origin : Vector3
+var damage := 10.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,4 +20,4 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		var c = collision.get_collider()
 		if c.has_method('_hit'):
-			c._hit()
+			c._hit(damage)

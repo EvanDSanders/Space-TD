@@ -4,20 +4,29 @@ extends EditorScenePostImport
 
 func _post_import(scene):
 	# Override Blender materials with Godot ones
-	
+
 	# Load the Engine material
-	var material : ShaderMaterial = load("res://Materials/StarShip Engine.tres")
-	
+	var EngMetal : ShaderMaterial = load("res://Materials/StarShip Engine.tres")
+	var EngCrystal : ShaderMaterial = load("res://Materials/StarShip Engine Crystal.tres")
+	var ShieldMat : ShaderMaterial = load("res://Materials/Shield.tres")
+
+
 	for each: MeshInstance3D in scene.find_children("*", "MeshInstance3D"):
-		
+
 		# Get mesh from mesh instance
 		var mesh: Mesh = each.mesh
 		# For each mesh material:
 		for x in range( mesh.get_surface_count() ):
-			# If material is engine material "Material.002"
-			if mesh.surface_get_material(x).resource_name == "Material.002":
-				# Then set it to this engine material.
-				mesh.surface_set_material(x, material)
-	
-	
+			var mat = mesh.surface_get_material(x)
+			if mat == null:
+				continue
+			if mat.resource_name == "Engine Metal":
+				mesh.surface_set_material(x, EngMetal)
+			if mat.resource_name == "Engine Crystal":
+				mesh.surface_set_material(x, EngCrystal)
+				
+				
+			each.material_overlay = ShieldMat
+
+
 	return scene # remember to return the imported scene

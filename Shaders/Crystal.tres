@@ -1,0 +1,42 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bs63qthaa7fvf"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_wv7rx"]
+parameter_name = "StarShipEngineBrightness"
+hint = 1
+max = 5.0
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_pi4a6"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_o5wf8"]
+constant = 0.9
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_n2bnc"]
+constant = Color(0.16478866, 0.077382326, 0.5109608, 1)
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_gq0u1"]
+constant = 0.1
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_0rwle"]
+parameter_name = "StarShipEngineColor"
+default_value_enabled = true
+default_value = Color(0.5647059, 0.7122351, 1, 1)
+
+[resource]
+nodes/vertex/0/position = Vector2(320, 26.666666)
+nodes/fragment/0/position = Vector2(293.33334, 186.66667)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_n2bnc")
+nodes/fragment/6/position = Vector2(53.333332, 160)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatConstant_gq0u1")
+nodes/fragment/8/position = Vector2(53.333332, 320)
+nodes/fragment/9/node = SubResource("VisualShaderNodeColorParameter_0rwle")
+nodes/fragment/9/position = Vector2(-346.66666, 186.66667)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_wv7rx")
+nodes/fragment/10/position = Vector2(-346.66666, 613.3333)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorOp_pi4a6")
+nodes/fragment/11/position = Vector2(60.851532, 424.1606)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatConstant_o5wf8")
+nodes/fragment/12/position = Vector2(53.333332, 240)
+nodes/fragment/connections = PackedInt32Array(8, 0, 0, 3, 9, 0, 11, 0, 10, 0, 11, 1, 11, 0, 0, 0, 12, 0, 0, 1)

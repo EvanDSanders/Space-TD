@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("CamSwitch"):
 		if CamIsShip:
-			Target = $"../The Star Ship"
+			Target = $"../Friendlies/The Star Ship"
 		else:
 			Target = $".."
 		CamIsShip = not CamIsShip
@@ -44,7 +44,6 @@ func _global_look() -> Vector3:
 	if not pivot:
 		return -global_transform.basis.z
 	return -(global_transform.basis * pivot.basis).z.normalized()
-
 
 func _flat_horizontal(v: Vector3) -> Vector3:
 	var flat := Vector3(v.x, 0.0, v.z)

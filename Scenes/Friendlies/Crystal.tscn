@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ca5csnc7pa1oq"]
+
+[ext_resource type="PackedScene" uid="uid://c2aceidy1hrad" path="res://Objects/Raw Crystal.glb" id="1_8gkgt"]
+
+[node name="Raw Crystal" type="Node3D" unique_id=1299967828]
+
+[node name="Raw Crystal" parent="." unique_id=238998665 instance=ExtResource("1_8gkgt")]

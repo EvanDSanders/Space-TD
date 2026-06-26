@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c2nt3qsw4cnfi"]
+
+[ext_resource type="Script" uid="uid://bgd6uqjflc7tn" path="res://Scripts/Enemies/scout.gd" id="1_4e0fl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
+radius = 3.0
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1191271266]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_4e0fl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=8862303]
+shape = SubResource("SphereShape3D_r0du0")

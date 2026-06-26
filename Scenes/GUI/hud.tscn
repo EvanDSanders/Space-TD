@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dkmhsbnj57kdu"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_74o67"]
+top_radius = 0.1
+bottom_radius = 0.1
+
+[node name="Hud" type="Node3D" unique_id=44152613]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=212991408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.416048, 0, 0)
+mesh = SubResource("CylinderMesh_74o67")
