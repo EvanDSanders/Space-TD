@@ -26,9 +26,14 @@ size = Vector3(4, 3, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x050v"]
 size = Vector3(8, 5, 8)
 
-[node name="The Star Ship" type="CharacterBody3D" unique_id=387251550]
+[node name="The Star Ship" type="RigidBody3D" unique_id=1980358966]
 collision_layer = 5
-collision_mask = 0
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 200.0
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("2_vxvel")
 
 [node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
@@ -36,15 +41,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, -0.
 
 [node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16)
+Targetable = false
 idleAngleRange = 120
 
 [node name="TurretL" parent="Star Ship" unique_id=18677659 instance=ExtResource("3_vxvel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 8, 14)
+Targetable = false
 idleAngle = 120
 idleAngleRange = 120
 
 [node name="TurretR" parent="Star Ship" unique_id=510374793 instance=ExtResource("3_vxvel")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 12, 8, 14)
+Targetable = false
 idleAngle = -120
 idleAngleRange = 120
 

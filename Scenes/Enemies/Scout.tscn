@@ -1,14 +1,26 @@
 [gd_scene format=3 uid="uid://c2nt3qsw4cnfi"]
 
 [ext_resource type="Script" uid="uid://bgd6uqjflc7tn" path="res://Scripts/Enemies/scout.gd" id="1_4e0fl"]
+[ext_resource type="PackedScene" uid="uid://hx2q3oq4njou" path="res://Objects/Scout.glb" id="2_hreat"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
 radius = 3.0
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1191271266]
-collision_layer = 8
-collision_mask = 0
+[node name="CharacterBody3D" type="RigidBody3D" unique_id=638495765]
+collision_layer = 9
+collision_mask = 13
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 3
+linear_damp = 1.0
+angular_damp = 2.0
 script = ExtResource("1_4e0fl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=8862303]
 shape = SubResource("SphereShape3D_r0du0")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="Main" parent="." unique_id=948682490 instance=ExtResource("2_hreat")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2423315)
+
+[editable path="Main"]

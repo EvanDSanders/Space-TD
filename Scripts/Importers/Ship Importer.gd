@@ -7,9 +7,11 @@ func _post_import(scene):
 
 	# Load the Engine material
 	var EngCrystal : ShaderMaterial = load("res://Materials/Crystal.tres")
+	var DamageMaterial : ShaderMaterial = load("res://Materials/DamageTexture.tres")
 
 
 	for each: MeshInstance3D in scene.find_children("*", "MeshInstance3D"):
+		#each.material_overlay = DamageMaterial
 
 		# Get mesh from mesh instance
 		var mesh: Mesh = each.mesh

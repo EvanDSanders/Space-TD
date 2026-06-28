@@ -1,0 +1,100 @@
+[gd_resource type="VisualShader" format=3 uid="uid://c1fwq38221udo"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_2xr1t"]
+constant = Color(0.22792573, 0.249146, 0.25666898, 1)
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ga4od"]
+constant = 1.0
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_ga4od"]
+varying_name = "Pos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_ga4od"]
+size = Vector2(260, 80)
+expression = "#include \"res://Shaders/FBM.gdshaderinc\""
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_2xr1t"]
+size = Vector2(365, 140)
+expression = "output0 = fbm(input0);"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ga4od"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ga4od"]
+constant = Color(1, 1, 1, 0)
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_ga4od"]
+default_input_values = [0, 0.0, 1, 1.0, 2, 1e-05]
+function = 4
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_2xr1t"]
+parameter_name = "DamageScale"
+qualifier = 2
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_fyptn"]
+size = Vector2(340, 120)
+expression = "#define DIFFUSE_BURLEY
+#define SPECULAR_SCHLICK_GGX
+#include \"res://Shaders/standard_lighting.gdshaderinc\""
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_nlhjx"]
+size = Vector2(340, 100)
+expression = "STANDARD_LIGHTING(DIFFUSE_LIGHT, SPECULAR_LIGHT);"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2xr1t"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_fyptn"]
+varying_name = "Pos"
+varying_type = 4
+
+[resource]
+varyings/Pos = "0,4"
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_2xr1t")
+nodes/vertex/2/position = Vector2(-506.66666, 266.66666)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVaryingSetter_fyptn")
+nodes/vertex/3/position = Vector2(-63.53696, 270.10834)
+nodes/vertex/connections = PackedInt32Array(2, 0, 3, 0)
+nodes/fragment/0/position = Vector2(346.66666, -186.66667)
+nodes/fragment/3/node = SubResource("VisualShaderNodeGlobalExpression_ga4od")
+nodes/fragment/3/position = Vector2(-2986.6667, 133.33333)
+nodes/fragment/3/size = Vector2(260, 80)
+nodes/fragment/3/input_ports = ""
+nodes/fragment/3/output_ports = ""
+nodes/fragment/3/expression = "#include \"res://Shaders/FBM.gdshaderinc\""
+nodes/fragment/4/node = SubResource("VisualShaderNodeExpression_2xr1t")
+nodes/fragment/4/position = Vector2(-1360, 400)
+nodes/fragment/4/size = Vector2(365, 140)
+nodes/fragment/4/input_ports = "0,4,input0;"
+nodes/fragment/4/output_ports = "0,0,output0;"
+nodes/fragment/4/expression = "output0 = fbm(input0);"
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_ga4od")
+nodes/fragment/5/position = Vector2(-1733.3334, 453.33334)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_ga4od")
+nodes/fragment/6/position = Vector2(-426.66666, -266.66666)
+nodes/fragment/8/node = SubResource("VisualShaderNodeCompare_ga4od")
+nodes/fragment/8/position = Vector2(-293.33334, 0)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatParameter_2xr1t")
+nodes/fragment/9/position = Vector2(-986.6667, -106.666664)
+nodes/fragment/10/node = SubResource("VisualShaderNodeColorConstant_2xr1t")
+nodes/fragment/10/position = Vector2(-26.666666, -240)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatConstant_ga4od")
+nodes/fragment/11/position = Vector2(-160, -133.33333)
+nodes/fragment/12/node = SubResource("VisualShaderNodeVaryingGetter_ga4od")
+nodes/fragment/12/position = Vector2(-1626.6666, 266.66666)
+nodes/fragment/connections = PackedInt32Array(4, 0, 8, 0, 8, 0, 0, 1, 4, 0, 0, 3, 11, 0, 0, 2, 10, 0, 0, 0, 9, 0, 8, 1, 12, 0, 4, 0)
+nodes/light/2/node = SubResource("VisualShaderNodeGlobalExpression_fyptn")
+nodes/light/2/position = Vector2(-1093.3334, 0)
+nodes/light/2/size = Vector2(340, 120)
+nodes/light/2/input_ports = ""
+nodes/light/2/output_ports = ""
+nodes/light/2/expression = "#define DIFFUSE_BURLEY
+#define SPECULAR_SCHLICK_GGX
+#include \"res://Shaders/standard_lighting.gdshaderinc\""
+nodes/light/3/node = SubResource("VisualShaderNodeExpression_nlhjx")
+nodes/light/3/position = Vector2(-160, 133.33333)
+nodes/light/3/size = Vector2(340, 100)
+nodes/light/3/input_ports = ""
+nodes/light/3/output_ports = ""
+nodes/light/3/expression = "STANDARD_LIGHTING(DIFFUSE_LIGHT, SPECULAR_LIGHT);"

@@ -1,10 +1,10 @@
 extends Node
 
-# https://gist.github.com/laundmo/b224b1f4c8ef6ca5fe47e132c8deab56
 
 var root: Node3D
 var camera: Camera3D
 
+# https://gist.github.com/laundmo/b224b1f4c8ef6ca5fe47e132c8deab56
 func lerp(a: float, b: float, t: float) -> float:
 	"""Linear interpolate on the scale given by a to b, using t as the point on that scale.
 	Examples
@@ -65,11 +65,15 @@ func EaseIOCubic(x: float) -> float:
 		return 1 - pow(-2 * x + 2, 3) / 2
 
 
-func getNearest(origin: Vector3, objects: Array[Node]) -> Node3D:
+func stub(_obj: Node3D) -> bool: return true
+func checkTargable(obj: Node3D) -> bool:
+	return obj.Targetable
+
+func getNearest(origin: Vector3, objects: Array[Node], extraEval: Callable = stub) -> Node3D:
 	var dist = 10000
 	var targ = null
 	for obj in objects:
-		if origin.distance_to(obj.global_position) < dist:
+		if origin.distance_to(obj.global_position) < dist and extraEval.call(obj):
 			dist = origin.distance_to(obj.global_position)
 			targ = obj
 	
@@ -94,8 +98,8 @@ func BoneRotated(armature: Skeleton3D, bone_idx:int, rotation:Vector3):
 	pose.basis = Basis.from_euler(rotation)
 	armature.set_bone_pose(bone_idx, pose)
 
-
-func get_camera_heading() -> float:
-	# Get the camera system's yaw in Radians
-	if not camera: return 0.
-	return camera.get_parent()._yaw
+func go():
+	camera = get_node("/root/Main/Camera Rig Main").find_child("Camera3D")
+	
+func _ready():
+	call_deferred("go")

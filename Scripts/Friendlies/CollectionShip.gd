@@ -20,7 +20,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	var point = G.getNearest( self.global_position, get_node("/root/Main/Friendlies").find_children("Raw Crystal*") )
+	var point = G.getNearest( self.global_position, get_node("/root/Main/Crystals").find_children("Raw Crystal*") )
 	if point:
 		target = point.global_position
 

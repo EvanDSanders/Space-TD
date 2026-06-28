@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://4jnsdnebsn5c"]
+
+[ext_resource type="Shader" uid="uid://c1fwq38221udo" path="res://Shaders/DamageTexture.tres" id="1_6tveo"]
+
+[resource]
+render_priority = -1
+shader = ExtResource("1_6tveo")
+shader_parameter/DamageScale = 0.0

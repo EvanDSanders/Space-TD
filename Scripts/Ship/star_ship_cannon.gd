@@ -57,7 +57,7 @@ var priorY := 0.
 var priorX := 0.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	var mouse: RayCast3D = get_node('/root/Main/CursorCast3D')
 	
@@ -73,7 +73,7 @@ func _process(_delta: float) -> void:
 	Pitch.rotation.x += clamp(x - Pitch.rotation.x, -.025, .025)
 
 	priorY = Yaw.rotation.y
-	priorX = Pitch.rotation.x	
+	priorX = Pitch.rotation.x
 	
 	Aimed = is_zero_approx(angle_difference(Yaw.rotation.y, y)) and is_zero_approx(angle_difference(Pitch.rotation.x, x))
 		

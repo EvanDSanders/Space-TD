@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bu0eg44jo0e2n" path="res://main.gd" id="1_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://bnymp03h1qh3x" path="res://Scenes/Ship/TheStarShip.tscn" id="1_glv2v"]
-[ext_resource type="Script" uid="uid://b20kwqx8cxlh8" path="res://Scripts/Game/BlenderCameraHub.gd" id="2_r0du0"]
-[ext_resource type="Script" uid="uid://do4cqrqccayv5" path="res://Scripts/Game/BlenderCamera.gd" id="3_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://8lvw8eyoxog3" path="res://Scenes/Towers/LaserTurret.tscn" id="5_fos0i"]
 [ext_resource type="PackedScene" uid="uid://c2nt3qsw4cnfi" path="res://Scenes/Enemies/Scout.tscn" id="6_lgr22"]
 [ext_resource type="PackedScene" uid="uid://c4lykumyfuw1w" path="res://Objects/Pylon.glb" id="6_trn2v"]
 [ext_resource type="PackedScene" uid="uid://ca5csnc7pa1oq" path="res://Scenes/Friendlies/Crystal.tscn" id="8_03owx"]
 [ext_resource type="PackedScene" uid="uid://dnw0vb8iwsd1m" path="res://Scenes/Friendlies/Collection Ship.tscn" id="8_trn2v"]
+[ext_resource type="Script" uid="uid://bjig3axgkdun8" path="res://Scripts/Ship/star_ship_camera.gd" id="10_20pc6"]
+[ext_resource type="Theme" uid="uid://c0wsmkaots3ab" path="res://Themes/Control3D.tres" id="10_wkp8b"]
+[ext_resource type="Script" uid="uid://bmk2cpj8yot7v" path="res://Scripts/Ship/camera_object.gd" id="11_5vvyt"]
+[ext_resource type="Script" uid="uid://cw7t8od5875gx" path="res://Scripts/Game/GUI/GearShift.UI.gd" id="11_20pc6"]
+[ext_resource type="Script" uid="uid://clin1n3uspjyy" path="res://Scripts/Game/GUI/Resources.UI.gd" id="12_5vvyt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cm0pq"]
 sky_top_color = Color(0.3071158, 0.417807, 0.52849823, 1)
@@ -36,8 +39,44 @@ height = 2000.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_fos0i"]
 size = Vector3(7074.168, 0.001, 6204.9414)
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_eoje4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vvyt"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0.6, 0.053841736, 0.627451)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.8, 0.4333333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6i3y"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.17, 0.17, 0.17, 0.627451)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4509804, 1, 0.7372549, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [node name="Main" type="Node3D" unique_id=410800660]
 script = ExtResource("1_cm0pq")
+
+[node name="Timer" type="Timer" parent="." unique_id=1110836688]
+wait_time = 0.1
+autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=971927991]
 environment = SubResource("Environment_3dxm6")
@@ -49,23 +88,17 @@ sky_mode = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=920708927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3624.3572, 0)
+visible = false
 cast_shadow = 0
 mesh = SubResource("SphereMesh_lgr22")
 
-[node name="Camera Hub" type="Node3D" parent="." unique_id=693096939]
-script = ExtResource("2_r0du0")
-
-[node name="Camera Mount" type="Node3D" parent="Camera Hub" unique_id=40490541]
-script = ExtResource("3_cm0pq")
-
-[node name="Camera3D" type="Camera3D" parent="Camera Hub/Camera Mount" unique_id=168778442]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 37)
-
-[node name="Turret" parent="." unique_id=2073233604 instance=ExtResource("5_fos0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.32826, 0.41417313, 20.195887)
-
-[node name="Turret2" parent="." unique_id=874451893 instance=ExtResource("5_fos0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.77875, 0.4141655, -32.08808)
+[node name="AreaLight3D" type="SpotLight3D" parent="MeshInstance3D" unique_id=1184159891]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
+light_energy = 20.0
+shadow_enabled = true
+spot_range = 10000.0
+spot_attenuation = 0.3
 
 [node name="Cursor Plane" type="Area3D" parent="." unique_id=599834955]
 collision_layer = 128
@@ -74,6 +107,8 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor Plane" unique_id=1005280936]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.50049996, 0)
 shape = SubResource("BoxShape3D_fos0i")
+debug_color = Color(0.70196074, 0.28629094, 0, 0.05882353)
+debug_fill = false
 
 [node name="CursorCast3D" type="RayCast3D" parent="." unique_id=866926861]
 collision_mask = 128
@@ -101,19 +136,261 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.492805, 1.2589264, -25.7
 [node name="Pylon" parent="." unique_id=1801404425 instance=ExtResource("6_trn2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.29261, 0, -9.409502)
 
+[node name="Crystals" type="Marker3D" parent="." unique_id=77170608]
+
+[node name="Raw Crystal" parent="Crystals" unique_id=1299967828 instance=ExtResource("8_03owx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.84602, 0, 0)
+
+[node name="Raw Crystal2" parent="Crystals" unique_id=1801017022 instance=ExtResource("8_03owx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.105072, 0, 21.702087)
+
 [node name="Friendlies" type="Marker3D" parent="." unique_id=1848505711]
 
 [node name="The Star Ship" parent="Friendlies" unique_id=81731908 instance=ExtResource("1_glv2v")]
 faceWithCamera = true
 
-[node name="Raw Crystal" parent="Friendlies" unique_id=1299967828 instance=ExtResource("8_03owx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.84602, 0, 0)
+[node name="Turret" parent="Friendlies" unique_id=2073233604 instance=ExtResource("5_fos0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.32826, 0.41417313, 20.195887)
 
-[node name="Raw Crystal2" parent="Friendlies" unique_id=1801017022 instance=ExtResource("8_03owx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.105072, 0, 21.702087)
+[node name="Turret2" parent="Friendlies" unique_id=874451893 instance=ExtResource("5_fos0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.77875, 0.4141655, -32.08808)
 
 [node name="Node3D" parent="." unique_id=1076245999 instance=ExtResource("8_trn2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.599455, 0, 7.6533136)
 gravity_scale = 0.0
 linear_damp = 1.0
 angular_damp = 1.0
+
+[node name="Camera Rig Main" type="Node3D" parent="." unique_id=353589378]
+
+[node name="Camera Start" type="Node3D" parent="Camera Rig Main" unique_id=1460054047]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.7071067, 0, -0.7071067, 0.70710677, 0, 1534.9188, 1024.8969)
+
+[node name="Camera3D" type="Camera3D" parent="Camera Rig Main" unique_id=337343100]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 498, 269)
+script = ExtResource("10_20pc6")
+
+[node name="Timer" type="Timer" parent="Camera Rig Main/Camera3D" unique_id=1083543634]
+
+[node name="CShipMount" type="Node3D" parent="Camera Rig Main" unique_id=317560372]
+
+[node name="CAttack" type="Node3D" parent="Camera Rig Main/CShipMount" unique_id=2081415812]
+script = ExtResource("11_5vvyt")
+canPan = false
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CShipMount/CAttack" unique_id=325297265]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CShipMount/CAttack/Yaw" unique_id=669144602]
+transform = Transform3D(1, 0, 0, 0, 0.99619466, 0.08715573, 0, -0.08715573, 0.99619466, 0, 31, 26)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CShipMount/CAttack/Yaw/Pitch" unique_id=102599506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
+
+[node name="CEvade" type="Node3D" parent="Camera Rig Main/CShipMount" unique_id=1524812554]
+script = ExtResource("11_5vvyt")
+canPan = false
+canOrbitPitch = false
+canOrbitYaw = false
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CShipMount/CEvade" unique_id=946967159]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CShipMount/CEvade/Yaw" unique_id=37644603]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CShipMount/CEvade/Yaw/Pitch" unique_id=1242145175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 448)
+
+[node name="CMove" type="Node3D" parent="Camera Rig Main/CShipMount" unique_id=1833733107]
+script = ExtResource("11_5vvyt")
+canPan = false
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CShipMount/CMove" unique_id=1277338929]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CShipMount/CMove/Yaw" unique_id=1729025716]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CShipMount/CMove/Yaw/Pitch" unique_id=360467497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 191)
+
+[node name="CBuild" type="Node3D" parent="Camera Rig Main" unique_id=1027467287]
+script = ExtResource("11_5vvyt")
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CBuild" unique_id=954961994]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CBuild/Yaw" unique_id=372061350]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660253, 0, -0.8660253, 0.49999997, 0, 0, 0)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CBuild/Yaw/Pitch" unique_id=444176669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 222)
+
+[node name="Label" type="Label" parent="." unique_id=781920060]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Gear Shifter" type="Control" parent="." unique_id=1298373189]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("10_wkp8b")
+
+[node name="PanelContainer" type="PanelContainer" parent="Gear Shifter" unique_id=655777327]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -72.0
+offset_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_position = Vector2(118.4, 0)
+theme = ExtResource("10_wkp8b")
+script = ExtResource("11_20pc6")
+
+[node name="Timer" type="Timer" parent="Gear Shifter/PanelContainer" unique_id=1479112562]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gear Shifter/PanelContainer" unique_id=1533825090]
+layout_mode = 2
+
+[node name="Build" type="Button" parent="Gear Shifter/PanelContainer/VBoxContainer" unique_id=721446449]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+text = "Construction Anchor"
+
+[node name="Maneuver" type="Button" parent="Gear Shifter/PanelContainer/VBoxContainer" unique_id=1239002811]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_eoje4")
+text = "Maneuvering"
+
+[node name="Warp" type="Button" parent="Gear Shifter/PanelContainer/VBoxContainer" unique_id=1717513194]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+text = "Warp Drive"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gear Shifter/PanelContainer/VBoxContainer" unique_id=1722376001]
+layout_mode = 2
+
+[node name="Evasion" type="Button" parent="Gear Shifter/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1634195277]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+text = "Evade"
+
+[node name="Attack" type="Button" parent="Gear Shifter/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1724301956]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+text = "Attack"
+
+[node name="ShipResources" type="Control" parent="." unique_id=1174622568]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+theme = ExtResource("10_wkp8b")
+script = ExtResource("12_5vvyt")
+
+[node name="VBox" type="VBoxContainer" parent="ShipResources" unique_id=938440789]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -142.5
+offset_right = 44.0
+offset_bottom = 134.5
+grow_vertical = 2
+
+[node name="Bars" type="HBoxContainer" parent="ShipResources/VBox" unique_id=2122276593]
+layout_mode = 2
+
+[node name="Health" type="ProgressBar" parent="ShipResources/VBox/Bars" unique_id=8287]
+custom_minimum_size = Vector2(10, 250)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/fill = SubResource("StyleBoxFlat_5vvyt")
+value = 100.0
+fill_mode = 3
+
+[node name="Mana" type="ProgressBar" parent="ShipResources/VBox/Bars" unique_id=594080471]
+custom_minimum_size = Vector2(10, 250)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_font_sizes/font_size = 16
+value = 100.0
+fill_mode = 3
+
+[node name="CrystalsBox" type="PanelContainer" parent="ShipResources/VBox" unique_id=740538312]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c6i3y")
+
+[node name="Crystals" type="Label" parent="ShipResources/VBox/CrystalsBox" unique_id=837690856]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4509804, 1, 0.7372549, 1)
+text = "500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Constructables" type="Control" parent="." unique_id=358969816]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("10_wkp8b")
+
+[node name="MarginContainer" type="MarginContainer" parent="Constructables" unique_id=1307309820]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Constructables/MarginContainer" unique_id=1813612267]
+layout_mode = 2
+
+[node name="Map" type="Control" parent="." unique_id=363465747]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme = ExtResource("10_wkp8b")
+
+[connection signal="timeout" from="Timer" to="." method="spawn"]
+[connection signal="button_up" from="Gear Shifter/PanelContainer/VBoxContainer/Build" to="Gear Shifter/PanelContainer" method="_on_build_button_up"]
+[connection signal="button_up" from="Gear Shifter/PanelContainer/VBoxContainer/Maneuver" to="Gear Shifter/PanelContainer" method="_on_maneuver_button_up"]
+[connection signal="button_up" from="Gear Shifter/PanelContainer/VBoxContainer/Warp" to="Gear Shifter/PanelContainer" method="_on_warp_button_up"]
+[connection signal="button_up" from="Gear Shifter/PanelContainer/VBoxContainer/HBoxContainer/Evasion" to="Gear Shifter/PanelContainer" method="_on_evasion_button_up"]
+[connection signal="button_up" from="Gear Shifter/PanelContainer/VBoxContainer/HBoxContainer/Attack" to="Gear Shifter/PanelContainer" method="_on_attack_button_up"]

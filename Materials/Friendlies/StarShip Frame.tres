@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cf5omkyt67w3j"]
+
+[ext_resource type="Material" uid="uid://4jnsdnebsn5c" path="res://Materials/Common/DamageTexture.tres" id="1_14ndr"]
+
+[resource]
+resource_name = "Material.001"
+next_pass = ExtResource("1_14ndr")
+cull_mode = 2
+albedo_color = Color(0.2640366, 0.74771535, 0.53303707, 1)
+metallic = 1.0
+roughness = 0.5

@@ -1,4 +1,4 @@
-extends Node3D
+extends RigidBody3D
 
 # Speed stores for Maneuvering mode (local to ship)
 var SpeedForward 	: float = 0.
@@ -13,6 +13,7 @@ var Velocity : Vector3
 var currentShipHeading := 0.
 
 @onready var Bones : Skeleton3D = $"Star Ship/Brmature/Skeleton3D"
+@export var Targetable : bool = true
 
 	
 @onready var EngineL = Bones.find_bone('Engine.Hub.L')
@@ -34,7 +35,7 @@ enum ShipModes {
 	Evasion,
 };
 
-@export var ShipMode: ShipModes = ShipModes.Evasion
+@export var ShipMode: ShipModes = ShipModes.Maneuver
 @onready var ShipModePrior = ShipModes.Maneuver
 
 @onready var ETw = self.create_tween()
@@ -48,13 +49,65 @@ var movementClampYaw := 0.5
 
 @onready var EngineTrailLoader = preload("res://Scenes/Ship/StarShipEngineTrail.tscn")
 @onready var ShieldMat : ShaderMaterial = load("res://Materials/Shield.tres")
-
+var MeshI3Ds : Array[MeshInstance3D]
 
 @onready var Turrets := [
 		$"Star Ship/TurretF",
 		$"Star Ship/TurretL",
 		$"Star Ship/TurretR"
 ]
+
+@export var ManaMax := 500.
+@export var HPMax := 400.
+
+var Crystals := 200
+var Mana := ManaMax
+var HP := HPMax
+
+signal CrystalsChange(int)
+signal ManaChange(float)
+signal HPChange(float)
+
+func updateHull(float):
+	for i in MeshI3Ds:
+		i.set_instance_shader_parameter("DamageScale", G.remap(0, HPMax, 1, 0, HP))
+
+func _hit(damage: float):
+	HP -= damage
+	HPChange.emit(HP)
+	if HP <= 0:
+		self.Targetable = false
+		print("dead")
+
+func _heal(amt: float):
+	HP += amt
+	HPChange.emit(HP)
+	HP = clampf(HP, 0, HPMax)
+
+func pullCrystal(charge: int) -> bool:
+	if charge > Crystals: return false
+	Crystals -= charge
+	CrystalsChange.emit(Crystals)
+	return true;
+
+func pushCrystal(amt: int):
+	Crystals += amt
+	CrystalsChange.emit(Crystals)
+	
+func pullMana(charge: float) -> float:
+	charge = clampf(charge, 0, Mana)
+	Mana -= charge
+	ManaChange.emit(Mana)
+	return charge
+
+func pushMana(amt: int):
+	Mana += amt
+	Mana = clampf(HP, 0, ManaMax)
+	ManaChange.emit(Mana)
+	
+	
+	
+
 
 # Custom condition check for Ship's turrets (it doesn't work for some reason)
 func TurretCheck() -> bool:
@@ -97,9 +150,19 @@ func _ready() -> void:
 	
 	for each: MeshInstance3D in find_children("*", "MeshInstance3D"):
 		each.material_overlay = ShieldMat
+		MeshI3Ds.append(each)
+
+	gravity_scale = 0
+	linear_damp = 0
+	angular_damp = 0
+	axis_lock_angular_x = true
+	axis_lock_angular_z = true
+	
+	self.body_shape_entered.connect(self.collide)
+	self.HPChange.connect(self.updateHull)
 
 # For slow and acurate, per-axis movent
-func AxisMovment(DirectionVar: StringName, AxisA: StringName, AxisB: StringName):
+func AxisMovment(DirectionVar: StringName, AxisA: StringName, AxisB: StringName, delta: float):
 	var speed := 0.
 	if not ETw.is_running() and ShipMode == ShipModes.Maneuver:
 		speed = Input.get_axis(AxisA, AxisB)
@@ -194,20 +257,25 @@ func _process(delta: float) -> void:
 	$"Star Ship".rotation = Vector3(-SpeedVert/12, 0, -SpeedYaw/12 + SpeedStrafe/12)
 
 	# Rotate engines
-	BoneRotate(EngineL, "Y",  SpeedForward/8 + SpeedStrafe/8)
-	BoneRotate(EngineR, "Y", -SpeedForward/8 + SpeedStrafe/8)
+	BoneRotate(EngineL, "Y", ( SpeedForward + SpeedStrafe)*delta*5)
+	BoneRotate(EngineR, "Y", (-SpeedForward + SpeedStrafe)*delta*5)
 	for each in EngineDisks:
-		BoneRotate(each, "Y", -SpeedYaw/8)
+		BoneRotate(each, "Y", -SpeedYaw*delta*5)
 
 	# Turbines: accumulate angle as a float, set absolute rotation to avoid basis drift
 	_turbineAngle = fmod(_turbineAngle + 2.0, TAU)
 	BoneRotated(EngineTurbines[0], Vector3(0, -_turbineAngle, 0))
 	BoneRotated(EngineTurbines[1], Vector3(0,  _turbineAngle, 0))
 
-func _physics_process(_delta: float) -> void:
+
+var CameraHeading : float
+
+func _physics_process(delta: float) -> void:
 	match ShipMode:
 		ShipModes.Evasion:
-			var heading := G.get_camera_heading()
+			if ETw.is_running(): return
+			
+			var heading := CameraHeading
 			var headingCam := heading
 			
 			# Get inputs
@@ -233,16 +301,16 @@ func _physics_process(_delta: float) -> void:
 			
 			# Rotate the ship
 			var y = angle_difference(self.rotation.y, headingCam) / 35
-			self.rotate_object_local(Vector3.UP, y)
+			angular_velocity.y = y / delta
 			# Set the per-axis methods to show to visuals
-			SpeedYaw = y*-movementScaleYaw 
-			
-			
+			SpeedYaw = y*-movementScaleYaw
+
+
 			# Scale down and add velocity
-			Velocity += v * 0.1 
+			Velocity += v * 0.1
 			Velocity *= 0.98 # Drag
-			
-			self.global_position += Velocity
+
+			linear_velocity = Velocity / delta
 			
 			# Set the per-axis methods to show to visuals
 			SpeedForward = Velocity.rotated(Vector3.UP, -self.rotation.y).z
@@ -250,13 +318,25 @@ func _physics_process(_delta: float) -> void:
 			
 		_:
 			# Use per-axis methods to move ship
-			AxisMovment( "SpeedForward", "Forward", "Backward" )
-			AxisMovment( "SpeedStrafe", "Right", "Left" )
-			#AxisMovment( "SpeedVert", "Up", "Down" )
-			AxisMovment( "SpeedYaw", "YawLeft", "YawRight" )
+			AxisMovment( "SpeedForward", "Forward", "Backward", delta )
+			AxisMovment( "SpeedStrafe", "Right", "Left", delta )
+			#AxisMovment( "SpeedVert", "Up", "Down", delta )
+			AxisMovment( "SpeedYaw", "YawLeft", "YawRight", delta )
 			
 			# Move the ship
-			self.translate_object_local( Vector3(-SpeedStrafe, -SpeedVert, SpeedForward) )
-			self.rotate_object_local(Vector3.UP, -SpeedYaw/(180/PI))
+			linear_velocity = basis * Vector3(-SpeedStrafe, -SpeedVert, SpeedForward) / delta
+			angular_velocity.y = -SpeedYaw/(180/PI) / delta
 			
+	
+func collide(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int):
+	var S1 : Vector3 = self.linear_velocity
+	var S2 : Vector3 = body.linear_velocity
+	var rate = S1.distance_to(S2)
+	var dmg = G.remap(5, 20, 0, 1, rate)
+	self._hit(dmg/20)
+	if body.has_method("_hit"):
+		body._hit(dmg*10)
+		
+	print(self.name, " at ", S1.length(),  " m/s hit ", body.name, " at ", S2.length(), " m/s")
+	
 	
