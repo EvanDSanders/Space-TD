@@ -1,9 +1,32 @@
 [gd_scene format=3 uid="uid://bnymp03h1qh3x"]
 
-[ext_resource type="PackedScene" uid="uid://0416x3sjf50f" path="res://Objects/Star Ship.glb" id="1_tfdsr"]
+[ext_resource type="PackedScene" uid="uid://0416x3sjf50f" path="res://Objects/StarShip/Star Ship.glb" id="1_tfdsr"]
+[ext_resource type="Script" uid="uid://wp6lept6xt5a" path="res://Scripts/Common/ShieldedDestructible.gd" id="2_50x4y"]
 [ext_resource type="Script" uid="uid://7k4idlblxpeq" path="res://Scripts/Ship/star_ship.gd" id="2_vxvel"]
 [ext_resource type="PackedScene" uid="uid://8lvw8eyoxog3" path="res://Scenes/Towers/LaserTurret.tscn" id="3_vxvel"]
+[ext_resource type="Shader" uid="uid://byk3dfkudeyxo" path="res://Shaders/Smoke_Project/Stylized_Smoke_Shader.gdshader" id="4_dtqe4"]
 [ext_resource type="PackedScene" uid="uid://chcp7646wod0j" path="res://Scenes/Ship/StarShip Cannon.tscn" id="4_re7vq"]
+[ext_resource type="Script" uid="uid://chahj6p5gtbru" path="res://Scripts/Common/CrystalStore.gd" id="4_vbsd5"]
+[ext_resource type="ArrayMesh" uid="uid://c03p1wq8x7grl" path="res://Shaders/Smoke_Project/Mesh.tres" id="5_0xris"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="5_50x4y"]
+[ext_resource type="Script" uid="uid://c352samjcijuc" path="res://Scripts/Common/ManaStore.gd" id="6_vbsd5"]
+[ext_resource type="Script" uid="uid://4gtjosoa60yp" path="res://Scripts/Misc/SmokeController.gd" id="11_0xris"]
+[ext_resource type="PackedScene" uid="uid://r2c1xnv1e5ea" path="res://Scenes/Friendlies/CollectionArea3D.tscn" id="12_0xris"]
+[ext_resource type="Script" uid="uid://b1lekmlrs6hfj" path="res://ScanArea.gd" id="13_vfujq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_50x4y"]
+friction = 0.5
+bounce = 10.1
+
+[sub_resource type="Gradient" id="Gradient_crttl"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.1411917, 0.3458549, 0.623057, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1.0354114, 0.81522506, 0.00087751984, 1, 1.041665, 0.5597629, 0.000987643, 1, 1.0255702, 0.36023858, 0.0005767989, 1, 1, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_50x4y"]
+offsets = PackedFloat32Array(0, 0.23186529, 0.5634715, 0.7733161, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.44152188, 0, 1, 1, 0.9147645, 0, 1, 0, 0.97696304, 1, 1, 0, 0.115311146, 0.58111036, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_re7vq"]
 size = Vector3(12.481445, 8.208008, 13.192383)
@@ -26,35 +49,158 @@ size = Vector3(4, 3, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x050v"]
 size = Vector3(8, 5, 8)
 
+[sub_resource type="Curve" id="Curve_m87b2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9073359, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dtqe4"]
+curve = SubResource("Curve_m87b2")
+
+[sub_resource type="Gradient" id="Gradient_bh1xa"]
+offsets = PackedFloat32Array(0, 0.17596567, 0.26609442, 0.75578034)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0.9019608, 0.22745098, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0xris"]
+gradient = SubResource("Gradient_bh1xa")
+
+[sub_resource type="Gradient" id="Gradient_wpfmx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6m2vr"]
+noise_type = 2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vfujq"]
+noise = SubResource("FastNoiseLite_6m2vr")
+color_ramp = SubResource("Gradient_wpfmx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ab8xo"]
+render_priority = 0
+shader = ExtResource("4_dtqe4")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Color_Gradiant = SubResource("GradientTexture1D_0xris")
+shader_parameter/Vor_Noise = SubResource("NoiseTexture2D_vfujq")
+shader_parameter/Alpha_Curve = SubResource("CurveTexture_dtqe4")
+shader_parameter/Fernal_Power = 1.0
+shader_parameter/Vor_Scale = 0.8
+shader_parameter/Vor_Speed = 0.2
+shader_parameter/Emmision_Power = 1.0
+shader_parameter/Alpha_Clip = 0.0
+
+[sub_resource type="Curve" id="Curve_pp8cm"]
+_data = [Vector2(0, 0), 0.0, 1.0236398, 0, 0, Vector2(1, 1), 0.97106856, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m87b2"]
+texture_mode = 1
+curve = SubResource("Curve_pp8cm")
+
+[sub_resource type="Curve" id="Curve_klpbu"]
+_data = [Vector2(0, 0.27411175), 0.0, 0.0, 0, 0, Vector2(0.7670157, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_240oq"]
+curve = SubResource("Curve_klpbu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e7riv"]
+particle_flag_rotate_y = true
+particle_flag_inherit_emitter_scale = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -89.99999
+angle_max = 90.000015
+inherit_velocity_ratio = 0.2
+spread = 2.0
+initial_velocity_min = 16.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.8
+scale_curve = SubResource("CurveTexture_240oq")
+alpha_curve = SubResource("CurveTexture_m87b2")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.019999977
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 0.1
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xris"]
+radius = 24.0
+height = 96.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m87b2"]
+height = 150.0
+radius = 150.0
+
 [node name="The Star Ship" type="RigidBody3D" unique_id=1980358966]
-collision_layer = 5
+collision_layer = 133
+collision_mask = 4357
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 200.0
+physics_material_override = SubResource("PhysicsMaterial_50x4y")
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("2_vxvel")
+EngineColors = SubResource("Gradient_crttl")
+
+[node name="Destructible" type="Node" parent="." unique_id=292606644]
+script = ExtResource("2_50x4y")
+ShieldMax = 50.0
+ShieldColors = SubResource("Gradient_50x4y")
+HPMax = 2000.0
+showMeter = false
+metadata/_custom_type_script = "uid://wp6lept6xt5a"
+
+[node name="ManaStore" type="Node" parent="." unique_id=452924241]
+script = ExtResource("6_vbsd5")
+ManaMax = 2000.0
+showMeter = false
+generationRate = 100.0
+MaxLinks = 8
+metadata/_custom_type_script = "uid://c352samjcijuc"
+
+[node name="CrystalStore" type="Node" parent="." unique_id=896236317]
+script = ExtResource("4_vbsd5")
+Crystals = 200.0
+metadata/_custom_type_script = "uid://chahj6p5gtbru"
+
+[node name="CrystalDeposit" type="Marker3D" parent="." unique_id=173231047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 5)
+gizmo_extents = 1.46
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=2086025885]
+script = ExtResource("5_50x4y")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 
 [node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, -0.0010299683)
+transform = Transform3D(0.9954457, 0, 0, 0, 0.9954457, 0, 0, 0, 0.9954457, -0.01760292, 0.016902924, -0.0010299683)
+
+[node name="Cube 008" parent="Star Ship" index="2" unique_id=228561967]
+layers = 513
 
 [node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16)
-Targetable = false
+collision_layer = 132
 idleAngleRange = 120
+isPartOfStarShip = true
 
 [node name="TurretL" parent="Star Ship" unique_id=18677659 instance=ExtResource("3_vxvel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 8, 14)
-Targetable = false
+collision_layer = 132
 idleAngle = 120
 idleAngleRange = 120
+isPartOfStarShip = true
 
 [node name="TurretR" parent="Star Ship" unique_id=510374793 instance=ExtResource("3_vxvel")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 12, 8, 14)
-Targetable = false
+collision_layer = 132
 idleAngle = -120
 idleAngleRange = 120
+isPartOfStarShip = true
 
 [node name="Main Cannon" parent="Star Ship" unique_id=1573750634 instance=ExtResource("4_re7vq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -14)
@@ -108,3 +254,121 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, -6.483097, -13.94103)
 shape = SubResource("BoxShape3D_x050v")
 debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="Label" type="Label" parent="." unique_id=1485200618]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Smoke3" type="GPUParticles3D" parent="." unique_id=1318754862 node_paths=PackedStringArray("health")]
+transform = Transform3D(0.3891002, -0.8135266, -0.4321754, 0.6899436, 0.56822187, -0.4484437, 0.61039233, -0.12368703, 0.78238267, 12.9304085, 7.54486, 21.400982)
+visible = false
+material_override = SubResource("ShaderMaterial_ab8xo")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_e7riv")
+draw_pass_1 = ExtResource("5_0xris")
+script = ExtResource("11_0xris")
+health = NodePath("../Destructible")
+threshhold = 0.35
+
+[node name="Smoke6" type="GPUParticles3D" parent="." unique_id=850169795 node_paths=PackedStringArray("health")]
+transform = Transform3D(-0.9156921, 0.3337831, 0.22382335, -0.3173309, -0.25878692, -0.9123215, -0.24659488, -0.9064317, 0.34288877, -12.813673, 4.9633446, 19.205503)
+visible = false
+material_override = SubResource("ShaderMaterial_ab8xo")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_e7riv")
+draw_pass_1 = ExtResource("5_0xris")
+script = ExtResource("11_0xris")
+health = NodePath("../Destructible")
+threshhold = 0.2
+
+[node name="Smoke7" type="GPUParticles3D" parent="." unique_id=577706772 node_paths=PackedStringArray("health")]
+transform = Transform3D(-0.5953677, 0.6920639, 0.4081485, -0.7250804, -0.24396762, -0.64400196, -0.3461154, -0.6793585, 0.6470523, -5.1766796, -3.498468, -0.6842118)
+visible = false
+material_override = SubResource("ShaderMaterial_ab8xo")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_e7riv")
+draw_pass_1 = ExtResource("5_0xris")
+script = ExtResource("11_0xris")
+health = NodePath("../Destructible")
+threshhold = 0.27
+
+[node name="Smoke8" type="GPUParticles3D" parent="." unique_id=1182681182 node_paths=PackedStringArray("health")]
+transform = Transform3D(0.63090044, 0.6734829, 0.38520885, 0.69774634, -0.27539316, -0.6612937, -0.33928603, 0.68598866, -0.64366543, 2.9116998, 4.2892675, -8.825703)
+visible = false
+material_override = SubResource("ShaderMaterial_ab8xo")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_e7riv")
+draw_pass_1 = ExtResource("5_0xris")
+script = ExtResource("11_0xris")
+health = NodePath("../Destructible")
+threshhold = 0.3
+
+[node name="Smoke4" type="GPUParticles3D" parent="." unique_id=211310564 node_paths=PackedStringArray("health")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.371139e-08, 12, 5.9999995, 28)
+visible = false
+material_override = SubResource("ShaderMaterial_ab8xo")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_e7riv")
+draw_pass_1 = ExtResource("5_0xris")
+script = ExtResource("11_0xris")
+health = NodePath("../Destructible")
+threshhold = 0.13
+
+[node name="Smoke5" type="GPUParticles3D" parent="." unique_id=937725733 node_paths=PackedStringArray("health")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.371139e-08, -12, 6, 28)
+visible = false
+material_override = SubResource("ShaderMaterial_ab8xo")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_e7riv")
+draw_pass_1 = ExtResource("5_0xris")
+script = ExtResource("11_0xris")
+health = NodePath("../Destructible")
+threshhold = 0.14
+
+[node name="CollectionArea3D" parent="." unique_id=413881615 node_paths=PackedStringArray("store") instance=ExtResource("12_0xris")]
+collision_mask = 1280
+store = NodePath("../CrystalStore")
+isShip = true
+
+[node name="CollisionShape3D" parent="CollectionArea3D" index="0" unique_id=1461314106]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_0xris")
+
+[node name="ScanArea3D" type="Area3D" parent="." unique_id=230911201]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("13_vfujq")
+scanFor = 1
+metadata/_custom_type_script = "uid://b1lekmlrs6hfj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScanArea3D" unique_id=1810911425]
+shape = SubResource("CylinderShape3D_m87b2")
+debug_color = Color(0, 0.70196074, 0.31933686, 0.41960785)
+debug_fill = false
+
+[editable path="Star Ship"]
+[editable path="CollectionArea3D"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://s4x0rwydmdcg"]
+
+[ext_resource type="Script" uid="uid://dsorj8i2b2qne" path="res://Scripts/Game/GUI/Waypoints.Base.UI.gd" id="1_7pm6j"]
+
+[node name="DebugPin" type="Control" unique_id=1954077161]
+visible = false
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7pm6j")
+
+[node name="Label" type="Label" parent="." unique_id=896492859]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -24.5
+offset_right = 20.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "He;;p"
+horizontal_alignment = 1
+vertical_alignment = 1

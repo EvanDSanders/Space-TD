@@ -1,8 +1,8 @@
 extends PanelContainer
 
 
-@onready var StarShip := $"../../Friendlies/The Star Ship"
-@onready var Camera := $"../../Camera Rig Main/".find_child("Camera3D")
+@onready var StarShip := $"../../../Friendlies/The Star Ship"
+@onready var Camera := $"../../../Camera Rig Main/".find_child("Camera3D")
 @onready var T := $Timer
 
 var isMoving := false
@@ -11,7 +11,7 @@ var isLocked := false
 
 @onready var startX = self.size.x
 
-@onready var Tw = create_tween()
+var Tw : Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,23 +23,24 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var speed
 	if StarShip.ShipMode == StarShip.ShipModes.Evasion:
-		speed = StarShip.Velocity.length()
+		#speed = StarShip.Velocity.length()
+		speed = StarShip.linear_velocity.length()
 	else:
 		speed = ( abs(StarShip.SpeedForward) 
 				+ abs(StarShip.SpeedStrafe) 
 				+ abs(StarShip.SpeedVert) 
 				+ abs(StarShip.SpeedYaw) )
 				
-	$"../../Label".text = str(speed)
-	$"../../Label".text += "\n"
+	$"../../../Label".text = str(speed)
+	$"../../../Label".text += "\n"
 	
-	if abs(speed) < 0.02:
-		$"../../Label".text += "Stopped"
+	if abs(speed) < 0.2:
+		$"../../../Label".text += "Stopped"
 		if isMoving : # and T.is_stopped():
 			isMoving = false
 			onChange(false)
 	else:
-		$"../../Label".text += "Moving"
+		$"../../../Label".text += "Moving"
 		if not isMoving : # and not T.is_stopped():
 			isMoving = true
 			onChange(true)
@@ -49,9 +50,8 @@ func loc(fac):
 
 func onChange(isLocked: bool):
 	startX = self.size.x
-	if Tw:
-		Tw.kill()
-		Tw = create_tween()
+	if Tw: Tw.kill()
+	Tw = create_tween()
 	Tw.set_ease(Tw.EASE_IN_OUT)
 	
 	Tw.tween_method(loc, float(isLocked), float(not isLocked), .25)

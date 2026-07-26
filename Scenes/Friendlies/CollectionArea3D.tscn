@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://r2c1xnv1e5ea"]
+
+[ext_resource type="Script" uid="uid://dlaosdwbnlvxj" path="res://Scripts/Friendlies/CollectionArea3D.gd" id="1_mgawu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eoje4"]
+radius = 25.0
+
+[node name="CollectionArea3D" type="Area3D" unique_id=413881615]
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource("1_mgawu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1461314106]
+shape = SubResource("SphereShape3D_eoje4")
+debug_color = Color(0.11372549, 1, 0, 0.03137255)

@@ -5,6 +5,11 @@ func stub(): return true;
 @export var YawObject: StringName = "Laser Turret Base"
 @export var PitchObject: StringName = "Laser Turret Pitch"
 @export var RecoilObject: StringName = "Laser Turret Head"
+@onready var cannon_head_d: MeshInstance3D = $"Main Cannon/Origin Cannon Hub/Cannon Pitch/Cannon Head D"
+@onready var Sound: AudioStreamPlayer3D = $"Main Cannon/Origin Cannon Hub/Cannon Pitch/Cannon Head D/AudioStreamPlayer3D"
+@onready var FireOrgin: Marker3D = $"Main Cannon/Origin Cannon Hub/Cannon Pitch/Cannon Head D/Marker3D"
+
+
 @export var EmittersObjects: Array = [
 	"Turret Emitter L", 
 	"Turret Emitter R"
@@ -23,6 +28,7 @@ var Aimed: bool
 
 var RangingOrigin : Node3D = self
 
+@onready var the_star_ship: RigidBody3D = $"../.."
 @onready var Projectile = ProjectileResource
 @onready var Pointer := $"Main Cannon/Origin Cannon Hub/Cannon Pitch/RayCast3D"
 
@@ -30,6 +36,14 @@ var RangingOrigin : Node3D = self
 func _ready() -> void:
 	for emtr in EmittersObjects:
 		Emitters.append(find_child(emtr))
+	
+	call_deferred('_ready2')
+		
+func _ready2():
+	#Laser.reparent(G.Main)
+	Laser.visible = false
+		
+@onready var Laser: Node3D = $LaserBase
 
 
 func get_heading(obj: Node3D, axis: StringName, targ) -> float:
@@ -56,9 +70,12 @@ func get_heading(obj: Node3D, axis: StringName, targ) -> float:
 var priorY := 0.
 var priorX := 0.
 
+var Tw : Tween
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	
+	#return
+	if not the_star_ship.health.isAlive: return
 	var mouse: RayCast3D = get_node('/root/Main/CursorCast3D')
 	
 	if not mouse.is_colliding(): return
@@ -77,14 +94,38 @@ func _physics_process(_delta: float) -> void:
 	
 	Aimed = is_zero_approx(angle_difference(Yaw.rotation.y, y)) and is_zero_approx(angle_difference(Pitch.rotation.x, x))
 		
-	if CDown <= 0 and Aimed:
-		CDown = 10
+	if the_star_ship.mana.Mana > 1500 and CDown <= 0 and Aimed and the_star_ship.FiringInput and not G.isBuilding:
+		var pos = G.Cursor.global_position
 		
-		#for emtr in Emitters:
-			#
-			#var projectile : Node3D = Projectile.instantiate()
-			#G.root.add_child(projectile)
-			#projectile.global_transform = emtr.global_transform
+		if is_instance_valid(Sound): Sound.play()
+		
+		Laser.visible = true
+		var mesh: Mesh = Laser.get_node("MeshInstance3D").mesh
+		mesh.height = 0
+		mesh.radius = 12
+		Laser.global_transform = FireOrgin.global_transform
+		
+		var dist : = Laser.global_position.distance_to(pos)
+		
+		if Tw: Tw.kill(); 
+		Tw = create_tween();
+		Tw.tween_method(func(f:float): Laser.get_child(0).position.z = -f, 0, dist/2, 0.2 * dist * .001 + .15)
+		Tw.parallel().tween_property(mesh, "height", dist, 0.2 * dist * .001 + .15)
+		Tw.parallel().tween_property(mesh, "radius", 0, 0.4 * dist * .001 + .15)
+		G.schedule(func():
+			var projectile : Node3D = Projectile.instantiate()
+			G.root.add_child(projectile)
+			projectile.global_position = pos
+			projectile.activate()
+			, .2 * dist * .001 + .15)
+		G.schedule(func(): Laser.visible = false, .4 * dist * .001 + .15)
+			
+			
+		
+		the_star_ship.mana.pullMana(1500)
+		CDown = 4
+		
+			
 	
 	CDown -= _delta;
 	

@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bx00hosxqa6e1"]
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_po146"]
+default_input_values = [2, false, 3, 1.205]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2soig"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4kylb"]
+input_name = "view"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_po146"]
+constant = Color(0.6282546, 0.31372547, 0.90588236, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_po146"]
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeFresnel_po146")
+nodes/fragment/2/position = Vector2(-640, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_2soig")
+nodes/fragment/3/position = Vector2(-1120, 80)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_4kylb")
+nodes/fragment/4/position = Vector2(-1146.6666, 186.66667)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_po146")
+nodes/fragment/5/position = Vector2(0, 106.666664)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 2, 1, 5, 0, 0, 0, 2, 0, 0, 1)
+
+[resource]
+render_priority = 0
+shader = SubResource("VisualShader_po146")

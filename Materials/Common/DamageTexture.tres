@@ -5,4 +5,4 @@
 [resource]
 render_priority = -1
 shader = ExtResource("1_6tveo")
-shader_parameter/DamageScale = 0.0
+shader_parameter/StarShipEngineOverheatIsThis = true

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://q1u8vlw53hd7"]
 
 [ext_resource type="Shader" uid="uid://dyanin8rvfvxo" path="res://Scenes/Ship/StarShipEngineTrail.tres" id="1_colgv"]
+[ext_resource type="PackedScene" uid="uid://ddnonxgrudlwl" path="res://Objects/StarShip/EngineCrystal.glb" id="2_ltnxq"]
+[ext_resource type="Script" uid="uid://bpsaobdil5efp" path="res://addons/proton_trail/proton_trail.gd" id="3_opgni"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ltnxq"]
 render_priority = 0
@@ -13,6 +15,10 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_colgv"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfujq"]
+render_priority = 0
+shader = ExtResource("1_colgv")
+
 [node name="EngineTrail" type="BoneAttachment3D" unique_id=1413829401]
 
 [node name="VaporTrail" type="VaporTrail" parent="." unique_id=1961751073]
@@ -23,3 +29,23 @@ visual/size = 1.0
 visual/size_curve = SubResource("Curve_colgv")
 visual/color_gradient = SubResource("Gradient_colgv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="EngineCrystal" parent="." unique_id=334133426 instance=ExtResource("2_ltnxq")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5510126, 6.779692e-08)
+
+[node name="ProtonTrail" type="Node3D" parent="." unique_id=1719564302]
+visible = false
+script = ExtResource("3_opgni")
+material = SubResource("ShaderMaterial_vfujq")
+life_time = 0.25
+cast_shadow = false
+emit = false
+metadata/_custom_type_script = "uid://bpsaobdil5efp"
+
+[node name="Top" type="Marker3D" parent="ProtonTrail" unique_id=1070715829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+
+[node name="Bottom" type="Marker3D" parent="ProtonTrail" unique_id=1632411179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false

@@ -1,11 +1,72 @@
 [gd_scene format=3 uid="uid://8lvw8eyoxog3"]
 
-[ext_resource type="PackedScene" uid="uid://iyo2304jo8pi" path="res://Objects/Laser Turret.glb" id="1_ejo56"]
-[ext_resource type="Script" uid="uid://6nv4xu8sdv04" path="res://Scripts/Game/Turret.gd" id="1_hxdwn"]
-[ext_resource type="PackedScene" uid="uid://balo3f7xvn2hc" path="res://Scenes/Towers/Laser.tscn" id="2_7b141"]
+[ext_resource type="PackedScene" uid="uid://iyo2304jo8pi" path="res://Objects/Structures/Laser Turret.glb" id="1_ejo56"]
+[ext_resource type="Script" uid="uid://6nv4xu8sdv04" path="res://Scripts/Friendlies/Turret.gd" id="1_hxdwn"]
+[ext_resource type="PackedScene" uid="uid://balo3f7xvn2hc" path="res://Scenes/Projectiles/Laser.tscn" id="2_7b141"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="3_obr6s"]
+[ext_resource type="Script" uid="uid://c352samjcijuc" path="res://Scripts/Common/ManaStore.gd" id="4_bihdh"]
+[ext_resource type="AudioStream" uid="uid://binmsitg58aer" path="res://SoundsProtected/laser_4_1.ogg" id="4_l53b3"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="4_obr6s"]
+[ext_resource type="Script" uid="uid://b1lekmlrs6hfj" path="res://ScanArea.gd" id="8_aepq2"]
+[ext_resource type="Script" uid="uid://biycbds6w5ly2" path="res://Sounds/ProtectedSpeaker.gd" id="8_drwel"]
 
-[node name="Turret" type="Node3D" unique_id=2073233604]
+[sub_resource type="SphereShape3D" id="SphereShape3D_eoje4"]
+radius = 2.3866467
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t1nho"]
+height = 100.0
+radius = 100.0
+
+[node name="Turret" type="StaticBody3D" unique_id=1933543949 node_paths=PackedStringArray("scanArea3D")]
+collision_layer = 4485
+collision_mask = 5
 script = ExtResource("1_hxdwn")
 ProjectileResource = ExtResource("2_7b141")
+scanArea3D = NodePath("ScanArea3D")
+
+[node name="Destructible" type="Node" parent="." unique_id=1307694410]
+script = ExtResource("3_obr6s")
+HPMax = 100.0
+TargetType = 0
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ManaStore" type="Node" parent="." unique_id=567078910]
+script = ExtResource("4_bihdh")
+ManaMax = 2.5
+metadata/_custom_type_script = "uid://c352samjcijuc"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=488787102]
+script = ExtResource("4_obr6s")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 
 [node name="Laser Turret" parent="." unique_id=1242589113 instance=ExtResource("1_ejo56")]
+
+[node name="Turret Emitter L" parent="Laser Turret/Laser Turret Base/Laser Turret Pitch" parent_id_path=PackedInt32Array(1242589113, 1583660640) index="1" unique_id=1958640489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74999905, 0, -2.1968327)
+
+[node name="Turret Emitter R" parent="Laser Turret/Laser Turret Base/Laser Turret Pitch" parent_id_path=PackedInt32Array(1242589113, 1583660640) index="2" unique_id=1109121045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74999905, 0, -2.1968327)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=298499414]
+stream = ExtResource("4_l53b3")
+unit_size = 30.0
+attenuation_filter_cutoff_hz = 20500.0
+script = ExtResource("8_drwel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1553627095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5968907, 0)
+shape = SubResource("SphereShape3D_eoje4")
+
+[node name="ScanArea3D" type="Area3D" parent="." unique_id=863732462]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("8_aepq2")
+scanFor = 1
+metadata/_custom_type_script = "uid://b1lekmlrs6hfj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScanArea3D" unique_id=338995811]
+shape = SubResource("CylinderShape3D_t1nho")
+debug_color = Color(0, 0.70196074, 0.31933686, 0.41960785)
+debug_fill = false
+
+[editable path="Laser Turret"]

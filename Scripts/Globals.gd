@@ -3,6 +3,22 @@ extends Node
 
 var root: Node3D
 var camera: Camera3D
+var Warnings : WarningInterface
+
+@onready var RNG := RandomNumberGenerator.new() 
+
+@onready var StarShip: RigidBody3D = $"/root/Main/Friendlies/The Star Ship"
+@onready var Main: Node3D = get_node("/root/Main")
+@onready var Cursor: Node3D = get_node("/root/Main/Cursor")
+
+@onready var Enemies: Marker3D = $"/root/Main/Enemies"
+@onready var Collectibles: Marker3D = $"/root/Main/Collectibles"
+@onready var Ores: Marker3D = $"/root/Main/Ores"
+@onready var Friendlies: Marker3D = $"/root/Main/Friendlies"
+
+
+var isBuilding := false
+
 
 # https://gist.github.com/laundmo/b224b1f4c8ef6ca5fe47e132c8deab56
 func lerp(a: float, b: float, t: float) -> float:
@@ -64,20 +80,41 @@ func EaseIOCubic(x: float) -> float:
 	else:
 		return 1 - pow(-2 * x + 2, 3) / 2
 
+# https://medium.com/@fionn.fuchs/easily-call-a-method-after-a-time-delay-in-godot-ee8593d5ef5b
+func schedule(function, delay):
+	var timer := Timer.new()
+	get_tree().root.add_child(timer)
+	timer.timeout.connect(function)
+	timer.timeout.connect(timer.queue_free)
+	timer.wait_time = delay
+	timer.start()
 
-func stub(_obj: Node3D) -> bool: return true
-func checkTargable(obj: Node3D) -> bool:
-	return obj.Targetable
 
-func getNearest(origin: Vector3, objects: Array[Node], extraEval: Callable = stub) -> Node3D:
-	var dist = 10000
-	var targ = null
-	for obj in objects:
-		if origin.distance_to(obj.global_position) < dist and extraEval.call(obj):
-			dist = origin.distance_to(obj.global_position)
-			targ = obj
-	
-	return targ
+
+
+var loadMagicExplosion = preload("res://Scenes/Misc/ExplosionMagic.tscn")
+var loadSciFiExplosion = preload("res://Scenes/Misc/ExplosionSciFi.tscn")
+
+enum ExplType {Magic, SciFi}
+
+func spawnExplosion( explosion_type: ExplType, caller: Node3D, parent: Node3D = G.Main, scale: float = 1.0, pos: Vector3 = Vector3.ZERO ):
+	var boomL : Resource
+	match explosion_type:
+		ExplType.Magic: boomL = loadMagicExplosion
+		ExplType.SciFi: boomL = loadSciFiExplosion
+		
+	var boom : Node3D = boomL.instantiate()
+	parent.add_child(boom)
+	boom.position = caller.to_global(pos)
+	boom.scale = Vector3.ONE * scale
+
+func spawnExplosionAndFree( explosion_type: ExplType, caller: Node3D, parent: Node3D = G.Main, scale: float = 1.0, pos: Vector3 = Vector3.ZERO ):
+	spawnExplosion( explosion_type, caller, parent, scale, pos )
+	caller.queue_free()
+
+
+
+
 
 func BoneRotate(armature: Skeleton3D, bone_idx:int, axis:String, angle:float):
 	# Apply rotation in bone's local space using the specified axis.
@@ -96,6 +133,13 @@ func BoneRotated(armature: Skeleton3D, bone_idx:int, rotation:Vector3):
 	# Set the bone's rotation directly in XYZ axes (local space).
 	var pose = armature.get_bone_pose(bone_idx)
 	pose.basis = Basis.from_euler(rotation)
+	armature.set_bone_pose(bone_idx, pose)
+
+
+func BoneScaled(armature: Skeleton3D, bone_idx:int, scale:Vector3):
+	# Set bone's scale, keep existing rotation.
+	var pose = armature.get_bone_pose(bone_idx)
+	pose.basis = pose.basis.orthonormalized().scaled(scale)
 	armature.set_bone_pose(bone_idx, pose)
 
 func go():

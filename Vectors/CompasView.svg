@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="15"
+   height="40"
+   viewBox="0 0 3.96875 10.583334"
+   version="2.0"
+   id="svg1"
+   sodipodi:docname="CompasView.svg"
+   standalone="no"
+   inkscape:version="1.5-dev (1:1.5.0+202606271141+4f86bb1ed2)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="23.544196"
+     inkscape:cx="10.873168"
+     inkscape:cy="19.835037"
+     inkscape:window-width="2560"
+     inkscape:window-height="1372"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="font-variation-settings:'wght' 400;fill:#ff4545;stroke:none;stroke-width:0.211667;stroke-linecap:square;stroke-linejoin:bevel;stroke-opacity:1;paint-order:fill stroke markers"
+       d="M 1.984375,0 3.0652362,5.2916668 H 0.90351386 Z"
+       id="path1"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#ffffff;stroke:none;stroke-width:0.211667;stroke-linecap:square;stroke-linejoin:bevel;stroke-opacity:1;paint-order:fill stroke markers"
+       d="M 1.9843751,10.583334 0.90351386,5.2916668 H 3.0652362 Z"
+       id="path1-3"
+       sodipodi:nodetypes="cccc" />
+  </g>
+</svg>

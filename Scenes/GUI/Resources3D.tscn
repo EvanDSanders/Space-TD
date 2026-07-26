@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c7tqg1yqgboju"]
+
+[ext_resource type="PackedScene" uid="uid://cwrfs8obyks" path="res://Objects/StarShip/Resources.glb" id="1_f8ibi"]
+
+[node name="Node3D" type="Node3D" unique_id=2024225743]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1598791460]
+transparent_bg = true
+size = Vector2i(200, 400)
+
+[node name="Main" parent="SubViewport" unique_id=1371037570 instance=ExtResource("1_f8ibi")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Main" unique_id=1181306080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23540843, -0.09521115, 0.4641266)
+projection = 1
+size = 1.9263095

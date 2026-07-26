@@ -1,0 +1,177 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://te0r8dwkwnu8"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_e8480"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_o0vmh"]
+default_input_values = [1, 0.0, 2, 1.0, 3, 0.9, 4, 1.1]
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_1m2bn"]
+size = Vector2(420, 220)
+expression = "output0 = FluidNoise4D(input0, 0., input1, input2, input3, 1, 1, 1);"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_1m2bn"]
+constant = Color(0.6951033, 0.6951033, 0.6951033, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_fua3u"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_88iyk"]
+constant = Color(0.041666627, 1, 0, 1)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_sqg16"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_2778e"]
+constant = 3.0
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_6j7t5"]
+varying_name = "Pos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_lkmc5"]
+size = Vector2(520, 380)
+expression = "output0 = FluidNoise4D(input0, 5., input1, input2, input3, input4, input5, input6, input7);
+//	vec3 pos, float iTime, vec3 colorA, vec3 colorB, vec3 colorC, 
+//  	float scale, float detail, float roughness, float distortion"
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_wrrr7"]
+varying_name = "Pos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_3facr"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_h28yv"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_4jaxi"]
+default_input_values = [1, 0.0, 2, 1.0, 3, 0.9, 4, 1.1]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_g8ylr"]
+constant = 0.766
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_i1hkm"]
+constant = 8.549
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_bnqnn"]
+constant = 0.465
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_vg5tw"]
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_e8480"]
+size = Vector2(320, 80)
+expression = "#include \"res://Shaders/Msic/Fluid4DCFG.gdshaderinc\""
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_o0vmh"]
+parameter_name = "Scale"
+qualifier = 2
+default_value_enabled = true
+default_value = 0.766
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_m8qr7"]
+parameter_name = "Detail"
+qualifier = 2
+default_value_enabled = true
+default_value = 8.549
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_joec2"]
+parameter_name = "Roughness"
+qualifier = 2
+default_value_enabled = true
+default_value = 0.465
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_424fi"]
+parameter_name = "Distortion"
+qualifier = 2
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_88iyk"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_7rusr"]
+constant = Color(0.17666383, 0.2479003, 0.17701013, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_v0qei"]
+constant = Color(0.24942897, 0.5548043, 0.36394474, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_sv6pk"]
+constant = Color(0.35267448, 0.50219214, 0.27421477, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_1m2bn"]
+varyings/Pos = "0,4"
+nodes/vertex/0/position = Vector2(1146.6666, 400)
+nodes/vertex/2/node = SubResource("VisualShaderNodeGlobalExpression_e8480")
+nodes/vertex/2/position = Vector2(-1146.6666, -133.33333)
+nodes/vertex/2/size = Vector2(320, 80)
+nodes/vertex/2/input_ports = ""
+nodes/vertex/2/output_ports = ""
+nodes/vertex/2/expression = "#include \"res://Shaders/Msic/Fluid4DCFG.gdshaderinc\""
+nodes/vertex/4/node = SubResource("VisualShaderNodeInput_88iyk")
+nodes/vertex/4/position = Vector2(-1360, 53.333332)
+nodes/vertex/6/node = SubResource("VisualShaderNodeColorConstant_7rusr")
+nodes/vertex/6/position = Vector2(-902.7599, 554.28357)
+nodes/vertex/7/node = SubResource("VisualShaderNodeColorConstant_v0qei")
+nodes/vertex/7/position = Vector2(-902.7599, 634.28357)
+nodes/vertex/8/node = SubResource("VisualShaderNodeColorConstant_sv6pk")
+nodes/vertex/8/position = Vector2(-902.7599, 714.28357)
+nodes/vertex/11/node = SubResource("VisualShaderNodeExpression_lkmc5")
+nodes/vertex/11/position = Vector2(-613.3333, 426.66666)
+nodes/vertex/11/size = Vector2(520, 380)
+nodes/vertex/11/input_ports = "0,4,input0;1,4,input1;2,4,input2;3,4,input3;4,0,input4;5,0,input5;6,0,input6;7,0,input7;"
+nodes/vertex/11/output_ports = "0,5,output0;"
+nodes/vertex/11/expression = "output0 = FluidNoise4D(input0, 5., input1, input2, input3, input4, input5, input6, input7);
+//	vec3 pos, float iTime, vec3 colorA, vec3 colorB, vec3 colorC, 
+//  	float scale, float detail, float roughness, float distortion"
+nodes/vertex/12/node = SubResource("VisualShaderNodeVaryingSetter_wrrr7")
+nodes/vertex/12/position = Vector2(-933.3333, 53.333332)
+nodes/vertex/13/node = SubResource("VisualShaderNodeVectorOp_3facr")
+nodes/vertex/13/position = Vector2(640, 426.66666)
+nodes/vertex/14/node = SubResource("VisualShaderNodeInput_h28yv")
+nodes/vertex/14/position = Vector2(186.66667, 666.6667)
+nodes/vertex/15/node = SubResource("VisualShaderNodeRemap_4jaxi")
+nodes/vertex/15/position = Vector2(213.33333, 400)
+nodes/vertex/16/node = SubResource("VisualShaderNodeFloatConstant_g8ylr")
+nodes/vertex/16/position = Vector2(-586.6667, 933.3333)
+nodes/vertex/17/node = SubResource("VisualShaderNodeFloatConstant_i1hkm")
+nodes/vertex/17/position = Vector2(-586.6667, 1013.3333)
+nodes/vertex/18/node = SubResource("VisualShaderNodeFloatConstant_bnqnn")
+nodes/vertex/18/position = Vector2(-586.6667, 1093.3334)
+nodes/vertex/19/node = SubResource("VisualShaderNodeFloatConstant_vg5tw")
+nodes/vertex/19/position = Vector2(-586.6667, 1173.3334)
+nodes/vertex/20/node = SubResource("VisualShaderNodeFloatParameter_o0vmh")
+nodes/vertex/20/position = Vector2(-1466.6666, 346.66666)
+nodes/vertex/21/node = SubResource("VisualShaderNodeFloatParameter_m8qr7")
+nodes/vertex/21/position = Vector2(-1466.6666, 560)
+nodes/vertex/22/node = SubResource("VisualShaderNodeFloatParameter_joec2")
+nodes/vertex/22/position = Vector2(-1466.6666, 773.3333)
+nodes/vertex/23/node = SubResource("VisualShaderNodeFloatParameter_424fi")
+nodes/vertex/23/position = Vector2(-1466.6666, 986.6667)
+nodes/vertex/connections = PackedInt32Array(8, 0, 11, 3, 7, 0, 11, 2, 6, 0, 11, 1, 4, 0, 12, 0, 14, 0, 13, 1, 11, 0, 15, 0, 11, 0, 0, 6, 4, 0, 11, 0, 15, 0, 13, 0, 13, 0, 0, 0, 23, 0, 11, 7, 22, 0, 11, 6, 21, 0, 11, 5, 20, 0, 11, 4)
+nodes/fragment/0/position = Vector2(933.3333, 106.666664)
+nodes/fragment/3/node = SubResource("VisualShaderNodeExpression_1m2bn")
+nodes/fragment/3/position = Vector2(-453.33334, 293.33334)
+nodes/fragment/3/size = Vector2(420, 220)
+nodes/fragment/3/input_ports = "0,4,input0;1,4,input1;2,4,input2;3,4,input3;"
+nodes/fragment/3/output_ports = "0,5,output0;"
+nodes/fragment/3/expression = "output0 = FluidNoise4D(input0, 0., input1, input2, input3, 1, 1, 1);"
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_1m2bn")
+nodes/fragment/4/position = Vector2(-800, 426.66666)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_fua3u")
+nodes/fragment/5/position = Vector2(-800, 506.66666)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_88iyk")
+nodes/fragment/6/position = Vector2(-800, 586.6667)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorOp_sqg16")
+nodes/fragment/7/position = Vector2(-800, 160)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatConstant_2778e")
+nodes/fragment/8/position = Vector2(-1093.3334, 320)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVaryingGetter_6j7t5")
+nodes/fragment/9/position = Vector2(-1093.3334, 186.66667)
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_e8480")
+nodes/fragment/10/position = Vector2(346.66666, 80)
+nodes/fragment/11/node = SubResource("VisualShaderNodeRemap_o0vmh")
+nodes/fragment/11/position = Vector2(346.66666, 266.66666)
+nodes/fragment/connections = PackedInt32Array(6, 0, 3, 3, 5, 0, 3, 2, 4, 0, 3, 1, 7, 0, 3, 0, 8, 0, 7, 1, 9, 0, 7, 0, 10, 0, 0, 0, 3, 0, 11, 0)
+
+[resource]
+render_priority = 0
+shader = SubResource("VisualShader_1m2bn")

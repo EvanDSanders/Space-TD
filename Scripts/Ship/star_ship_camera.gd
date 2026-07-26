@@ -3,7 +3,7 @@ extends Camera3D
 @onready var StarShip: RigidBody3D = get_node("/root/Main/Friendlies/The Star Ship")
 
 
-
+@export var ZoomFactorCurve : Curve
 
 @onready var Evade:		Node3D = $"../CShipMount/CEvade"
 @onready var Attack:	Node3D = $"../CShipMount/CAttack"
@@ -12,7 +12,7 @@ extends Camera3D
 
 @onready var Current : Node3D = Move
 
-@onready var Tw = create_tween()
+var Tw : Tween
 
 @onready var NodeStart : Node3D = Move.Post
 @onready var NodeEnd   : Node3D = Move.Post
@@ -21,11 +21,20 @@ var TwT := 3.
 var TwE := Tween.EASE_OUT
 var TwR := Tween.TRANS_SINE
 
+
+@onready var Audio: AudioStreamPlayer = $AudioStreamPlayer
+func click(pitch:float):
+	Audio.pitch_scale = pitch
+	Audio.play()
+	# print(pitch)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	call_deferred( "reparent", $"../Camera Start" )
 	call_deferred( "onChange" )
 	call_deferred( "_ready2" )
+	for node in self.get_parent().find_children("*", "CameraObjectScript"):
+		node.RigCamera = self
 
 func _ready2():
 	TwT = 1.
@@ -48,7 +57,7 @@ func endMove():
 func setMove():
 	reparent(NodeStart)
 	
-	Tw.kill()
+	if Tw: Tw.kill()
 	Tw = self.create_tween()
 	
 	Tw.tween_method(doMove, 0., 1., TwT).set_ease(TwE).set_trans(TwR)
@@ -111,11 +120,15 @@ func _dolly(factor: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not StarShip: return
 	if event is InputEventMouseButton:
 		match event.button_index:
 			MOUSE_BUTTON_MIDDLE:
 				if event.pressed:
-					_nav_mode = NavMode.PAN if event.shift_pressed else NavMode.ORBIT
+					if StarShip.ShipMode == StarShip.ShipModes.Evasion:
+						_nav_mode = NavMode.ORBIT
+					else:
+						_nav_mode = NavMode.PAN if event.shift_pressed else NavMode.ORBIT
 				else:
 					_nav_mode = NavMode.NONE
 				get_viewport().set_input_as_handled()
@@ -139,10 +152,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not StarShip: return
 	StarShip.CameraHeading = Current.Yaw.rotation.y
 	match StarShip.ShipMode:
 		StarShip.ShipModes.Build, StarShip.ShipModes.Warp:
-			Current.doPan(Vector2(Input.get_axis("Left", "Right"), Input.get_axis("Forward", "Backward")), true)
+			Current.doPan(Vector2(Input.get_axis("Left", "Right"), Input.get_axis("Forward", "Backward")), true, delta)
 			
 			
 			pass

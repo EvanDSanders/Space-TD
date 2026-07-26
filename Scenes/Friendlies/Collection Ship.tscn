@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://dnw0vb8iwsd1m"]
 
 [ext_resource type="Script" uid="uid://cei316x0g800r" path="res://Scripts/Friendlies/CollectionShip.gd" id="1_25xm6"]
-[ext_resource type="PackedScene" uid="uid://c5d77mt6mt34o" path="res://Objects/Cargo Shiplet.glb" id="1_b6f2e"]
+[ext_resource type="PackedScene" uid="uid://c5d77mt6mt34o" path="res://Objects/Friendlies/Cargo Shiplet.glb" id="1_b6f2e"]
+[ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="2_45s1l"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_gpwt0"]
+[ext_resource type="Script" uid="uid://chahj6p5gtbru" path="res://Scripts/Common/CrystalStore.gd" id="2_since"]
+[ext_resource type="PackedScene" uid="uid://s4x0rwydmdcg" path="res://Scenes/GUI/Waypoint.Debug.tscn" id="5_hemg3"]
+[ext_resource type="PackedScene" uid="uid://r2c1xnv1e5ea" path="res://Scenes/Friendlies/CollectionArea3D.tscn" id="5_va4js"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b6f2e"]
 size = Vector3(2.0107422, 1.4296875, 2.8393555)
@@ -18,10 +23,32 @@ size = Vector3(6.0021973, 0.1015625, 1.6933594)
 [sub_resource type="BoxShape3D" id="BoxShape3D_va4js"]
 size = Vector3(2, 1.4257813, 2)
 
-[node name="Node3D" type="RigidBody3D" unique_id=1076245999]
-collision_layer = 11
-collision_mask = 4
+[node name="Collector Ship" type="RigidBody3D" unique_id=1076245999]
+collision_layer = 261
+collision_mask = 5
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 script = ExtResource("1_25xm6")
+
+[node name="Destructible" type="Node" parent="." unique_id=443060980]
+script = ExtResource("2_gpwt0")
+HPMax = 1111111111111.0
+TargetType = 0
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ShipNavigator" type="Node3D" parent="." unique_id=326156661 node_paths=PackedStringArray("Parent")]
+script = ExtResource("2_45s1l")
+TargType = 2
+Parent = NodePath("..")
+metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="CrystalStore" type="Node" parent="." unique_id=915306350]
+script = ExtResource("2_since")
+metadata/_custom_type_script = "uid://chahj6p5gtbru"
+
+[node name="DebugPin" parent="." unique_id=1954077161 instance=ExtResource("5_hemg3")]
+visible = false
+sticky = false
 
 [node name="Cargo Shiplet" parent="." unique_id=847024505 instance=ExtResource("1_b6f2e")]
 
@@ -48,3 +75,10 @@ shape = SubResource("BoxShape3D_va4js")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=765225458]
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, 0.736, 0, 0.248)
 shape = SubResource("BoxShape3D_va4js")
+
+[node name="CollectionArea3D" parent="." unique_id=413881615 node_paths=PackedStringArray("store") instance=ExtResource("5_va4js")]
+store = NodePath("../CrystalStore")
+
+[connection signal="body_entered" from="CollectionArea3D" to="." method="_on_collection_area_3d_body_entered"]
+
+[editable path="CollectionArea3D"]

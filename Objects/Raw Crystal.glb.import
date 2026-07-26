@@ -39,7 +39,30 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"meshes": {
+"Main_Plane_012": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Objects/Meshes/RawCrystalCollectable.res",
+"save_to_file/path": "uid://dhc1q8u0hjj03"
+}
+},
+"nodes": {
+"PATH:Origin Raw Crystal": {
+"physics/body_type": 1,
+"physics/layer": 12,
+"physics/mask": 12,
+"physics/shape_type": 6,
+"primitive/height": 2.685,
+"primitive/radius": 0.36,
+"primitive/rotation": Vector3(90, 0, 0)
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=0

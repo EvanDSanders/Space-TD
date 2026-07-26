@@ -35,6 +35,8 @@ constant = 5.0
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_r2kw1"]
 
 [resource]
+modes/cull = 2
+flags/shadows_disabled = true
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_x6pa2")
 nodes/fragment/2/position = Vector2(-720, -133.33333)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_kklbl")

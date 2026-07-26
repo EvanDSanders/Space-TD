@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bhx58tt7t6i3b"]
+
+[ext_resource type="ArrayMesh" uid="uid://6m7avcknxcsr" path="res://Objects/Meshes/MaterialTest.res" id="1_7lx2s"]
+[ext_resource type="Material" uid="uid://bgg0qncb6hf40" path="res://Materials/Common/DamagedMetal.tres" id="2_7lx2s"]
+
+[node name="Node3D" type="MeshInstance3D" unique_id=1458608317]
+transform = Transform3D(-0.35572246, -0.28060547, 0.8914718, 0.020752681, 0.95125574, 0.30770433, -0.9343613, 0.12795772, -0.3325597, 0, 0, 0)
+mesh = ExtResource("1_7lx2s")
+surface_material_override/0 = ExtResource("2_7lx2s")

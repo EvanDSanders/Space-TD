@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cyctji1gi0u0i"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_oqgdy"]
+constant = Color(1, 1, 0, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_oqgdy"]
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(373.33334, 133.33333)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_oqgdy")
+nodes/fragment/2/position = Vector2(133.33333, 133.33333)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
+
+[resource]
+render_priority = 0
+shader = SubResource("VisualShader_oqgdy")

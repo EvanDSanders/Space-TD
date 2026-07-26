@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dxtrlrcjnjift"]
+
+[ext_resource type="Theme" uid="uid://c0wsmkaots3ab" path="res://Themes/Control3D.tres" id="1_mg4gf"]
+[ext_resource type="Script" uid="uid://cih5igf65p0o0" path="res://Scripts/Game/GUI/Constructables.Button.UI.gd" id="2_2hmu1"]
+[ext_resource type="Texture2D" uid="uid://bt30wy1ie8nxn" path="res://Vectors/Towers/Pylon.svg" id="2_olyy4"]
+
+[node name="ConstructableButton" type="Button" unique_id=1740941851]
+custom_minimum_size = Vector2(50, 75)
+theme = ExtResource("1_mg4gf")
+script = ExtResource("2_2hmu1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1776986516]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_olyy4")

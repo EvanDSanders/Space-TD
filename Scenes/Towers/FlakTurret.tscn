@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bltyurwx8qh1e"]
+
+[ext_resource type="Script" uid="uid://hfeyc3w8s7d5" path="res://Scripts/Friendlies/FlakTurret.gd" id="1_jwv52"]
+[ext_resource type="PackedScene" uid="uid://bvspk2ugwo4op" path="res://Objects/StarStation/Flak Turret.glb" id="2_reped"]
+
+[node name="Flak Turret" type="Node3D" unique_id=928390705]
+script = ExtResource("1_jwv52")
+coolDown = 3.0
+TargetingRange = 160
+Damage = 50.0
+YawObject = &"Flak Turret Yaw"
+PitchObject = &"Flak Turret Pitch"
+RecoilObject = &"Flak Turret Head"
+
+[node name="Star Station" parent="." unique_id=189937094 instance=ExtResource("2_reped")]
+
+[node name="FlakParticleEmitter" type="Node3D" parent="Star Station/Flak Turret Yaw/Flak Turret Pitch" parent_id_path=PackedInt32Array(189937094, 2089863334) index="1" unique_id=1422241968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3376396e-06, 0, -44.70489)
+
+[editable path="Star Station"]

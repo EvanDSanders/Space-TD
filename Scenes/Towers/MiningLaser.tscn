@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b85t0w66ic467"]
+
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="1_2ja6k"]
+[ext_resource type="Script" uid="uid://dar6jsyj7x016" path="res://Scripts/Friendlies/MiningLaser.gd" id="1_b2axt"]
+[ext_resource type="PackedScene" uid="uid://1d02plb6eaki" path="res://Objects/Structures/MiningLaser.glb" id="1_yw5jj"]
+[ext_resource type="Script" uid="uid://c352samjcijuc" path="res://Scripts/Common/ManaStore.gd" id="2_b2axt"]
+[ext_resource type="Script" uid="uid://chahj6p5gtbru" path="res://Scripts/Common/CrystalStore.gd" id="4_vvj43"]
+[ext_resource type="PackedScene" uid="uid://c3s5ydi41xw5s" path="res://Scenes/GUI/Waypoint.tscn" id="5_6tnwi"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="5_7ymgq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lxg0j"]
+radius = 3.000945
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eoje4"]
+height = 20.0
+radius = 30.0
+
+[node name="MiningLaser" type="StaticBody3D" unique_id=758134026]
+collision_layer = 4485
+collision_mask = 5
+script = ExtResource("1_b2axt")
+Damage = 30.0
+YawObject = &"Mining Laser Base"
+PitchObject = &"Mining Laser Head"
+RecoilObject = &"Mining Laser Unset"
+
+[node name="Destructible" type="Node" parent="." unique_id=1654658326]
+script = ExtResource("1_2ja6k")
+HPMax = 50.0
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ManaStore" type="Node" parent="." unique_id=1675201981]
+script = ExtResource("2_b2axt")
+ManaMax = 10.0
+metadata/_custom_type_script = "uid://c352samjcijuc"
+
+[node name="CrystalStore" type="Node" parent="." unique_id=1599117902]
+script = ExtResource("4_vvj43")
+metadata/_custom_type_script = "uid://chahj6p5gtbru"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=74766855]
+script = ExtResource("5_7ymgq")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
+
+[node name="DisplayMeter" parent="." unique_id=522616605 instance=ExtResource("5_6tnwi")]
+visible = false
+modulate = Color(0.75648403, 0.30442858, 0, 1)
+offset_top = -9.0
+offset_bottom = -9.0
+metadata/isMinerMeter = true
+
+[node name="ProgressBar" parent="DisplayMeter" index="0" unique_id=288768452]
+offset_top = -38.0
+offset_bottom = -36.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1045610348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3125277, 0)
+shape = SubResource("SphereShape3D_lxg0j")
+
+[node name="Main" parent="." unique_id=936353546 instance=ExtResource("1_yw5jj")]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=170631571]
+collision_layer = 0
+collision_mask = 2048
+input_ray_pickable = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1290230225]
+shape = SubResource("CylinderShape3D_eoje4")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+debug_fill = false
+
+[editable path="DisplayMeter"]
+[editable path="Main"]

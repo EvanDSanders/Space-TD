@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c3s5ydi41xw5s"]
+
+[ext_resource type="Script" uid="uid://cuccm72t7e327" path="res://Scripts/Game/GUI/Waypoints.UI.gd" id="1_j4ncj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1nho"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk8ew"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_eoje4"]
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 0)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 0)
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/styles/background = SubResource("StyleBoxFlat_t1nho")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_jk8ew")
+
+[node name="DisplayMeter" type="Control" unique_id=522616605]
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+theme = SubResource("Theme_eoje4")
+script = ExtResource("1_j4ncj")
+sticky = false
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=288768452]
+custom_maximum_size = Vector2(-1, 2)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -1.0
+offset_right = 30.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+value = 0.75
+
+[node name="Timer" type="Timer" parent="." unique_id=151166577]
+wait_time = 0.5

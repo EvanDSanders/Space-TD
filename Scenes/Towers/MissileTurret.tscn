@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://jkyasre8ij3m"]
+
+[ext_resource type="Script" uid="uid://xsvd3ga2c8ek" path="res://Scripts/Friendlies/MissileTurret.gd" id="1_tntre"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_5sbfs"]
+[ext_resource type="PackedScene" uid="uid://wtoxt7wx3vbj" path="res://Scenes/Projectiles/Missile.tscn" id="2_ipfro"]
+[ext_resource type="PackedScene" uid="uid://df0845n7qhqs" path="res://Objects/Structures/Missile Launcher.glb" id="2_s5v34"]
+[ext_resource type="Script" uid="uid://c352samjcijuc" path="res://Scripts/Common/ManaStore.gd" id="3_ipfro"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="4_3sxs5"]
+[ext_resource type="Script" uid="uid://b1lekmlrs6hfj" path="res://ScanArea.gd" id="7_3sxs5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eoje4"]
+radius = 3.000945
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dn0mj"]
+height = 100.0
+radius = 180.0
+
+[node name="Missile Turret" type="StaticBody3D" unique_id=1647324173 node_paths=PackedStringArray("scanArea3D")]
+collision_layer = 4485
+collision_mask = 5
+script = ExtResource("1_tntre")
+Damage = 0.0
+YawObject = &"Missle Head"
+PitchObject = &"Missile Pitch"
+EmittersObjects = ["Missle Head"]
+ProjectileResource = ExtResource("2_ipfro")
+scanArea3D = NodePath("ScanArea3D")
+
+[node name="Destructible" type="Node" parent="." unique_id=1624067928]
+script = ExtResource("2_5sbfs")
+HPMax = 150.0
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ManaStore" type="Node" parent="." unique_id=463760264]
+script = ExtResource("3_ipfro")
+ManaMax = 50.0
+metadata/_custom_type_script = "uid://c352samjcijuc"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=1304437935]
+script = ExtResource("4_3sxs5")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
+
+[node name="Main" parent="." unique_id=2093416773 instance=ExtResource("2_s5v34")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1312500270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3125277, 0)
+shape = SubResource("SphereShape3D_eoje4")
+
+[node name="ScanArea3D" type="Area3D" parent="." unique_id=1734649554]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("7_3sxs5")
+scanFor = 1
+metadata/_custom_type_script = "uid://b1lekmlrs6hfj"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScanArea3D" unique_id=532136582]
+shape = SubResource("CylinderShape3D_dn0mj")
+debug_color = Color(0, 0.70196074, 0.31933686, 0.41960785)
+
+[editable path="Main"]

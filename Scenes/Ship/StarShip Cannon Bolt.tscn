@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://jbvcmaomrw2i"]
+
+[ext_resource type="Script" uid="uid://b5hc61efj0xru" path="res://Scripts/Ship/StarShipCannonBolt.gd" id="1_btvfd"]
+[ext_resource type="PackedScene" uid="uid://4ujy5hfjaxkj" path="res://Objects/Misc/MagicSquare.glb" id="2_c573j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eoje4"]
+size = Vector3(7, 44.8479, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1nho"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_color = Color(0, 0.116666794, 1, 0.5254902)
+
+[sub_resource type="SphereMesh" id="SphereMesh_eoje4"]
+material = SubResource("StandardMaterial3D_t1nho")
+radius = 4.0
+height = 8.0
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_i5f85"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_wolqm"]
+constant = Color(0, 0.61904526, 1, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_o688e"]
+constant = Color(0.46608466, 0.82587546, 0.89678305, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_vhqud"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_c573j"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_i5f85"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wolqm"]
+input_name = "normal"
+
+[sub_resource type="VisualShader" id="VisualShader_i81ty"]
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_c573j")
+nodes/vertex/2/position = Vector2(-346.66666, 160)
+nodes/vertex/4/node = SubResource("VisualShaderNodeVectorOp_i5f85")
+nodes/vertex/4/position = Vector2(80, 186.66667)
+nodes/vertex/5/node = SubResource("VisualShaderNodeInput_wolqm")
+nodes/vertex/5/position = Vector2(-346.66666, 293.33334)
+nodes/vertex/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0, 5, 0, 4, 1)
+nodes/fragment/2/node = SubResource("VisualShaderNodeMix_i5f85")
+nodes/fragment/2/position = Vector2(-373.33334, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_wolqm")
+nodes/fragment/3/position = Vector2(-666.6667, 213.33333)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_o688e")
+nodes/fragment/4/position = Vector2(-666.6667, 293.33334)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_vhqud")
+nodes/fragment/5/position = Vector2(-1200, 320)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 2, 1, 2, 0, 0, 0, 5, 0, 2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb75s"]
+render_priority = 0
+shader = SubResource("VisualShader_i81ty")
+
+[node name="StarShip Cannon Bolt" type="CharacterBody3D" unique_id=1139327399]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_btvfd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=896517342]
+shape = SubResource("BoxShape3D_eoje4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1331616189]
+visible = false
+mesh = SubResource("SphereMesh_eoje4")
+
+[node name="Main" parent="." unique_id=746103590 instance=ExtResource("2_c573j")]
+
+[node name="Origin MagicSquare" parent="Main" index="0" unique_id=1418699091]
+surface_material_override/0 = SubResource("ShaderMaterial_mb75s")
+
+[editable path="Main"]

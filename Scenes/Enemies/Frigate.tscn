@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://di2ilwokk31lp"]
+
+[ext_resource type="Script" uid="uid://cd38xc5et2rup" path="res://Scripts/Enemies/Frigate.gd" id="1_edr3l"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="1_oncsw"]
+[ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="2_edr3l"]
+[ext_resource type="PackedScene" uid="uid://dgjvyam5x4g3g" path="res://Objects/Enemies/Frigate.glb" id="3_ocv7h"]
+[ext_resource type="PackedScene" uid="uid://s4x0rwydmdcg" path="res://Scenes/GUI/Waypoint.Debug.tscn" id="4_ocv7h"]
+[ext_resource type="PackedScene" uid="uid://bxm46tvbw3ms5" path="res://Scenes/Projectiles/SimpleLaser.tscn" id="6_plfn5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hg6gh"]
+size = Vector3(15.796875, 4.7280273, 21.184021)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_i6fhy"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_05g7u"]
+default_input_values = [1, 1.0, 2, 0.0, 3, 0.0, 4, 0.2]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_6lqb0"]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_qhc3h"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_i6fhy"]
+constant = Color(0.5627668, 0.90555173, 0.20860551, 1)
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_hg6gh"]
+constant = 5.0
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_5dgyg"]
+
+[sub_resource type="VisualShader" id="VisualShader_aines"]
+nodes/fragment/5/node = SubResource("VisualShaderNodeRemap_05g7u")
+nodes/fragment/5/position = Vector2(-426.66666, 400)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_6lqb0")
+nodes/fragment/6/position = Vector2(-1120, 453.33334)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorDecompose_qhc3h")
+nodes/fragment/7/position = Vector2(-773.3333, 453.33334)
+nodes/fragment/8/node = SubResource("VisualShaderNodeColorConstant_i6fhy")
+nodes/fragment/8/position = Vector2(-133.33333, 80)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatConstant_hg6gh")
+nodes/fragment/9/position = Vector2(-240, 240)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorOp_i6fhy")
+nodes/fragment/11/position = Vector2(80, 320)
+nodes/fragment/connections = PackedInt32Array(6, 0, 7, 0, 7, 0, 5, 0, 8, 0, 0, 0, 8, 0, 11, 0, 11, 0, 0, 5, 5, 0, 0, 1, 9, 0, 11, 1)
+nodes/light/2/node = SubResource("VisualShaderNodeFloatConstant_5dgyg")
+nodes/light/2/position = Vector2(-26.666666, 240)
+nodes/light/connections = PackedInt32Array(2, 0, 0, 0, 2, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oncsw"]
+render_priority = 0
+shader = SubResource("VisualShader_aines")
+
+[sub_resource type="Curve" id="Curve_edr3l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ocv7h"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Frigate" type="RigidBody3D" unique_id=855368948]
+collision_layer = 8713
+collision_mask = 9
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 2.0
+linear_damp = 0.2
+angular_damp = 0.2
+script = ExtResource("1_edr3l")
+
+[node name="Destructible" type="Node" parent="." unique_id=1892614650]
+script = ExtResource("1_oncsw")
+HPMax = 450.0
+TargetType = 1
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ShipNavigator" type="Node3D" parent="." unique_id=2096607121 node_paths=PackedStringArray("Parent")]
+script = ExtResource("2_edr3l")
+Parent = NodePath("..")
+Distance = 60
+metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="DebugPin" parent="." unique_id=1954077161 instance=ExtResource("4_ocv7h")]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1658372050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5690918, -0.13998413)
+shape = SubResource("BoxShape3D_hg6gh")
+debug_color = Color(0, 0.7019608, 0.043137256, 0.23529412)
+
+[node name="VaporTrail" type="VaporTrail" parent="." unique_id=1658050423]
+config/num_points = 20
+config/update_interval = 0.034
+visual/material = SubResource("ShaderMaterial_oncsw")
+visual/size = 1.0
+visual/size_curve = SubResource("Curve_edr3l")
+visual/color_gradient = SubResource("Gradient_ocv7h")
+transform = Transform3D(0.17091948, 0, 0, 0, 0.17091948, 0, 0, 0, 0.17091948, -5.900511, -0.9784174, 11.272459)
+
+[node name="VaporTrail2" type="VaporTrail" parent="." unique_id=1209767927]
+config/num_points = 20
+config/update_interval = 0.034
+visual/material = SubResource("ShaderMaterial_oncsw")
+visual/size = 1.0
+visual/size_curve = SubResource("Curve_edr3l")
+visual/color_gradient = SubResource("Gradient_ocv7h")
+transform = Transform3D(0.17091948, 0, 0, 0, 0.17091948, 0, 0, 0, 0.17091948, 5.900511, -0.9784174, 11.272459)
+
+[node name="Enemies" parent="." unique_id=1380170456 instance=ExtResource("3_ocv7h")]
+
+[node name="SimpleLaser" parent="." unique_id=459091051 node_paths=PackedStringArray("Start") instance=ExtResource("6_plfn5")]
+Start = NodePath("../Enemies/Firgate Pew L")
+
+[node name="SimpleLaser2" parent="." unique_id=1106881695 node_paths=PackedStringArray("Start") instance=ExtResource("6_plfn5")]
+Start = NodePath("../Enemies/Firgate Pew R")
+
+[editable path="Enemies"]

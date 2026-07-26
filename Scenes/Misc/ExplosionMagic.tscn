@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://db2k7l52lgkld"]
+
+[ext_resource type="Script" uid="uid://c68ma6twmxari" path="res://Scripts/Misc/ExplosionMagic.gd" id="1_n1l04"]
+[ext_resource type="ArrayMesh" uid="uid://wp3jotcp146j" path="res://Objects/Meshes/BoomCone.mesh.res" id="1_nnbsf"]
+[ext_resource type="ArrayMesh" uid="uid://ct033eladjs7r" path="res://Objects/Meshes/MagicSquare.mesh.res" id="2_nj5km"]
+[ext_resource type="AudioStream" uid="uid://d0o6wky6s6hkd" path="res://SoundsProtected/laser_missile_3.ogg" id="4_e8rf6"]
+[ext_resource type="Script" uid="uid://biycbds6w5ly2" path="res://Sounds/ProtectedSpeaker.gd" id="5_prtsp"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_nnbsf"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_n1l04"]
+constant = Color(0, 0.61904526, 1, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_nj5km"]
+constant = Color(0.46608466, 0.82587546, 0.89678305, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_e8rf6"]
+input_name = "normal"
+
+[sub_resource type="VisualShader" id="VisualShader_nj5km"]
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeMix_nnbsf")
+nodes/fragment/2/position = Vector2(-373.33334, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_n1l04")
+nodes/fragment/3/position = Vector2(-666.6667, 213.33333)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_nj5km")
+nodes/fragment/4/position = Vector2(-666.6667, 293.33334)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_e8rf6")
+nodes/fragment/5/position = Vector2(-1200, 320)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 2, 1, 2, 0, 0, 0, 5, 0, 2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrwlr"]
+render_priority = 0
+shader = SubResource("VisualShader_nj5km")
+
+[sub_resource type="Curve" id="Curve_nj5km"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.7826064, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nj5km"]
+curve = SubResource("Curve_nj5km")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eoje4"]
+lifetime_randomness = 0.78
+particle_flag_inherit_emitter_scale = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+use_rotation_3d = true
+rotation_3d_min = Vector3(0, 0, 0)
+rotation_3d_max = Vector3(360, 360, 360)
+spread = 180.0
+initial_velocity_min = 27.33
+initial_velocity_max = 120.649994
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+use_rotation_velocity_3d = true
+rotation_velocity_3d_min = Vector3(-100, -100, -100)
+rotation_velocity_3d_max = Vector3(100, 100, 100)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+use_scale_3d = true
+scale_3d_min = Vector3(0.5, 0.5, 0.5)
+scale_3d_max = Vector3(1, 1, 1)
+scale_curve = SubResource("CurveTexture_nj5km")
+
+[sub_resource type="Curve" id="Curve_g4c5g"]
+_data = [Vector2(0, 1), 0.0, -0.23274617, 0, 1, Vector2(1, 0), -2.575506, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_nnbsf"]
+_data = [Vector2(0, 0), 0.0, 2.2045314, 0, 1, Vector2(1, 1), 0.3370409, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_g4c5g"]
+curve_x = SubResource("Curve_g4c5g")
+curve_y = SubResource("Curve_nnbsf")
+curve_z = SubResource("Curve_g4c5g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x050v"]
+lifetime_randomness = 0.8
+particle_flag_inherit_emitter_scale = true
+use_rotation_3d = true
+rotation_3d_min = Vector3(0, 0, 0)
+rotation_3d_max = Vector3(360, 360, 360)
+gravity = Vector3(0, 0, 0)
+scale_max = 2.1
+scale_curve = SubResource("CurveXYZTexture_g4c5g")
+
+[node name="Node3D" type="Node3D" unique_id=1038942575]
+script = ExtResource("1_n1l04")
+
+[node name="Boom Particles" type="GPUParticles3D" parent="." unique_id=2032929713]
+material_override = SubResource("ShaderMaterial_qrwlr")
+emitting = false
+amount = 30
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_eoje4")
+draw_pass_1 = ExtResource("2_nj5km")
+
+[node name="Boom Spikes" type="GPUParticles3D" parent="." unique_id=217783993]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_qrwlr")
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_x050v")
+draw_pass_1 = ExtResource("1_nnbsf")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=191712573]
+stream = ExtResource("4_e8rf6")
+volume_db = -1.46
+unit_size = 100.0
+autoplay = true
+max_distance = 4096.0
+attenuation_filter_cutoff_hz = 20500.0
+script = ExtResource("5_prtsp")
+
+[connection signal="finished" from="Boom Particles" to="." method="_on_boom_particles_finished"]

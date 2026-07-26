@@ -1,0 +1,114 @@
+[gd_scene format=4 uid="uid://rn6dye3v2quq"]
+
+[ext_resource type="Script" uid="uid://c68ma6twmxari" path="res://Scripts/Misc/ExplosionMagic.gd" id="1_0lg47"]
+[ext_resource type="AudioStream" uid="uid://02dotawnxx26" path="res://SoundsProtected/explosion_1.ogg" id="2_umn6d"]
+[ext_resource type="Script" uid="uid://dwutkrkulpfc4" path="res://Scripts/Misc/GPUParticleFix.gd" id="2_ykmi8"]
+[ext_resource type="Script" uid="uid://biycbds6w5ly2" path="res://Sounds/ProtectedSpeaker.gd" id="3_prtsp"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_nnbsf"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_n1l04"]
+constant = Color(0.95816386, 0.44499442, 0, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_nj5km"]
+constant = Color(0.77402145, 0.039971184, 0, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_e8rf6"]
+input_name = "normal"
+
+[sub_resource type="VisualShader" id="VisualShader_nj5km"]
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeMix_nnbsf")
+nodes/fragment/2/position = Vector2(-373.33334, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_n1l04")
+nodes/fragment/3/position = Vector2(-666.6667, 213.33333)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_nj5km")
+nodes/fragment/4/position = Vector2(-666.6667, 293.33334)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_e8rf6")
+nodes/fragment/5/position = Vector2(-1200, 320)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 2, 1, 2, 0, 0, 0, 5, 0, 2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrwlr"]
+render_priority = 0
+shader = SubResource("VisualShader_nj5km")
+
+[sub_resource type="Curve" id="Curve_g4c5g"]
+_data = [Vector2(0, 1), 0.0, -0.23274617, 0, 1, Vector2(1, 0), -2.575506, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_nnbsf"]
+_data = [Vector2(0, 0), 0.0, 2.2045314, 0, 1, Vector2(1, 1), 0.3370409, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_g4c5g"]
+curve_x = SubResource("Curve_g4c5g")
+curve_y = SubResource("Curve_nnbsf")
+curve_z = SubResource("Curve_g4c5g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x050v"]
+lifetime_randomness = 0.8
+particle_flag_inherit_emitter_scale = true
+use_rotation_3d = true
+rotation_3d_min = Vector3(-30, -30, -30)
+rotation_3d_max = Vector3(30, 30, 30)
+inherit_velocity_ratio = 1.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.1
+scale_curve = SubResource("CurveXYZTexture_g4c5g")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_21kyf"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 5.157232, 2),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAADAAEAAwAEAAIABAAAAAIAAAAEAAMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray("/38AAAAAAAD//wAA/38AAP9/////fwAA/38AAP//AAAAAAAA/38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_v87cd"]
+resource_name = "Main_Cone_001"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 5.157232, 2),
+"attribute_data": PackedByteArray("/z+OgnB9/7//P/+/cH3/v/8/b/3/P/+//7+Ogv+/b/1v/f+/joL/v/8/b/2PAv+//z//v48C/7//P46C/z//vw=="),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgABgAJAAcACgALAAwADQAOAA8A"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("/38AAAAAS+f//wAA/39L5/9/////f0vn//8AAP9/gL//fwAA//+Av/9/////f4C//38AAAAA/z//fwAA////P///AAD/f/8/AAAAAP9//z//fwAA//+AvwAAAAD/f4C//3////9/gL8AAAAA/39L5/9/AAAAAEvn/3////9/S+f1ul5P9bpeT/W6Xk/EoSRkxKEkZMShJGQAAP9/AAD/fwAA/38AAP9/JOQ53iTkOd4k5DneXs8IxV7PCMVezwjF")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_21kyf")
+
+[node name="Node3D" type="Node3D" unique_id=1038942575]
+script = ExtResource("1_0lg47")
+
+[node name="Boom Spikes" type="GPUParticles3D" parent="." unique_id=217783993]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, 5, 0, -5, -2.1855695e-07, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_qrwlr")
+amount = 20
+lifetime = 0.2
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_x050v")
+draw_pass_1 = SubResource("ArrayMesh_v87cd")
+script = ExtResource("2_ykmi8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1273668857]
+stream = ExtResource("2_umn6d")
+volume_db = -0.96
+unit_size = 100.0
+autoplay = true
+max_distance = 2364.51
+attenuation_filter_cutoff_hz = 20500.0
+attenuation_filter_db = -5.5
+script = ExtResource("3_prtsp")
+

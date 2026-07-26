@@ -5,3 +5,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_ugxv2")
+shader_parameter/StarShipEngineColor = Color(0.564706, 0.712235, 1, 1)
+shader_parameter/StarShipEngineBrightness = 1.0

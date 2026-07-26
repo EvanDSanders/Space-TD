@@ -1,0 +1,83 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://t4mobjm2vhv7"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ubi3p"]
+constant = Color(0, 1, 0.017778635, 1)
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_ubi3p"]
+size = Vector2(365, 160)
+expression = "output0 = FluidNoise4D(vec2(0), input0*3.);
+// hello"
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_2y46q"]
+varying_name = "Pos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_1q4kl"]
+size = Vector2(300, 80)
+expression = "#include \"res://Shaders/Msic/Fluid4D.gdshaderinc\""
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_tc7bn"]
+varying_name = "Pos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_m431k"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ubi3p"]
+parameter_name = "Scaled"
+qualifier = 2
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2y46q"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_1q4kl"]
+default_input_values = [0, 1.0, 1, 1.0, 2, 1.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ubi3p"]
+default_input_values = [0, 1.0, 1, 0.0]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_vdyj0"]
+varyings/Pos = "0,4"
+nodes/vertex/2/node = SubResource("VisualShaderNodeVaryingSetter_tc7bn")
+nodes/vertex/2/position = Vector2(-26.666666, 133.33333)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_m431k")
+nodes/vertex/3/position = Vector2(-880, 80)
+nodes/vertex/4/node = SubResource("VisualShaderNodeFloatParameter_ubi3p")
+nodes/vertex/4/position = Vector2(-1333.3334, 320)
+nodes/vertex/5/node = SubResource("VisualShaderNodeVectorOp_2y46q")
+nodes/vertex/5/position = Vector2(-338.73282, 107.76859)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorCompose_1q4kl")
+nodes/vertex/6/position = Vector2(-605.3995, 267.7686)
+nodes/vertex/7/node = SubResource("VisualShaderNodeFloatOp_ubi3p")
+nodes/vertex/7/position = Vector2(-906.6667, 293.33334)
+nodes/vertex/connections = PackedInt32Array(3, 0, 5, 0, 5, 0, 2, 0, 6, 0, 5, 1, 4, 0, 7, 1, 7, 0, 6, 1)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_ubi3p")
+nodes/fragment/2/position = Vector2(0, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeExpression_ubi3p")
+nodes/fragment/3/position = Vector2(-320, 266.66666)
+nodes/fragment/3/size = Vector2(365, 160)
+nodes/fragment/3/input_ports = "0,4,input0;"
+nodes/fragment/3/output_ports = "0,5,output0;"
+nodes/fragment/3/expression = "output0 = FluidNoise4D(vec2(0), input0*3.);
+// hello"
+nodes/fragment/4/node = SubResource("VisualShaderNodeVaryingGetter_2y46q")
+nodes/fragment/4/position = Vector2(-640, 293.33334)
+nodes/fragment/5/node = SubResource("VisualShaderNodeGlobalExpression_1q4kl")
+nodes/fragment/5/position = Vector2(-986.6667, 26.666666)
+nodes/fragment/5/size = Vector2(300, 80)
+nodes/fragment/5/input_ports = ""
+nodes/fragment/5/output_ports = ""
+nodes/fragment/5/expression = "#include \"res://Shaders/Msic/Fluid4D.gdshaderinc\""
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 0, 3, 0, 0, 0)
+
+[resource]
+render_priority = 0
+shader = SubResource("VisualShader_vdyj0")
+shader_parameter/colorA = Color(0, 1, 0.03156042, 1)
+shader_parameter/colorB = Color(0, 1, 0.03137255, 1)
+shader_parameter/colorC = Color(0, 1, 0.03137255, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.61000002571512

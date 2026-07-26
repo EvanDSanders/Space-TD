@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d2p4r7xu6po37"]
+
+[ext_resource type="Script" uid="uid://db5c4stcgbbpm" path="res://Scripts/Misc/Collectable.gd" id="1_pd83v"]
+[ext_resource type="PackedScene" uid="uid://c2aceidy1hrad" path="res://Objects/Raw Crystal.glb" id="1_s8bli"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eoje4"]
+radius = 0.33398438
+height = 2.4580078
+
+[node name="Raw Crystal" type="RigidBody3D" unique_id=2119655356]
+collision_layer = 1025
+linear_damp = 0.3
+angular_damp = 0.3
+script = ExtResource("1_pd83v")
+
+[node name="Main" parent="." unique_id=480952213 instance=ExtResource("1_s8bli")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=469230417]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_eoje4")
+
+[editable path="Main"]

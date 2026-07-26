@@ -1,26 +1,109 @@
 [gd_scene format=3 uid="uid://c2nt3qsw4cnfi"]
 
-[ext_resource type="Script" uid="uid://bgd6uqjflc7tn" path="res://Scripts/Enemies/scout.gd" id="1_4e0fl"]
-[ext_resource type="PackedScene" uid="uid://hx2q3oq4njou" path="res://Objects/Scout.glb" id="2_hreat"]
+[ext_resource type="Script" uid="uid://bgd6uqjflc7tn" path="res://Scripts/Enemies/Scout.gd" id="1_4e0fl"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_hg6gh"]
+[ext_resource type="PackedScene" uid="uid://hx2q3oq4njou" path="res://Objects/Enemies/Scout.glb" id="2_hreat"]
+[ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="3_hg6gh"]
+[ext_resource type="PackedScene" uid="uid://s4x0rwydmdcg" path="res://Scenes/GUI/Waypoint.Debug.tscn" id="4_eq4fl"]
+[ext_resource type="PackedScene" uid="uid://bxm46tvbw3ms5" path="res://Scenes/Projectiles/SimpleLaser.tscn" id="6_05g7u"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
 radius = 3.0
 
-[node name="CharacterBody3D" type="RigidBody3D" unique_id=638495765]
-collision_layer = 9
-collision_mask = 13
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_hg6gh"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_eq4fl"]
+default_input_values = [1, 1.0, 2, 0.0, 3, 0.0, 4, 0.2]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_05g7u"]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_6lqb0"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_qhc3h"]
+constant = Color(0.5627668, 0.90555173, 0.20860551, 1)
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_fqxif"]
+constant = 5.0
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_mr21y"]
+
+[sub_resource type="VisualShader" id="VisualShader_5dgyg"]
+nodes/fragment/5/node = SubResource("VisualShaderNodeRemap_eq4fl")
+nodes/fragment/5/position = Vector2(-426.66666, 400)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_05g7u")
+nodes/fragment/6/position = Vector2(-1120, 453.33334)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorDecompose_6lqb0")
+nodes/fragment/7/position = Vector2(-773.3333, 453.33334)
+nodes/fragment/8/node = SubResource("VisualShaderNodeColorConstant_qhc3h")
+nodes/fragment/8/position = Vector2(-133.33333, 80)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatConstant_fqxif")
+nodes/fragment/9/position = Vector2(-240, 240)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorOp_hg6gh")
+nodes/fragment/11/position = Vector2(80, 320)
+nodes/fragment/connections = PackedInt32Array(6, 0, 7, 0, 7, 0, 5, 0, 8, 0, 0, 0, 8, 0, 11, 0, 11, 0, 0, 5, 5, 0, 0, 1, 9, 0, 11, 1)
+nodes/light/2/node = SubResource("VisualShaderNodeFloatConstant_mr21y")
+nodes/light/2/position = Vector2(-26.666666, 240)
+nodes/light/connections = PackedInt32Array(2, 0, 0, 0, 2, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ofc4"]
+render_priority = 0
+shader = SubResource("VisualShader_5dgyg")
+
+[sub_resource type="Curve" id="Curve_gb3ke"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4y8kh"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[node name="Scout" type="RigidBody3D" unique_id=638495765]
+collision_layer = 8713
+collision_mask = 9
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 0.8
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 3
-linear_damp = 1.0
-angular_damp = 2.0
+linear_damp = 0.2
+angular_damp = 0.2
 script = ExtResource("1_4e0fl")
+
+[node name="Destructible" type="Node" parent="." unique_id=96407037]
+script = ExtResource("2_hg6gh")
+HPMax = 200.0
+TargetType = 1
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ShipNavigator" type="Node3D" parent="." unique_id=946208268 node_paths=PackedStringArray("Parent")]
+script = ExtResource("3_hg6gh")
+Parent = NodePath("..")
+metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="DebugPin" parent="." unique_id=1954077161 instance=ExtResource("4_eq4fl")]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=8862303]
 shape = SubResource("SphereShape3D_r0du0")
-debug_color = Color(0, 0.5950001, 0.7, 0)
+debug_color = Color(0, 0.59607846, 0.69803923, 0.14117648)
 
 [node name="Main" parent="." unique_id=948682490 instance=ExtResource("2_hreat")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2423315)
+
+[node name="VaporTrail" type="VaporTrail" parent="." unique_id=679344507]
+config/num_points = 20
+config/update_interval = 0.034
+visual/material = SubResource("ShaderMaterial_1ofc4")
+visual/size = 1.0
+visual/size_curve = SubResource("Curve_gb3ke")
+visual/color_gradient = SubResource("Gradient_4y8kh")
+transform = Transform3D(0.17091948, 0, 0, 0, 0.17091948, 0, 0, 0, 0.17091948, 0, 0.3552734, 2.6802301)
+
+[node name="SimpleLaser" parent="." unique_id=459091051 node_paths=PackedStringArray("Start") instance=ExtResource("6_05g7u")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.43708932, -3.8530722)
+Start = NodePath("../Main/Origin Scout/Scout Laser")
 
 [editable path="Main"]

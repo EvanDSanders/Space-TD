@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://ipoiq1h78ohx"]
+
+[ext_resource type="Shader" uid="uid://byk3dfkudeyxo" path="res://Shaders/Smoke_Project/Stylized_Smoke_Shader.gdshader" id="1_y2par"]
+[ext_resource type="ArrayMesh" uid="uid://c03p1wq8x7grl" path="res://Shaders/Smoke_Project/Mesh.tres" id="2_0ibhg"]
+[ext_resource type="Script" uid="uid://onackselqb56" path="res://Scripts/Misc/DeathFire.gd" id="3_0ibhg"]
+
+[sub_resource type="Curve" id="Curve_m87b2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9073359, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dtqe4"]
+curve = SubResource("Curve_m87b2")
+
+[sub_resource type="Gradient" id="Gradient_bh1xa"]
+offsets = PackedFloat32Array(0, 0.17596567, 0.26609442, 0.75578034)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0.9019608, 0.22745098, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0xris"]
+gradient = SubResource("Gradient_bh1xa")
+
+[sub_resource type="Gradient" id="Gradient_wpfmx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6m2vr"]
+noise_type = 2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vfujq"]
+noise = SubResource("FastNoiseLite_6m2vr")
+color_ramp = SubResource("Gradient_wpfmx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ab8xo"]
+render_priority = 0
+shader = ExtResource("1_y2par")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Color_Gradiant = SubResource("GradientTexture1D_0xris")
+shader_parameter/Vor_Noise = SubResource("NoiseTexture2D_vfujq")
+shader_parameter/Alpha_Curve = SubResource("CurveTexture_dtqe4")
+shader_parameter/Fernal_Power = 1.0
+shader_parameter/Vor_Scale = 0.8
+shader_parameter/Vor_Speed = 0.2
+shader_parameter/Emmision_Power = 1.0
+shader_parameter/Alpha_Clip = 0.0
+
+[sub_resource type="Curve" id="Curve_pp8cm"]
+_data = [Vector2(0, 0), 0.0, 1.0236398, 0, 0, Vector2(1, 1), 0.97106856, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m87b2"]
+texture_mode = 1
+curve = SubResource("Curve_pp8cm")
+
+[sub_resource type="Curve" id="Curve_klpbu"]
+_data = [Vector2(0, 0.27411175), 0.0, 0.0, 0, 0, Vector2(0.7670157, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_240oq"]
+curve = SubResource("Curve_klpbu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e7riv"]
+particle_flag_rotate_y = true
+particle_flag_inherit_emitter_scale = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -89.99999
+angle_max = 90.000015
+inherit_velocity_ratio = 0.2
+spread = 2.0
+initial_velocity_min = 16.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.8
+scale_curve = SubResource("CurveTexture_240oq")
+alpha_curve = SubResource("CurveTexture_m87b2")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.019999977
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 0.1
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[node name="Fire" type="GPUParticles3D" unique_id=262782530]
+material_override = SubResource("ShaderMaterial_ab8xo")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_e7riv")
+draw_pass_1 = ExtResource("2_0ibhg")
+script = ExtResource("3_0ibhg")

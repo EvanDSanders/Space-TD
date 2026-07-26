@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dwanypdveklia"]
+
+[ext_resource type="PackedScene" uid="uid://dnva3nlvuh60g" path="res://Objects/StarShip/Gong.glb" id="1_8r5bm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eoje4"]
+height = 0.029296875
+radius = 0.14990234
+
+[node name="Gong" type="RigidBody3D" unique_id=273247410]
+collision_layer = 2147483648
+collision_mask = 2147483648
+mass = 0.05
+can_sleep = false
+constant_force = Vector3(0, -9.8, 0)
+
+[node name="Main" parent="." unique_id=2093732026 instance=ExtResource("1_8r5bm")]
+
+[node name="Origin Gong" parent="Main" index="0" unique_id=1657116382]
+layers = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1595299314]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_eoje4")
+
+[editable path="Main"]
