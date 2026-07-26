@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://jbvcmaomrw2i" path="res://Scenes/Ship/StarShip Cannon Bolt.tscn" id="2_sq4f5"]
 [ext_resource type="PackedScene" uid="uid://bmlpnqb0uxswf" path="res://Objects/StarShip/Main Cannon.glb" id="2_yc4fc"]
 [ext_resource type="PackedScene" uid="uid://dkx1rfp4nvh14" path="res://Objects/Misc/Cannon Target.glb" id="4_sq4f5"]
-[ext_resource type="AudioStream" uid="uid://d0o6wky6s6hkd" path="res://SoundsProtected/laser_missile_3.ogg" id="4_y4o74"]
-[ext_resource type="Script" uid="uid://biycbds6w5ly2" path="res://Sounds/ProtectedSpeaker.gd" id="5_prtsp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4o74"]
 shading_mode = 0
@@ -28,16 +26,6 @@ Damage = 1000.0
 
 [node name="Marker3D" type="Marker3D" parent="Main Cannon/Origin Cannon Hub/Cannon Pitch/Cannon Head D" parent_id_path=PackedInt32Array(693902262, 1825160353) index="0" unique_id=2011928972]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 0)
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Main Cannon/Origin Cannon Hub/Cannon Pitch/Cannon Head D" parent_id_path=PackedInt32Array(693902262, 1825160353) index="1" unique_id=1880363778]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 0)
-stream = ExtResource("4_y4o74")
-volume_db = -0.05
-unit_size = 100.0
-max_distance = 4096.0
-attenuation_filter_cutoff_hz = 20500.0
-attenuation_filter_db = 0.0
-script = ExtResource("5_prtsp")
 
 [node name="RayCast3D" type="RayCast3D" parent="Main Cannon/Origin Cannon Hub/Cannon Pitch" parent_id_path=PackedInt32Array(693902262, 305962030) index="2" unique_id=534270764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.113707)

@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://c68ma6twmxari" path="res://Scripts/Misc/ExplosionMagic.gd" id="1_n1l04"]
 [ext_resource type="ArrayMesh" uid="uid://wp3jotcp146j" path="res://Objects/Meshes/BoomCone.mesh.res" id="1_nnbsf"]
 [ext_resource type="ArrayMesh" uid="uid://ct033eladjs7r" path="res://Objects/Meshes/MagicSquare.mesh.res" id="2_nj5km"]
-[ext_resource type="AudioStream" uid="uid://d0o6wky6s6hkd" path="res://SoundsProtected/laser_missile_3.ogg" id="4_e8rf6"]
-[ext_resource type="Script" uid="uid://biycbds6w5ly2" path="res://Sounds/ProtectedSpeaker.gd" id="5_prtsp"]
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_nnbsf"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
@@ -114,14 +112,5 @@ explosiveness = 1.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_x050v")
 draw_pass_1 = ExtResource("1_nnbsf")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=191712573]
-stream = ExtResource("4_e8rf6")
-volume_db = -1.46
-unit_size = 100.0
-autoplay = true
-max_distance = 4096.0
-attenuation_filter_cutoff_hz = 20500.0
-script = ExtResource("5_prtsp")
 
 [connection signal="finished" from="Boom Particles" to="." method="_on_boom_particles_finished"]

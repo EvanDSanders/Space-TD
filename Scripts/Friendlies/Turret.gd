@@ -159,7 +159,7 @@ func _physics_process(delta: float) -> void:
 			# Shoot a projectile at every emission point
 			for emtr in Emitters:
 				var part = FlakParticleLoader.instantiate()
-				emtr.add_child(part); part.Mute(); part.scale = 0.08 * Vector3.ONE
+				emtr.add_child(part); part.scale = 0.08 * Vector3.ONE
 				var projectile : Node3D = Projectile.instantiate()
 				G.root.add_child(projectile)
 				projectile.global_transform = emtr.global_transform

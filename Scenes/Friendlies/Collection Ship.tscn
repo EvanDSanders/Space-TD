@@ -24,7 +24,7 @@ size = Vector3(6.0021973, 0.1015625, 1.6933594)
 size = Vector3(2, 1.4257813, 2)
 
 [node name="Collector Ship" type="RigidBody3D" unique_id=1076245999]
-collision_layer = 261
+collision_layer = 16645
 collision_mask = 5
 axis_lock_angular_x = true
 axis_lock_angular_z = true
@@ -47,7 +47,6 @@ script = ExtResource("2_since")
 metadata/_custom_type_script = "uid://chahj6p5gtbru"
 
 [node name="DebugPin" parent="." unique_id=1954077161 instance=ExtResource("5_hemg3")]
-visible = false
 sticky = false
 
 [node name="Cargo Shiplet" parent="." unique_id=847024505 instance=ExtResource("1_b6f2e")]

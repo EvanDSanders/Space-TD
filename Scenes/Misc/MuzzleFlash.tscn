@@ -1,9 +1,7 @@
 [gd_scene format=4 uid="uid://rn6dye3v2quq"]
 
 [ext_resource type="Script" uid="uid://c68ma6twmxari" path="res://Scripts/Misc/ExplosionMagic.gd" id="1_0lg47"]
-[ext_resource type="AudioStream" uid="uid://02dotawnxx26" path="res://SoundsProtected/explosion_1.ogg" id="2_umn6d"]
 [ext_resource type="Script" uid="uid://dwutkrkulpfc4" path="res://Scripts/Misc/GPUParticleFix.gd" id="2_ykmi8"]
-[ext_resource type="Script" uid="uid://biycbds6w5ly2" path="res://Sounds/ProtectedSpeaker.gd" id="3_prtsp"]
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_nnbsf"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
@@ -101,14 +99,3 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_x050v")
 draw_pass_1 = SubResource("ArrayMesh_v87cd")
 script = ExtResource("2_ykmi8")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1273668857]
-stream = ExtResource("2_umn6d")
-volume_db = -0.96
-unit_size = 100.0
-autoplay = true
-max_distance = 2364.51
-attenuation_filter_cutoff_hz = 20500.0
-attenuation_filter_db = -5.5
-script = ExtResource("3_prtsp")
-

@@ -19,18 +19,22 @@ var TraceLoader = preload("res://Scenes/Projectiles/ProjectileTrace.tscn")
 func traceLerp(fac:float, trace:Node3D, targ:Node3D):
 	trace.global_position = self.global_position * (1-fac) + targ.global_position * fac
 
+
+func _physics_process(delta: float) -> void:
+	for bodyIn in self.get_overlapping_bodies():
+		if isShip and bodyIn is CollectorShip3D:
+			while bodyIn.store.Crystals > 0:
+				var value = clamp(bodyIn.store.Crystals, 0, 25)
+				var drop = MiningLaser.createCrystalNode(bodyIn, value, true)
+				
+				drop.global_position += Vector3(randf_range(-1, 1),randf_range(-1, 1),randf_range(-1, 1))*10
+				drop.global_rotation += Vector3(randf_range(0, TAU),randf_range(0, TAU),randf_range(0, TAU))
+				
+				self._on_collection_area_3d_body_entered(drop)
+
+
+
 func _on_collection_area_3d_body_entered(bodyIn: Node3D) -> void:
-	
-	if isShip and bodyIn is CollectorShip3D:
-		while bodyIn.store.Crystals > 0:
-			var value = clamp(bodyIn.store.Crystals, 0, 25)
-			var drop = MiningLaser.createCrystalNode(bodyIn, value, true)
-			
-			drop.global_position += Vector3(randf_range(-1, 1),randf_range(-1, 1),randf_range(-1, 1))*10
-			drop.global_rotation += Vector3(randf_range(0, TAU),randf_range(0, TAU),randf_range(0, TAU))
-			
-			self._on_collection_area_3d_body_entered(drop)
-	
 	if not bodyIn is Collectable: return
 	var body : Collectable = bodyIn
 	
