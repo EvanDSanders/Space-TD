@@ -5,8 +5,6 @@ extends Node3D
 
 @onready var pointer: RayCast3D = $CursorCast3D
 @onready var pointerB: RayCast3D = $BuildCast3D
-@onready var scoutLoader = preload("res://Scenes/Enemies/Scout.tscn")
-@onready var frigateLoader = preload("res://Scenes/Enemies/Frigate.tscn")
 
 @onready var spawn_point_test: Node3D = $SpawnPointTest
 @onready var GUI: Control = $"GUI Mount"
@@ -16,35 +14,19 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	G.root = self
+	G.Main = self
+	G.Friendlies = $Friendlies
+	G.Enemies = $Enemies
+	G.Ores = $Ores
+	G.Collectibles = $Collectibles
+	
+	if G.isMainLevel: Linker.setUp(StarShip)
+	
 	#for x in range(500):
 		#spawn(spawn_point_test.global_position)
 		
 		
-	for x in range(randi_range(10, 15)):
-		var loc = randf_range(0, TAU)
-		var pos = Vector3(sin(loc), 0, cos(loc))
-		var dist = randf_range(40, 400)
-		
-		
-		var rock := preload("res://Scenes/Friendlies/Asteroid.tscn").instantiate() as Asteroid3D
-		
-		var size : int = randi_range(
-			G.remap(40, 400, 2, 15, dist),
-			G.remap(40, 400, 5, 20, dist),
-		)
-		var base : int = randi_range(
-			G.remap(2, 20, 50,  2000, size),
-			G.remap(2, 20, 100, 5000, size),
-		)
-		rock.CrystalsMax = base + randf_range(0, 100) * size/10
-		rock.Size = size
-		
-		rock.global_position = pos * dist
-		
-		self.add_child(rock)
-		
-		print("+Rock of %d w/ %dc, %dm away" % [rock.Size, rock.CrystalsMax, dist])
+
 		
 		
 
@@ -93,6 +75,7 @@ func _process(_delta: float) -> void:
 var Tw : Tween
 
 func _physics_process(delta: float) -> void:
+	if not StarShip: return
 	var VelLin := StarShip.linear_velocity
 	var VelRot := StarShip.angular_velocity
 
@@ -116,49 +99,10 @@ func _physics_process(delta: float) -> void:
 	Tw = create_tween()
 	Tw.tween_property(GUI, "offset_transform_position", displayVel, 0.2); Tw.parallel()
 	Tw.tween_property(GUI, "offset_transform_rotation", displayRet, 0.2)
-
-
-var RNG = RandomNumberGenerator.new()
-
-func spawn(ship, pos = null):
-	#return
-	#var rot = RNG.randf_range(0, TAU)
-	if not pos:
-		var rot = Time.get_ticks_msec()/1000.
-		pos = Vector3(sin(rot), 0, cos(rot)) * 500
 	
-	var e : Node3D = ship.instantiate()
-	$Enemies.add_child(e)
-	e.global_position = pos
 	
-	#print(pos, "  ", e)
+var gameOver
+func GameOver():
+	gameOver = preload('res://Scenes/GUI/GameOver.tscn').instantiate()
+	G.Main.add_child(gameOver)
 	
-
-
-func spawnDo() -> void:
-	$Timer.wait_time -= randf_range(0.1, 0.3)
-	$Timer.wait_time = clamp($Timer.wait_time, 1, INF)
-	
-	var rot = RNG.randf_range(0, TAU)
-	var pos = Vector3(sin(rot), 0, cos(rot)) * RNG.randi_range(400, 500)
-	#for x in range( RNG.randi_range(30, 60) ):
-	var amt := RNG.randi_range(1, 4)
-	
-	var ship : PackedScene
-	var shipName : StringName
-	
-	var str : float = randf()
-	if str < G.remap(8, 1, 0.4, 0.8, $Timer.wait_time):
-		ship = scoutLoader
-		shipName = "Scout"
-	else:
-		ship = frigateLoader
-		shipName = "Frigate"
-		
-	
-	G.Warnings.Create("%s :: %d" % [shipName, amt])
-	for x in range( amt ):
-		
-		var posS = pos + Vector3(RNG.randf_range(-30,30),RNG.randf_range(-10,10),RNG.randf_range(-30,30)) * 1.4
-		spawn(ship, posS)
-		

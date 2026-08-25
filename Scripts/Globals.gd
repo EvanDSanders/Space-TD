@@ -1,21 +1,39 @@
 extends Node
 
 
-var root: Node3D
+@onready var root: Window = $"/root"
 var camera: Camera3D
 var Warnings : WarningInterface
 
 @onready var RNG := RandomNumberGenerator.new() 
 
-@onready var StarShip: RigidBody3D = $"/root/Main/Friendlies/The Star Ship"
-@onready var Main: Node3D = get_node("/root/Main")
-@onready var Cursor: Node3D = get_node("/root/Main/Cursor")
+var StarShip: TheStarShip
+var StarStation: Prospector
+var isMainLevel: bool
 
-@onready var Enemies: Marker3D = $"/root/Main/Enemies"
-@onready var Collectibles: Marker3D = $"/root/Main/Collectibles"
-@onready var Ores: Marker3D = $"/root/Main/Ores"
-@onready var Friendlies: Marker3D = $"/root/Main/Friendlies"
+var Main: Node3D
+var Cursor: Node3D
 
+var Enemies: Marker3D
+var Collectibles: Marker3D
+var Ores: Marker3D
+var Friendlies: Marker3D
+
+var MegaSheild : Node3D
+var MegaLaser  : Node3D
+
+var EnemySpawner : SpawnerResource
+
+func setUp(main):
+	Main = main
+	camera = Main.find_child("Camera3D")
+	Cursor = Main.get_node("Cursor")
+	StarShip = Main.get_node("Friendlies/The Star Ship")
+
+	Enemies = Main.get_node("Enemies")
+	Collectibles = Main.get_node("Collectibles")
+	Ores = Main.get_node("Ores")
+	Friendlies = Main.get_node("Friendlies")
 
 var isBuilding := false
 
@@ -83,7 +101,7 @@ func EaseIOCubic(x: float) -> float:
 # https://medium.com/@fionn.fuchs/easily-call-a-method-after-a-time-delay-in-godot-ee8593d5ef5b
 func schedule(function, delay):
 	var timer := Timer.new()
-	get_tree().root.add_child(timer)
+	Main.add_child(timer)
 	timer.timeout.connect(function)
 	timer.timeout.connect(timer.queue_free)
 	timer.wait_time = delay
@@ -142,8 +160,5 @@ func BoneScaled(armature: Skeleton3D, bone_idx:int, scale:Vector3):
 	pose.basis = pose.basis.orthonormalized().scaled(scale)
 	armature.set_bone_pose(bone_idx, pose)
 
-func go():
-	camera = get_node("/root/Main/Camera Rig Main").find_child("Camera3D")
-	
-func _ready():
-	call_deferred("go")
+
+func _ready(): pass

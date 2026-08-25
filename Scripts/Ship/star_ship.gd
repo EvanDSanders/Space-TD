@@ -1,5 +1,6 @@
 @icon("res://EditorIcons/starShip.svg")
 extends RigidBody3D
+class_name TheStarShip
 
 # Speed stores for Maneuvering mode (local to ship)
 var SpeedForward 	: float = 0.
@@ -38,8 +39,8 @@ enum ShipModes {
 	Evasion,
 };
 
-@export var ShipMode: ShipModes = ShipModes.Maneuver
-@onready var ShipModePrior = ShipModes.Maneuver
+@export var ShipMode: ShipModes = ShipModes.Warp
+@onready var ShipModePrior = ShipModes.Warp
 
 var ETw : Tween
 
@@ -65,6 +66,11 @@ var MeshI3Ds : Array[MeshInstance3D]
 @onready var health: ShieldedDestructible = find_child("Destructible")
 @onready var mana: ManaStore = find_child("ManaStore")
 @onready var crystal: CrystalStore = find_child("CrystalStore")
+
+
+@onready var MegaShieldMount: Node3D = $"MegaShield Pivot/MegaShield Mount"
+@onready var proxies: Node3D = $ManaProxies
+
 
 # True while LClick held, but only when press wasn't first consumed by a Control (GUI).
 var FiringInput: bool = false
@@ -125,13 +131,19 @@ func _ready() -> void:
 	$"Star Ship/Main Cannon".reparent($"Star Ship/Brmature")
 	
 	# Set turrets targeting origin and extra condition to these
-	for T in Turrets:
+	for T:TurretBase in Turrets:
 		T.RangingOrigin = self
 		#T.TargetingRange = self.TargetingRange
 		T.scanArea3D = $ScanArea3D
 		#T.mana.showMeter = false
 		T.get_node("CursorDialogue").Parent = self
 		#T.ExtraFiringCondition = TurretCheck
+		
+		T.set_meta("IsShip", true)
+		T.mana.MaxLinks = 0
+		Linker.ConnectDirect(T.mana, self.mana, false)
+		# Linker.ConnectDirect(T.mana, self.mana, false) # crashes
+	
 	
 	for each: MeshInstance3D in find_children("*", "MeshInstance3D"):
 		each.set_instance_shader_parameter("StarShipEngineOverheatIsThis", 1)
@@ -139,6 +151,13 @@ func _ready() -> void:
 			each.set_instance_shader_parameter("ObjGPos", each.global_position)
 			each.material_overlay = ShieldMat
 		MeshI3Ds.append(each)
+		
+	for prox in proxies.get_children():
+		var proxy = ManaProxy.new()
+		proxy.manaStore = self.mana
+		proxy.MaxLinks = 4
+		prox.add_child(proxy)
+		Linker.ConnectDirect(proxy, self.mana, false)
 
 	gravity_scale = 0
 	linear_damp = 0
@@ -160,6 +179,10 @@ func _ready() -> void:
 
 
 	E.Register(self, E.Friend)
+	
+	
+	
+	
 
 # For slow and acurate, per-axis movent
 func AxisMovment(DirectionVar: StringName, AxisA: StringName, AxisB: StringName, delta: float):
@@ -289,6 +312,16 @@ func _process(delta: float) -> void:
 			boom.position = pos*10
 		
 		spawnBoomCoolDown -= delta
+		
+		
+	if Input.is_action_just_pressed("Cheat"):
+		crystal.pushCrystal(99999); print("DEBUG crystals added!!")
+		var c = Pins.Register(self, Pins.Type.Text)
+		c.text = "Cheating"
+		c.textSize = 30
+		c.setColor(Color.ORANGE_RED, Color.ORANGE)
+		
+
 
 var CameraHeading : float
 
@@ -296,6 +329,8 @@ var spawnBoomDelay := 1.
 var spawnBoomCoolDown := spawnBoomDelay
 var spawnBoomLoader = preload("res://Scenes/Misc/ExplosionMagic.tscn")
 
+
+var gameOver : Control
 
 func destroy(): 
 	self.axis_lock_linear_y = false
@@ -306,10 +341,13 @@ func destroy():
 	var r = 20000
 	self.apply_torque_impulse(Vector3(randf_range(-r,r), randf_range(-r,r), randf_range(-r,r)))
 	
+	
+	
 	#for T in Turrets:
 		#T.health.Hit(1111)
 	
 	# Reset Tween
+	G.Main.GameOver()
 	if ETw: ETw.kill()
 	ETw = self.create_tween()
 	# Start Tweening
@@ -329,9 +367,12 @@ func deathEnd():
 	boom.scale *= 6
 	self.spawnBoomDelay = INF
 	self.linear_velocity = Vector3.ZERO
+	self.angular_velocity = Vector3.ZERO
 	$"Star Ship".scale = Vector3.ZERO
+	self.visible = false
+	G.Main.gameOver.Expand()
 
-	G.schedule(get_tree().quit, 4)
+	#G.schedule(get_tree().quit, 4)
 
 
 
@@ -433,6 +474,7 @@ func _physics_process(delta: float) -> void:
 			
 	
 func collide(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int):
+	if body.get_meta("IsShip", false): return
 	var S1 : Vector3 = self.linear_velocity
 	var S2 : Vector3 = body.linear_velocity if body.get("linear_velocity") else Vector3.ZERO
 	var rate = S1.distance_to(S2)
@@ -441,6 +483,6 @@ func collide(body_rid: RID, body: Node, body_shape_index: int, local_shape_index
 	if body.has_node("Destructible"):
 		body.get_node("Destructible").Hit(dmg*10)
 		
-	#print(self.name, " at ", S1.length(),  " m/s hit ", body.name, " at ", S2.length(), " m/s")
+	print(self.name, " at ", S1.length(),  " m/s hit ", body.name, " at ", S2.length(), " m/s")
 	
 	

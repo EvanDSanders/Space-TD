@@ -3,6 +3,8 @@ extends Node
 class_name CrystalStore
 
 @export var Crystals := 0.
+@export var CrystalsMax := -1
+@export var HardLimit := false
 
 signal CrystalsChange(int)
 

@@ -3,7 +3,7 @@ extends Node
 class_name Destructible
 
 @onready var Parent = $".."
-@onready var Meter : Control = preload("res://Scenes/GUI/Waypoint.tscn").instantiate()
+@onready var Meter : MeterPin  # = preload("res://Scenes/GUI/Waypoint.tscn").instantiate()
 
 signal HPChange(float)
 signal onDeath()
@@ -28,16 +28,17 @@ func debug():
 var fireLoader := preload("res://Scenes/Misc/Fire.tscn")
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void: call_deferred("ready")
-func ready() -> void:
-	Meter.parent = Parent
-	get_tree().root.add_child(Meter)
+func _ready() -> void: # call_deferred("ready")
+# func ready() -> void:
+	Meter = Pins.Register(Parent, Pins.Type.Meter)
+	Meter.max = HPMax
+	Meter.value = HP
+	Meter.setColor(Color.GREEN)
+	Meter.VOffset = 10
+	Meter.name = "HPMeterPin"
 
-	Meter.setTimeout(1)
-	Meter.get_child(0).max_value = HPMax
-	Meter.get_child(0).value = HP
-	Meter.get_child(0).position.y -= 10
-	Meter.modulate = color
+	if Parent.has_node("CursorDialogue"):
+		Parent.get_node("CursorDialogue").attachMeter(Meter)
 	
 	E.Register(Parent, TargetType)
 	onDeath.connect(E.UnRegister.bind(Parent, TargetType))
@@ -49,6 +50,7 @@ func Hit(damage: float, impulse := Vector3.ZERO, ignoreSheild := false) -> void:
 	if not ignoreSheild:
 		_flashShield()
 	_afterHit(impulse)
+	if Meter and showMeter: Meter.value = HP
 	if Parent.has_method("writeShader"):
 		Parent.writeShader( Color.BLACK, "StarShipShieldC" )
 
@@ -66,7 +68,6 @@ func _flashShield() -> void:
 func _afterHit(impulse: Vector3) -> void:
 	HPChange.emit(HP)
 	if Parent.has_method("apply_impulse"): Parent.apply_impulse(impulse)
-	Meter.get_child(0).value = HP
 
 	if HP <= 0 and self.isAlive:
 		self.isAlive = false
@@ -77,7 +78,7 @@ func _afterHit(impulse: Vector3) -> void:
 		if Parent.has_method("destroy"):
 			Parent.destroy()
 
-	if HP > 0 and showMeter:
+	if HP > 0 and showMeter and Meter:
 		Meter.doShow()
 
 
@@ -85,6 +86,6 @@ func Heal(amt: float):
 	HP += amt
 	HPChange.emit(HP)
 	HP = clampf(HP, 0, HPMax)
-	Meter.get_child(0).value = HP
-	if showMeter:
+	if Meter and showMeter: Meter.value = HP
+	if showMeter and Meter:
 		Meter.doShow()

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="2.0"
+   id="svg1"
+   width="127.70864"
+   height="28.70508"
+   viewBox="0 0 127.70864 28.70508"
+   sodipodi:docname="LoaderCrystal.svg"
+   standalone="no"
+   inkscape:version="1.5-dev (1:1.5.0+202606271141+4f86bb1ed2)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="446.77539,192.02644"
+       end_point="572.72852,192.02644"
+       center_point="509.75196,192.02644"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1.2"
+       lpesatellites=""
+       mode="Y"
+       discard_orig_path="false"
+       fuse_paths="true"
+       oposite_fuse="false"
+       split_items="false"
+       split_open="false"
+       link_styles="false"
+       reverse_mirror="false" />
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="509.75197,190.59158"
+       end_point="509.75197,203.64328"
+       center_point="509.75197,197.11743"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1.2"
+       lpesatellites=""
+       mode="free"
+       discard_orig_path="false"
+       fuse_paths="false"
+       oposite_fuse="true"
+       split_items="false"
+       split_open="false"
+       link_styles="false"
+       reverse_mirror="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#73736f"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="8.8645286"
+     inkscape:cx="60.916945"
+     inkscape:cy="15.567664"
+     inkscape:window-width="2560"
+     inkscape:window-height="1372"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1"
+     transform="translate(-483.54763,-189.52384)">
+    <path
+       id="path1"
+       style="font-variation-settings:'wght' 400;fill:#00ff00;stroke:#ffffff;stroke-width:2.5;stroke-linecap:square;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1;paint-order:fill stroke markers"
+       d="m 497.65391,190.77384 -13.22657,13.10253 13.22657,13.10255 H 597.15 L 610.37656,203.87635 597.15,190.77384 Z"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+</svg>

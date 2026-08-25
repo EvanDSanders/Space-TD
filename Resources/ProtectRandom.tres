@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="GameLevelResource" format=3 uid="uid://cc8mcftaa5c8n"]
+
+[ext_resource type="Script" uid="uid://47bq5wqchclk" path="res://Scripts/Resources/AsteroidGenerator.gd" id="1_0hnxc"]
+[ext_resource type="Script" uid="uid://b4x354t08yy2v" path="res://Scripts/Resources/Entity.gd" id="2_t3ag8"]
+[ext_resource type="Script" uid="uid://c2k24hrn0wvfd" path="res://Scripts/Resources/Level.gd" id="3_am8cn"]
+[ext_resource type="Script" uid="uid://djeukp16pf1vd" path="res://Scripts/Resources/EnemySpawner.gd" id="4_1612a"]
+
+[sub_resource type="Resource" id="Resource_remuw"]
+script = ExtResource("1_0hnxc")
+metadata/_custom_type_script = "uid://47bq5wqchclk"
+
+[sub_resource type="Resource" id="Resource_mrqri"]
+script = ExtResource("2_t3ag8")
+path = &"res://Scenes/Friendlies/Prospector.tscn"
+location = Vector3(168.845, 0, 27.72)
+metadata/_custom_type_script = "uid://b4x354t08yy2v"
+
+[sub_resource type="Resource" id="Resource_hhptb"]
+script = ExtResource("4_1612a")
+metadata/_custom_type_script = "uid://djeukp16pf1vd"
+
+[resource]
+script = ExtResource("3_am8cn")
+entities = Array[ExtResource("2_t3ag8")]([SubResource("Resource_mrqri")])
+spawner = SubResource("Resource_hhptb")
+asteroidSpawner = SubResource("Resource_remuw")
+metadata/_custom_type_script = "uid://c2k24hrn0wvfd"

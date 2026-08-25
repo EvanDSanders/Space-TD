@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var enemies: Marker3D = get_node("/root/Main/Enemies")
+@onready var enemies: Marker3D = G.Main.get_node("Enemies")
 
 @export var speed := 200.
 @export var damage := 1000.
@@ -58,7 +58,7 @@ func activate():
 	#Tw.tween_property(mesh, "height", 8*upScale, .2)
 	#Tw.parallel().tween_property(mesh, "radius", 4*upScale, .2)
 	Tw.parallel().tween_method(boom, 4, 4*upScale, .2)
-	G.spawnExplosion(G.ExplType.Magic, self, get_node("/root/Main"), 5)
+	G.spawnExplosion(G.ExplType.Magic, self, G.Main, 5)
 	Tw.chain().tween_method(done, 0, 0, 0.1)
 		
 		

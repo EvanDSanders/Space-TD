@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://c7wdhux2wnayu"]
+
+[ext_resource type="PackedScene" uid="uid://dn4pufh55tlbw" path="res://Objects/StarShip/MegaShield.glb" id="1_0r2yf"]
+[ext_resource type="Script" uid="uid://bt2dqfbap8mb6" path="res://Scripts/Ship/MegaShield.gd" id="1_1ycfo"]
+[ext_resource type="Script" uid="uid://itwc60iiay6j" path="res://Shaders/Nodes/NodeNoise4D.gd" id="2_6h033"]
+[ext_resource type="AudioStream" uid="uid://dnubpg5nponh" path="res://Sounds/Failure.ogg" id="3_5onla"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3g5np"]
+friction = 0.0
+bounce = 2.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0r2yf"]
+points = PackedVector3Array(-4.242757, 0.3323465, -4.0000005, -3.221613, 0.108935475, -4.0000005, -4.242757, 0.07123077, -3.0007834, -5.2122164, 0.6179486, -3.9898205, 4.241192, 0.3323465, -4.0000005, -2.1675801, -0.045567036, -4.0000005, -3.221613, -0.15218025, -3.0007834, -5.216915, 0.3603, -2.9953017, -4.242757, -0.15651411, -2.000783, -6.0924044, 0.9163355, -3.9169934, 5.2106524, 0.6179486, -3.9898205, 4.241192, 0.07123077, -3.0007834, 3.220049, 0.108935475, -4.0000005, -2.1675801, -0.3066827, -3.0007834, -1.090054, -0.13527817, -4.0000005, -1.090054, -0.39661053, -3.0007834, -2.1675801, -0.5346443, -2.000783, -3.221613, -0.37992513, -2.000783, -5.220047, 0.13493866, -1.9984338, -6.1284266, 0.68187314, -2.9569306, -4.242757, -0.31773412, -1.000783, -6.8347697, 1.1670499, -3.7188728, 6.0892744, 0.9163355, -3.9169934, 5.21535, 0.3603, -2.9953017, 4.241192, -0.15651411, -2.000783, 3.220049, -0.15218025, -3.0007834, 2.1660156, -0.045567036, -4.0000005, -0.0015654564, -0.1643151, -4.0000005, -0.0015654564, -0.42543077, -3.0007834, -0.0015654564, -0.6533924, -2.000783, -1.090054, -0.62435544, -2.000783, -3.221613, -0.5411451, -1.000783, -1.090054, -0.78557545, -1.000783, -2.1675801, -0.6956476, -1.000783, -5.2216134, -0.025197804, -0.99999976, -6.155051, 0.47406405, -1.9866877, -6.963196, 1.0012794, -2.8613942, -4.242757, -0.37884167, -0.0007827282, -5.22318, -0.08630538, -0.0007827282, -7.4330473, 1.3382378, -3.3758812, 6.833205, 1.1670499, -3.7188728, 6.1268616, 0.68187314, -2.9569306, 5.218483, 0.13493866, -1.9984338, 4.241192, -0.31773412, -1.000783, 3.220049, -0.37992513, -2.000783, 2.1660156, -0.5346443, -2.000783, 2.1660156, -0.3066827, -3.0007834, 1.0884895, -0.39661053, -3.0007834, 1.0884895, -0.13527817, -4.0000005, 1.0884895, -0.62435544, -2.000783, -0.0015654564, -0.8146124, -1.000783, -3.221613, -0.6022527, -0.0007827282, -1.090054, -0.846683, -0.0007827282, -2.1675801, -0.7567552, -0.0007827282, -6.1660147, 0.32107848, -0.9984336, -7.0509014, 0.8378925, -1.9569304, -7.744715, 1.3079007, -2.7188725, -4.242757, -0.31773412, 0.9992175, -5.2216134, -0.025197804, 0.9992175, -6.1660147, 0.32107848, 0.9976516, -6.1675806, 0.26105434, -0.0007827282, -7.4330473, 1.3382378, 3.3743162, 7.4314823, 1.3382378, -3.3758812, 6.961631, 1.0012794, -2.8613942, 6.153487, 0.47406405, -1.9866877, 5.220049, -0.025197804, -0.99999976, 5.220049, -0.08630538, -0.0007827282, 4.241192, -0.37884167, -0.0007827282, 3.220049, -0.5411451, -1.000783, 2.1660156, -0.6956476, -1.000783, 1.0884895, -0.78557545, -1.000783, 1.0884895, -0.846683, -0.0007827282, -0.0015654564, -0.87550324, -0.0007827282, -3.221613, -0.5411451, 0.9992175, -0.0015654564, -0.8146124, 0.9992175, -1.090054, -0.78557545, 0.9992175, -2.1675801, -0.6956476, 0.9992175, -7.085357, 0.7022423, -0.99530125, -7.9248247, 1.2129889, -1.9169929, -7.744715, 1.3079007, 2.7180905, -4.242757, -0.15651411, 1.999218, -5.220047, 0.13493866, 1.9976516, -6.155051, 0.47406405, 1.9859052, -7.0509014, 0.8378925, 1.9561481, -7.085357, 0.7022423, 0.9937358, -7.0900555, 0.6448186, -0.0007827282, -6.963196, 1.0012794, 2.860612, -6.8347697, 1.1670499, 3.7180905, 7.4314823, 1.3382378, 3.3743162, 7.7431507, 1.3079007, -2.7188725, 7.0477705, 0.8378925, -1.9569304, 6.1644497, 0.32107848, -0.9984336, 6.1660166, 0.26105434, -0.0007827282, 6.1644497, 0.32107848, 0.9976516, 5.220049, -0.025197804, 0.9992175, 4.241192, -0.31773412, 0.9992175, 3.220049, -0.6022527, -0.0007827282, 2.1660156, -0.7567552, -0.0007827282, 1.0884895, -0.78557545, 0.9992175, -3.221613, -0.37992513, 1.999218, -2.1675801, -0.5346443, 1.999218, -0.0015654564, -0.6533924, 1.999218, -1.090054, -0.62435544, 1.999218, -7.9921703, 1.1007419, -0.98981977, -7.9248247, 1.2129889, 1.9162107, -4.242757, 0.07123077, 2.999218, -5.216915, 0.3603, 2.9937363, -6.1284266, 0.68187314, 2.9561481, -7.9921703, 1.1007419, 0.9890375, -8.000001, 1.0467851, -0.0007827282, -6.0924044, 0.9163355, 3.9162111, 6.833205, 1.1670499, 3.7180905, 6.961631, 1.0012794, 2.860612, 7.7431507, 1.3079007, 2.7180905, 7.9232607, 1.2129889, -1.9169929, 7.0837927, 0.7022423, -0.99530125, 7.0884914, 0.6448186, -0.0007827282, 7.0837927, 0.7022423, 0.9937358, 7.0477705, 0.8378925, 1.9561481, 6.153487, 0.47406405, 1.9859052, 5.218483, 0.13493866, 1.9976516, 3.220049, -0.5411451, 0.9992175, 4.241192, -0.15651411, 1.999218, 2.1660156, -0.6956476, 0.9992175, 1.0884895, -0.62435544, 1.999218, 2.1660156, -0.5346443, 1.999218, -3.221613, -0.15218025, 2.999218, -2.1675801, -0.3066827, 2.999218, -1.090054, -0.39661053, 2.999218, -0.0015654564, -0.42543077, 2.999218, 1.0884895, -0.39661053, 2.999218, -4.242757, 0.3323465, 3.9992185, -5.2122164, 0.6179486, 3.989038, 6.0892744, 0.9163355, 3.9162111, 6.1268616, 0.68187314, 2.9561481, 7.9232607, 1.2129889, 1.9162107, 7.9890394, 1.1007419, -0.98981977, 7.998437, 1.0467851, -0.0007827282, 7.9890394, 1.1007419, 0.9890375, 5.21535, 0.3603, 2.9937363, 3.220049, -0.37992513, 1.999218, 4.241192, 0.07123077, 2.999218, 2.1660156, -0.3066827, 2.999218, 3.220049, -0.15218025, 2.999218, -3.221613, 0.108935475, 3.9992185, -2.1675801, -0.045567036, 3.9992185, -1.090054, -0.13527817, 3.9992185, -0.0015654564, -0.1643151, 3.9992185, 1.0884895, -0.13527817, 3.9992185, 2.1660156, -0.045567036, 3.9992185, 4.241192, 0.3323465, 3.9992185, 5.2106524, 0.6179486, 3.989038, 3.220049, 0.108935475, 3.9992185)
+
+[sub_resource type="Curve" id="Curve_5onla"]
+_data = [Vector2(0, 0), 0.0, 9.555229, 0, 1, Vector2(0.089855075, 0.85858583), 3.2670457, 3.2670457, 0, 0, Vector2(0.19420289, 1), 0.0, 0.0, 0, 0, Vector2(0.8434782, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.388886, 0.0, 1, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_56pfc"]
+curve = SubResource("Curve_5onla")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eoje4"]
+particle_flag_inherit_emitter_scale = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 4, 1)
+inherit_velocity_ratio = 0.125
+spread = 180.0
+initial_velocity_min = 2.6599998
+initial_velocity_max = 5.3199997
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_56pfc")
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_1ycfo"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xeup1"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_o0xm4"]
+default_input_values = [0, 0.0, 1, 1000.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_1f4ex"]
+function = 4
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_w2au2"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_a2et4"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_j0vyc"]
+default_input_values = [0, 0.0, 1, 4.0]
+operator = 3
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_sd6b7"]
+default_input_values = [0, Vector3(0, 0, 0), 1, 0.0, 2, 2.0, 3, 5.0, 4, 0.85, 5, 0.3]
+initialized = true
+script = ExtResource("2_6h033")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_84d6b"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDistance" id="VisualShaderNodeVectorDistance_bned0"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0.5, 0.5)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_2n3a0"]
+default_input_values = [1, 0.5, 2, 0.0, 3, 0.0, 4, 0.7]
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_3jda2"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_glqf6"]
+constant = Color(1, 1, 0, 1)
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_ma1kh"]
+default_input_values = [1, 0.3, 2, 0.7, 3, 0.0, 4, 1.0]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ktw5y"]
+input_name = "instance_id"
+
+[sub_resource type="VisualShader" id="VisualShader_jqtv7"]
+modes/cull = 2
+flags/depth_prepass_alpha = true
+flags/unshaded = true
+flags/shadows_disabled = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_ktw5y")
+nodes/vertex/2/position = Vector2(-240, 213.33333)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 6)
+nodes/fragment/0/position = Vector2(693.3333, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_sd6b7")
+nodes/fragment/2/position = Vector2(-693.3333, 0)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_84d6b")
+nodes/fragment/3/position = Vector2(-1093.3334, 0)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorDistance_bned0")
+nodes/fragment/4/position = Vector2(-693.3333, 400)
+nodes/fragment/5/node = SubResource("VisualShaderNodeRemap_2n3a0")
+nodes/fragment/5/position = Vector2(-400, 400)
+nodes/fragment/6/node = SubResource("VisualShaderNodeClamp_3jda2")
+nodes/fragment/6/position = Vector2(-133.33333, 400)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorConstant_glqf6")
+nodes/fragment/7/position = Vector2(-23.445313, 99.90389)
+nodes/fragment/9/node = SubResource("VisualShaderNodeRemap_ma1kh")
+nodes/fragment/9/position = Vector2(-426.66666, 53.333332)
+nodes/fragment/10/node = SubResource("VisualShaderNodeClamp_1ycfo")
+nodes/fragment/10/position = Vector2(-186.66667, 213.33333)
+nodes/fragment/11/node = SubResource("VisualShaderNodeInput_xeup1")
+nodes/fragment/11/position = Vector2(-1600, 266.66666)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_o0xm4")
+nodes/fragment/12/position = Vector2(-1226.6666, 186.66667)
+nodes/fragment/13/node = SubResource("VisualShaderNodeCompare_1f4ex")
+nodes/fragment/13/position = Vector2(320, 240)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_w2au2")
+nodes/fragment/14/position = Vector2(-960, 186.66667)
+nodes/fragment/15/node = SubResource("VisualShaderNodeInput_a2et4")
+nodes/fragment/15/position = Vector2(-1546.6666, 373.33334)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatOp_j0vyc")
+nodes/fragment/16/position = Vector2(-1120, 346.66666)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 3, 0, 4, 0, 4, 0, 5, 0, 5, 0, 6, 0, 7, 0, 0, 0, 2, 0, 9, 0, 9, 0, 10, 0, 11, 0, 12, 0, 10, 0, 13, 0, 6, 0, 13, 1, 13, 0, 0, 1, 12, 0, 14, 0, 14, 0, 2, 1, 15, 0, 16, 0, 16, 0, 14, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk8ew"]
+render_priority = 0
+shader = SubResource("VisualShader_jqtv7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_t1nho"]
+material = SubResource("ShaderMaterial_jk8ew")
+size = Vector2(4, 4)
+
+[sub_resource type="Skin" id="Skin_q8uu5"]
+
+[node name="MegaShield" type="StaticBody3D" unique_id=1945023884]
+collision_layer = 1048576
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_3g5np")
+script = ExtResource("1_1ycfo")
+maxShots = 2
+
+[node name="MegaShield" parent="." unique_id=97542385 instance=ExtResource("1_0r2yf")]
+
+[node name="Origin MegaShield" parent="MegaShield" index="0" unique_id=394030941]
+cast_shadow = 0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MegaShield" unique_id=326282902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+layers = 513
+light_color = Color(1, 1, 0.100000024, 1)
+light_energy = 5.0
+omni_range = 306.9
+omni_attenuation = 0.75
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="MegaShield" unique_id=955971104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0.3)
+layers = 513
+light_color = Color(1, 1, 0.100000024, 1)
+light_energy = 5.0
+omni_range = 306.9
+omni_attenuation = 0.75
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="MegaShield" unique_id=1613769222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0.3)
+layers = 513
+light_color = Color(1, 1, 0.100000024, 1)
+light_energy = 5.0
+omni_range = 306.9
+omni_attenuation = 0.75
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1773693399]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_0r2yf")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+debug_fill = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1610038986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.40127277)
+emitting = false
+amount = 64
+lifetime = 3.79
+one_shot = true
+explosiveness = 0.94
+randomness = 1.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_eoje4")
+draw_pass_1 = SubResource("QuadMesh_t1nho")
+draw_skin = SubResource("Skin_q8uu5")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=170905744]
+stream = ExtResource("3_5onla")
+volume_db = -2.0
+unit_size = 69.98
+max_distance = 4096.0
+attenuation_filter_cutoff_hz = 18852.0
+attenuation_filter_db = 0.0
+
+[node name="Timer" type="Timer" parent="." unique_id=2131332150]
+wait_time = 4.0
+
+[editable path="MegaShield"]

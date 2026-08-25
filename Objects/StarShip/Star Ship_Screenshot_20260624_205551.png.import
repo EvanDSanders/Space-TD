@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dv3buu21kdbb"
 path.s3tc="res://.godot/imported/Star Ship_Screenshot_20260624_205551.png-45b70224aa8094efaf572e8416b2a785.s3tc.ctex"
+path.etc2="res://.godot/imported/Star Ship_Screenshot_20260624_205551.png-45b70224aa8094efaf572e8416b2a785.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Objects/StarShip/Star Ship_Screenshot_20260624_205551.png"
-dest_files=["res://.godot/imported/Star Ship_Screenshot_20260624_205551.png-45b70224aa8094efaf572e8416b2a785.s3tc.ctex"]
+dest_files=["res://.godot/imported/Star Ship_Screenshot_20260624_205551.png-45b70224aa8094efaf572e8416b2a785.s3tc.ctex", "res://.godot/imported/Star Ship_Screenshot_20260624_205551.png-45b70224aa8094efaf572e8416b2a785.etc2.ctex"]
 
 [params]
 

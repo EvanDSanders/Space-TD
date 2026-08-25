@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 				
 	ThrustLocked(Vector3(strafe, lift, forward) * Parent.mass)
 	
-	if get_node("../DebugPin"):
-		$"../DebugPin".get_node("Label").text  = "%f" % Parent.global_position.y 
+	#if get_node("../DebugPin"):
+		#$"../DebugPin".get_node("Label").text  = "%f" % Parent.global_position.y 
 		
 	

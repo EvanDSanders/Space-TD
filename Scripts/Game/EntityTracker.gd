@@ -15,6 +15,10 @@ var pools: Dictionary = {
 }
 var TickID : int = 0
 
+func Clear(): 
+	for k in pools.keys():
+		pools[k].clear()
+
 func _ready() -> void:
 	self.process_physics_priority = -10000
 	self.process_priority = -10000

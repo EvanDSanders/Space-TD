@@ -7,7 +7,7 @@ scene	= "res://Scenes/Towers/Pylon.tscn"
 
 cost	= 30
 trackRange	= 0
-linkRange	= 30
+linkRange	= 50
 linksMax	= 4
 clearence	= 4
 
@@ -15,13 +15,13 @@ clearence	= 4
 [MiningLaser]
 
 name	= "Mining Laser"
-icon	= "res://Vectors/Towers/Laser Turret.svg"
+icon	= "res://Vectors/Towers/MiningLaser.svg"
 base	= "res://Objects/Structures/MiningLaser.glb"
 scene	= "res://Scenes/Towers/MiningLaser.tscn"
 
 cost	= 75
 trackRange	= 30
-linkRange	= 30
+linkRange	= 50
 linksMax	= 1
 clearence	= 6
 
@@ -35,7 +35,7 @@ scene	= "res://Scenes/Towers/LaserTurret.tscn"
 
 cost	= 150
 trackRange	= 100
-linkRange	= 30
+linkRange	= 50
 linksMax	= 1
 clearence	= 6
 
@@ -43,12 +43,27 @@ clearence	= 6
 [MissileTurret]
 
 name	= "Missile Turret"
-icon	= "res://Vectors/Towers/Laser Turret.svg"
+icon	= "res://Vectors/Towers/Missile.svg"
 base	= "res://Objects/Structures/Missile Launcher.glb"
 scene	= "res://Scenes/Towers/MissileTurret.tscn"
 
 cost	= 240
 trackRange	= 180
-linkRange	= 30
+linkRange	= 50
 linksMax	= 1
-clearence	= 10
+clearence	= 6
+
+
+
+# [ManaStorage]
+#
+# name	= "Mana Storage"
+# icon	= "res://Vectors/Towers/Laser Turret.svg"
+# base	= "res://Objects/Structures/ManaStore.glb"
+# scene	= "res://Scenes/Towers/ManaStore.tscn"
+#
+# cost	= 260
+# trackRange	= 0
+# linkRange	= 50
+# linksMax	= 1
+# clearence	= 6

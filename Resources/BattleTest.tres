@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="GameLevelResource" format=3 uid="uid://dn5gcl85yq25o"]
+
+[ext_resource type="Script" uid="uid://b4x354t08yy2v" path="res://Scripts/Resources/Entity.gd" id="2_bsfdq"]
+[ext_resource type="Script" uid="uid://c2k24hrn0wvfd" path="res://Scripts/Resources/Level.gd" id="3_obdur"]
+[ext_resource type="Script" uid="uid://djeukp16pf1vd" path="res://Scripts/Resources/EnemySpawner.gd" id="4_njr6y"]
+
+[sub_resource type="Resource" id="Resource_h2xmj"]
+script = ExtResource("2_bsfdq")
+path = &"res://Scenes/Ship/MegaShield.tscn"
+location = Vector3(49.27, 16.95, 0)
+isNew = true
+metadata/_custom_type_script = "uid://b4x354t08yy2v"
+
+[sub_resource type="Resource" id="Resource_iabyq"]
+script = ExtResource("2_bsfdq")
+path = &"res://Scenes/Enemies/DoomLaser.tscn"
+location = Vector3(34.52, 0, 41.2)
+metadata/_custom_type_script = "uid://b4x354t08yy2v"
+
+[sub_resource type="Resource" id="Resource_hhptb"]
+script = ExtResource("4_njr6y")
+metadata/_custom_type_script = "uid://djeukp16pf1vd"
+
+[resource]
+script = ExtResource("3_obdur")
+levelType = 1
+entities = Array[ExtResource("2_bsfdq")]([SubResource("Resource_h2xmj"), SubResource("Resource_iabyq")])
+spawner = SubResource("Resource_hhptb")
+metadata/_custom_type_script = "uid://c2k24hrn0wvfd"

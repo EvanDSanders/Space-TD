@@ -1,15 +1,9 @@
-extends Node3D
+extends StructureBase3D
 class_name TurretBase
 
 func stub(): return true;
 
 @onready var Audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
-
-
-@onready var health: Destructible = find_child("Destructible")
-@onready var mana: ManaStore = find_child("ManaStore")
-@onready var crystal: CrystalStore = find_child("CrystalStore")
-var constructor: ConstructionWorker
 
 
 @export var Damage: float = 10
@@ -70,8 +64,7 @@ func _ready() -> void:
 		get_node("Destructible").queue_free()
 
 
-func destroy():
-	G.spawnExplosionAndFree(G.ExplType.Magic, self)
+
 
 
 # Function to get the x, y rotations to look at a target, with lead
@@ -121,7 +114,7 @@ func _physics_process(delta: float) -> void:
 	if isPartOfStarShip:
 		self.mana.pushMana(  RangingOrigin.mana.pullMana( clamp(10 * delta, 0, mana.ManaMax - mana.Mana ))  )
 	else:
-		self.mana.pushMana(  Linker.pullMana( clamp(10 * delta, 0, mana.ManaMax - mana.Mana ))  )
+		self.mana.pushMana(  Linker.pullMana( clamp(10 * delta, 0, mana.ManaMax - mana.Mana ), self.mana)  )
 	
 	
 	if not Target or TickID == Engine.get_physics_frames() or not Target.health.isAlive:
@@ -161,7 +154,7 @@ func _physics_process(delta: float) -> void:
 				var part = FlakParticleLoader.instantiate()
 				emtr.add_child(part); part.scale = 0.08 * Vector3.ONE
 				var projectile : Node3D = Projectile.instantiate()
-				G.root.add_child(projectile)
+				G.Main.add_child(projectile)
 				projectile.global_transform = emtr.global_transform
 				if projectile.damage:
 					projectile.damage = self.Damage

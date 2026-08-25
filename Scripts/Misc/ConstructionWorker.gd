@@ -10,27 +10,36 @@ class_name ConstructionWorker
 @onready var oldManaMax : float
 @onready var oldGenRate : float
 
+var startHP : float = 0.1
+
+var Meter : DialPin
+
 func _ready() -> void:
-	self.Parent.health.HP = 0.1
 	self.Parent.constructor = self
+	health.HP = startHP
 	oldManaMax = mana.ManaMax
 	oldGenRate = mana.generationRate
 	mana.ManaMax = 0
 	mana.generationRate = 0
-	call_deferred('_ready2')
 	
-func _ready2():
-	health.Meter.setBuilding(true)
+	Meter = Pins.Register(Parent, Pins.Type.Dial)
+	Meter.max = health.HP
+	Meter.value = 0
+	Meter.setColor(Color.SANDY_BROWN)
+	Meter.name = "MakerDialPin"
+	
 
 func _finished():
-	health.Meter.setBuilding(false)
 	mana.ManaMax = oldManaMax
-	mana.Meter.Meter.max_value = oldManaMax
+	mana.Meter.max = oldManaMax
 	mana.generationRate = oldGenRate
+	Meter.queue_free()
 	self.queue_free()
 
 func _physics_process(delta: float) -> void:
-	health.Heal( Linker.pullMana( clamp(abs(health.HP - health.HPMax), 0, 2*delta) )*20 )
+	health.Heal( Linker.pullMana( clamp(abs(health.HP - health.HPMax), 0, 2*delta), self.mana )*20 )
+	Meter.value = health.HP
+	Meter.max = health.HPMax
 
 	if is_equal_approx(health.HP, health.HPMax):
 		_finished() 

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c8ss58qu0n063"]
+
+[ext_resource type="Script" uid="uid://dnljudo6t88o" path="res://Scripts/Friendlies/ManaStorage.gd" id="1_kvjnf"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="1_q1n6x"]
+[ext_resource type="Script" uid="uid://c352samjcijuc" path="res://Scripts/Common/ManaStore.gd" id="2_b67og"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="3_kvjnf"]
+[ext_resource type="PackedScene" uid="uid://4220rdenkv1v" path="res://Objects/Structures/ManaStore.glb" id="4_b67og"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eoje4"]
+height = 7.810547
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kvjnf"]
+radius = 1.0
+height = 4.9140625
+
+[node name="Mana Store" type="StaticBody3D" unique_id=133972696]
+script = ExtResource("1_kvjnf")
+
+[node name="Destructible" type="Node" parent="." unique_id=1597373795]
+script = ExtResource("1_q1n6x")
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ManaStore" type="Node" parent="." unique_id=150084849]
+script = ExtResource("2_b67og")
+pushesOverflow = true
+exportsMana = true
+importsOverflow = true
+metadata/_custom_type_script = "uid://c352samjcijuc"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=124415]
+script = ExtResource("3_kvjnf")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=122251661]
+shape = SubResource("CapsuleShape3D_eoje4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1785624361]
+transform = Transform3D(0.99200344, 0.12606633, -0.0060430514, -0.12619135, 0.98986363, -0.06516047, -0.0022327225, 0.06540197, 0.9978565, 1.6, 0, 0.90000004)
+shape = SubResource("CapsuleShape3D_kvjnf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1367770538]
+transform = Transform3D(0.9972185, -0.07446469, 0.0032081692, 0.07453358, 0.99619585, -0.0451504, 0.00016612688, 0.04526393, 0.99897504, -1.5000001, 0, 0.90000004)
+shape = SubResource("CapsuleShape3D_kvjnf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=1114893792]
+transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, -1.1920929e-07, 0, -1.8)
+shape = SubResource("CapsuleShape3D_kvjnf")
+
+[node name="ManaStore2" parent="." unique_id=496406643 instance=ExtResource("4_b67og")]
+
+[editable path="ManaStore2"]

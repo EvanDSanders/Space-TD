@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://gn7hoa3umle6"
 path.s3tc="res://.godot/imported/tr0n.png-9134f07a2f8431bb0226623ea6092601.s3tc.ctex"
+path.etc2="res://.godot/imported/tr0n.png-9134f07a2f8431bb0226623ea6092601.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://vaportrail/example/tr0n.png"
-dest_files=["res://.godot/imported/tr0n.png-9134f07a2f8431bb0226623ea6092601.s3tc.ctex"]
+dest_files=["res://.godot/imported/tr0n.png-9134f07a2f8431bb0226623ea6092601.s3tc.ctex", "res://.godot/imported/tr0n.png-9134f07a2f8431bb0226623ea6092601.etc2.ctex"]
 
 [params]
 

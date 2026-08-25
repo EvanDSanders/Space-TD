@@ -20,5 +20,5 @@ fi
 
 # rm -rf ./Objects
 
-# blender -b "$blend_file" --python AutoExport.py
-blenderEXP -b "$blend_file" --python AutoExport.py
+blender -b "$blend_file" --python AutoExport.py
+# blenderEXP -b "$blend_file" --python AutoExport.py

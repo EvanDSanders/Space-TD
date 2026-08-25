@@ -13,16 +13,14 @@ var coolDown := 1.
 var CDown := coolDown
 var fireID := 0
 
-@onready var Turrets : Array[TurretBase] = [
-	$"Flak TurretF",
-	$"Flak TurretL",
-	$"Flak TurretR",
-]
+@onready var Turrets : Array[TurretBase] = []
 
 @onready var TurretHubs : Array[Node3D] = [
-	$"Star Station/Central Pillar/FlakF",
-	$"Star Station/Central Pillar/FlakL",
-	$"Star Station/Central Pillar/FlakR",
+	$"Star Station/Central Pillar/GatlingTurret1",
+	$"Star Station/Central Pillar/GatlingTurret2",
+	$"Star Station/Central Pillar/GatlingTurret3",
+	$"Star Station/Central Pillar/GatlingTurret4",
+	$"Star Station/Central Pillar/GatlingTurret5",
 ] 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,13 +37,17 @@ func _ready() -> void:
 		
 	call_deferred('modifyMeter')
 	
-	for x in range(TurretHubs.size()):
-		Turrets[x].visible = true
-		Turrets[x].reparent( TurretHubs[x] )
-		Turrets[x].global_transform = TurretHubs[x].global_transform
-	
+	for x in range(5):
+		var T := load("res://Scenes/Towers/GatlingTurret.tscn").instantiate() as GatlingTurret
+		Turrets.append(T)
+		TurretHubs[x].add_child(T)
+		T.global_transform = TurretHubs[x].global_transform
+		T.Station = self
+		
+		
 func modifyMeter():
-	G.schedule(func(): health.Meter.Meter.size.x = 400; health.Meter.Meter.position.x = -200, .1)
+	#G.schedule(func(): health.Meter.size.x = 400; health.Meter.position.x = -200, .1)
+	pass
 	
 func updateHull(float):
 	for inst in Geometries:
@@ -54,8 +56,14 @@ func updateHull(float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$"Star Station/Central Pillar".rotate_object_local(Vector3.UP, delta)
+	$"Star Station/Origin Star Station/Radar Mount".rotate_object_local(Vector3.UP, delta)
 	
+
+func destroy():
+	G.Main.GameOver()
+	G.Main.gameOver.Expand()
+
+
 func _physics_process(delta: float) -> void:
 	CDown -= delta
 	var isInRange = E.getTarget(E.TargetType.Enemy, self.global_position, 1000)

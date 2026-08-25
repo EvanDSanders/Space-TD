@@ -4,20 +4,19 @@ class_name CursorDialogue
 
 @onready var Parent = $".."
 
-@onready var radarRange
+@export var radarRange : int
 @export var doShowRange = true
 
 var scanRangeGUI = preload("res://Scenes/GUI/ScanRange.tscn")
 var scanRange : MeshInstance3D
 
+signal focused(bool)
+
+func attachMeter(meter: ScreenPin):
+	focused.connect(meter.forceShow)
+
 func enter():
-	for each in Parent.get_children():
-		if each.get("Meter") and each.get("showMeter"):
-			each.Meter.forceShow(true)
-		
-		if each.has_meta("isMinerMeter") and each.get_meta("isMinerMeter"):
-			each.forceShow(true)
-	
+	focused.emit(true)
 	
 	if not doShowRange: return
 	if Parent.get("TargetingRange"): 
@@ -29,6 +28,8 @@ func enter():
 	
 
 func exit():
+	focused.emit(false)
+	
 	if scanRange: scanRange.queue_free()
 	
 	for each in Parent.get_children():

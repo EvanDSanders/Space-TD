@@ -1,0 +1,615 @@
+[gd_scene format=3 uid="uid://c2274qtlm37sk"]
+
+[ext_resource type="Script" uid="uid://bu0eg44jo0e2n" path="res://main.gd" id="1_0engo"]
+[ext_resource type="Script" uid="uid://itwc60iiay6j" path="res://Shaders/Nodes/NodeNoise4D.gd" id="2_farwl"]
+[ext_resource type="PackedScene" uid="uid://dl2746vfs23cv" path="res://Scenes/GUI/ScanRange.tscn" id="3_60git"]
+[ext_resource type="PackedScene" uid="uid://da4l77fs8k8b6" path="res://Scenes/Friendlies/Prospector.tscn" id="4_ocbxg"]
+[ext_resource type="Script" uid="uid://bjig3axgkdun8" path="res://Scripts/Ship/star_ship_camera.gd" id="5_efrea"]
+[ext_resource type="AudioStream" uid="uid://8qn56nowqvu5" path="res://Sounds/ZoomClick.wav" id="6_g6nhn"]
+[ext_resource type="Script" uid="uid://bmk2cpj8yot7v" path="res://Scripts/Ship/camera_object.gd" id="7_tda3u"]
+[ext_resource type="Script" uid="uid://bqbwen3vttji8" path="res://Scripts/Game/GUI/MouseInteraction.UI.gd" id="8_aym0h"]
+[ext_resource type="Theme" uid="uid://c0wsmkaots3ab" path="res://Themes/Control3D.tres" id="9_0nk88"]
+[ext_resource type="Script" uid="uid://brpmeraea1bjc" path="res://Scripts/Game/GUI/Map.UI.gd" id="10_x5rnm"]
+[ext_resource type="Texture2D" uid="uid://dwfsmlkpyjb4q" path="res://Vectors/StarShip.Icon.svg" id="11_glab1"]
+[ext_resource type="Texture2D" uid="uid://nh51jgegf5sp" path="res://Vectors/CompasView.svg" id="13_fpig3"]
+[ext_resource type="Texture2D" uid="uid://dnbdqd2iuss36" path="res://Vectors/HP Icon.svg" id="15_ocbxg"]
+[ext_resource type="Texture2D" uid="uid://dy3jiej2uwy0q" path="res://Vectors/Energy Icon.svg" id="16_aljpi"]
+[ext_resource type="Script" uid="uid://do02wye0j26aa" path="res://Scripts/Game/GUI/Warnings.UI.gd" id="17_yin1k"]
+[ext_resource type="AudioStream" uid="uid://cags4alkjg0to" path="res://Sounds/Gong.ogg" id="18_8i8s0"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_remuw"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_hhptb"]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_mrqri"]
+size = Vector2(423, 280)
+expression = "
+float theta = uv.x * 2.0 * 3.14159265359; // Longitud
+float phi = uv.y * 3.14159265359; // Latitud
+float x = sin(phi) * cos(theta);
+float y = sin(phi) * sin(theta);
+float z = cos(phi);
+output0 = vec3(x, y, z);
+
+"
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_mrqri"]
+default_input_values = [0, Vector3(0, 0, 0), 1, 0.0, 2, 3.0, 3, 5.0, 4, 0.7, 5, 0.1]
+initialized = true
+script = ExtResource("2_farwl")
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_1w6w2"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_c45g0"]
+constant = Color(0, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_6d2th"]
+constant = Color(0.05912701, 0.05912701, 0.23036289, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_hhptb"]
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/2/node = SubResource("VisualShaderNodeInput_remuw")
+nodes/sky/2/position = Vector2(-1653.3334, 213.33333)
+nodes/sky/3/node = SubResource("VisualShaderNodeInput_hhptb")
+nodes/sky/3/position = Vector2(-1706.6666, -80)
+nodes/sky/4/node = SubResource("VisualShaderNodeExpression_mrqri")
+nodes/sky/4/position = Vector2(-1173.3334, 26.666666)
+nodes/sky/4/size = Vector2(423, 280)
+nodes/sky/4/input_ports = "0,3,uv;"
+nodes/sky/4/output_ports = "0,4,output0;"
+nodes/sky/4/expression = "
+float theta = uv.x * 2.0 * 3.14159265359; // Longitud
+float phi = uv.y * 3.14159265359; // Latitud
+float x = sin(phi) * cos(theta);
+float y = sin(phi) * sin(theta);
+float z = cos(phi);
+output0 = vec3(x, y, z);
+
+"
+nodes/sky/5/node = SubResource("VisualShaderNodeCustom_mrqri")
+nodes/sky/5/position = Vector2(-373.33334, 80)
+nodes/sky/6/node = SubResource("VisualShaderNodeMix_1w6w2")
+nodes/sky/6/position = Vector2(26.666666, 53.333332)
+nodes/sky/7/node = SubResource("VisualShaderNodeColorConstant_c45g0")
+nodes/sky/7/position = Vector2(-400, 346.66666)
+nodes/sky/8/node = SubResource("VisualShaderNodeColorConstant_6d2th")
+nodes/sky/8/position = Vector2(-400, 426.66666)
+nodes/sky/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 5, 0, 6, 0, 0, 0, 5, 0, 6, 2, 7, 0, 6, 0, 8, 0, 6, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_remuw"]
+shader = SubResource("VisualShader_hhptb")
+
+[sub_resource type="Sky" id="Sky_fos0i"]
+sky_material = SubResource("ShaderMaterial_remuw")
+
+[sub_resource type="Environment" id="Environment_3dxm6"]
+background_mode = 2
+sky = SubResource("Sky_fos0i")
+glow_bloom = 1.0
+fog_density = 0.0
+volumetric_fog_density = 0.0
+volumetric_fog_length = 1000.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dxm6"]
+shading_mode = 0
+albedo_color = Color(1, 0.6177956, 0.27420634, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lgr22"]
+material = SubResource("StandardMaterial3D_3dxm6")
+radius = 1000.0
+height = 2000.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fos0i"]
+size = Vector3(3000, 0.001, 2000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c6i3y"]
+size = Vector3(500000, 0.001, 500000)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2gh4u"]
+height = 50.0
+radius = 10.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eoje4"]
+height = 50.0
+radius = 30.0
+
+[sub_resource type="Curve" id="Curve_bg4s2"]
+_limits = [0.4, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 0.4), 0.0, 16.262047, 0, 0, Vector2(0.46310437, 6.485714), 9.624, 9.624491, 0, 0, Vector2(1, 10), 0.73229915, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_devvj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.17, 0.17, 0.17, 0.627451)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.679688, 0.679688, 0.679688, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="GDScript" id="GDScript_jruad"]
+resource_name = "StationResources"
+script/source = "@tool
+extends MarginContainer
+
+@onready var meters: HBoxContainer = $HBoxContainer/Meters
+@onready var healthBar: VBoxContainer = $HBoxContainer/Meters/Health
+@onready var energyBar: VBoxContainer = $HBoxContainer/Meters/Energy
+
+@onready var panel: Panel = $\"../PartRefs/PartRefsList/Panel\"
+@onready var spacer: Control = $\"../PartRefs/PartRefsList/Spacer\"
+
+var segments : int = 200.0:
+	set(s):
+		segments = s
+		onChange()
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	onChange()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint(): return
+	G.StarStation.health.HPChange.emit( 
+			G.StarStation.health.HP
+		)
+
+
+func onChange():
+	if not is_node_ready(): return
+	for meter in meters.get_children():
+		#print(\"Working on \", meter.name)
+		for each in meter.get_children():
+			each.queue_free()
+			
+			
+		#for x:int in range():
+		for x:int in range(segments):
+			var part : Control
+			if x % 2 == 0:
+				part = panel.duplicate()
+				part.top = ( roundf(x / 2.) + 1 )
+				part.bottom = ( roundf(x / 2.) )
+				
+				print(\"^: \", part.top, \" v: \", part.bottom, \" X: \", roundf(x / 2.), \" / S: \", segments / 2.)
+				
+				G.StarStation.health.HPChange.connect(
+						func(v:float): part.value = G.remap( 
+							0, G.StarStation.health.HPMax, segments / 2., 0, v
+							#0, G.StarStation.health.HPMax, 0, segments / 2., v
+						)
+					)
+			else:
+				part = spacer.duplicate()
+			#print(\"Adding \", part.name, \" to \", meter.name)
+			meter.add_child(part)
+			part.owner = meter
+	
+	var HIco = $\"../PartRefs/PartRefsList/HealthIco\".duplicate()
+	var EIco = $\"../PartRefs/PartRefsList/EnergyIco\".duplicate()
+	healthBar.add_child( HIco )
+	energyBar.add_child( EIco )
+	HIco.owner = healthBar
+	EIco.owner = energyBar
+	
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jruad"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+
+[sub_resource type="GDScript" id="GDScript_ab6ls"]
+resource_name = "Station Meter Part"
+script/source = "extends Panel
+
+
+var top : float
+var bottom : float
+var value : float
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+const on  : Color = Color.WHITE
+const off : Color = Color(0.1, 0.1, 0.1)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	
+	if value > top:
+		self.modulate = off
+	elif value < bottom:
+		self.modulate = on
+	else: 
+		var val : float = ( Time.get_ticks_msec() % 5000 ) / 1000.
+		var bound : float = G.remap(self.bottom, self.top, 0., 1., self.value)
+		self.modulate = on if val > bound else off
+		
+		#self.modulate = Color.from_hsv(0., 0., G.remap(bottom, top, 1.0, 0.1, value))
+		
+		#print( self.name, \" : \", G.remap(self.bottom, self.top, 0.1, 1.0, self.value) )
+	
+"
+
+[node name="Main" type="Node3D" unique_id=410800660]
+process_physics_priority = 1000
+script = ExtResource("1_0engo")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=971927991]
+environment = SubResource("Environment_3dxm6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=53465738]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=920708927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3624.3572, 0)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_lgr22")
+
+[node name="AreaLight3D" type="SpotLight3D" parent="MeshInstance3D" unique_id=1184159891]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
+light_energy = 20.0
+shadow_enabled = true
+spot_range = 10000.0
+spot_attenuation = 0.3
+
+[node name="Cursor Plane" type="Area3D" parent="." unique_id=599834955]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor Plane" unique_id=1005280936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.50049996, 0)
+shape = SubResource("BoxShape3D_fos0i")
+debug_color = Color(0.7, 0.28000003, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Cursor Plane" unique_id=695084575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.50049996, 0)
+shape = SubResource("BoxShape3D_c6i3y")
+debug_color = Color(0.7, 0.28000003, 0, 1)
+debug_fill = false
+
+[node name="CursorCast3D" type="RayCast3D" parent="." unique_id=866926861]
+collision_mask = 141
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0.3764706, 0.3764706, 0)
+debug_shape_thickness = 1
+
+[node name="BuildCast3D" type="RayCast3D" parent="." unique_id=1858749600]
+collision_mask = 128
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0, 0.3764706, 0.3764706, 0)
+debug_shape_thickness = 1
+
+[node name="Cursor" type="Marker3D" parent="." unique_id=2141444511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -256)
+
+[node name="ScanRange" parent="Cursor" unique_id=1121952705 instance=ExtResource("3_60git")]
+visible = false
+
+[node name="Clearance" type="ShapeCast3D" parent="Cursor" unique_id=776336352]
+visible = false
+shape = SubResource("CylinderShape3D_2gh4u")
+collision_mask = 21
+debug_shape_custom_color = Color(1, 0.12295699, 0, 1)
+
+[node name="Miner" type="ShapeCast3D" parent="Cursor" unique_id=505723044]
+visible = false
+shape = SubResource("CylinderShape3D_eoje4")
+collision_mask = 16
+debug_shape_custom_color = Color(0, 1, 0.40510178, 1)
+
+[node name="Friendlies" type="Marker3D" parent="." unique_id=1848505711]
+
+[node name="Prospector" parent="Friendlies" unique_id=904776230 instance=ExtResource("4_ocbxg")]
+
+[node name="Enemies" type="Marker3D" parent="." unique_id=2055970417]
+
+[node name="Ores" type="Marker3D" parent="." unique_id=1796132556]
+
+[node name="Collectibles" type="Marker3D" parent="." unique_id=77170608]
+
+[node name="Camera Rig Main" type="Node3D" parent="." unique_id=353589378]
+process_mode = 3
+
+[node name="Camera Start" type="Node3D" parent="Camera Rig Main" unique_id=1460054047]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.7071067, 0, -0.7071067, 0.70710677, 0, 1534.9188, 1024.8969)
+
+[node name="Camera3D" type="Camera3D" parent="Camera Rig Main" unique_id=337343100]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 498, 269)
+script = ExtResource("5_efrea")
+ZoomFactorCurve = SubResource("Curve_bg4s2")
+
+[node name="Timer" type="Timer" parent="Camera Rig Main/Camera3D" unique_id=1083543634]
+
+[node name="Label" type="Label" parent="Camera Rig Main/Camera3D" unique_id=1824578844]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Hello
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Camera Rig Main/Camera3D" unique_id=1999765521]
+stream = ExtResource("6_g6nhn")
+volume_db = -1.07
+max_polyphony = 6
+
+[node name="CShipMount" type="Node3D" parent="Camera Rig Main" unique_id=317560372]
+
+[node name="CAttack" type="Node3D" parent="Camera Rig Main/CShipMount" unique_id=2081415812]
+script = ExtResource("7_tda3u")
+canPan = false
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CShipMount/CAttack" unique_id=325297265]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CShipMount/CAttack/Yaw" unique_id=669144602]
+transform = Transform3D(1, 0, 0, 0, 0.99619466, 0.08715573, 0, -0.08715573, 0.99619466, 0, 31, 26)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CShipMount/CAttack/Yaw/Pitch" unique_id=102599506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
+
+[node name="CEvade" type="Node3D" parent="Camera Rig Main/CShipMount" unique_id=1524812554]
+script = ExtResource("7_tda3u")
+canPan = false
+canOrbitPitch = false
+canOrbitYaw = false
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CShipMount/CEvade" unique_id=946967159]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CShipMount/CEvade/Yaw" unique_id=37644603]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CShipMount/CEvade/Yaw/Pitch" unique_id=1242145175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 448)
+
+[node name="CMove" type="Node3D" parent="Camera Rig Main/CShipMount" unique_id=1833733107]
+script = ExtResource("7_tda3u")
+canPan = false
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CShipMount/CMove" unique_id=1277338929]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CShipMount/CMove/Yaw" unique_id=1729025716]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CShipMount/CMove/Yaw/Pitch" unique_id=360467497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 191)
+
+[node name="CBuild" type="Node3D" parent="Camera Rig Main" unique_id=1027467287]
+script = ExtResource("7_tda3u")
+
+[node name="Yaw" type="Node3D" parent="Camera Rig Main/CBuild" unique_id=954961994]
+
+[node name="Pitch" type="Node3D" parent="Camera Rig Main/CBuild/Yaw" unique_id=372061350]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660253, 0, -0.8660253, 0.49999997, 0, 0, 0)
+
+[node name="Post" type="Node3D" parent="Camera Rig Main/CBuild/Yaw/Pitch" unique_id=444176669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 222)
+
+[node name="Label" type="Label" parent="." unique_id=781920060]
+modulate = Color(0.6, 0.8666667, 1, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="GUI Mount" type="ReferenceRect" parent="." unique_id=1569781960]
+process_priority = -1
+process_physics_priority = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+mouse_filter = 1
+script = ExtResource("8_aym0h")
+
+[node name="Map" type="Control" parent="GUI Mount" unique_id=363465747]
+custom_minimum_size = Vector2(300, 200)
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+theme = ExtResource("9_0nk88")
+
+[node name="PanelContainer" type="Panel" parent="GUI Mount/Map" unique_id=1006249930]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("10_x5rnm")
+
+[node name="StarShip" type="Control" parent="GUI Mount/Map/PanelContainer" unique_id=1027374464]
+visible = false
+custom_maximum_size = Vector2(0, 0)
+anchors_preset = 0
+offset_left = 153.0
+offset_top = 96.0
+offset_right = 153.0
+offset_bottom = 96.0
+
+[node name="StarShipTexture" type="TextureRect" parent="GUI Mount/Map/PanelContainer/StarShip" unique_id=1911084641]
+modulate = Color(0, 1, 0.59532785, 1)
+custom_maximum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -378.0
+offset_top = -378.0
+offset_right = 378.0
+offset_bottom = 378.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_glab1")
+expand_mode = 1
+
+[node name="Compass" type="Panel" parent="GUI Mount/Map/PanelContainer" unique_id=356050462]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.165
+theme_override_styles/panel = SubResource("StyleBoxFlat_devvj")
+
+[node name="CompassDial" type="TextureRect" parent="GUI Mount/Map/PanelContainer/Compass" unique_id=688903246]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -20.0
+offset_right = 7.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+texture = ExtResource("13_fpig3")
+
+[node name="Warnings" type="Control" parent="GUI Mount" unique_id=1790121801]
+modulate = Color(1, 0.64719546, 0.5109608, 1)
+custom_maximum_size = Vector2(0, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("9_0nk88")
+script = ExtResource("17_yin1k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GUI Mount/Warnings" unique_id=1642596717]
+stream = ExtResource("18_8i8s0")
+max_polyphony = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI Mount/Warnings" unique_id=684347398]
+custom_minimum_size = Vector2(200, 20)
+custom_maximum_size = Vector2(200, -1)
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="GUI Mount/Warnings/PanelContainer" unique_id=1620385448]
+layout_mode = 2
+mouse_filter = 1
+text = "Incoming"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourceContainer" type="MarginContainer" parent="GUI Mount" unique_id=637501081]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = 200.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+script = SubResource("GDScript_jruad")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI Mount/ResourceContainer" unique_id=342400357]
+layout_mode = 2
+
+[node name="Meters" type="HBoxContainer" parent="GUI Mount/ResourceContainer/HBoxContainer" unique_id=1686113734]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Health" type="VBoxContainer" parent="GUI Mount/ResourceContainer/HBoxContainer/Meters" unique_id=15674669]
+modulate = Color(0, 1, 0.16574478, 1)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Energy" type="VBoxContainer" parent="GUI Mount/ResourceContainer/HBoxContainer/Meters" unique_id=1711556401]
+modulate = Color(1, 0.7431053, 0, 1)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PartRefs" type="Control" parent="GUI Mount" unique_id=1037432623]
+visible = false
+anchors_preset = 0
+offset_top = 124.0
+offset_right = 100.0
+offset_bottom = 524.0
+
+[node name="PartRefsList" type="VBoxContainer" parent="GUI Mount/PartRefs" unique_id=1943104722]
+layout_mode = 0
+offset_left = 34.0
+offset_right = 65.0
+offset_bottom = 400.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="GUI Mount/PartRefs/PartRefsList" unique_id=546023673]
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jruad")
+script = SubResource("GDScript_ab6ls")
+
+[node name="Spacer" type="Control" parent="GUI Mount/PartRefs/PartRefsList" unique_id=1094249036]
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 2
+
+[node name="HealthIco" type="TextureRect" parent="GUI Mount/PartRefs/PartRefsList" unique_id=286666253]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("15_ocbxg")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="EnergyIco" type="TextureRect" parent="GUI Mount/PartRefs/PartRefsList" unique_id=1572839186]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("16_aljpi")
+expand_mode = 3
+stretch_mode = 4

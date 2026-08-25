@@ -11,7 +11,6 @@ const CONSTRUCTABLES_PATH := "res://Scenes/Towers/Constructables.toml"
 @onready var Clearance : ShapeCast3D = Ranger.get_node('../Clearance')
 @onready var MiningRange : ShapeCast3D = Ranger.get_node('../Miner')
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for TowerName in Towers:
@@ -23,7 +22,9 @@ func _ready() -> void:
 		B.Parent = self
 		TowerRow.add_child(B)
 		var Tex : TextureRect = B.get_node("TextureRect")
-		Tex.texture = DPITexture.create_from_string(FileAccess.get_file_as_string(T["icon"]))
+		#Tex.texture = DPITexture.create_from_string(FileAccess.get_file_as_string(T["icon"]))
+		Tex.texture = load(T["icon"])
+		
 
 		Ranger.set_instance_shader_parameter("isBuilding", true)
 		
@@ -58,12 +59,13 @@ func _physics_process(delta: float) -> void:
 		Ranger.set_instance_shader_parameter("IsPlaceable", not Clearance.is_colliding())
 		if clickedButton.data["name"] == "Mining Laser":
 			Ranger.set_instance_shader_parameter("IsMinable", MiningRange.is_colliding())
-
+			
 
 func Build( caller: ConstructableButton ):
 	Ranger.visible = true
 	G.isBuilding = true
 	clickedButton = caller
+	Linker.Building = caller
 	
 	Clearance.enabled = true
 	
@@ -78,6 +80,7 @@ func Build( caller: ConstructableButton ):
 	Clearance.shape.radius = clickedButton.data.clearence
 	
 	
+	if tower: tower.queue_free()
 	tower = load(caller.loadingScene).instantiate()
 	
 	G.Cursor.add_child(tower)
@@ -97,10 +100,11 @@ func startBuild():
 	G.Friendlies.add_child(structure)
 	structure.global_position = G.Cursor.global_position
 	
+	Linker.toConnect = structure
 	structure.add_child( ConstructionWorker.new() )
 	
-	if Input.is_action_pressed("Boost"):
-		Build
+	if Input.is_action_pressed("Boost") and not clickedButton.disabled:
+		Build(clickedButton)
 	
 	
 	

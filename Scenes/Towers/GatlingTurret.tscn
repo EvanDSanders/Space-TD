@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bltyurwx8qh1e"]
+
+[ext_resource type="Script" uid="uid://hfeyc3w8s7d5" path="res://Scripts/Friendlies/GatlingTurret.gd" id="1_1kawu"]
+[ext_resource type="PackedScene" uid="uid://bvspk2ugwo4op" path="res://Objects/StarStation/Flak Turret.glb" id="2_reped"]
+[ext_resource type="PackedScene" uid="uid://bb2m4iufkv3pe" path="res://Scenes/Projectiles/TraceSimulated.tscn" id="2_umw5e"]
+[ext_resource type="Script" uid="uid://b1lekmlrs6hfj" path="res://ScanArea.gd" id="3_reped"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_umw5e"]
+points = PackedVector3Array(0, 240.00002, -3.0517578e-05, 46.821682, 240.00002, -235.39548, -46.821682, 240.00002, -235.39548, 0, -240.00002, -3.0517578e-05, 46.821682, -240.00002, -235.39548, 0, 240.00002, -240.00002, -46.821682, -240.00002, -235.39548, 0, -240.00002, -240.00002)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8ygpa"]
+points = PackedVector3Array(-196.16289, 200, 39.018066, -200, 200, -0.0072021484, -196.16289, -200, 39.018066, 0, 200, -19.379456, -196.16289, 200, -39.03247, -200, -200, -0.0072021484, 0, -200, -19.379456, 0, 200, -200, -184.78857, 200, -76.536964, -196.16289, -200, -39.03247, 0, -200, -200, -39.036804, 200, -196.16298, -166.30775, 200, -111.11691, -184.78857, -200, -76.536964, -39.036804, -200, -196.16298, -76.54659, 200, -184.79231, -141.42522, 200, -141.4387, -166.30775, -200, -111.11691, -76.54659, -200, -184.79231, -111.11981, 200, -166.30911, -141.42522, -200, -141.4387, -111.11981, -200, -166.30911)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r8iqm"]
+points = PackedVector3Array(196.14331, 200, 39.018066, 200, 200, -0.0072021484, 0, 200, -19.379456, 196.14331, -200, 39.018066, 200, -200, -0.0072021484, 196.14331, 200, -39.03247, 0, 200, -200, 0, -200, -19.379456, 196.14331, -200, -39.03247, 184.769, 200, -76.536964, 39.017227, 200, -196.16298, 0, -200, -200, 184.769, -200, -76.536964, 166.28818, 200, -111.11691, 76.527016, 200, -184.79231, 39.017227, -200, -196.16298, 166.28818, -200, -111.11691, 141.40564, 200, -141.4387, 111.100235, 200, -166.30911, 76.527016, -200, -184.79231, 141.40564, -200, -141.4387, 111.100235, -200, -166.30911)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sucpe"]
+points = PackedVector3Array(98.72978, 98.72978, -0.004011154, 96.81627, 98.72978, 19.254915, 98.72978, -98.72978, -0.004011154, 0, 98.72978, -19.36698, 91.21101, 98.72978, 37.77401, 96.81627, -98.72978, 19.254915, 0, -98.72978, -19.36698, -98.72978, 98.72978, -0.004011154, 82.08798, 98.72978, 54.8481, 91.21101, -98.72978, 37.77401, -98.72978, -98.72978, -0.004011154, -96.835594, 98.72978, 19.254915, 69.795074, 98.72978, 69.80671, 82.08798, -98.72978, 54.8481, -96.835594, -98.72978, 19.254915, -91.23034, 98.72978, 37.77401, 54.834854, 98.72978, 82.08341, 69.795074, -98.72978, 69.80671, -91.23034, -98.72978, 37.77401, -82.10731, 98.72978, 54.8481, 37.767822, 98.72978, 91.20424, 54.834854, -98.72978, 82.08341, -82.10731, -98.72978, 54.8481, -69.81441, 98.72978, 69.80671, 37.767822, -98.72978, 91.20424, 19.251152, 98.72978, 96.82239, -69.81441, -98.72978, 69.80671, -54.85417, 98.72978, 82.08341, 19.251152, -98.72978, 96.82239, -0.019325256, 98.72978, 98.72978, -54.85417, -98.72978, 82.08341, -37.78714, 98.72978, 91.20424, -0.019325256, -98.72978, 98.72978, -19.270477, 98.72978, 96.82239, -37.78714, -98.72978, 91.20424, -19.270477, -98.72978, 96.82239)
+
+[node name="Gatling Turret" type="StaticBody3D" unique_id=921957047 node_paths=PackedStringArray("scanArea3D")]
+collision_mask = 0
+script = ExtResource("1_1kawu")
+coolDown = 0.0
+YawObject = &"Gatling Base"
+PitchObject = &"Gatling Head"
+RecoilObject = &""
+ProjectileResource = ExtResource("2_umw5e")
+idleAngleRange = 72
+scanArea3D = NodePath("ScanArea3D")
+
+[node name="Star Station" parent="." unique_id=189937094 instance=ExtResource("2_reped")]
+
+[node name="Gatling RangeF" parent="Star Station" index="1" unique_id=60495001]
+visible = false
+
+[node name="Gatling RangeL" parent="Star Station" index="2" unique_id=1742366714]
+visible = false
+
+[node name="Gatling RangeR" parent="Star Station" index="3" unique_id=19049310]
+visible = false
+
+[node name="Gatling RangeR 001" parent="Star Station" index="4" unique_id=2136725708]
+visible = false
+
+[node name="ScanArea3D" type="Area3D" parent="." unique_id=2074815772]
+visible = false
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("3_reped")
+metadata/_custom_type_script = "uid://b1lekmlrs6hfj"
+
+[node name="ScanF" type="CollisionShape3D" parent="ScanArea3D" unique_id=1071351570]
+visible = false
+shape = SubResource("ConvexPolygonShape3D_umw5e")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+debug_fill = false
+
+[node name="ScanL" type="CollisionShape3D" parent="ScanArea3D" unique_id=1091289198]
+visible = false
+shape = SubResource("ConvexPolygonShape3D_8ygpa")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+debug_fill = false
+
+[node name="ScanR" type="CollisionShape3D" parent="ScanArea3D" unique_id=859440329]
+visible = false
+shape = SubResource("ConvexPolygonShape3D_r8iqm")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+debug_fill = false
+
+[node name="ScanB" type="CollisionShape3D" parent="ScanArea3D" unique_id=542312916]
+visible = false
+shape = SubResource("ConvexPolygonShape3D_sucpe")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+debug_fill = false
+
+[editable path="Star Station"]

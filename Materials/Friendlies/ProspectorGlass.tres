@@ -5,10 +5,10 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_13tyw")
-shader_parameter/baseColor = Color(0.42745098, 0.16078432, 1, 1)
+shader_parameter/baseColor = Color(0.68315893, 0.52849823, 1, 1)
 shader_parameter/gradientBasis = Vector3(3, 3, 3)
 shader_parameter/gradientBasisDistort = Vector3(0, 0, 0)
-shader_parameter/gradientBasisSpeed = 0.5
-shader_parameter/refractionSplit = 2.0
+shader_parameter/gradientBasisSpeed = 2.425
+shader_parameter/refractionSplit = 3.515
 shader_parameter/refractionSplitPower = 1.00000004680148
-shader_parameter/refractionAffect = 0.8
+shader_parameter/refractionAffect = -3.045

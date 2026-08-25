@@ -1,8 +1,9 @@
 extends CharacterBody3D
-
+class_name ProjectileBase
 
 @export var speed := 500.
 @export var damage := 10.
+@export var life := 2.
 
 @export var onHit : Callable
 
@@ -24,3 +25,6 @@ func _physics_process(delta: float) -> void:
 			if onHit:
 				onHit.call(self, c)
 			c.find_child("Destructible").Hit(damage)
+
+	life -= delta
+	if life <= 0.: queue_free()

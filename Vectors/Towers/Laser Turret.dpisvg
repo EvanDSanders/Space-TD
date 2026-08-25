@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="50"
+   height="75"
+   viewBox="0 0 13.229167 19.84375"
+   version="2.0"
+   id="svg1"
+   sodipodi:docname="Laser Turret.dpisvg"
+   standalone="no"
+   inkscape:version="1.4.4 (1:1.4.4+202605061436+dcaf3e7d9e)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="8.4951738"
+     inkscape:cx="14.65538"
+     inkscape:cy="37.903874"
+     inkscape:window-width="2560"
+     inkscape:window-height="1372"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:window-x="0"
+     inkscape:window-y="1480" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="6.6145834,9.9999999e-08"
+       end_point="6.6145834,19.84375"
+       center_point="6.6145834,9.9218751"
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1.2"
+       lpesatellites=""
+       mode="free"
+       discard_orig_path="false"
+       fuse_paths="true"
+       oposite_fuse="false"
+       split_items="false"
+       split_open="false"
+       link_styles="false"
+       reverse_mirror="false" />
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="5.2700892,4.3341135"
+       end_point="5.2700891,0.11083155"
+       center_point="5.2700892,2.2224725"
+       id="path-effect3"
+       is_visible="true"
+       lpeversion="1.2"
+       lpesatellites=""
+       mode="free"
+       discard_orig_path="false"
+       fuse_paths="true"
+       oposite_fuse="true"
+       split_items="false"
+       split_open="false"
+       link_styles="false"
+       reverse_mirror="false" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1.3"
+       threshold="5"
+       steps="1"
+       smooth_angles="360"
+       helper_size="10"
+       simplify_individual_paths="true"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,0.79021906,0,1 @ F,0,0,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1-7"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,0.79021906,0,1 @ F,0,0,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="font-variation-settings:'wght' 400;fill:#808080;stroke:none;stroke-width:0.529167;stroke-linecap:square;stroke-linejoin:bevel;paint-order:fill stroke markers"
+       id="rect1"
+       width="8.0339641"
+       height="1.5592223"
+       x="-16.918109"
+       y="9.5546458"
+       transform="rotate(-75)" />
+    <rect
+       style="font-variation-settings:'wght' 400;fill:#808080;stroke:none;stroke-width:0.529167;stroke-linecap:square;stroke-linejoin:bevel;paint-order:fill stroke markers"
+       id="rect1-2"
+       width="8.0339641"
+       height="1.5592223"
+       x="-16.918109"
+       y="6.8656575"
+       transform="rotate(-75)" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#feff79;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:square;stroke-linejoin:bevel;stroke-opacity:1;paint-order:fill stroke markers"
+       d="m 5.2700892,1.1231694 c 0.2280856,0.00136 0.7796113,0.1585644 0.7796113,1.2156654 0,1.0571008 -0.7796113,6.0097639 -0.7796113,6.0097639 z m 2.6889884,0 c -0.2280856,0.00136 -0.7796113,0.1585644 -0.7796113,1.2156654 0,1.0571008 0.7796113,6.0097639 0.7796113,6.0097639 z m -2.6889885,0 c -0.2280856,0.00136 -0.7796113,0.1585645 -0.7796112,1.2156655 0,1.0571008 0.7796117,6.0097638 0.7796117,6.0097638 z m 2.6889886,0 c 0.2280856,0.00136 0.7796113,0.1585645 0.7796112,1.2156655 0,1.0571008 -0.7796117,6.0097638 -0.7796117,6.0097638 z"
+       id="path2"
+       inkscape:path-effect="#path-effect3;#path-effect4"
+       inkscape:original-d="m 5.2700892,1.1231694 c 0.2280856,0.00136 0.7796113,0.1585644 0.7796113,1.2156654 0,1.0571008 -0.7796113,6.0097639 -0.7796113,6.0097639 z"
+       sodipodi:nodetypes="cscc"
+       transform="rotate(15,6.6145834,10.047815)" />
+  </g>
+</svg>

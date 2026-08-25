@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://s4x0rwydmdcg"]
 
-[ext_resource type="Script" uid="uid://dsorj8i2b2qne" path="res://Scripts/Game/GUI/Waypoints.Base.UI.gd" id="1_7pm6j"]
+[ext_resource type="Script" uid="uid://dsorj8i2b2qne" path="res://Scripts/Game/GUI/Pins/PinScreen.gd" id="1_7pm6j"]
 
 [node name="DebugPin" type="Control" unique_id=1954077161]
 visible = false

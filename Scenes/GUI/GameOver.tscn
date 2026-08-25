@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://iq5fj0gfgqfy"]
+
+[ext_resource type="Theme" uid="uid://c0wsmkaots3ab" path="res://Themes/Control3D.tres" id="1_ajjdk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jekk6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="GDScript" id="GDScript_eoje4"]
+script/source = "extends Panel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var Tw := create_tween()
+	Tw.set_parallel()
+	
+	clip.custom_maximum_size.x = 0.01
+	
+	Tw.tween_property(clip, \"custom_maximum_size\", Vector2(5000., -1.), 0.5)
+	
+	$VBoxContainer2/SpacerB2/Menu.pressed.connect(Loader.MainMenu)
+	$VBoxContainer2/SpacerB2/Restart.pressed.connect(Loader.Restart)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+@onready var clip: PanelContainer = $VBoxContainer/HBoxContainer/PanelContainer
+
+
+
+func Expand():
+	var Tw := create_tween()
+	Tw.set_parallel()
+	
+	
+	Tw.tween_property($\".\", \"self_modulate\", Color.BLACK, 1.5)
+	Tw.tween_property($VBoxContainer/SpacerB, \"size_flags_stretch_ratio\", 1.0, 1.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	Tw.tween_property($VBoxContainer2/SpacerT, \"size_flags_stretch_ratio\", 2.0, 1.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxl4x"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajjdk"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.49803922)
+border_width_top = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[node name="DeathOverlay" type="Panel" unique_id=1463469284]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 3000
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ajjdk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_jekk6")
+script = SubResource("GDScript_eoje4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=389323370]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SpacerT" type="Control" parent="VBoxContainer" unique_id=1789470034]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=17228773]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=1859254452]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxl4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=1207646370]
+self_modulate = Color(1, 1, 1, 0.49803922)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ajjdk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/PanelContainer" unique_id=229032110]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/PanelContainer/VBoxContainer" unique_id=744223067]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.25, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0.5, 0, 0, 0.49803922)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 64
+text = "MISSION FAILED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=2089935467]
+layout_mode = 2
+
+[node name="SpacerB" type="Control" parent="VBoxContainer" unique_id=311957053]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1109294332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpacerT" type="Control" parent="VBoxContainer2" unique_id=1903485941]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="SpacerB2" type="HBoxContainer" parent="VBoxContainer2" unique_id=833379439]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Menu" type="Button" parent="VBoxContainer2/SpacerB2" unique_id=1494059237]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Main Menu"
+
+[node name="Restart" type="Button" parent="VBoxContainer2/SpacerB2" unique_id=1827706903]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Try Again"
+
+[node name="SpacerB" type="Control" parent="VBoxContainer2" unique_id=1870517493]
+layout_mode = 2
+size_flags_vertical = 3

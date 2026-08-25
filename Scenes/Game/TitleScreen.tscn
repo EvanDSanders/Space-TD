@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dqqmxpmc6eagy"]
+
+[ext_resource type="Theme" uid="uid://c0wsmkaots3ab" path="res://Themes/Control3D.tres" id="1_4qkgp"]
+[ext_resource type="Texture2D" uid="uid://dvho4wlray5ye" path="res://Vectors/MainMenu Land.png" id="2_sycpf"]
+
+[sub_resource type="GDScript" id="GDScript_eoje4"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func _on_mining_pressed() -> void:
+	Loader.Load(\"res://Resources/MiningRandom.tres\")
+
+func _on_farming_pressed() -> void:
+	Loader.Load(\"res://Resources/FarmingRandom.tres\")
+
+func _on_battle_pressed() -> void:
+	Loader.Load(\"res://Resources/BattleTest.tres\")
+
+func _on_protect_pressed() -> void:
+	Loader.Load(\"res://Resources/ProtectRandom.tres\")
+
+func _on_station_pressed() -> void:
+	Loader.Load(\"res://Resources/MiningRandomAlt.tres\")
+"
+
+[node name="Main" type="Control" unique_id=1705955178]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4qkgp")
+script = SubResource("GDScript_eoje4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1775649987]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sycpf")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1787334675]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1149062533]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1357723617]
+custom_minimum_size = Vector2(0, 77.07)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Mining" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1744683172]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+text = "Mining"
+
+[node name="Farming" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1442256279]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+text = "Farming"
+
+[node name="Protect" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1665057967]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+text = "Protect"
+
+[node name="Battle" type="Button" parent="MarginContainer/VBoxContainer" unique_id=726454248]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+text = "Battle
+"
+
+[node name="Station" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1857021399]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+text = "Furry Station
+"
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1595346068]
+custom_minimum_size = Vector2(0, 77.07)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Mining" to="." method="_on_mining_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Farming" to="." method="_on_farming_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Protect" to="." method="_on_protect_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Battle" to="." method="_on_battle_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Station" to="." method="_on_station_pressed"]

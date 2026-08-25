@@ -126,9 +126,8 @@ collision_friction = 0.0
 collision_bounce = 0.0
 collision_use_scale = true
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xris"]
-radius = 24.0
-height = 96.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_vfujq"]
+radius = 2400.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m87b2"]
 height = 150.0
@@ -157,10 +156,15 @@ metadata/_custom_type_script = "uid://wp6lept6xt5a"
 
 [node name="ManaStore" type="Node" parent="." unique_id=452924241]
 script = ExtResource("6_vbsd5")
-ManaMax = 2000.0
+pushesOverflow = true
+exportsMana = true
+importsOverflow = true
+importPriority = -1000
+ManaMax = 400.0
 showMeter = false
-generationRate = 100.0
-MaxLinks = 8
+generationRate = 15.0
+MaxLinks = 0
+LinkableRange = 0
 metadata/_custom_type_script = "uid://c352samjcijuc"
 
 [node name="CrystalStore" type="Node" parent="." unique_id=896236317]
@@ -168,18 +172,21 @@ script = ExtResource("4_vbsd5")
 Crystals = 200.0
 metadata/_custom_type_script = "uid://chahj6p5gtbru"
 
-[node name="CrystalDeposit" type="Marker3D" parent="." unique_id=173231047]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 5)
-gizmo_extents = 1.46
-
 [node name="CursorDialogue" type="Node" parent="." unique_id=2086025885]
 script = ExtResource("5_50x4y")
 metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 
+[node name="CrystalDeposit" type="Marker3D" parent="." unique_id=173231047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 5)
+gizmo_extents = 1.46
+
 [node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
 transform = Transform3D(0.9954457, 0, 0, 0, 0.9954457, 0, 0, 0, 0.9954457, -0.01760292, 0.016902924, -0.0010299683)
 
-[node name="Cube 008" parent="Star Ship" index="2" unique_id=228561967]
+[node name="Cube 008" parent="Star Ship" index="2" unique_id=260675371]
+layers = 513
+
+[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1828271936]
 layers = 513
 
 [node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]
@@ -356,7 +363,7 @@ isShip = true
 
 [node name="CollisionShape3D" parent="CollectionArea3D" index="0" unique_id=1461314106]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_0xris")
+shape = SubResource("SphereShape3D_vfujq")
 
 [node name="ScanArea3D" type="Area3D" parent="." unique_id=230911201]
 collision_layer = 0
@@ -369,6 +376,26 @@ metadata/_custom_type_script = "uid://b1lekmlrs6hfj"
 shape = SubResource("CylinderShape3D_m87b2")
 debug_color = Color(0, 0.70196074, 0.31933686, 0.41960785)
 debug_fill = false
+
+[node name="MegaShield Pivot" type="Node3D" parent="." unique_id=1790423479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="MegaShield Mount" type="Node3D" parent="MegaShield Pivot" unique_id=1261563036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -14)
+
+[node name="ManaProxies" type="Node3D" parent="." unique_id=1145019518]
+
+[node name="ManaProxy" type="Marker3D" parent="ManaProxies" unique_id=1951400520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -7, 16)
+
+[node name="ManaProxy2" type="Marker3D" parent="ManaProxies" unique_id=1786207959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -7, 16)
+
+[node name="ManaProxy3" type="Marker3D" parent="ManaProxies" unique_id=337927770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -7, -12)
+
+[node name="ManaProxy4" type="Marker3D" parent="ManaProxies" unique_id=1445744968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -7, -12)
 
 [editable path="Star Ship"]
 [editable path="CollectionArea3D"]

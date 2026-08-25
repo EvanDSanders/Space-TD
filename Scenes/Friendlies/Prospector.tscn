@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="1_httlh"]
 [ext_resource type="Script" uid="uid://lv1mqjlgbfqb" path="res://Scripts/Friendlies/Prospector.gd" id="1_y0rc1"]
 [ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_mbkvb"]
-[ext_resource type="PackedScene" uid="uid://bltyurwx8qh1e" path="res://Scenes/Towers/FlakTurret.tscn" id="2_uvtrb"]
 [ext_resource type="Shader" uid="uid://byk3dfkudeyxo" path="res://Shaders/Smoke_Project/Stylized_Smoke_Shader.gdshader" id="6_ab6ls"]
 [ext_resource type="ArrayMesh" uid="uid://c03p1wq8x7grl" path="res://Shaders/Smoke_Project/Mesh.tres" id="7_fwutk"]
 [ext_resource type="Script" uid="uid://4gtjosoa60yp" path="res://Scripts/Misc/SmokeController.gd" id="8_d7oyx"]
@@ -88,11 +87,56 @@ collision_bounce = 0.0
 collision_use_scale = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ab6ls"]
-points = PackedVector3Array(-0.9905853, -9.001566, -129.74118, -0.9905853, -10.720439, -129.03, -64.0578, -9.001566, -112.85044, -0.9905853, 8.99765, -129.74118, 0.9397888, -9.001566, -129.74118, -0.9905853, -19.283478, -120.47032, -63.67681, -10.720439, -112.24085, 0.96517944, -10.720439, -129.03, -64.0578, 8.99765, -112.85044, -65.73418, -9.001566, -111.885254, -0.9905853, 10.716522, -129.03, 0.9397888, 8.99765, -129.74118, 64.007, -9.001566, -112.85044, 0.96517944, -19.283478, -120.47032, -0.025405884, -20, -118.97175, -59.48587, -20, -103.046196, -59.384277, -19.283478, -104.824165, -65.37858, -10.720439, -111.25027, 63.651413, -10.720439, -112.24085, -63.67681, 10.716522, -112.24085, -65.73418, 8.99765, -111.885254, -111.885254, -9.001566, -65.73418, -0.9905853, 19.27956, -120.47032, 0.96517944, 10.716522, -129.03, 64.007, 8.99765, -112.85044, 65.68338, -9.001566, -111.885254, 59.35887, -19.283478, -104.824165, 59.46048, -20, -103.046196, -61.086052, -19.283478, -103.83359, -103.046196, -20, -59.48587, -111.25027, -10.720439, -65.37858, 65.35318, -10.720439, -111.25027, -65.37858, 10.716522, -111.25027, -59.384277, 19.27956, -104.824165, -111.885254, 8.99765, -65.73418, -112.24085, -10.720439, -63.67681, -112.85044, -9.001566, -64.0578, -0.025405884, 20, -118.97175, 0.96517944, 19.27956, -120.47032, -59.48587, 20, -103.046196, 63.651413, 10.716522, -112.24085, 65.68338, 8.99765, -111.885254, 111.85986, -9.001566, -65.73418, 61.060654, -19.283478, -103.83359, 103.0208, -20, -59.48587, -103.83359, -19.283478, -61.086052, -118.97175, -20, -0.025405884, -120.47032, -19.283478, -0.9905853, -104.824165, -19.283478, -59.384277, 111.22487, -10.720439, -65.37858, -111.25027, 10.716522, -65.37858, -61.086052, 19.27956, -103.83359, -112.85044, 8.99765, -64.0578, -112.24085, 10.716522, -63.67681, -129.03, -10.720439, -0.9905853, -129.74118, -9.001566, -0.9905853, 59.46048, 20, -103.046196, 59.35887, 19.27956, -104.824165, -103.046196, 20, -59.48587, 65.35318, 10.716522, -111.25027, 111.85986, 8.99765, -65.73418, 112.82504, -9.001566, -64.0578, 112.215454, -10.720439, -63.67681, 103.80818, -19.283478, -61.086052, 104.79877, -19.283478, -59.384277, 120.44493, -19.283478, -0.9905853, 118.94635, -20, -0.025405884, -120.47032, -19.283478, 0.96517944, -103.046196, -20, 59.46048, -103.83359, 19.27956, -61.086052, -129.74118, 8.99765, -0.9905853, -129.03, 10.716522, -0.9905853, -120.47032, 19.27956, -0.9905853, -104.824165, 19.27956, -59.384277, -129.03, -10.720439, 0.96517944, -129.74118, -9.001566, 0.9397888, 103.0208, 20, -59.48587, 61.060654, 19.27956, -103.83359, -118.97175, 20, -0.025405884, 111.22487, 10.716522, -65.37858, 112.215454, 10.716522, -63.67681, 112.82504, 8.99765, -64.0578, 129.71579, -9.001566, -0.9905853, 129.00461, -10.720439, -0.9905853, 120.44493, -19.283478, 0.96517944, 103.0208, -20, 59.46048, -104.824165, -19.283478, 59.35887, -112.24085, -10.720439, 63.651413, -103.83359, -19.283478, 61.060654, -59.48587, -20, 103.0208, -129.74118, 8.99765, 0.9397888, -129.03, 10.716522, 0.96517944, -120.47032, 19.27956, 0.96517944, -112.85044, -9.001566, 64.007, 118.94635, 20, -0.025405884, 120.44493, 19.27956, -0.9905853, 104.79877, 19.27956, -59.384277, 103.80818, 19.27956, -61.086052, -103.046196, 20, 59.46048, 129.00461, 10.716522, -0.9905853, 129.71579, 8.99765, -0.9905853, 129.71579, -9.001566, 0.9397888, 129.00461, -10.720439, 0.96517944, 112.215454, -10.720439, 63.651413, 104.79877, -19.283478, 59.35887, 103.80818, -19.283478, 61.060654, 59.46048, -20, 103.0208, -111.25027, -10.720439, 65.35318, -111.885254, -9.001566, 65.68338, -61.086052, -19.283478, 103.80818, -0.9905853, -19.283478, 120.44493, -59.384277, -19.283478, 104.79877, -0.025405884, -20, 118.94635, -112.85044, 8.99765, 64.007, -112.24085, 10.716522, 63.651413, -104.824165, 19.27956, 59.35887, 120.44493, 19.27956, 0.96517944, 103.0208, 20, 59.46048, -103.83359, 19.27956, 61.060654, -59.48587, 20, 103.0208, 129.00461, 10.716522, 0.96517944, 129.71579, 8.99765, 0.9397888, 112.82504, -9.001566, 64.007, 111.85986, -9.001566, 65.68338, 111.22487, -10.720439, 65.35318, 61.060654, -19.283478, 103.80818, 59.35887, -19.283478, 104.79877, 0.96517944, -19.283478, 120.44493, -65.37858, -10.720439, 111.22487, -65.73418, -9.001566, 111.85986, -111.885254, 8.99765, 65.68338, -0.9905853, -10.720439, 129.00461, -63.67681, -10.720439, 112.215454, -111.25027, 10.716522, 65.35318, 104.79877, 19.27956, 59.35887, 112.215454, 10.716522, 63.651413, 103.80818, 19.27956, 61.060654, 59.46048, 20, 103.0208, -61.086052, 19.27956, 103.80818, -59.384277, 19.27956, 104.79877, -0.9905853, 19.27956, 120.44493, -0.025405884, 20, 118.94635, 112.82504, 8.99765, 64.007, 111.85986, 8.99765, 65.68338, 65.68338, -9.001566, 111.85986, 65.35318, -10.720439, 111.22487, 63.651413, -10.720439, 112.215454, 0.96517944, -10.720439, 129.00461, -64.0578, -9.001566, 112.82504, -65.73418, 8.99765, 111.85986, -0.9905853, -9.001566, 129.71579, -65.37858, 10.716522, 111.22487, 111.22487, 10.716522, 65.35318, 61.060654, 19.27956, 103.80818, 0.96517944, 19.27956, 120.44493, 59.35887, 19.27956, 104.79877, -63.67681, 10.716522, 112.215454, -0.9905853, 10.716522, 129.00461, 65.68338, 8.99765, 111.85986, 64.007, -9.001566, 112.82504, 0.9397888, -9.001566, 129.71579, -64.0578, 8.99765, 112.82504, -0.9905853, 8.99765, 129.71579, 65.35318, 10.716522, 111.22487, 0.96517944, 10.716522, 129.00461, 63.651413, 10.716522, 112.215454, 64.007, 8.99765, 112.82504, 0.9397888, 8.99765, 129.71579)
+points = PackedVector3Array(-0.025314331, -10.003916, -130, -0.025314331, 9.996084, -130, 52.84906, -10.003916, -118.7732, -0.025314331, -20, -120.00664, -52.89969, -10.003916, -118.7732, -0.025314331, 20, -120.00664, 52.84906, 9.996084, -118.7732, -52.89969, 9.996084, -118.7732, 96.58621, -10.003916, -87.00589, 48.799316, -20, -109.6357, -48.82464, -20, -109.6357, -89.19545, -20, -80.31008, -96.61153, -10.003916, -87.00589, -48.82464, 20, -109.6357, 48.799316, 20, -109.6357, 96.58621, 9.996084, -87.00589, -96.61153, 9.996084, -87.00589, -89.19545, 20, -80.31008, 123.61821, -10.003916, -40.1856, 89.170135, -20, -80.31008, -114.151955, -20, -37.089417, -123.643524, -10.003916, -40.1856, 89.170135, 20, -80.31008, 123.61821, 9.996084, -40.1856, -123.643524, 9.996084, -40.1856, -114.151955, 20, -37.089417, 129.28784, -10.003916, 13.582214, 119.34067, -20, 12.524979, 114.10132, -20, -37.089417, -119.36599, -20, 12.524979, -129.28784, -10.003916, 13.582214, 114.10132, 20, -37.089417, 129.28784, 9.996084, 13.582214, 119.34067, 20, 12.524979, -119.36599, 20, 12.524979, -129.28784, 9.996084, 13.582214, 112.55736, -10.003916, 64.98384, 103.90105, -20, 59.999756, -103.92637, -20, 59.999756, -112.60799, -10.003916, 64.98384, 103.90105, 20, 59.999756, 112.55736, 9.996084, 64.98384, -112.60799, 9.996084, 64.98384, -103.92637, 20, 59.999756, 76.38815, -10.003916, 105.158676, 70.51604, -20, 97.0784, -70.54135, -20, 97.0784, -76.41347, -10.003916, 105.158676, 70.51604, 20, 97.0784, 76.38815, 9.996084, 105.158676, -76.41347, 9.996084, 105.158676, -70.54135, 20, 97.0784, 27.006683, -10.003916, 127.15918, 24.931183, -20, 117.36719, -24.956505, -20, 117.36719, -27.03199, -10.003916, 127.15918, 24.931183, 20, 117.36719, 27.006683, 9.996084, 127.15918, -27.03199, 9.996084, 127.15918, -24.956505, 20, 117.36719)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_d7oyx"]
 height = 450.0
 radius = 400.0
+
+[sub_resource type="Curve" id="Curve_d7oyx"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fwutk"]
+curve = SubResource("Curve_d7oyx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eoje4"]
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 75.47
+initial_velocity_max = 103.77
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_fwutk")
+turbulence_noise_strength = 0.1
+
+[sub_resource type="Curve" id="Curve_fwutk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fwutk"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.58970976, 0.8509235, 0.9854881, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.6549858, 1, 1, 1, 0.96871233, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d7oyx"]
+gradient = SubResource("Gradient_fwutk")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqtv7"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(2.9467254, 0.9837787, 3.3519788, 0.20392157)
+albedo_texture = SubResource("GradientTexture2D_d7oyx")
+billboard_mode = 1
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_t1nho"]
+material = SubResource("StandardMaterial3D_jqtv7")
+shape = 0
+size = 8.0
+curve = SubResource("Curve_fwutk")
 
 [node name="Prospector" type="RigidBody3D" unique_id=904776230]
 collision_layer = 13
@@ -109,8 +153,11 @@ metadata/_custom_type_script = "uid://c1w7pinsldpa8"
 script = ExtResource("1_httlh")
 metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 
-[node name="Smoke5" type="GPUParticles3D" parent="." unique_id=503369889 node_paths=PackedStringArray("health")]
-transform = Transform3D(2.2188485, -1.762315, 0.36779237, 0.551757, 1.2213472, 2.5235274, -1.7136488, -1.8886163, 1.2887414, 10.286934, 8.888073, 8.166214)
+[node name="Star Station" parent="." unique_id=941369232 instance=ExtResource("1_cvmyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -48.799065, 0)
+
+[node name="Smoke7" type="GPUParticles3D" parent="Star Station/Origin Star Station/Radar Mount" parent_id_path=PackedInt32Array(941369232, 449827125) index="4" unique_id=744219092 node_paths=PackedStringArray("health")]
+transform = Transform3D(1.7221727, 2.2295606, 0.4769627, -1.1719712, 0.3529215, 2.5819073, 1.9557405, -1.7518039, 1.127198, 27.52951, -2.8899384, 37.35372)
 visible = false
 material_override = SubResource("ShaderMaterial_ssj3b")
 cast_shadow = 0
@@ -121,42 +168,14 @@ trail_lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_036wd")
 draw_pass_1 = ExtResource("7_fwutk")
 script = ExtResource("8_d7oyx")
-health = NodePath("../Destructible")
-threshhold = 0.2
+health = NodePath("../../../../Destructible")
+threshhold = 0.4
 
-[node name="Flak TurretF" parent="." unique_id=928390705 node_paths=PackedStringArray("Station", "scanArea3D") instance=ExtResource("2_uvtrb")]
-transform = Transform3D(-1, -3.8941437e-07, 0, 3.8941437e-07, -1, 0, 0, 0, 1, 8.968818e-06, 183.03156, -47.380657)
-idleAngleRange = 120
-idleTimer = 3.0
-rotationRate = 0.1
-Station = NodePath("..")
-scanArea3D = NodePath("../ScanArea3D")
-
-[node name="Flak TurretL" parent="." unique_id=1770432628 node_paths=PackedStringArray("Station", "scanArea3D") instance=ExtResource("2_uvtrb")]
-transform = Transform3D(0.50000006, -1.193155e-07, 0.8660253, 1.193155e-07, -1, -2.0666053e-07, 0.8660253, 2.0666053e-07, -0.5, -41.03285, 183.03152, 23.690321)
-FlakID = 2
-idleAngleRange = 120
-idleTimer = 3.0
-rotationRate = 0.1
-Station = NodePath("..")
-scanArea3D = NodePath("../ScanArea3D")
-
-[node name="Flak TurretR" parent="." unique_id=1045046510 node_paths=PackedStringArray("Station", "scanArea3D") instance=ExtResource("2_uvtrb")]
-transform = Transform3D(0.50000006, -1.193155e-07, -0.8660253, 1.193155e-07, -1, 2.0666053e-07, -0.8660253, -2.0666053e-07, -0.5, 41.032856, 183.03154, 23.690332)
-FlakID = 1
-idleAngleRange = 120
-idleTimer = 3.0
-rotationRate = 0.1
-Station = NodePath("..")
-scanArea3D = NodePath("../ScanArea3D")
-
-[node name="Star Station" parent="." unique_id=941369232 instance=ExtResource("1_cvmyr")]
-
-[node name="Station HitBox" parent="Star Station" index="5" unique_id=1396928124]
+[node name="Station HitBox" parent="Star Station" index="3" unique_id=2109398860]
 visible = false
 
 [node name="Smoke10" type="GPUParticles3D" parent="." unique_id=2061220158 node_paths=PackedStringArray("health")]
-transform = Transform3D(-1.0193605, -0.85142684, -2.52988, -0.7044172, 2.697882, -0.6241375, 2.5746872, 0.40102845, -1.1723803, -8.54284, -25.820786, 71.12175)
+transform = Transform3D(-1.0193605, -0.85142684, -2.52988, -0.7044172, 2.697882, -0.6241375, 2.5746872, 0.40102845, -1.1723803, -24.375095, -46.88253, 116.498764)
 visible = false
 material_override = SubResource("ShaderMaterial_ssj3b")
 cast_shadow = 0
@@ -170,8 +189,23 @@ script = ExtResource("8_d7oyx")
 health = NodePath("../Destructible")
 threshhold = 0.3
 
+[node name="Smoke5" type="GPUParticles3D" parent="." unique_id=503369889 node_paths=PackedStringArray("health")]
+transform = Transform3D(2.2188485, -1.762315, 0.36779237, 0.551757, 1.2213472, 2.5235274, -1.7136488, -1.8886163, 1.2887414, 109.0843, -39.25936, -57.995857)
+visible = false
+material_override = SubResource("ShaderMaterial_ssj3b")
+cast_shadow = 0
+amount = 32
+lifetime = 2.0
+fixed_fps = 60
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_036wd")
+draw_pass_1 = ExtResource("7_fwutk")
+script = ExtResource("8_d7oyx")
+health = NodePath("../Destructible")
+threshhold = 0.2
+
 [node name="Smoke3" type="GPUParticles3D" parent="." unique_id=1919777647 node_paths=PackedStringArray("health")]
-transform = Transform3D(-1.3900106, -0.2696348, -2.481831, 1.9703153, 1.6258433, -1.2801605, 1.5329863, -2.334149, -0.6049971, -17.346256, -33.518585, 31.892998)
+transform = Transform3D(-2.273305, -0.26963472, -1.709883, 1.2861909, 1.6258433, -1.966384, 1.1584976, -2.334149, -1.172157, -15.984821, -37.23815, 18.69954)
 visible = false
 material_override = SubResource("ShaderMaterial_ssj3b")
 cast_shadow = 0
@@ -186,7 +220,7 @@ health = NodePath("../Destructible")
 threshhold = 0.5
 
 [node name="Smoke8" type="GPUParticles3D" parent="." unique_id=239251623 node_paths=PackedStringArray("health")]
-transform = Transform3D(-0.6907268, 0.26241797, -2.7601361, -2.287229, 1.5538162, 0.7201094, 1.5670992, 2.3835084, -0.16555771, -17.346256, -64.85621, 31.892998)
+transform = Transform3D(-0.6907268, 0.26241797, -2.7601361, -2.287229, 1.5538162, 0.7201094, 1.5670992, 2.3835084, -0.16555771, -10.346104, -78.98077, 17.630566)
 visible = false
 material_override = SubResource("ShaderMaterial_ssj3b")
 cast_shadow = 0
@@ -201,7 +235,7 @@ health = NodePath("../Destructible")
 threshhold = 0.34
 
 [node name="Smoke9" type="GPUParticles3D" parent="." unique_id=1715095186 node_paths=PackedStringArray("health")]
-transform = Transform3D(0.8828188, 1.9865668, 1.8543203, -2.2018902, 1.6655874, -0.7360816, -1.59268, -1.2015369, 2.0454829, -14.075245, -64.85621, -28.755363)
+transform = Transform3D(0.8828188, 1.9865668, 1.8543203, -2.2018902, 1.6655874, -0.7360816, -1.59268, -1.2015369, 2.0454829, 16.184216, -68.819405, -114.42964)
 visible = false
 material_override = SubResource("ShaderMaterial_ssj3b")
 cast_shadow = 0
@@ -231,7 +265,7 @@ health = NodePath("../Destructible")
 threshhold = 0.6
 
 [node name="Smoke6" type="GPUParticles3D" parent="." unique_id=1269664390 node_paths=PackedStringArray("health")]
-transform = Transform3D(1.3896277, -1.7226838, -1.8070996, 1.9109547, -0.59705126, 2.0386508, -1.6067057, -2.2000463, 0.8617468, -94.0244, 10.928127, 15.260567)
+transform = Transform3D(1.3896277, -1.7226838, -1.8070996, 1.9109547, -0.59705126, 2.0386508, -1.6067057, -2.2000463, 0.8617468, -6.071991, -16.332552, -24.886772)
 visible = false
 material_override = SubResource("ShaderMaterial_ssj3b")
 cast_shadow = 0
@@ -245,25 +279,13 @@ script = ExtResource("8_d7oyx")
 health = NodePath("../Destructible")
 threshhold = 0.1
 
-[node name="Smoke7" type="GPUParticles3D" parent="." unique_id=744219092 node_paths=PackedStringArray("health")]
-transform = Transform3D(0.95012295, 2.2295606, 1.5134848, -2.60644, 0.35292152, 1.1163486, 0.6841447, -1.751804, 2.1511493, 65.51294, -12.09304, 78.33299)
-visible = false
-material_override = SubResource("ShaderMaterial_ssj3b")
-cast_shadow = 0
-amount = 32
-lifetime = 2.0
-fixed_fps = 60
-trail_lifetime = 0.2
-process_material = SubResource("ParticleProcessMaterial_036wd")
-draw_pass_1 = ExtResource("7_fwutk")
-script = ExtResource("8_d7oyx")
-health = NodePath("../Destructible")
-threshhold = 0.4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=283910868]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=959661238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -48.799065, 0)
 shape = SubResource("ConvexPolygonShape3D_ab6ls")
 
 [node name="ScanArea3D" type="Area3D" parent="." unique_id=364316405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -48.799065, 0)
+visible = false
 collision_layer = 0
 collision_mask = 512
 script = ExtResource("9_fwutk")
@@ -275,6 +297,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 125, 0)
 shape = SubResource("CylinderShape3D_d7oyx")
 debug_color = Color(0, 0.70196074, 0.31933686, 0.41960785)
 
-[editable path="Flak TurretF"]
-[editable path="Flak TurretF/Star Station"]
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="." unique_id=2039459260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49, 0)
+directionality = 1.0
+radius = 500.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=356654463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -49, 0)
+custom_aabb = AABB(-500, -500, -500, 1000, 1000, 1000)
+amount = 32
+lifetime = 5.0
+trail_enabled = true
+trail_lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_eoje4")
+draw_pass_1 = SubResource("RibbonTrailMesh_t1nho")
+
 [editable path="Star Station"]

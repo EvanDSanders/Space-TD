@@ -52,7 +52,7 @@ op_type = 6
 constant = Color(0.34901962, 0.13469169, 0.078431375, 1)
 
 [sub_resource type="Gradient" id="Gradient_cblnd"]
-offsets = PackedFloat32Array(0.45764706, 0.70235294)
+offsets = PackedFloat32Array(0.5282353, 0.7470588)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_swe7m"]
 gradient = SubResource("Gradient_cblnd")
@@ -71,7 +71,7 @@ varying_name = "Pos"
 varying_type = 4
 
 [sub_resource type="Gradient" id="Gradient_4spwn"]
-offsets = PackedFloat32Array(0.41764706, 0.45058823)
+offsets = PackedFloat32Array(0.35411766, 0.37294117)
 colors = PackedColorArray(0.17775083, 0.109333985, 0.087706424, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_jk8ew"]
@@ -82,7 +82,7 @@ texture = SubResource("GradientTexture1D_jk8ew")
 texture_type = 1
 
 [sub_resource type="Gradient" id="Gradient_yhhve"]
-offsets = PackedFloat32Array(0.38235295, 0.4435294)
+offsets = PackedFloat32Array(0.33529413, 0.38)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_q8uu5"]
 gradient = SubResource("Gradient_yhhve")
@@ -114,13 +114,23 @@ varying_type = 4
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_shi67"]
 input_name = "vertex"
 
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ssr7x"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_5mjn5"]
+constant = 0.02
+
 [sub_resource type="VisualShader" id="VisualShader_t1nho"]
 varyings/Pos = "0,4"
 nodes/vertex/2/node = SubResource("VisualShaderNodeVaryingSetter_wnhku")
-nodes/vertex/2/position = Vector2(-80, 266.66666)
+nodes/vertex/2/position = Vector2(-293.33334, 266.66666)
 nodes/vertex/3/node = SubResource("VisualShaderNodeInput_shi67")
-nodes/vertex/3/position = Vector2(-506.66666, 266.66666)
-nodes/vertex/connections = PackedInt32Array(3, 0, 2, 0)
+nodes/vertex/3/position = Vector2(-880, 266.66666)
+nodes/vertex/4/node = SubResource("VisualShaderNodeVectorOp_ssr7x")
+nodes/vertex/4/position = Vector2(-506.66666, 266.66666)
+nodes/vertex/5/node = SubResource("VisualShaderNodeFloatConstant_5mjn5")
+nodes/vertex/5/position = Vector2(-720, 373.33334)
+nodes/vertex/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 2, 0, 5, 0, 4, 1)
 nodes/fragment/0/position = Vector2(906.6667, 80)
 nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_02wp1")
 nodes/fragment/2/position = Vector2(-1386.6666, 133.33333)

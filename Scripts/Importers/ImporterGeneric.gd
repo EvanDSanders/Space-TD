@@ -13,6 +13,10 @@ var materials = {
 	, "ShipResources.LED": "res://Materials/GUI/ResourcesLED.UI.tres"
 	, "WarpShieldMat": "res://Materials/Friendlies/StationWarpShield.tres"
 	, "Engine Crystal": "res://Materials/Friendlies/StarShip Engine Crystal.tres"
+	#, "Prospector.Frame": "res://Materials/Common/DamagedMetal.tres"
+	#, "Prospector.Frame": 
+	, "Prospector.WarpGlass": "res://Materials/Friendlies/ProspectorGlass.tres"
+	, "MegaShield": "res://Materials/Friendlies/Ship/MegaShield.tres"
 }
 
 

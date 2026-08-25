@@ -26,6 +26,7 @@ func _ready() -> void:
 	assert(parent is Node3D, "The waypoint's parent node must inherit from Node3D.")
 	
 	$Timer.timeout.connect(doHide)
+	push_warning("Waypoint: Legacy Useage! ", name)
 	
 
 func doHide():

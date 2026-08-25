@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bythfe440p35n"]
+
+[ext_resource type="Script" uid="uid://dsorj8i2b2qne" path="res://Scripts/Game/GUI/Pins/PinScreen.gd" id="1_iabyq"]
+
+[node name="ScreenPin" type="Control" unique_id=1452765312]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iabyq")

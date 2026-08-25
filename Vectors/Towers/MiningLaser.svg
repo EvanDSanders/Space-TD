@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="50"
+   height="75"
+   viewBox="0 0 13.229167 19.84375"
+   version="2.0"
+   id="svg1"
+   sodipodi:docname="MiningLaser.dpisvg"
+   standalone="no"
+   inkscape:version="1.4.4 (1:1.4.4+202605061436+dcaf3e7d9e)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="8.4951738"
+     inkscape:cx="36.079309"
+     inkscape:cy="32.959891"
+     inkscape:window-width="2560"
+     inkscape:window-height="1372"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:window-x="0"
+     inkscape:window-y="1480" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="6.6145834,1.5e-07"
+       end_point="6.6145834,19.84375"
+       center_point="6.6145834,9.9218751"
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1.2"
+       lpesatellites=""
+       mode="free"
+       discard_orig_path="false"
+       fuse_paths="true"
+       oposite_fuse="false"
+       split_items="false"
+       split_open="false"
+       link_styles="false"
+       reverse_mirror="false" />
+    <inkscape:path-effect
+       effect="mirror_symmetry"
+       start_point="5.2700892,4.3341135"
+       end_point="5.2700891,0.11083152"
+       center_point="5.2700892,2.2224725"
+       id="path-effect3"
+       is_visible="true"
+       lpeversion="1.2"
+       lpesatellites=""
+       mode="free"
+       discard_orig_path="false"
+       fuse_paths="true"
+       oposite_fuse="true"
+       split_items="false"
+       split_open="false"
+       link_styles="false"
+       reverse_mirror="false" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1.3"
+       threshold="5"
+       steps="1"
+       smooth_angles="360"
+       helper_size="10"
+       simplify_individual_paths="true"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,0.79021906,0,1 @ F,0,0,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1-7"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,0.79021906,0,1 @ F,0,0,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1 @ F,0,1,1,0,0.79021906,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="font-variation-settings:'wght' 400;fill:#80ff45;stroke-width:1.85208;paint-order:fill stroke markers"
+       d="M 7.2235231,2.9730964 6.5408122,6.4086745 9.4258169,3.9200828 Z"
+       id="path4"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#8eef97;stroke-width:1.85208;paint-order:fill stroke markers"
+       d="M 5.3296867,1.0097163 C 5.2539953,4.4342756 5.6626724,7.7593999 4.52988,10.537953 l 1.2868834,0.555332 C 7.166601,8.3278277 9.397356,5.9220783 11.451927,3.5677159 Z"
+       id="path5"
+       sodipodi:nodetypes="ccccc" />
+    <rect
+       style="font-variation-settings:'wght' 400;fill:#808080;stroke:none;stroke-width:0.529167;stroke-linecap:square;stroke-linejoin:bevel;paint-order:fill stroke markers"
+       id="rect1-2"
+       width="8.2054701"
+       height="2.3850517"
+       x="-16.086168"
+       y="7.8500209"
+       transform="rotate(-66.658238)" />
+    <rect
+       style="font-variation-settings:'wght' 400;fill:#808080;stroke:none;stroke-width:0.529167;stroke-linecap:square;stroke-linejoin:bevel;paint-order:fill stroke markers"
+       id="rect1-2-3"
+       width="0.71350515"
+       height="3.403012"
+       x="-6.573266"
+       y="7.5218987"
+       transform="rotate(-66.658238)" />
+    <ellipse
+       style="font-variation-settings:'wght' 400;fill:#76ad7b;stroke-width:1.85208;paint-order:fill stroke markers"
+       id="path1"
+       cx="10.141562"
+       cy="-1.057101"
+       rx="5.8691125"
+       ry="5.7700095" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#8eef97;fill-opacity:0.304382;stroke-width:1.85208;paint-order:fill stroke markers"
+       d="M 5.3296867,1.0097163 C 5.2778084,3.3568843 5.4534685,5.6573414 5.2044035,7.7671222 5.0900783,8.7355486 6.7449651,9.4024085 7.3056123,8.6001407 8.5416439,6.8314202 10.038478,5.1874078 11.451927,3.5677159 9.9690946,1.5992206 7.9283479,0.74655406 5.3296867,1.0097163 Z"
+       id="path6"
+       sodipodi:nodetypes="csscc" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#80ff45;stroke-width:1.85208;paint-order:fill stroke markers"
+       d="M 3.0391652,3.831991 4.4266101,1.6737432 7.4217296,-0.52855047 c -0.036705,0.33034405 0.2495933,0.83687158 0.8588945,1.51958261 L 5.3075276,3.3034404 Z"
+       id="path2"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#80ff45;stroke-width:1.85208;paint-order:fill stroke markers"
+       d="M 9.9456235,6.8833609 10.416503,1.9567733 c 0.484006,0.3083525 1.023634,0.327279 1.593679,0.06372 l -0.322249,4.8856628 -1.061047,2.1195594 z"
+       id="path3"
+       sodipodi:nodetypes="cccccc" />
+  </g>
+</svg>

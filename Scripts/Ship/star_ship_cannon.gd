@@ -76,7 +76,7 @@ var Tw : Tween
 func _physics_process(_delta: float) -> void:
 	#return
 	if not the_star_ship.health.isAlive: return
-	var mouse: RayCast3D = get_node('/root/Main/CursorCast3D')
+	var mouse: RayCast3D = G.Main.get_node('CursorCast3D')
 	
 	if not mouse.is_colliding(): return
 	var Target = mouse.get_collision_point()
@@ -94,7 +94,7 @@ func _physics_process(_delta: float) -> void:
 	
 	Aimed = is_zero_approx(angle_difference(Yaw.rotation.y, y)) and is_zero_approx(angle_difference(Pitch.rotation.x, x))
 		
-	if the_star_ship.mana.Mana > 1500 and CDown <= 0 and Aimed and the_star_ship.FiringInput and not G.isBuilding:
+	if the_star_ship.mana.Mana > 300 and CDown <= 0 and Aimed and the_star_ship.FiringInput and not G.isBuilding:
 		var pos = G.Cursor.global_position
 		
 		if is_instance_valid(Sound): Sound.play()
@@ -114,7 +114,7 @@ func _physics_process(_delta: float) -> void:
 		Tw.parallel().tween_property(mesh, "radius", 0, 0.4 * dist * .001 + .15)
 		G.schedule(func():
 			var projectile : Node3D = Projectile.instantiate()
-			G.root.add_child(projectile)
+			G.Main.add_child(projectile)
 			projectile.global_position = pos
 			projectile.activate()
 			, .2 * dist * .001 + .15)
@@ -122,7 +122,7 @@ func _physics_process(_delta: float) -> void:
 			
 			
 		
-		the_star_ship.mana.pullMana(1500)
+		the_star_ship.mana.pullMana(300)
 		CDown = 4
 		
 			

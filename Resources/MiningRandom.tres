@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="GameLevelResource" format=3 uid="uid://cnqp4qfxbo37e"]
+
+[ext_resource type="Script" uid="uid://c2k24hrn0wvfd" path="res://Scripts/Resources/Level.gd" id="1_1f2ij"]
+[ext_resource type="Script" uid="uid://47bq5wqchclk" path="res://Scripts/Resources/AsteroidGenerator.gd" id="1_h2xmj"]
+[ext_resource type="Script" uid="uid://b4x354t08yy2v" path="res://Scripts/Resources/Entity.gd" id="2_m3swo"]
+[ext_resource type="Script" uid="uid://djeukp16pf1vd" path="res://Scripts/Resources/EnemySpawner.gd" id="4_vdquf"]
+
+[sub_resource type="Resource" id="Resource_remuw"]
+script = ExtResource("1_h2xmj")
+metadata/_custom_type_script = "uid://47bq5wqchclk"
+
+[sub_resource type="Resource" id="Resource_hhptb"]
+script = ExtResource("4_vdquf")
+metadata/_custom_type_script = "uid://djeukp16pf1vd"
+
+[resource]
+script = ExtResource("1_1f2ij")
+spawner = SubResource("Resource_hhptb")
+asteroidSpawner = SubResource("Resource_remuw")
+metadata/_custom_type_script = "uid://c2k24hrn0wvfd"

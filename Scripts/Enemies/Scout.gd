@@ -20,11 +20,13 @@ var target: Node3D
 @onready var Tw : Tween
 
 @export var damage := 10
+var meshes : Array[MeshInstance3D]
 
 func _ready() -> void:
 	health.HPChange.connect(_hit)
 	E.Register(self, E.Enemy)
 	call_deferred('ready')
+	meshes.append_array( find_children("*", "MeshInstance3D") )
 	
 func ready() -> void:
 	pass
@@ -33,7 +35,8 @@ func ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not health.isAlive: return
-	target = E.getTarget(E.TargetType.Friend, self.global_position)
+	if not target: 
+		target = E.getTarget(E.TargetType.Friend, self.global_position)
 	
 	if target:
 		Nav.Target = target
@@ -47,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	CoolDown -= delta
 
 func remove(_discard=null): 
-	G.spawnExplosionAndFree(G.ExplType.SciFi, self, get_node("/root/Main"), 0.6)
+	G.spawnExplosionAndFree(G.ExplType.SciFi, self, G.Main, 0.6)
 
 func destroy():
 	self.set_collision_layer_value(2, false)
@@ -60,7 +63,8 @@ func destroy():
 
 
 func _hit(damage: float, impulse: Vector3 = Vector3.ZERO):
-	$"Main/Origin Scout".set_instance_shader_parameter("DamageScale", G.remap(0, health.HPMax, 1, 0, health.HP))
+	for each in meshes:
+		each.set_instance_shader_parameter("DamageScale", G.remap(0, health.HPMax, 1, 0, health.HP))
 
 	if impulse:
 		self.apply_impulse(impulse)

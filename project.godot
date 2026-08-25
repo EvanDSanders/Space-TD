@@ -12,9 +12,13 @@ config_version=5
 
 config/name="Space TD"
 config/version="0.0.3"
-run/main_scene="uid://cb6th52ve51t3"
+run/main_scene="uid://dqqmxpmc6eagy"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://pkntc60dd6d2"
 
 [autoload]
 
@@ -22,6 +26,8 @@ G="*uid://crbv2jmsxq1c3"
 E="*uid://bryavc8jyskqi"
 Linker="*uid://myabc7oy536t"
 DiscordRPCLoader="*uid://b3sib4t2yv4i5"
+Loader="*uid://kdgsbw5jym0i"
+Pins="*uid://dldfavbofsnva"
 
 [editor_plugins]
 
@@ -34,6 +40,7 @@ folder_colors={
 "res://Materials/Friendlies/": "green",
 "res://Materials/GUI/": "blue",
 "res://Objects/": "gray",
+"res://Resources/": "yellow",
 "res://Scenes/Enemies/": "red",
 "res://Scenes/Friendlies/": "green",
 "res://Scenes/GUI/": "blue",
@@ -43,6 +50,7 @@ folder_colors={
 "res://Scripts/Friendlies/": "green",
 "res://Scripts/Game/": "blue",
 "res://Scripts/Importers/": "pink",
+"res://Scripts/Resources/": "yellow",
 "res://Scripts/Ship/": "teal",
 "res://Shaders/": "orange",
 "res://Themes/": "purple",
@@ -153,6 +161,11 @@ MClick={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":3,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+Cheat={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":79,"key_label":0,"unicode":111,"location":0,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -170,6 +183,7 @@ MClick={
 3d_physics/layer_13="Proj To Friendly"
 3d_physics/layer_14="Proj To Enemy"
 3d_physics/layer_15="Scan For Collector"
+3d_physics/layer_21="Albiar MegaShield"
 
 [physics]
 
@@ -180,6 +194,7 @@ MClick={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
 environment/volumetric_fog/volume_size=32
 environment/volumetric_fog/volume_depth=32
 

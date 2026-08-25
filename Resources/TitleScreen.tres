@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TitleScreenResource" format=3 uid="uid://bnd31phhak3j2"]
+
+[ext_resource type="Script" uid="uid://b4x354t08yy2v" path="res://Scripts/Resources/Entity.gd" id="1_jduha"]
+[ext_resource type="Script" uid="uid://dh15056bn0p5v" path="res://Scripts/Resources/TitleSceen.gd" id="2_d2mtg"]
+
+[resource]
+script = ExtResource("2_d2mtg")
+metadata/_custom_type_script = "uid://dh15056bn0p5v"

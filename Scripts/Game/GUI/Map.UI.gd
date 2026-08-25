@@ -1,16 +1,22 @@
 extends Panel
 
-@onready var StarShip := $"../../../Friendlies/The Star Ship"
-@onready var health: Destructible = StarShip.find_child("Destructible")
-@onready var mana: ManaStore = StarShip.find_child("ManaStore")
-@onready var crystal: CrystalStore = StarShip.find_child("CrystalStore")
+#@onready var StarShip := $"../../../Friendlies/The Star Ship"
+#@onready var health: Destructible = StarShip.find_child("Destructible")
+#@onready var mana: ManaStore = StarShip.find_child("ManaStore")
+#@onready var crystal: CrystalStore = StarShip.find_child("CrystalStore")
 
+var health: Destructible
+var mana: ManaStore
+var crystal: CrystalStore
 
 @onready var StarShipIcon := $StarShip
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var base = G.StarShip if G.isMainLevel else G.StarStation
+	health = base.find_child("Destructible")
+	mana = base.find_child("ManaStore")
+	crystal = base.find_child("CrystalStore")
 
 
 func drawPin(isKillable:bool, node:Node3D, radius:float, color:Color, filled = true, width = -1):
@@ -29,7 +35,7 @@ func _draw() -> void:
 		drawPin(true, each, 1, Color.RED)
 	for each in E.GetList(E.Friend):
 		if not is_instance_valid(each): continue
-		if each == StarShip: continue
+		if each is TheStarShip: continue
 		if each is Prospector: 
 			drawPin(true, each, 5, Color.GREEN_YELLOW)
 			drawPin(true, each, 10, Color.GREEN_YELLOW, false, 2)
@@ -38,22 +44,23 @@ func _draw() -> void:
 	for each in E.GetList(E.Ore):
 		drawPin(false, each, 1, Color.MEDIUM_PURPLE)
 	
-	drawPin(false, G.camera, 1, Color.DODGER_BLUE)
+	if is_instance_valid(G.camera): drawPin(false, G.camera, 1, Color.DODGER_BLUE)
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	self.queue_redraw()
-	StarShipIcon.position = Vector2(
-				G.remap(-3000/2, 3000/2, 0, 300, StarShip.global_position.x),
-				G.remap(-2000/2, 2000/2, 0, 200, StarShip.global_position.z),
-			)
-	StarShipIcon.rotation = -StarShip.global_rotation.y
-	
-	
-	$Compass/CompassDial.offset_transform_rotation = StarShip.CameraHeading
-	$Compass/CompassShip.offset_transform_rotation = StarShip.CameraHeading - StarShip.rotation.y
+	if G.StarShip:
+		StarShipIcon.position = Vector2(
+					G.remap(-3000/2, 3000/2, 0, 300, G.StarShip.global_position.x),
+					G.remap(-2000/2, 2000/2, 0, 200, G.StarShip.global_position.z),
+				)
+		StarShipIcon.rotation = -G.StarShip.global_rotation.y
+		
+		
+		$Compass/CompassDial.offset_transform_rotation = G.StarShip.CameraHeading
+		$Compass/CompassShip.offset_transform_rotation = G.StarShip.CameraHeading - G.StarShip.rotation.y
 	
 	#var array = []
 	#
