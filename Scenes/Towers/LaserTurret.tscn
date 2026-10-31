@@ -21,6 +21,8 @@ collision_mask = 5
 script = ExtResource("1_hxdwn")
 ProjectileResource = ExtResource("2_7b141")
 scanArea3D = NodePath("ScanArea3D")
+ViewerName = "Laser Turret"
+manaFill = 4.0
 
 [node name="Destructible" type="Node" parent="." unique_id=1307694410]
 script = ExtResource("3_obr6s")
@@ -30,7 +32,7 @@ metadata/_custom_type_script = "uid://c1w7pinsldpa8"
 
 [node name="ManaStore" type="Node" parent="." unique_id=567078910]
 script = ExtResource("4_bihdh")
-ManaMax = 2.5
+ManaMax = 1.0
 metadata/_custom_type_script = "uid://c352samjcijuc"
 
 [node name="CursorDialogue" type="Node" parent="." unique_id=488787102]
@@ -40,10 +42,10 @@ metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 
 [node name="Laser Turret" parent="." unique_id=1242589113 instance=ExtResource("1_ejo56")]
 
-[node name="Turret Emitter L" parent="Laser Turret/Laser Turret Base/Laser Turret Pitch" parent_id_path=PackedInt32Array(1242589113, 1945519987) index="1" unique_id=361986534]
+[node name="Turret Emitter L" parent="Laser Turret/Laser Turret Base/Laser Turret Pitch" parent_id_path=PackedInt32Array(1242589113, 362938543) index="1" unique_id=597340784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74999905, 0, -2.1968327)
 
-[node name="Turret Emitter R" parent="Laser Turret/Laser Turret Base/Laser Turret Pitch" parent_id_path=PackedInt32Array(1242589113, 1945519987) index="2" unique_id=1444789746]
+[node name="Turret Emitter R" parent="Laser Turret/Laser Turret Base/Laser Turret Pitch" parent_id_path=PackedInt32Array(1242589113, 362938543) index="2" unique_id=1249028389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74999905, 0, -2.1968327)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1553627095]

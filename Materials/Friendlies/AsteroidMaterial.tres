@@ -60,7 +60,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.3, 1, 0.3), 2, 0.0]
 op_type = 4
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_joec2"]
-constant = Color(0.1882353, 0.8862745, 0.25490198, 1)
+constant = Color(0.52045393, 0.18823527, 0.8862745, 1)
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_424fi"]
 default_input_values = [0, 0.0, 1, 0.3]

@@ -1,0 +1,349 @@
+[gd_scene format=3 uid="uid://cy65ieavmdxyc"]
+
+[ext_resource type="PackedScene" uid="uid://bh6yfkukb4v46" path="res://Scenes/Game/Level Node.tscn" id="1_2apjt"]
+[ext_resource type="Script" uid="uid://cfbkhdoy6jr7v" path="res://Scripts/Game/GUI/MapCamera2D.gd" id="1_h2pep"]
+[ext_resource type="Texture2D" uid="uid://dn0fy831yagpv" path="res://Vectors/Game/Level Next.svg" id="3_nubmk"]
+[ext_resource type="Texture2D" uid="uid://clwoldr4ovdss" path="res://Vectors/Game/Level Complete.svg" id="4_nubmk"]
+[ext_resource type="Texture2D" uid="uid://qx05uptimclw" path="res://Vectors/Game/Bonus Complete.svg" id="5_p2ej5"]
+[ext_resource type="Texture2D" uid="uid://bgogw844db8wo" path="res://Vectors/Game/Bonus Next.svg" id="6_si7y1"]
+[ext_resource type="Texture2D" uid="uid://dciox7k0nl6r8" path="res://Vectors/Game/Bonus Locked.svg" id="7_i37fe"]
+
+[sub_resource type="Gradient" id="Gradient_nubmk"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(0.17199576, 0.17866829, 0.5723417, 1, 0.18705183, 0.36231083, 0.5723417, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p2ej5"]
+seed = 2
+frequency = 0.026
+fractal_gain = 0.44
+fractal_weighted_strength = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qtl2m"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_p2ej5")
+color_ramp = SubResource("Gradient_nubmk")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_si7y1"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qtl2m"]
+seed = 8
+fractal_gain = 0.44
+fractal_weighted_strength = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p2ej5"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_qtl2m")
+color_ramp = SubResource("Gradient_si7y1")
+seamless = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nubmk"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.50219214, 0.50219214, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 2
+
+[sub_resource type="Theme" id="Theme_eoje4"]
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_nubmk")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_nubmk")
+
+[sub_resource type="Curve2D" id="Curve2D_si7y1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 325, 156, 0, 0, 0, 0, 580, 105, 0, 0, 0, 0, 862, 97, 0, 0, 0, 0, 1134, 150, 0, 0, 0, 0, 1081, 403, 0, 0, 0, 0, 812, 432, 0, 0, 0, 0, 611, 592, 0, 0, 0, 0, 796, 740, 0, 0, 0, 0, 1154, 728, 0, 0, 0, 0, 1418, 654, 0, 0, 0, 0, 1568, 434, 0, 0, 0, 0, 1813, 393, 0, 0, 0, 0, 2011, 366, 0, 0, 0, 0, 2261, 411, 0, 0, 0, 0, 2478, 335, 0, 0, 0, 0, 2635, 413, 0, 0, 0, 0, 2856, 442, 0, 0, 0, 0, 2948, 643, 0, 0, 0, 0, 3182, 607, 0, 0, 0, 0, 3368, 639, 0, 0, 0, 0, 3569, 644, 0, 0, 0, 0, 4092, 643)
+}
+point_count = 22
+
+[sub_resource type="Curve2D" id="Curve2D_i37fe"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1417, 653, 0, 0, 0, 0, 1575, 871, 0, 0, 0, 0, 1827, 904, 0, 0, 0, 0, 2010, 790, 0, 0, 0, 0, 2171, 844, 0, 0, 0, 0, 2375, 801, 0, 0, 0, 0, 2548, 876, 0, 0, 0, 0, 2780, 838, 0, 0, 0, 0, 2949, 646)
+}
+point_count = 9
+
+[node name="Campaign Map" type="Node2D" unique_id=255776784]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1524718532]
+position = Vector2(577, 322)
+limit_left = -500
+limit_top = -500
+limit_right = 4000
+limit_bottom = 1500
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("1_h2pep")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=948227588]
+scroll_scale = Vector2(0.45, 0.45)
+scroll_offset = Vector2(579, 324)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax2D" unique_id=33069920]
+scale = Vector2(12, 12)
+texture = SubResource("NoiseTexture2D_qtl2m")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1059765439]
+scroll_scale = Vector2(0.75, 0.75)
+scroll_offset = Vector2(579, 324)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D2" unique_id=730465708]
+modulate = Color(1, 1, 1, 0.13333334)
+position = Vector2(739, 397)
+scale = Vector2(12, 12)
+texture = SubResource("NoiseTexture2D_p2ej5")
+
+[node name="Control" type="Control" parent="." unique_id=1718076994]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 4000.0
+offset_bottom = 1500.0
+mouse_filter = 1
+theme = SubResource("Theme_eoje4")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=2095113467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=1589550239]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer" unique_id=447080606]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer" unique_id=1381948643]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=1174359627]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=1529280634]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=1403472787]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=1071241169]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=1278933033]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=474336702]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=1225146051]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=1257091668]
+layout_mode = 2
+
+[node name="Level Node" parent="." unique_id=784145780 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1134, 149)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node26" parent="." unique_id=378295468 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1081, 402)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node5" parent="." unique_id=2056828724 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(809, 433)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node6" parent="." unique_id=919862057 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(610, 591)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node7" parent="." unique_id=717647278 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(796, 742)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node8" parent="." unique_id=339459247 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1153, 729)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node9" parent="." unique_id=1265787158 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1421, 655)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node10" parent="." unique_id=229569317 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1569, 434)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node11" parent="." unique_id=1309410088 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1574, 868)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node12" parent="." unique_id=1899917443 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1828, 901)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node15" parent="." unique_id=366399799 instance=ExtResource("1_2apjt")]
+modulate = Color(0.26002598, 0.7009693, 0.949, 1)
+position = Vector2(2006, 790)
+texture = ExtResource("3_nubmk")
+Icon = 1
+
+[node name="Level Node13" parent="." unique_id=908786718 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(1816, 389)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node14" parent="." unique_id=2009592922 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(2012, 366)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node22" parent="." unique_id=975653584 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(2260, 413)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node16" parent="." unique_id=300043417 instance=ExtResource("1_2apjt")]
+modulate = Color(0.26002598, 0.7009693, 0.949, 1)
+position = Vector2(2478, 332)
+texture = ExtResource("3_nubmk")
+Icon = 1
+
+[node name="Level Node17" parent="." unique_id=1852804153 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(2780, 834)
+
+[node name="Level Node18" parent="." unique_id=822999182 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(2951, 649)
+
+[node name="Level Node20" parent="." unique_id=303186430 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(2859, 446)
+
+[node name="Level Node21" parent="." unique_id=1941702290 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(2639, 413)
+
+[node name="Level Node23" parent="." unique_id=1300934826 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(2179, 842)
+
+[node name="Level Node24" parent="." unique_id=116456324 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(2551, 873)
+
+[node name="Level Node25" parent="." unique_id=1159745221 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(2368, 806)
+
+[node name="Level Node19" parent="." unique_id=322359683 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(3178, 605)
+
+[node name="Level Node32" parent="." unique_id=992619328 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(3373, 638)
+
+[node name="Level Node33" parent="." unique_id=1922596001 instance=ExtResource("1_2apjt")]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+position = Vector2(3571, 644)
+
+[node name="Level Node2" parent="." unique_id=755179686 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(864, 98)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node3" parent="." unique_id=1567422824 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(583, 106)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node4" parent="." unique_id=678386056 instance=ExtResource("1_2apjt")]
+modulate = Color(0.253851, 0.897, 0.49567497, 1)
+position = Vector2(326, 158)
+texture = ExtResource("4_nubmk")
+Icon = 2
+
+[node name="Level Node27" parent="." unique_id=1214039609 instance=ExtResource("1_2apjt")]
+modulate = Color(0.25199997, 0.9, 0.49953598, 0.667)
+position = Vector2(642, 238)
+texture = ExtResource("5_p2ej5")
+Icon = 5
+
+[node name="Level Node28" parent="." unique_id=1810984983 instance=ExtResource("1_2apjt")]
+modulate = Color(0.25649998, 0.69617903, 0.95, 0.659)
+position = Vector2(436, 653)
+texture = ExtResource("6_si7y1")
+Icon = 4
+
+[node name="Level Node29" parent="." unique_id=1272427526 instance=ExtResource("1_2apjt")]
+modulate = Color(0.25649998, 0.69617903, 0.95, 0.659)
+position = Vector2(1532, 272)
+texture = ExtResource("6_si7y1")
+Icon = 4
+
+[node name="Level Node30" parent="." unique_id=465152818 instance=ExtResource("1_2apjt")]
+modulate = Color(0.20019999, 0.43837637, 0.77, 0.604)
+position = Vector2(2248, 986)
+texture = ExtResource("7_i37fe")
+Icon = 3
+
+[node name="Level Node31" parent="." unique_id=1562147711 instance=ExtResource("1_2apjt")]
+modulate = Color(0.20019999, 0.43837637, 0.77, 0.604)
+position = Vector2(2992, 347)
+texture = ExtResource("7_i37fe")
+Icon = 3
+
+[node name="Path2D" type="Path2D" parent="." unique_id=492672954]
+curve = SubResource("Curve2D_si7y1")
+
+[node name="Path2D2" type="Path2D" parent="." unique_id=563367201]
+curve = SubResource("Curve2D_i37fe")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dbsgt6msxveue"]
+
+[ext_resource type="Script" uid="uid://c4ht8a8qssnxr" path="res://Scripts/Station/ShipConstructionWorkerRigidBody.gd" id="1_bhiji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoje4"]
+size = Vector2(400, 80)
+
+[node name="ShipConstructionWorkerRigidBody" type="RigidBody2D" unique_id=469874275]
+script = ExtResource("1_bhiji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1081369040]
+shape = SubResource("RectangleShape2D_eoje4")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=930681108]
+rect = Rect2(-212, -52, 424, 104)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

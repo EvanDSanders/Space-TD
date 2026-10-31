@@ -1,5 +1,5 @@
 @icon ("res://EditorIcons/manaStore.svg")
-extends Node
+extends FuelStoreBase
 class_name ManaStore
 
 @onready var Parent = $".."
@@ -16,9 +16,16 @@ var Meter : MeterPin
 @export var importPriority : int = 0
 
 signal ManaChange(float)
-@export var ManaMax := 500.
+@export var ManaMax := 500.:
+	set(m):
+		ManaMax = m
+		fuelMax = m
 
-@onready var Mana := ManaMax
+@onready var Mana := ManaMax:
+	set(f):
+		Mana = f
+		fuel = f
+
 @onready var priorMana := Mana
 @export var showMeter := true
 
@@ -47,7 +54,7 @@ func _ready() -> void: # call_deferred("ready")
 	if Parent.has_node("CursorDialogue"):
 		Parent.get_node("CursorDialogue").attachMeter(Meter)
 	
-	ManaChange.connect(func(): Meter.value = Mana)
+	ManaChange.connect(func(_Mana): Meter.value = Mana)
 	
 	Linker.Register(self)
 	
@@ -74,8 +81,13 @@ func pushMana(amt: float):
 	
 func _physics_process(delta: float) -> void:
 	pushMana(delta * generationRate)
-	if DebugText: DebugText.forceShow(true)
+	#if DebugText: DebugText.forceShow(true)
 	
 	if priorMana != Mana:
 		priorMana = Mana
 		ManaChange.emit(Mana)
+
+
+func pullFuel(charge: float) -> float: return pullMana(charge)
+func pushFuel(amt: float): pushMana(amt)
+func isFull() -> bool: return Mana >= ManaMax or is_equal_approx(Mana, ManaMax)

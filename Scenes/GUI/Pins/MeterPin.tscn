@@ -22,7 +22,6 @@ grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
 script = ExtResource("1_g8lfd")
-sticky = false
 
 [node name="Base" type="Panel" parent="." unique_id=1347645876]
 self_modulate = Color(0.16898209, 0.16898209, 0.16898209, 1)

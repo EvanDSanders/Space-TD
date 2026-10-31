@@ -1,4 +1,5 @@
 extends Camera3D
+class_name RiggedCamera
 
 #@onready var StarShip: RigidBody3D = get_node("/root/Main/Friendlies/The Star Ship")
 @onready var StarShip: RigidBody3D = G.StarShip
@@ -6,12 +7,12 @@ extends Camera3D
 
 @export var ZoomFactorCurve : Curve
 
-@onready var Evade:		Node3D = $"../CShipMount/CEvade"
-@onready var Attack:	Node3D = $"../CShipMount/CAttack"
-@onready var Move:		Node3D = $"../CShipMount/CMove"
-@onready var Build:		Node3D = $"../CBuild"
+@onready var Evade:		CameraObjectScript = $"../CShipMount/CEvade"
+@onready var Attack:	CameraObjectScript = $"../CShipMount/CAttack"
+@onready var Move:		CameraObjectScript = $"../CShipMount/CMove"
+@onready var Build:		CameraObjectScript = $"../CBuild"
 
-@onready var Current : Node3D = Move
+@onready var Current  : CameraObjectScript = Move
 
 var Tw : Tween
 
@@ -52,6 +53,7 @@ func doMove(fac: float):
 	
 	self.global_position = startPos*(1-fac) + endPos*fac
 	self.global_rotation = startRot*(1-fac) + endRot*fac
+
 
 func endMove():
 	reparent(NodeEnd)
@@ -138,7 +140,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		match event.button_index:
 			MOUSE_BUTTON_MIDDLE:
 				if event.pressed:
-					if G.isMainLevel and StarShip.ShipMode == StarShip.ShipModes.Evasion:
+					if not G.Main.Flaten and G.isMainLevel and StarShip.ShipMode == StarShip.ShipModes.Evasion:
 						_nav_mode = NavMode.ORBIT
 					else:
 						_nav_mode = NavMode.PAN if event.shift_pressed else NavMode.ORBIT
@@ -156,24 +158,32 @@ func _unhandled_input(event: InputEvent) -> void:
 			NavMode.ORBIT:
 				_orbit(event.relative)
 			NavMode.PAN:
-				_pan(event.relative)
+				_pan(event.relative / 3)
 		get_viewport().set_input_as_handled()
 
+func setFollow(node:Node3D): toFollow = node
 
-
-
+var toFollow : Node3D
+func follow():
+	if toFollow:
+		Current.Yaw.global_position = toFollow.global_position
+		
+	else:
+		Current.Yaw.global_position.y = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	delta /= Engine.time_scale
 	if not isEnabled(): return
 	if G.isMainLevel: 
 		StarShip.CameraHeading = Current.Yaw.rotation.y
 		match StarShip.ShipMode:
 			StarShip.ShipModes.Build, StarShip.ShipModes.Warp:
 				Current.doPan(Vector2(Input.get_axis("Left", "Right"), Input.get_axis("Forward", "Backward")), true, delta)
+				follow()
 				
 				
-				pass
+				
 			StarShip.ShipModes.Maneuver:
 				Move.global_position = StarShip.global_position
 				
@@ -185,3 +195,4 @@ func _process(delta: float) -> void:
 				
 	else: 
 		Current.doPan(Vector2(Input.get_axis("Left", "Right"), Input.get_axis("Forward", "Backward")), true, delta)
+		follow()

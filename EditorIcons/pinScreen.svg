@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   fill="none"
+   viewBox="0 0 16 16"
+   version="2.0"
+   id="svg1"
+   sodipodi:docname="pinScreen.svg"
+   standalone="no"
+   inkscape:version="1.4.4 (1:1.4.4+202605061436+dcaf3e7d9e)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect35"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,1,0,1 @ F,0,0,1,0,1,0,1 @ F,0,0,1,0,1,0,1 @ F,0,0,1,0,1,0,1"
+       radius="1"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="45.254834"
+     inkscape:cx="7.8223688"
+     inkscape:cy="6.3860581"
+     inkscape:window-width="2560"
+     inkscape:window-height="1372"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1"
+     inkscape:window-x="0"
+     inkscape:window-y="40">
+    <sodipodi:guide
+       position="0,0"
+       orientation="16,0"
+       id="guide1"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1,0"
+       orientation="16,0"
+       id="guide2"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="2,0"
+       orientation="16,0"
+       id="guide3"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="3,0"
+       orientation="16,0"
+       id="guide4"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="4,0"
+       orientation="16,0"
+       id="guide5"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="5,0"
+       orientation="16,0"
+       id="guide6"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="6,0"
+       orientation="16,0"
+       id="guide7"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="7,0"
+       orientation="16,0"
+       id="guide8"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="8,0"
+       orientation="16,0"
+       id="guide9"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="9,0"
+       orientation="16,0"
+       id="guide10"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="10,0"
+       orientation="16,0"
+       id="guide11"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="11,0"
+       orientation="16,0"
+       id="guide12"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="12,0"
+       orientation="16,0"
+       id="guide13"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="13,0"
+       orientation="16,0"
+       id="guide14"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="14,0"
+       orientation="16,0"
+       id="guide15"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="15,0"
+       orientation="16,0"
+       id="guide16"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="16,0"
+       orientation="16,0"
+       id="guide17"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,0"
+       orientation="0,16"
+       id="guide18"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,1"
+       orientation="0,16"
+       id="guide19"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,2"
+       orientation="0,16"
+       id="guide20"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,3"
+       orientation="0,16"
+       id="guide21"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,4"
+       orientation="0,16"
+       id="guide22"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,5"
+       orientation="0,16"
+       id="guide23"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,6"
+       orientation="0,16"
+       id="guide24"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,7"
+       orientation="0,16"
+       id="guide25"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,8"
+       orientation="0,16"
+       id="guide26"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,9"
+       orientation="0,16"
+       id="guide27"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,10"
+       orientation="0,16"
+       id="guide28"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,11"
+       orientation="0,16"
+       id="guide29"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,12"
+       orientation="0,16"
+       id="guide30"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,13"
+       orientation="0,16"
+       id="guide31"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,14"
+       orientation="0,16"
+       id="guide32"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,15"
+       orientation="0,16"
+       id="guide33"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,16"
+       orientation="0,16"
+       id="guide34"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <g
+     id="g38"
+     transform="matrix(2,0,0,2,-8,-12)"
+     style="stroke-width:0.5">
+    <path
+       style="font-variation-settings:'wght' 400;fill:#474747;stroke-width:0.25;stroke-linejoin:round;paint-order:fill stroke markers"
+       d="M 4,14 7,10 7.5,10.5 8,11 Z"
+       id="path35"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#76ad7b;stroke-width:0.25;stroke-linejoin:round;paint-order:fill stroke markers"
+       d="m 6,9 2,-1 2,2 -1,2 z"
+       id="path36"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="font-variation-settings:'wght' 400;fill:#76ad7b;stroke-width:0.25;stroke-linejoin:round;paint-order:fill stroke markers"
+       d="m 8,8 1,-2 3,3 -2,1 z"
+       id="path37"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+</svg>

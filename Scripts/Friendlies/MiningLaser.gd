@@ -6,7 +6,7 @@ class_name MiningLaser
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	super._ready()
+	super()
 	Meter = Pins.Register(self)
 	Meter.max = crystal.CrystalsMax
 	Meter.value = crystal.Crystals
@@ -22,7 +22,7 @@ func isMineable(obj: Node3D):
 func _physics_process(delta: float) -> void:
 	if self.constructor: return
 	
-	self.mana.pushMana(  Linker.pullMana( clamp(20 * delta, 0, mana.ManaMax - mana.Mana ), self.mana)  )
+	self.fillMana(delta)
 	
 	var targ = E.getTargetWith($Area3D.get_overlapping_bodies(), self.global_position, -1, isMineable)
 	var ore : Asteroid3D
@@ -54,4 +54,10 @@ static func createCrystalNode(caller:Node3D, value:int, isShipDeposit:bool=false
 	if isShipDeposit: drop.markDeposit()
 	G.Main.add_child(drop)
 	drop.global_position = caller.global_position
+	return drop
+	
+	
+static func spawnCrystalNode(caller:Node3D, value:int) -> Collectable:
+	var drop : Collectable = CrystalNode.instantiate()
+	drop.value = value
 	return drop

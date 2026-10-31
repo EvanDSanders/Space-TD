@@ -1,0 +1,23 @@
+[MiningShip]
+
+name	= "Mining Ship"
+icon	= "res://Vectors/Towers/Pylon.svg"
+scene	= "res://Scenes/StationShips/Mining Ship.tscn"
+
+cost	= 45
+
+[GatlingFighter]
+
+name	= "Gatling Fighter"
+icon	= "res://Vectors/Towers/Pylon.svg"
+scene	= "res://Scenes/StationShips/Fighter Gatling.tscn"
+
+cost	= 180
+
+[RailgunFighter]
+
+name	= "Railgun Fighter"
+icon	= "res://Vectors/Towers/Pylon.svg"
+scene	= "res://Scenes/StationShips/RailGun Ship.tscn"
+
+cost	= 340

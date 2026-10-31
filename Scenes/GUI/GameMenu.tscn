@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://vyy7acxep6ue"]
+
+[ext_resource type="Theme" uid="uid://c0wsmkaots3ab" path="res://Themes/Control3D.tres" id="1_mc36u"]
+
+[sub_resource type="GDScript" id="GDScript_s0rc4"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="GameMenu" type="CanvasLayer" unique_id=1310131602]
+layer = 3
+script = SubResource("GDScript_s0rc4")
+
+[node name="Control" type="Control" parent="." unique_id=1865405578]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mc36u")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1320858965]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1308633389]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/MarginContainer/VBoxContainer" unique_id=1266857406]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Restart" type="Button" parent="Control/MarginContainer/VBoxContainer" unique_id=288966564]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Restart"
+
+[node name="Menu" type="Button" parent="Control/MarginContainer/VBoxContainer" unique_id=904638544]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="Control/MarginContainer/VBoxContainer" unique_id=303094731]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Quit"
+
+[node name="Control2" type="Control" parent="Control/MarginContainer/VBoxContainer" unique_id=486480862]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0

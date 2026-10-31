@@ -2,8 +2,13 @@ extends Node
 
 
 @onready var root: Window = $"/root"
-var camera: Camera3D
 var Warnings : WarningInterface
+
+var Camera: RiggedCamera
+var camera: RiggedCamera:
+	set(c): Camera = c
+	get(): return Camera
+
 
 @onready var RNG := RandomNumberGenerator.new() 
 
@@ -74,16 +79,23 @@ func remap(i_min: float, i_max: float, o_min: float, o_max: float, v: float) -> 
 func get_intercept(shooter_pos:Vector3,
 					bullet_speed:float,
 					target_position:Vector3,
-					target_velocity:Vector3) -> Vector3:
-	var a:float = bullet_speed*bullet_speed - target_velocity.dot(target_velocity)
-	var b:float = 2*target_velocity.dot(target_position-shooter_pos)
+					target_velocity:Vector3,
+					shooter_velocity:=Vector3.ZERO) -> Vector3:
+						
+	var relitive := target_velocity - shooter_velocity
+	
+	var a:float = bullet_speed*bullet_speed - relitive.dot(relitive)
+	var b:float = 2*relitive.dot(target_position-shooter_pos)
 	var c:float = (target_position-shooter_pos).dot(target_position-shooter_pos)
 	# Protect against divide by zero and/or imaginary results
 	# which occur when bullet speed is slower than target speed
 	var time:float = 0.0
-	if bullet_speed > target_velocity.length():
+	if bullet_speed > relitive.length():
 		time = (b+sqrt(b*b+4*a*c)) / (2*a)
-	return target_position+time*target_velocity
+	return target_position+time*relitive
+
+
+
 
 # https://easings.net/
 func EaseIOCubic(x: float) -> float:
@@ -160,5 +172,13 @@ func BoneScaled(armature: Skeleton3D, bone_idx:int, scale:Vector3):
 	pose.basis = pose.basis.orthonormalized().scaled(scale)
 	armature.set_bone_pose(bone_idx, pose)
 
+func setGameSpeed(rate:float):
+	if rate == 0.0: 
+		rate = 1.0
+		get_tree().paused = true
+	else: 
+		get_tree().paused = false
+	Engine.time_scale = rate
+	Engine.physics_ticks_per_second = 60 * int(rate)
 
 func _ready(): pass

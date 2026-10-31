@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bxtsuhv6dseya"]
+
+[ext_resource type="Script" uid="uid://cr28m0s3xls73" path="res://Scripts/Friendlies/FighterGatling.gd" id="1_3dqoo"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="1_lkera"]
+[ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="2_3dqoo"]
+[ext_resource type="Script" uid="uid://ce4qf3q713jub" path="res://Scripts/Common/EnergyStore.gd" id="3_ut2qy"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="4_esttl"]
+[ext_resource type="Script" uid="uid://7ol4h6mlsrlw" path="res://Scripts/Resources/Ships/ShipAI.gd" id="4_lemhj"]
+[ext_resource type="Script" uid="uid://b12614lyhsf3s" path="res://Scripts/Resources/Ships/ShipDecoratorFighter.gd" id="5_c657p"]
+[ext_resource type="PackedScene" uid="uid://b25ofu4xh6xos" path="res://Objects/Friendlies/Figher Gatling.glb" id="5_huaw0"]
+[ext_resource type="Script" uid="uid://by1xevhibfar7" path="res://Scripts/Resources/Turrets/TurretReactSpinner.gd" id="7_esttl"]
+[ext_resource type="Script" uid="uid://ctvund3t471s0" path="res://Scripts/Friendlies/TurretController.gd" id="7_ut2qy"]
+[ext_resource type="Script" uid="uid://dcfpflhjqvdd1" path="res://Scripts/Resources/Turrets/TurretAmmoContinuous.gd" id="8_0msde"]
+[ext_resource type="PackedScene" uid="uid://bb2m4iufkv3pe" path="res://Scenes/Projectiles/TraceSimulated.tscn" id="8_huaw0"]
+
+[sub_resource type="Resource" id="Resource_lemhj"]
+resource_local_to_scene = true
+script = ExtResource("4_lemhj")
+ThrustP = 0.5
+ThrustD = 1.0
+StrafeRange = 50.0
+metadata/_custom_type_script = "uid://7ol4h6mlsrlw"
+
+[sub_resource type="Resource" id="Resource_c657p"]
+resource_local_to_scene = true
+script = ExtResource("5_c657p")
+metadata/_custom_type_script = "uid://b12614lyhsf3s"
+
+[sub_resource type="Resource" id="Resource_0msde"]
+script = ExtResource("8_0msde")
+amount = 1.0
+metadata/_custom_type_script = "uid://dcfpflhjqvdd1"
+
+[sub_resource type="Resource" id="Resource_huaw0"]
+resource_local_to_scene = true
+script = ExtResource("7_esttl")
+chargeTime = 0.6
+SpinRateMultiplier = 0.8
+coolDown = 0.05
+metadata/_custom_type_script = "uid://by1xevhibfar7"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eoje4"]
+size = Vector3(3.4123535, 3.7478027, 14.18335)
+
+[node name="Gatling Fighter" type="RigidBody3D" unique_id=1861859329]
+mass = 2.0
+script = ExtResource("1_3dqoo")
+ViewerName = "Gatling Fighter"
+
+[node name="Destructible" type="Node" parent="." unique_id=504583634]
+script = ExtResource("1_lkera")
+TargetType = 0
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ShipNavigator" type="Node3D" parent="." unique_id=1134724979 node_paths=PackedStringArray("Parent")]
+script = ExtResource("2_3dqoo")
+TargType = 1
+Parent = NodePath("..")
+AI = SubResource("Resource_lemhj")
+Decorator = SubResource("Resource_c657p")
+Controllable = true
+metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="EnergyStore" type="Node" parent="." unique_id=1189224223]
+script = ExtResource("3_ut2qy")
+EnergyMax = 80.0
+metadata/_custom_type_script = "uid://ce4qf3q713jub"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=376402216]
+script = ExtResource("4_esttl")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
+
+[node name="TurretController" type="Node3D" parent="." unique_id=1064866799 node_paths=PackedStringArray("Parent", "Store", "Yaw", "Pitch", "Reactor", "Emiter")]
+script = ExtResource("7_ut2qy")
+Parent = NodePath("..")
+Store = NodePath("../EnergyStore")
+Yaw = NodePath("../Figher Gatling/Origin Figher Gatling Frame/Figher Gatling Hub")
+Pitch = NodePath("../Figher Gatling/Origin Figher Gatling Frame/Figher Gatling Hub/Figher Gatling Head")
+Reactor = NodePath("../Figher Gatling/Origin Figher Gatling Frame/Figher Gatling Hub/Figher Gatling Head/Figher Gatling Motor")
+Emiter = NodePath("../Figher Gatling/Origin Figher Gatling Frame/Figher Gatling Hub/Figher Gatling Head/Figher Gatling Emiter")
+IdleRotationRange = 0.0
+RotationRange = Vector2(60, 40)
+consumer = SubResource("Resource_0msde")
+reaction = SubResource("Resource_huaw0")
+projectile = ExtResource("8_huaw0")
+
+[node name="Figher Gatling" parent="." unique_id=1287729260 instance=ExtResource("5_huaw0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2035358695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5831299, 0.6727295)
+shape = SubResource("BoxShape3D_eoje4")
+
+[editable path="Figher Gatling"]
+[editable path="Figher Gatling/Origin Figher Gatling Frame/Gatling Fighter Engine L/StationShip Engine"]
+[editable path="Figher Gatling/Origin Figher Gatling Frame/Gatling Fighter Engine L/StationShip Engine/StationShip Engine"]
+[editable path="Figher Gatling/Origin Figher Gatling Frame/Gatling Fighter Engine R/StationShip Engine"]
+[editable path="Figher Gatling/Origin Figher Gatling Frame/Gatling Fighter Engine R/StationShip Engine/StationShip Engine"]

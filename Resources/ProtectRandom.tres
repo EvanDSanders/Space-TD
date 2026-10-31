@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://47bq5wqchclk"
 
 [sub_resource type="Resource" id="Resource_mrqri"]
 script = ExtResource("2_t3ag8")
-path = &"res://Scenes/Friendlies/Prospector.tscn"
+path = &"res://Scenes/Station/Prospector.tscn"
 location = Vector3(168.845, 0, 27.72)
 metadata/_custom_type_script = "uid://b4x354t08yy2v"
 

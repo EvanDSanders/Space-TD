@@ -7,7 +7,7 @@ class_name CameraObjectScript
 @onready var Pitch: Node3D = $Yaw/Pitch
 @onready var Post: 	Node3D = $Yaw/Pitch/Post
 
-var RigCamera : Camera3D
+var RigCamera : RiggedCamera
 
 @export var canPan: bool = true
 
@@ -20,6 +20,7 @@ var RigCamera : Camera3D
 
 @onready var ZoomMin : float = 10
 @onready var ZoomMax : float = 2000
+
 
 var PanSpeed : Vector2
 
@@ -38,7 +39,7 @@ func doPan(offset: Vector2, isContinuous: bool = false, delta := 0.):
 		if offset != PanSpeed:
 			if PTw: PTw.kill()
 			PTw = create_tween()
-			PTw.tween_property(self, "PanSpeed", offset, 0.3)
+			PTw.tween_property(self, "PanSpeed", offset, 0.3 * Engine.time_scale)
 		
 		Yaw.position += Yaw.basis.x * PanSpeed.x * SpeedScale * BoostFac * delta * 100
 		Yaw.position += Yaw.basis.z * PanSpeed.y * SpeedScale * BoostFac * delta * 100
@@ -46,26 +47,33 @@ func doPan(offset: Vector2, isContinuous: bool = false, delta := 0.):
 
 func setYaw(radians: float):
 	if not canOrbitYaw: return
+	if G.Main.Flaten: return
 	self.Yaw.rotation.y = radians
 
 func doYaw(radians: float):
 	if not canOrbitYaw: return
+	if G.Main.Flaten: return
 	self.Yaw.rotation.y += radians
 
 func setPitch(radians: float):
 	if not canOrbitPitch: return
+	if G.Main.Flaten: return
 	self.Pitch.rotation.x = radians
 
 func doPitch(radians: float):
 	if not canOrbitPitch: return
+	if G.Main.Flaten: return
 	self.Pitch.rotation.x += radians
 
 func evalZoom():
 	Zoom = clamp(Zoom, ZoomMin, ZoomMax)
-	$Yaw/Pitch/Post.position.z = Zoom
+	if G.Main.Flaten:
+		G.Camera.size = Zoom / 1
+	else:
+		$Yaw/Pitch/Post.position.z = Zoom
 
-func setZoom(fac: float, isContinuous: bool = false):
-	Zoom  = fac
+func setZoom(zoom: float, _isContinuous: bool = false):
+	Zoom = zoom
 	evalZoom()
 
 func doZoom(fac: float, isContinuous: bool = false, delta:float = 1):
@@ -83,6 +91,22 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
+var wasFlat := false
+var isFlatReady:= false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+
+		
+	if G.Main.Flaten != wasFlat:
+		wasFlat = G.Main.Flaten
+		
+		if G.Main.Flaten:
+			RigCamera.projection = Camera3D.PROJECTION_ORTHOGONAL
+			self.Yaw.rotation.y = 0
+			self.Pitch.rotation.x = - PI / 2
+			
+		else:
+			RigCamera.projection = Camera3D.PROJECTION_PERSPECTIVE
+			
+		evalZoom()

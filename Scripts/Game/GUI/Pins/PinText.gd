@@ -1,3 +1,4 @@
+@icon("res://EditorIcons/pinText.svg")
 extends ScreenPin
 class_name TextPin
 
@@ -23,3 +24,8 @@ func setColor(
 
 var textSize : int :
 	set(s): label.add_theme_font_size_override('font_size', s)
+
+const TrackableProps = [
+		^":text",
+		
+	]

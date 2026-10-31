@@ -49,7 +49,6 @@ script = ExtResource("2_since")
 metadata/_custom_type_script = "uid://chahj6p5gtbru"
 
 [node name="DebugPin" parent="." unique_id=1954077161 instance=ExtResource("5_hemg3")]
-sticky = false
 
 [node name="Cargo Shiplet" parent="." unique_id=847024505 instance=ExtResource("1_b6f2e")]
 

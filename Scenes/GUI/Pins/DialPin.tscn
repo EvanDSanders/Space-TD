@@ -13,4 +13,3 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tva3j")
-sticky = false

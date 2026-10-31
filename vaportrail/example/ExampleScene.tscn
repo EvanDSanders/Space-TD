@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://duuj8y4ltnxx4"]
+[gd_scene format=3 uid="uid://duuj8y4ltnxx4"]
 
-[ext_resource type="Script" uid="uid://dbvaxllvh5a5m" path="res://addons/vaportrail/example/example_scene.gd" id="1_2hso6"]
-[ext_resource type="Texture2D" uid="uid://gn7hoa3umle6" path="res://addons/vaportrail/example/tr0n.png" id="1_6iu73"]
-[ext_resource type="Texture2D" uid="uid://6hiavd5uxq8r" path="res://addons/vaportrail/example/normal.png" id="2_m823o"]
-[ext_resource type="Script" uid="uid://ck8eb0fy28vat" path="res://addons/vaportrail/example/Camera.gd" id="3_tpcue"]
-[ext_resource type="Texture2D" uid="uid://cwt2x4v85inl2" path="res://addons/vaportrail/example/vaportrail.png" id="4_romn7"]
-[ext_resource type="Material" uid="uid://d2t24uwhp8nwq" path="res://addons/vaportrail/example/Trail.tres" id="5_romn7"]
+[ext_resource type="Script" uid="uid://dbvaxllvh5a5m" path="res://vaportrail/example/example_scene.gd" id="1_2hso6"]
+[ext_resource type="Texture2D" uid="uid://gn7hoa3umle6" path="res://vaportrail/example/tr0n.png" id="1_6iu73"]
+[ext_resource type="Texture2D" uid="uid://6hiavd5uxq8r" path="res://vaportrail/example/normal.png" id="2_m823o"]
+[ext_resource type="Script" uid="uid://ck8eb0fy28vat" path="res://vaportrail/example/Camera.gd" id="3_tpcue"]
+[ext_resource type="Texture2D" uid="uid://cwt2x4v85inl2" path="res://vaportrail/example/vaportrail.png" id="4_romn7"]
+[ext_resource type="Material" uid="uid://d2t24uwhp8nwq" path="res://vaportrail/example/Trail.tres" id="5_romn7"]
 
 [sub_resource type="Animation" id="Animation_f5fpc"]
 resource_name = "Go!"
@@ -164,30 +164,28 @@ albedo_texture = ExtResource("4_romn7")
 material = SubResource("StandardMaterial3D_ntwqt")
 size = Vector2(10, 10)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=862322141]
 script = ExtResource("1_2hso6")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_qss24")
-}
-autoplay = "Go!"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1868251396]
+libraries/ = SubResource("AnimationLibrary_qss24")
+autoplay = &"Go!"
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1544691719]
 transform = Transform3D(0.728144, 0.439867, -0.525665, 0, 0.766919, 0.641744, 0.685425, -0.467282, 0.558427, 0, 0.751038, 0.79343)
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="Path3D" type="Path3D" parent="." unique_id=1582421234]
 curve = SubResource("Curve3D_1cqmv")
 metadata/_edit_group_ = true
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.818762, 0.022474293, 0.57367903, -9.313142e-10, 0.99921066, -0.03914612, -0.57411736, 0.03205111, 0.8181369, -1.27339, 0.403995, 0.598389)
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1622488358]
+transform = Transform3D(0.818762, 0.022474289, 0.573679, -9.313142e-10, 0.9992106, -0.03914612, -0.5741173, 0.032051105, 0.8181369, -1.27339, 0.403995, 0.598389)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=1440516060]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, -1.8626451e-09, 0, 1.8626451e-09, 1.0000001, 0, 0, 0)
 mesh = SubResource("BoxMesh_job12")
 
-[node name="Tr0n" type="VaporTrail" parent="Path3D/PathFollow3D/MeshInstance3D"]
+[node name="Tr0n" type="VaporTrail" parent="Path3D/PathFollow3D/MeshInstance3D" unique_id=1100279257]
 config/alignment = 2
 config/num_points = 20
 visual/material = SubResource("StandardMaterial3D_5enqk")
@@ -197,19 +195,19 @@ visual/color_gradient = SubResource("Gradient_dx8xt")
 unique_name_in_owner = true
 transform = Transform3D(1.0000005, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Path3D4" type="Path3D" parent="."]
+[node name="Path3D4" type="Path3D" parent="." unique_id=2020337529]
 transform = Transform3D(0.8359415, -0.5488186, 0, 0.2978388, 0.45365775, -0.83993256, 0.4609706, 0.70213443, 0.5426908, 0, 0.155, 0)
 curve = SubResource("Curve3D_1cqmv")
 metadata/_edit_group_ = true
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D4"]
-transform = Transform3D(0.81876224, 0.022474263, 0.5736792, -9.313144e-10, 0.99920934, -0.039146133, -0.57411754, 0.032051064, 0.8181371, -1.27339, 0.403995, 0.598389)
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D4" unique_id=1848028873]
+transform = Transform3D(0.81876224, 0.02247426, 0.57367915, -9.313144e-10, 0.9992093, -0.039146133, -0.5741175, 0.032051064, 0.8181371, -1.27339, 0.403995, 0.598389)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D4/PathFollow3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D4/PathFollow3D" unique_id=719710081]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, -1.8626451e-09, 0, 1.8626451e-09, 1.0000001, 0, 0, 0)
 mesh = SubResource("BoxMesh_job12")
 
-[node name="Banner" type="VaporTrail" parent="Path3D4/PathFollow3D/MeshInstance3D"]
+[node name="Banner" type="VaporTrail" parent="Path3D4/PathFollow3D/MeshInstance3D" unique_id=778506978]
 config/alignment = 2
 config/num_points = 15
 visual/material = SubResource("StandardMaterial3D_4frb0")
@@ -217,19 +215,19 @@ visual/size = 0.2
 visual/minimum_onscreen_size = 20.0
 transform = Transform3D(1.0000005, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Path3D3" type="Path3D" parent="."]
+[node name="Path3D3" type="Path3D" parent="." unique_id=1876556350]
 transform = Transform3D(-0.22554617, 1.9717872e-08, -0.9742325, -8.742278e-08, -1, 0, -0.9742325, 8.517011e-08, 0.22554617, 0, 0.8261885, 0)
 curve = SubResource("Curve3D_1cqmv")
 metadata/_edit_group_ = true
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D3"]
-transform = Transform3D(0.8187647, 0.0224743, 0.57367986, -9.3131725e-10, 0.999211, -0.039146177, -0.57411927, 0.03205112, 0.8181381, -1.27339, 0.403995, 0.598389)
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D3" unique_id=326817528]
+transform = Transform3D(0.8187647, 0.022474296, 0.5736798, -9.3131725e-10, 0.99921095, -0.039146177, -0.5741192, 0.032051116, 0.8181381, -1.27339, 0.403995, 0.598389)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D3/PathFollow3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D3/PathFollow3D" unique_id=968079820]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, -1.8626451e-09, 0, 1.8626451e-09, 1.0000001, 0, 0, 0)
 mesh = SubResource("BoxMesh_2hso6")
 
-[node name="Vapor" type="VaporTrail" parent="Path3D3/PathFollow3D/MeshInstance3D"]
+[node name="Vapor" type="VaporTrail" parent="Path3D3/PathFollow3D/MeshInstance3D" unique_id=1544162938]
 config/num_points = 60
 config/update_interval = 0.05
 config/randomness = 0.3
@@ -240,28 +238,28 @@ visual/uv_shift = -0.5
 unique_name_in_owner = true
 transform = Transform3D(1.0000005, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Path3D2" type="Path3D" parent="."]
+[node name="Path3D2" type="Path3D" parent="." unique_id=663369649]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.05538, 0)
 curve = SubResource("Curve3D_45udd")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2"]
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2" unique_id=630799332]
 transform = Transform3D(0.08977058, 2.469846e-05, -0.9959514, -6.1730952e-06, 1, 2.4241897e-05, 0.9959514, 3.9719816e-06, 0.08977058, 0, -2.2737368e-13, 3)
 progress = 18.806753
 tilt_enabled = false
 
-[node name="Camera3D" type="Camera3D" parent="Path3D2/PathFollow3D"]
+[node name="Camera3D" type="Camera3D" parent="Path3D2/PathFollow3D" unique_id=1064038289]
 transform = Transform3D(1.00001, 1.49012e-08, -3.72529e-08, -1.49012e-08, 1, 3.72529e-09, -7.45058e-09, -1.86265e-09, 1.00001, 0, 0, 0)
 current = true
 script = ExtResource("3_tpcue")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1862136296]
 environment = SubResource("Environment_72flp")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=215619922]
 wait_time = 0.5
 autostart = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=900801560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3518469, 0)
 mesh = SubResource("PlaneMesh_x2ef2")
 

@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://h744e0rnib5o"]
+
+[ext_resource type="Script" uid="uid://cv18eyexiw56g" path="res://Scripts/Station/ShipConstructionWorker.gd" id="1_7d6au"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pvw56"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_a3r72"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_hdvmk"]
+parameter_name = "Texture2DParameter"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bpubw"]
+source = 5
+
+[sub_resource type="VisualShader" id="VisualShader_jqtv7"]
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_pvw56")
+nodes/fragment/2/position = Vector2(-720, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeVectorDecompose_a3r72")
+nodes/fragment/3/position = Vector2(-320, 106.666664)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_hdvmk")
+nodes/fragment/4/position = Vector2(-346.66666, 320)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_bpubw")
+nodes/fragment/5/position = Vector2(53.333332, 133.33333)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 5, 2, 3, 0, 5, 0, 5, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_3hkn6"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.72516286, 0.8293974, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.99655867, 0.99655867, 0.99655867, 1, 1, 1, 1, 1, 0.023864595, 0.023864595, 0.023864595, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q8uu5"]
+gradient = SubResource("Gradient_3hkn6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_po60y"]
+shader = SubResource("VisualShader_jqtv7")
+shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_q8uu5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07wyj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d6au"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.3531245, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.23913157, 0.23913157, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 12
+corner_detail = 1
+
+[node name="ShipConstructionWorker" type="PanelContainer" unique_id=1054428432]
+material = SubResource("ShaderMaterial_po60y")
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_07wyj")
+script = ExtResource("1_7d6au")
+
+[node name="Control" type="Control" parent="." unique_id=960815108]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control" unique_id=512988595]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = 131.28998
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Control/VBoxContainer2" unique_id=172001553]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="PanelContainer" parent="Control/VBoxContainer2" unique_id=807719881]
+clip_children = 2
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7d6au")
+
+[node name="Label" type="Label" parent="Control/VBoxContainer2/Panel" unique_id=873436848]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5460356, 0.5460356, 1)
+theme_override_colors/font_outline_color = Color(0.5723417, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "CANCEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="Control/VBoxContainer2" unique_id=118943651]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=766548857]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=964760341]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1066979522]
+layout_mode = 2
+text = "Building <A Ship>"
+horizontal_alignment = 1
+
+[node name="Grid" type="VBoxContainer" parent="." unique_id=758850898]
+z_index = -2
+layout_mode = 2
+theme_override_constants/separation = 2

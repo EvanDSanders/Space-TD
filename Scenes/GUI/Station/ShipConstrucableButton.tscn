@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://dp8sb4gij6h2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5fwh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0.46711743, 0.46711743, 0.46711743, 1)
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blebl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color(1, 0.627451, 0.36078432, 1)
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlu5d"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6q4u"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color(1, 0.50416666, 0.14999998, 1)
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b32au"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_blebl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6q4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlu5d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5fwh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35fc6"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.39215687)
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_bottom_right = 6
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_eoje4"]
+Button/styles/disabled = SubResource("StyleBoxFlat_e5fwh")
+Button/styles/hover = SubResource("StyleBoxFlat_blebl")
+Button/styles/normal = SubResource("StyleBoxFlat_nlu5d")
+Button/styles/pressed = SubResource("StyleBoxFlat_n6q4u")
+Panel/styles/panel = SubResource("StyleBoxFlat_b32au")
+TooltipLabel/styles/focus = SubResource("StyleBoxEmpty_blebl")
+TooltipLabel/styles/normal = SubResource("StyleBoxEmpty_n6q4u")
+TooltipPanel/styles/embedded_border = SubResource("StyleBoxEmpty_nlu5d")
+TooltipPanel/styles/embedded_unfocused_border = SubResource("StyleBoxEmpty_e5fwh")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_35fc6")
+
+[sub_resource type="GDScript" id="GDScript_i6sge"]
+script/source = "extends Button
+
+var cost: int
+var data: Dictionary
+var dock: ShipConstructionDock
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if G.StarStation:
+		G.StarStation.crystal.CrystalsChange.connect(eval)
+
+func eval(__=null):
+	self.disabled = G.StarStation.crystal.Crystals < cost or dock.isFull()
+"
+
+[node name="ShipConstrucableButton" type="Button" unique_id=501016106]
+custom_minimum_size = Vector2(50, 75)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Hi!"
+theme = SubResource("Theme_eoje4")
+disabled = true
+script = SubResource("GDScript_i6sge")

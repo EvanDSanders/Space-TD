@@ -45,13 +45,13 @@ func _physics_process(delta: float) -> void:
 				
 	if Target:
 	# If the turret is in range:
-		speed += delta
+		speed += Station.energy.pullFuel(1 * delta) / 1
 	
 		var y : float = 0.
 		var x : float = 0.
 		
 		# Get direction to target
-		var XY = get_heading(Pitch.global_position, 500, Target.global_position, Target.linear_velocity)
+		var XY = get_heading(Pitch.global_position, 2000.0, Target.global_position, Target.linear_velocity)
 		x = XY.x; y = XY.y;
 
 		# Gradually rotate turret by claping angle change
@@ -66,7 +66,8 @@ func _physics_process(delta: float) -> void:
 				#(is_zero_approx(Station.CDown) or Station.CDown < 0) and
 				#Aimed and Station.fireID == self.FlakID   ):
 				( is_equal_approx(speed, speedTarget) or speed >= speedTarget ) and
-				Aimed   ):
+				Aimed and randf() > 0.4 and
+				Station.energy.pullFuel(4) >= 3.5 ):
 			Station.fireID +=1; if Station.fireID > 2: Station.fireID = 0;
 			Station.CDown = Station.coolDown
 			CDown = coolDown
@@ -89,7 +90,7 @@ func _physics_process(delta: float) -> void:
 				randi_range(-1, 1),
 				randi_range(-1, 1),
 			) * .01
-			proj.speed *= 4
+			#proj.speed
 			proj.life = 0.5
 			
 			

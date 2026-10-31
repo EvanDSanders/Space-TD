@@ -41,14 +41,15 @@ func Resources() -> Array[StringName]:
 	return r;
 	
 func Load() -> Binder: 
-		#PackedScene.new().instantiate()
 	print("Level: ", level)
 	var world = load(level).instantiate()
-	G.get_tree().change_scene_to_node(world)
+	
 	G.Main = world
-	G.Cursor = world.get_node("Cursor")
+	
+	G.get_tree().change_scene_to_node(world)
+	G.Cursor = G.Main.get_node("Cursor")
 	if isMain:
-		G.StarShip = world.get_node("Friendlies/The Star Ship")
+		G.StarShip = G.Main.get_node("Friendlies/The Star Ship")
 	
 	match levelType:
 		LevelType.MINING:
@@ -58,9 +59,8 @@ func Load() -> Binder:
 		LevelType.SCRIPTED:
 			G.StarShip.ShipMode = TheStarShip.ShipModes.Warp
 		LevelType.MINING_ALT:
-			G.StarStation = world.get_node("Friendlies/Prospector")
+			G.StarStation = G.Main.get_node("Friendlies/Prospector")
 
 	return null
-	#return world
 
 func Bound(_none:Node) -> Node: return null

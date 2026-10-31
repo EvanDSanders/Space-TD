@@ -8,7 +8,21 @@ class_name CrystalStore
 
 signal CrystalsChange(int)
 
+var Meter : MeterPin
+@onready var Parent = $".."
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Meter = Pins.Register(Parent)
+	Meter.setColor(Color.from_hsv(0.751, 1.0, 1.0, 1.0), Color.from_hsv(0.748, 1.0, 0.2, 1.0))
+	Meter.name = "CrystalMeterPin"
+	Meter.VOffset = 6
+	Meter.max = CrystalsMax
+	Meter.value = Crystals
+	CrystalsChange.connect(func(c): Meter.value = c)
+	
+	if Parent.has_node("CursorDialogue"):
+		Parent.get_node("CursorDialogue").attachMeter(Meter)
 
 func pullCrystal(charge: int) -> bool:
 	if charge > Crystals: return false
@@ -23,9 +37,6 @@ func pushCrystal(amt: int):
 	
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

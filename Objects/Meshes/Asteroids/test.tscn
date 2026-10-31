@@ -1,259 +1,61 @@
 [gd_scene format=3 uid="uid://dgwldyicd51yj"]
 
 [ext_resource type="PackedScene" uid="uid://c1w2ifaux16po" path="res://Scenes/Friendlies/Asteroid.tscn" id="1_pocxb"]
-[ext_resource type="Script" uid="uid://c7im3jsxlolgu" path="res://Scripts/Friendlies/AsteroidGen.gd" id="2_imcus"]
-[ext_resource type="Material" uid="uid://te0r8dwkwnu8" path="res://Materials/Friendlies/AsteroidMaterial.tres" id="3_71mpw"]
-
-[sub_resource type="GDScript" id="GDScript_wrj0t"]
-script/source = "@tool
-extends EditorScript
-
-
-
-func _run() -> void:
-	for each in get_scene().get_children():
-		each.queue_free()
-	var l = preload(\"res://Scenes/Friendlies/Asteroid.tscn\")
-
-	var dist = 0
-	for x in range(2, 21):
-		var a : Node3D = l.instantiate()
-		a._debugSize = x
-		
-		get_scene().add_child(a)
-		
-		a.position.x = dist
-		a.owner = get_scene()
-		
-		dist += x*2.6
-"
 
 [node name="Node3D" type="Node3D" unique_id=675275779]
-script = SubResource("GDScript_wrj0t")
 
-[node name="@RigidBody3D@241945" type="RigidBody3D" parent="." unique_id=304374046 instance=ExtResource("1_pocxb")]
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
+[node name="@RigidBody3D@241945" parent="." unique_id=304374046 instance=ExtResource("1_pocxb")]
 
-[node name="@RigidBody3D@241946" type="RigidBody3D" parent="." unique_id=1106939555 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241946" parent="." unique_id=1106939555 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241947" type="RigidBody3D" parent="." unique_id=985610815 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241947" parent="." unique_id=985610815 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241948" type="RigidBody3D" parent="." unique_id=1294348919 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241948" parent="." unique_id=1294348919 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241949" type="RigidBody3D" parent="." unique_id=1209952030 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241949" parent="." unique_id=1209952030 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.4, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241950" type="RigidBody3D" parent="." unique_id=1622800451 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241950" parent="." unique_id=1622800451 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241951" type="RigidBody3D" parent="." unique_id=2081031572 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241951" parent="." unique_id=2081031572 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.2, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241952" type="RigidBody3D" parent="." unique_id=494646340 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241952" parent="." unique_id=494646340 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241953" type="RigidBody3D" parent="." unique_id=423814508 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241953" parent="." unique_id=423814508 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.4, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241954" type="RigidBody3D" parent="." unique_id=1355863030 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241954" parent="." unique_id=1355863030 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140.4, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241955" type="RigidBody3D" parent="." unique_id=1341190519 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241955" parent="." unique_id=1341190519 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 169, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241956" type="RigidBody3D" parent="." unique_id=1759365227 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241956" parent="." unique_id=1759365227 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.2, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241957" type="RigidBody3D" parent="." unique_id=429590427 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241957" parent="." unique_id=429590427 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241958" type="RigidBody3D" parent="." unique_id=1548595856 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241958" parent="." unique_id=1548595856 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 270.4, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241959" type="RigidBody3D" parent="." unique_id=1392222838 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241959" parent="." unique_id=1392222838 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 309.4, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241960" type="RigidBody3D" parent="." unique_id=565805541 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241960" parent="." unique_id=565805541 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 351, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241961" type="RigidBody3D" parent="." unique_id=1217529708 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241961" parent="." unique_id=1217529708 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 395.2, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241962" type="RigidBody3D" parent="." unique_id=1173929967 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241962" parent="." unique_id=1173929967 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 442, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")
 
-[node name="@RigidBody3D@241963" type="RigidBody3D" parent="." unique_id=790254490 instance=ExtResource("1_pocxb")]
+[node name="@RigidBody3D@241963" parent="." unique_id=790254490 instance=ExtResource("1_pocxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 491.4, 0, 0)
-collision_layer = 2197
-collision_mask = 21
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-angular_damp = 2.0
-script = ExtResource("2_imcus")
-CrystalsMax = 100000
-Mat = ExtResource("3_71mpw")

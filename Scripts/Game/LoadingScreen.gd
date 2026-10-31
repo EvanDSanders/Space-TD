@@ -33,8 +33,6 @@ func task(doing:String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	Marker.offset_transform_rotation += delta
-	
 	BarEffectHub.global_position = BarEffectMount.global_position
 	
 	TravelEffect.process_material.emission_shape_scale.y = self.size.y / 2
@@ -51,7 +49,7 @@ func _process(delta: float) -> void:
 		done = true
 		targ = self.size.x + 500
 		Title.text = "Yay!"
-		$"../..".Complete()
+		$"../../..".Complete()
 	
 	Gauge.size.x = clamp(Ship.global_position.x - Gauge.global_position.x, 0, Meter.size.x)
 	Gauge.visible = Gauge.size.x >= 10

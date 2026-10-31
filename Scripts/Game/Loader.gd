@@ -18,11 +18,15 @@ var State : LoadingState = LoadingState.IDLE
 
 
 
+func LoadDisk(_level:String):
+	Load( load(_level) )
 
-func Load(_level:String):
+func Load(_level:GameLevelResource):
 	loaded = _level
-	var level:LoadableResource = load(_level)
-	assert( is_instance_valid(level), "Failed to Load Level!" )
+	#var level:LoadableResource = load(_level)
+	var level:GameLevelResource = _level
+	assert( is_instance_valid(level), "Failed to Load Level! (not valid)" )
+	assert( level is GameLevelResource, "Failed to Load Level! (not GameLevelResource)" )
 	
 	State = LoadingState.INIT
 	Base = loadingScreen.instantiate()
@@ -30,6 +34,8 @@ func Load(_level:String):
 	
 	cacheKeeper.clear()
 	currentLoading = []
+	
+	G.setGameSpeed(1.0)
 	
 	Main = Base.Main
 	
@@ -71,10 +77,11 @@ func _ready() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 
 
-var loaded : StringName
+#var loaded : StringName
+var loaded : GameLevelResource
 
 func Restart():  Load(loaded)
-func MainMenu(): Load("res://Resources/TitleScreen.tres")
+func MainMenu(): LoadDisk("res://Resources/TitleScreen.tres")
 
 
 
@@ -160,13 +167,17 @@ func _physics_process(delta: float) -> void:
 					progress(1.0)
 					State = LoadingState.IDLE
 					get_tree().paused = false
+					G.setGameSpeed(1.0)
+					
 					
 					loadingPathsTotal.clear()
 					loadingPaths.clear()
 					loadingTasks.clear()
 					currentLoading.clear()
 			
-		LoadingState.IDLE: pass
+		LoadingState.IDLE: 
+			if Input.is_action_just_pressed("R"):
+				Restart()
 		
 	
 	

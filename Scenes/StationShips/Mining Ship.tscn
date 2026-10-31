@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://dcn4onmgbx0f5"]
+
+[ext_resource type="Script" uid="uid://dpkgx166uquch" path="res://Scripts/Friendlies/MiningShip.gd" id="1_8jmvs"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="1_n1eme"]
+[ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="2_8jmvs"]
+[ext_resource type="Script" uid="uid://7ol4h6mlsrlw" path="res://Scripts/Resources/Ships/ShipAI.gd" id="3_1nsqk"]
+[ext_resource type="Script" uid="uid://b12614lyhsf3s" path="res://Scripts/Resources/Ships/ShipDecoratorFighter.gd" id="4_8jcbt"]
+[ext_resource type="Script" uid="uid://ditbwu2d2t3si" path="res://Scripts/Resources/Ships/ShipUpCorrection.gd" id="5_1nsqk"]
+[ext_resource type="Script" uid="uid://ce4qf3q713jub" path="res://Scripts/Common/EnergyStore.gd" id="5_dsmg1"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="6_53r6m"]
+[ext_resource type="Script" uid="uid://ctvund3t471s0" path="res://Scripts/Friendlies/TurretController.gd" id="7_esjlv"]
+[ext_resource type="Script" uid="uid://dcfpflhjqvdd1" path="res://Scripts/Resources/Turrets/TurretAmmoContinuous.gd" id="8_3s3qb"]
+[ext_resource type="Script" uid="uid://chahj6p5gtbru" path="res://Scripts/Common/CrystalStore.gd" id="9_8jcbt"]
+[ext_resource type="Script" uid="uid://dic0esm2c4f5m" path="res://Scripts/Resources/Turrets/TurretReactRecoil.gd" id="10_1nsqk"]
+[ext_resource type="PackedScene" uid="uid://bkk3d2ht1nby8" path="res://Objects/Friendlies/Mining Ship.glb" id="11_okl0s"]
+[ext_resource type="PackedScene" uid="uid://2pgf2gdbc31m" path="res://Scenes/Projectiles/MiningProjectile.tscn" id="12_1nsqk"]
+[ext_resource type="Script" uid="uid://cpv1c15l2fdhu" path="res://Scripts/Resources/Turrets/TurretOnHitMiner.gd" id="15_53r6m"]
+
+[sub_resource type="Resource" id="Resource_o1fnn"]
+resource_local_to_scene = true
+script = ExtResource("3_1nsqk")
+Distance = 25
+ThrustP = 0.7
+ThrustD = 0.8
+MaxSpeed = 50.0
+StrafeRange = 1.0
+StrafeRate = 1.0
+StrafeP = 0.1
+StrafeD = 1.0
+metadata/_custom_type_script = "uid://7ol4h6mlsrlw"
+
+[sub_resource type="Resource" id="Resource_8jcbt"]
+resource_local_to_scene = true
+script = ExtResource("5_1nsqk")
+P = 50
+D = 30
+metadata/_custom_type_script = "uid://ditbwu2d2t3si"
+
+[sub_resource type="Resource" id="Resource_ffvl8"]
+resource_local_to_scene = true
+script = ExtResource("4_8jcbt")
+metadata/_custom_type_script = "uid://b12614lyhsf3s"
+
+[sub_resource type="Resource" id="Resource_w8tuh"]
+resource_local_to_scene = true
+script = ExtResource("8_3s3qb")
+amount = 4.0
+metadata/_custom_type_script = "uid://dcfpflhjqvdd1"
+
+[sub_resource type="Resource" id="Resource_8jmvs"]
+resource_local_to_scene = true
+script = ExtResource("10_1nsqk")
+coolDown = 0.3
+PushDistance = 0.0
+metadata/_custom_type_script = "uid://dic0esm2c4f5m"
+
+[sub_resource type="Resource" id="Resource_dsmg1"]
+resource_local_to_scene = true
+script = ExtResource("15_53r6m")
+metadata/_custom_type_script = "uid://cpv1c15l2fdhu"
+
+[sub_resource type="Resource" id="Resource_1nsqk"]
+resource_local_to_scene = true
+script = ExtResource("10_1nsqk")
+coolDown = 0.3
+PushDistance = 0.0
+metadata/_custom_type_script = "uid://dic0esm2c4f5m"
+
+[sub_resource type="Resource" id="Resource_53r6m"]
+resource_local_to_scene = true
+script = ExtResource("15_53r6m")
+metadata/_custom_type_script = "uid://cpv1c15l2fdhu"
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1nsqk"]
+points = PackedVector3Array(1.7352982, 1.1971705, 0.17480707, 1.7352982, -0.7867443, 0.17480707, 1.6310036, 0.478644, -2.5886207, 1.357188, 0.44076347, -3.8646162, 1.1231198, 1.8742087, 0.17480707, 1.1159856, 1.8742087, 2.3408031, 1.7278244, 1.1971705, 2.3408031, 1.1231198, -1.1968155, 0.17480707, 0.9957242, -1.1968155, -3.2659554, 1.5977111, -0.78764623, -3.2634969, 1.7278244, -0.7867443, 2.3408031, 1.1159856, -1.1968155, 2.3408031, 1.5956726, 0.029489756, -2.9365077, 1.3344266, 0.01746416, -4.1448927, 1.0069349, -0.00057411194, -5.2291203, 1.0894873, 0.403785, -4.6820893, 0.6430931, 0.71434474, -4.9119654, -1.1234596, 1.8742087, 0.17480707, -1.1163255, 1.8742087, 2.3408031, -0.00033974648, 1.3919842, 6.1405163, 1.0928845, 1.3318565, 6.0225058, 1.4798276, 0.9704888, 5.8270493, 1.4798276, 0.4948784, 6.3126163, -0.996064, -1.1968155, -3.2659554, 0.6430931, -0.8023775, -5.3913856, 1.1146269, -0.49422288, -4.9353213, 1.3772316, -0.49452347, -4.158415, 1.4798276, -0.24589527, 5.3955717, 1.4798276, -0.6466467, 4.4551697, 1.0928845, -0.9499911, 4.7243824, -0.00033974648, -1.0104195, 4.842394, -1.1163255, -1.1968155, 2.3408031, 1.357188, -0.26694, -4.1559563, 1.0279977, -0.28016812, -5.2463303, 0.6430931, 0.0009291172, -5.8781815, -0.643433, 0.71434474, -4.9119654, -1.3575279, 0.44076347, -3.8646162, -1.7352984, 1.1971705, 0.17480707, -1.7281642, 1.1971705, 2.3408031, -1.4801674, 0.9704888, 5.8270493, -1.0932244, 1.3318565, 6.0225058, -0.00033974648, 0.4948784, 6.680172, 1.0928845, 0.4948784, 6.509301, 1.0928845, -0.4752826, 5.5922565, -1.1234596, -1.1968155, 0.17480707, -1.7352984, -0.7867443, 0.17480707, -1.5980508, -0.78764623, -3.2634969, -0.643433, -0.8023775, -5.3913856, 0.6430931, -0.48400116, -5.8523664, -0.00033974648, -0.4752826, 5.7631264, -1.0932244, -0.4752826, 5.5922565, -1.0932244, -0.9499911, 4.7243824, -1.7281642, -0.7867443, 2.3408031, -0.643433, 0.0009291172, -5.8781815, -1.0898272, 0.403785, -4.6820893, -1.0072749, -0.00057411194, -5.2291203, -1.3347665, 0.01746416, -4.1448927, -1.6313436, 0.478644, -2.5886207, -1.4801674, 0.4948784, 6.3126163, -1.0932244, 0.4948784, 6.509301, -1.5960125, 0.029489756, -2.9365077, -1.3775715, -0.49452347, -4.158415, -1.1149666, -0.49422288, -4.9353213, -0.643433, -0.48400116, -5.8523664, -1.4801674, -0.24589527, 5.3955717, -1.4801674, -0.6466467, 4.4551697, -1.0283376, -0.28016812, -5.2463303, -1.3575279, -0.26694, -4.1559563)
+
+[node name="Mining Ship" type="RigidBody3D" unique_id=1466576044]
+mass = 2.0
+freeze_mode = 1
+script = ExtResource("1_8jmvs")
+ViewerName = "Mining Ship"
+
+[node name="Destructible" type="Node" parent="." unique_id=118308505]
+script = ExtResource("1_n1eme")
+HPMax = 100.0
+TargetType = 0
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ShipNavigator" type="Node3D" parent="." unique_id=796261713 node_paths=PackedStringArray("Parent")]
+script = ExtResource("2_8jmvs")
+TargType = 1
+Parent = NodePath("..")
+AI = SubResource("Resource_o1fnn")
+UpRighter = SubResource("Resource_8jcbt")
+Decorator = SubResource("Resource_ffvl8")
+metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="EnergyStore" type="Node" parent="." unique_id=32408947]
+script = ExtResource("5_dsmg1")
+EnergyMax = 50.0
+metadata/_custom_type_script = "uid://ce4qf3q713jub"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=379725235]
+script = ExtResource("6_53r6m")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
+
+[node name="CrystalStore" type="Node" parent="." unique_id=1786440012]
+script = ExtResource("9_8jcbt")
+CrystalsMax = 200
+metadata/_custom_type_script = "uid://chahj6p5gtbru"
+
+[node name="TurretControllerL" type="Node3D" parent="." unique_id=1323636105 node_paths=PackedStringArray("Parent", "Store", "Yaw", "Pitch", "Reactor", "Emiter")]
+script = ExtResource("7_esjlv")
+Parent = NodePath("..")
+Store = NodePath("../EnergyStore")
+Yaw = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser L Y")
+Pitch = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser L Y/Mining Ship Laser L Y P")
+Reactor = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser L Y/Mining Ship Laser L Y P/Mining Ship Laser L Y R")
+Emiter = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser L Y/Mining Ship Laser L Y P/Mining Ship Laser L Y R")
+IdleRotationRange = 0.0
+RotationRange = Vector2(30, 20)
+RotationRate = 10.0
+consumer = SubResource("Resource_w8tuh")
+reaction = SubResource("Resource_8jmvs")
+projectile = ExtResource("12_1nsqk")
+VelocityInherit = 1.0
+onHit = SubResource("Resource_dsmg1")
+
+[node name="TurretControllerR" type="Node3D" parent="." unique_id=1494578838 node_paths=PackedStringArray("Parent", "Store", "Yaw", "Pitch", "Reactor", "Emiter")]
+script = ExtResource("7_esjlv")
+Parent = NodePath("..")
+Store = NodePath("../EnergyStore")
+Yaw = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser R Y")
+Pitch = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser R Y/Mining Ship Laser R Y P")
+Reactor = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser R Y/Mining Ship Laser R Y P/Mining Ship Laser R Y R")
+Emiter = NodePath("../Mining Ship/Origin Mining Ship/Mining Ship Laser R Y/Mining Ship Laser R Y P/Mining Ship Laser R Y R")
+IdleRotationRange = 0.0
+RotationRange = Vector2(30, 20)
+RotationRate = 10.0
+consumer = SubResource("Resource_w8tuh")
+reaction = SubResource("Resource_1nsqk")
+projectile = ExtResource("12_1nsqk")
+VelocityInherit = 1.0
+onHit = SubResource("Resource_53r6m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=344453620]
+shape = SubResource("ConvexPolygonShape3D_1nsqk")
+
+[node name="Mining Ship" parent="." unique_id=2004379962 instance=ExtResource("11_okl0s")]
+
+[editable path="Mining Ship"]
+[editable path="Mining Ship/Origin Mining Ship/Mining Ship Engine L/StationShip Engine"]
+[editable path="Mining Ship/Origin Mining Ship/Mining Ship Engine L/StationShip Engine/StationShip Engine"]
+[editable path="Mining Ship/Origin Mining Ship/Mining Ship Engine R/StationShip Engine"]
+[editable path="Mining Ship/Origin Mining Ship/Mining Ship Engine R/StationShip Engine/StationShip Engine"]

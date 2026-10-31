@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://clhxh7r3ovjq" path="res://Scripts/Game/LoadingScreen.gd" id="1_al53q"]
 [ext_resource type="Script" uid="uid://b1vbwn8qerpct" path="res://Scripts/Game/GUI/LoadingScreen.UI.gd" id="1_idxsi"]
-[ext_resource type="Texture2D" uid="uid://c5h7kiryrvb2n" path="res://Vectors/LoaderMarkerBit.svg" id="2_idxsi"]
 [ext_resource type="Texture2D" uid="uid://k3d7cvoxvsds" path="res://Vectors/LoaderShip.svg" id="3_leeoc"]
 [ext_resource type="Texture2D" uid="uid://oxnglhj76ybb" path="res://Vectors/LoaderShipTop.svg" id="4_ewrsg"]
 [ext_resource type="PackedScene" uid="uid://bujfy8q1hjm6t" path="res://Scenes/GUI/LoaderCrystal.tscn" id="5_l3db3"]
@@ -104,8 +103,8 @@ nodes/fragment/connections = PackedInt32Array(6, 0, 7, 0, 7, 0, 5, 0, 10, 2, 11,
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gx36i"]
 shader = SubResource("VisualShader_640am")
-shader_parameter/offset = PackedFloat32Array(-0.84278804, 0.78939706, 0.27578148, -0.54807514, -0.24632388, 0.09260287, 0.1290392, 0.040835924, -0.24289481, 0.23842531, 0.43172744, 0.16396607, -0.27534425, -0.06725584, -0.24916235, 0.47961974, -0.1949529, -0.50726134, -0.77442825, -0.052111566, 0.19748321, 0.36972988, 0.19345725, -0.9204216, -0.23395333, 0.7001423, -0.12453838, -0.9907204, 0.1479144, 0.69978607, -0.22065829, -0.41429487, 0.860457, -0.07162829, 0.76347786, -0.93701625, 0.5251084, 0.7241421, 0.42829216, 0.591928, 0.42329085, -0.29234615, -0.9724869, -0.26772183, -0.2872819, -0.8962246, 0.5015322, -0.18504643, 0.43360752, -0.27411968)
-shader_parameter/phase = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+shader_parameter/offset = PackedFloat32Array(0.6997646, 0.58304685, -0.80337864, -0.95681113, 0.80634564, 0.9629124, -0.3492274, -0.7486325, -0.12946041, 0.7657058, -0.027081387, -0.1410758, 0.24250789, -0.22883809, 0.67237675, 0.09719924, 0.006545665, 0.8309986, 0.9457541, 0.31402954, -0.5416325, -0.41301656, 0.2223679, -0.1817964, 0.3650643, -0.40654787, 0.8700986, 0.72886854, -0.48861396, -0.20788765, -0.4797995, -0.029821156, -0.41452014, -0.5027037, -0.72968036, -0.7258121, 0.43286794, 0.6133583, 0.5972346, -0.26327986, -0.39861533, -0.5454597, 0.9676867, -0.2549669, -0.70748556, -0.119419575, 0.051729135, 0.24232845, 0.43847442, -0.58806145)
+shader_parameter/phase = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7.704911e-05, 0, 0, 0, 0, 0.009748611, 0.42214614, 0.4317556, 0, 0.22251995)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoje4"]
 bg_color = Color(0, 0, 0, 1)
@@ -258,7 +257,11 @@ initial_velocity_min = 1500.0
 initial_velocity_max = 1500.0
 gravity = Vector3(0, 0, 0)
 
-[node name="LoadingScreen" type="SubViewportContainer" unique_id=55450025]
+[node name="LoadingScreen" type="CanvasLayer" unique_id=1808899457]
+layer = 20
+script = ExtResource("1_idxsi")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=55450025]
 process_mode = 3
 z_index = 4050
 material = SubResource("ShaderMaterial_gx36i")
@@ -267,14 +270,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_idxsi")
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1012950136]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1012950136]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+size = Vector2i(1728, 972)
 render_target_update_mode = 4
 
-[node name="Loading Screen" type="Control" parent="SubViewport" unique_id=1370756222]
+[node name="Loading Screen" type="Control" parent="SubViewportContainer/SubViewport" unique_id=1370756222]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -283,7 +285,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_al53q")
 
-[node name="PanelContainer" type="PanelContainer" parent="SubViewport/Loading Screen" unique_id=236484301]
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport/Loading Screen" unique_id=236484301]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -292,7 +294,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_eoje4")
 
-[node name="Control" type="MarginContainer" parent="SubViewport/Loading Screen/PanelContainer" unique_id=1942870093]
+[node name="Control" type="MarginContainer" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer" unique_id=1942870093]
 z_index = 20
 layout_mode = 2
 theme = SubResource("Theme_eoje4")
@@ -301,25 +303,25 @@ theme_override_constants/margin_top = 160
 theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 160
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/Loading Screen/PanelContainer/Control" unique_id=1015916604]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control" unique_id=1015916604]
 layout_mode = 2
 alignment = 1
 
-[node name="VSplitContainer3" type="VSplitContainer" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=508917156]
+[node name="VSplitContainer3" type="VSplitContainer" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=508917156]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 4
 dragging_enabled = false
 dragger_visibility = 1
 
-[node name="LoadBar" type="Panel" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=849119463]
+[node name="LoadBar" type="Panel" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=849119463]
 z_index = 51
 z_as_relative = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fos0i")
 
-[node name="BarEffectMount" type="Control" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar" unique_id=1361963161]
+[node name="BarEffectMount" type="Control" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar" unique_id=1361963161]
 custom_maximum_size = Vector2(0, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -332,7 +334,7 @@ offset_right = -106.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Fill" type="Panel" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar" unique_id=1181153143]
+[node name="Fill" type="Panel" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar" unique_id=1181153143]
 clip_children = 2
 z_index = 50
 z_as_relative = false
@@ -342,7 +344,7 @@ offset_right = 726.0
 offset_bottom = 20.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cm0pq")
 
-[node name="BarEffectHub" type="Control" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Fill" unique_id=583954571]
+[node name="BarEffectHub" type="Control" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Fill" unique_id=583954571]
 custom_maximum_size = Vector2(0, 0)
 anchors_preset = 0
 offset_left = 834.0
@@ -350,7 +352,7 @@ offset_top = 10.0
 offset_right = 834.0
 offset_bottom = 10.0
 
-[node name="BarEffect" type="GPUParticles2D" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Fill/BarEffectHub" unique_id=756890813]
+[node name="BarEffect" type="GPUParticles2D" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Fill/BarEffectHub" unique_id=756890813]
 position = Vector2(391, 0)
 amount = 16
 texture = SubResource("GradientTexture1D_lgr22")
@@ -361,7 +363,7 @@ fixed_fps = 60
 visibility_rect = Rect2(-3529.0474, -837.2237, 4041.5522, 1674.3077)
 process_material = SubResource("ParticleProcessMaterial_trn2v")
 
-[node name="Fill2" type="Panel" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Fill" unique_id=1798459805]
+[node name="Fill2" type="Panel" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Fill" unique_id=1798459805]
 z_index = 50
 z_as_relative = false
 custom_minimum_size = Vector2(0, 20)
@@ -373,118 +375,37 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3dxm6")
 
-[node name="Marker" type="Control" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar" unique_id=2032403310]
-visible = false
-custom_maximum_size = Vector2(10, 20)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_bottom = 10.0
-grow_horizontal = 0
-grow_vertical = 2
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.63, 0.63)
-offset_transform_pivot = Vector2(-5, 0)
-
-[node name="TextureRect" type="TextureRect" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Marker" unique_id=168862687]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -22.5
-offset_right = 114.0
-offset_bottom = 22.5
-grow_vertical = 2
-pivot_offset = Vector2(0, 22.5)
-offset_transform_enabled = true
-offset_transform_position = Vector2(-32, 0)
-offset_transform_scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_idxsi")
-
-[node name="TextureRect2" type="TextureRect" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Marker" unique_id=132023146]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -22.5
-offset_right = 114.0
-offset_bottom = 22.5
-grow_vertical = 2
-rotation = 1.5707964
-pivot_offset = Vector2(0, 22.5)
-offset_transform_enabled = true
-offset_transform_position = Vector2(-32, 0)
-offset_transform_scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_idxsi")
-
-[node name="TextureRect3" type="TextureRect" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Marker" unique_id=903592557]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -22.5
-offset_right = 114.0
-offset_bottom = 22.5
-grow_vertical = 2
-rotation = 3.1415927
-pivot_offset = Vector2(0, 22.5)
-offset_transform_enabled = true
-offset_transform_position = Vector2(-32, 0)
-offset_transform_scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_idxsi")
-
-[node name="TextureRect4" type="TextureRect" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer/LoadBar/Marker" unique_id=595731603]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -22.5
-offset_right = 114.0
-offset_bottom = 22.5
-grow_vertical = 2
-rotation = 4.712389
-pivot_offset = Vector2(0, 22.5)
-offset_transform_enabled = true
-offset_transform_position = Vector2(-32, 0)
-offset_transform_scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_idxsi")
-
-[node name="VSplitContainer" type="VSplitContainer" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=549457762]
+[node name="VSplitContainer" type="VSplitContainer" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=549457762]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 4
 dragging_enabled = false
 dragger_visibility = 1
 
-[node name="Title" type="Label" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=548783065]
+[node name="Title" type="Label" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=548783065]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Loading"
 horizontal_alignment = 1
 
-[node name="Text" type="Label" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=666823018]
+[node name="Text" type="Label" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=666823018]
 layout_mode = 2
 text = "0%"
 horizontal_alignment = 1
 
-[node name="VSplitContainer2" type="VSplitContainer" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=1771186421]
+[node name="VSplitContainer2" type="VSplitContainer" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=1771186421]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 3
 dragging_enabled = false
 dragger_visibility = 1
 
-[node name="Info" type="Label" parent="SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=130270002]
+[node name="Info" type="Label" parent="SubViewportContainer/SubViewport/Loading Screen/PanelContainer/Control/VBoxContainer" unique_id=130270002]
 layout_mode = 2
 text = "Doing a Thing"
 horizontal_alignment = 1
 
-[node name="StarShip" type="Control" parent="SubViewport/Loading Screen" unique_id=1434997826]
+[node name="StarShip" type="Control" parent="SubViewportContainer/SubViewport/Loading Screen" unique_id=1434997826]
 z_index = 100
 custom_maximum_size = Vector2(0, 0)
 anchors_preset = 0
@@ -494,7 +415,7 @@ offset_right = -172.0
 offset_bottom = 223.0
 scale = Vector2(0.25, 0.25)
 
-[node name="Base" type="TextureRect" parent="SubViewport/Loading Screen/StarShip" unique_id=1622476063]
+[node name="Base" type="TextureRect" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip" unique_id=1622476063]
 z_index = 50
 use_parent_material = true
 layout_mode = 1
@@ -512,7 +433,7 @@ grow_vertical = 2
 texture = ExtResource("3_leeoc")
 stretch_mode = 4
 
-[node name="Engines" type="TextureRect" parent="SubViewport/Loading Screen/StarShip/Base" unique_id=1308331213]
+[node name="Engines" type="TextureRect" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base" unique_id=1308331213]
 z_index = 100
 use_parent_material = true
 layout_mode = 0
@@ -521,7 +442,7 @@ offset_bottom = 667.0
 texture = ExtResource("4_ewrsg")
 stretch_mode = 4
 
-[node name="EngineHub" type="Control" parent="SubViewport/Loading Screen/StarShip/Base" unique_id=1687544657]
+[node name="EngineHub" type="Control" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base" unique_id=1687544657]
 use_parent_material = true
 custom_maximum_size = Vector2(0, 0)
 anchors_preset = 0
@@ -531,43 +452,43 @@ offset_right = 262.57846
 offset_bottom = 145.26483
 script = SubResource("GDScript_eoje4")
 
-[node name="CrystalA" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=679107491 instance=ExtResource("5_l3db3")]
+[node name="CrystalA" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=679107491 instance=ExtResource("5_l3db3")]
 z_index = 99
 layout_mode = 1
 offset_left = 0.0
-offset_top = 18.034395
+offset_top = -38.425037
 offset_right = 0.0
-offset_bottom = 18.034395
-rotation = -0.2421962
+offset_bottom = -38.425037
+rotation = -0.15390661
 
-[node name="CrystalB" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=866841417 instance=ExtResource("5_l3db3")]
+[node name="CrystalB" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=866841417 instance=ExtResource("5_l3db3")]
+z_index = 101
+layout_mode = 1
+offset_left = 0.0
+offset_top = -27.9243
+offset_right = 0.0
+offset_bottom = -27.9243
+rotation = 0.21178214
+
+[node name="CrystalC" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=991312676 instance=ExtResource("5_l3db3")]
+z_index = 101
+layout_mode = 1
+offset_left = 0.0
+offset_top = 38.425037
+offset_right = 0.0
+offset_bottom = 38.425037
+rotation = 0.15390661
+
+[node name="CrystalD" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=2021418002 instance=ExtResource("5_l3db3")]
 z_index = 99
 layout_mode = 1
 offset_left = 0.0
-offset_top = -43.943264
+offset_top = 27.9243
 offset_right = 0.0
-offset_bottom = -43.943264
-rotation = -0.099397756
+offset_bottom = 27.9243
+rotation = -0.21178214
 
-[node name="CrystalC" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=991312676 instance=ExtResource("5_l3db3")]
-z_index = 101
-layout_mode = 1
-offset_left = 0.0
-offset_top = -18.034395
-offset_right = 0.0
-offset_bottom = -18.034395
-rotation = 0.2421962
-
-[node name="CrystalD" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub" unique_id=2021418002 instance=ExtResource("5_l3db3")]
-z_index = 101
-layout_mode = 1
-offset_left = 0.0
-offset_top = 43.943264
-offset_right = 0.0
-offset_bottom = 43.943264
-rotation = 0.099397756
-
-[node name="EngineHub2" type="Control" parent="SubViewport/Loading Screen/StarShip/Base" unique_id=1431578134]
+[node name="EngineHub2" type="Control" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base" unique_id=1431578134]
 use_parent_material = true
 custom_maximum_size = Vector2(0, 0)
 anchors_preset = 0
@@ -578,43 +499,43 @@ offset_bottom = 522.225
 scale = Vector2(1, -1)
 script = SubResource("GDScript_eoje4")
 
-[node name="CrystalA" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=1987883301 instance=ExtResource("5_l3db3")]
+[node name="CrystalA" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=1987883301 instance=ExtResource("5_l3db3")]
 z_index = 99
 layout_mode = 1
 offset_left = 0.0
-offset_top = 18.034395
+offset_top = -38.425037
 offset_right = 0.0
-offset_bottom = 18.034395
-rotation = -0.2421962
+offset_bottom = -38.425037
+rotation = -0.15390661
 
-[node name="CrystalB" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=2008425789 instance=ExtResource("5_l3db3")]
+[node name="CrystalB" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=2008425789 instance=ExtResource("5_l3db3")]
+z_index = 101
+layout_mode = 1
+offset_left = 0.0
+offset_top = -27.9243
+offset_right = 0.0
+offset_bottom = -27.9243
+rotation = 0.21178214
+
+[node name="CrystalC" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=1221013100 instance=ExtResource("5_l3db3")]
+z_index = 101
+layout_mode = 1
+offset_left = 0.0
+offset_top = 38.425037
+offset_right = 0.0
+offset_bottom = 38.425037
+rotation = 0.15390661
+
+[node name="CrystalD" parent="SubViewportContainer/SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=1251080701 instance=ExtResource("5_l3db3")]
 z_index = 99
 layout_mode = 1
 offset_left = 0.0
-offset_top = -43.943264
+offset_top = 27.9243
 offset_right = 0.0
-offset_bottom = -43.943264
-rotation = -0.099397756
+offset_bottom = 27.9243
+rotation = -0.21178214
 
-[node name="CrystalC" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=1221013100 instance=ExtResource("5_l3db3")]
-z_index = 101
-layout_mode = 1
-offset_left = 0.0
-offset_top = -18.034395
-offset_right = 0.0
-offset_bottom = -18.034395
-rotation = 0.2421962
-
-[node name="CrystalD" parent="SubViewport/Loading Screen/StarShip/Base/EngineHub2" unique_id=1251080701 instance=ExtResource("5_l3db3")]
-z_index = 101
-layout_mode = 1
-offset_left = 0.0
-offset_top = 43.943264
-offset_right = 0.0
-offset_bottom = 43.943264
-rotation = 0.099397756
-
-[node name="Control" type="Control" parent="SubViewport/Loading Screen" unique_id=2059961403]
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Loading Screen" unique_id=2059961403]
 custom_maximum_size = Vector2(0, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -625,7 +546,7 @@ anchor_bottom = 0.5
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="SubViewport/Loading Screen/Control" unique_id=211017212]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SubViewportContainer/SubViewport/Loading Screen/Control" unique_id=211017212]
 position = Vector2(249, 8)
 amount = 128
 texture = SubResource("GradientTexture1D_fos0i")

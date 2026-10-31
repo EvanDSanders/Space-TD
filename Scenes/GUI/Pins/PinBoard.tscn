@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bbc2frmtvyaji" path="res://Scripts/Game/GUI/Pins/PinBoard.gd" id="1_hfo83"]
 
-[node name="PinBoard" type="Control" unique_id=1856860443]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PinBoard" type="CanvasLayer" unique_id=467661585]
+process_mode = 3
 script = ExtResource("1_hfo83")
+
+[node name="ViewerName" type="Label" parent="." unique_id=1921186871]
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 44.0
+offset_bottom = 33.0
+text = "Hello"

@@ -11,9 +11,11 @@ var scanRangeGUI = preload("res://Scenes/GUI/ScanRange.tscn")
 var scanRange : MeshInstance3D
 
 signal focused(bool)
+signal clicked()
 
 func attachMeter(meter: ScreenPin):
 	focused.connect(meter.forceShow)
+	clicked.connect(meter.clicked)
 
 func enter():
 	focused.emit(true)
@@ -39,6 +41,17 @@ func exit():
 		if each.has_meta("isMinerMeter") and each.get_meta("isMinerMeter"):
 			each.forceShow(false)
 
+
+func _unhandled_input_pass(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		Pins.otherClicked.emit()
+		clicked.emit()
+		get_viewport().set_input_as_handled()
+		
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		G.camera.setFollow(Parent)
+		if Parent.Nav.Controllable:
+			Parent.Nav.ControlStart()
 
 
 func _ready() -> void:

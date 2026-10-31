@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d1d0e6x1xfl3o"]
+
+[ext_resource type="Script" uid="uid://dv0potu6u2qc5" path="res://Scripts/Station/ShipConstructionDock.gd" id="1_h4d6c"]
+[ext_resource type="PackedScene" uid="uid://p08sgblua1p" path="res://Scenes/GUI/Station/ShipConstructionLane.tscn" id="1_tjbxu"]
+
+[node name="ShipContructionDock" type="VBoxContainer" unique_id=73276025]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -422.0
+offset_top = -584.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_h4d6c")
+
+[node name="ShipContructionLane" parent="." unique_id=953987821 instance=ExtResource("1_tjbxu")]
+layout_mode = 2
+
+[node name="ShipContructionLane2" parent="." unique_id=789149065 instance=ExtResource("1_tjbxu")]
+layout_mode = 2
+
+[node name="ShipContructionLane3" parent="." unique_id=1161570470 instance=ExtResource("1_tjbxu")]
+layout_mode = 2
+
+[node name="ShipContructionLane4" parent="." unique_id=159442912 instance=ExtResource("1_tjbxu")]
+layout_mode = 2
+
+[node name="ShipContructionLane5" parent="." unique_id=1422961107 instance=ExtResource("1_tjbxu")]
+layout_mode = 2
+
+[node name="ShipContructionLane6" parent="." unique_id=314502935 instance=ExtResource("1_tjbxu")]
+layout_mode = 2

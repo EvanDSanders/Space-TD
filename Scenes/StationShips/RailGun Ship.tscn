@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://dqyyes24rvx5w"]
+
+[ext_resource type="Script" uid="uid://dj45i4tkqxktw" path="res://Scripts/Friendlies/FighterRainGun.gd" id="1_1b7w5"]
+[ext_resource type="PackedScene" uid="uid://d0cryd3bey6r3" path="res://Objects/Friendlies/RailGun Ship.glb" id="2_8fogj"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_n0gpe"]
+[ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="3_s2jow"]
+[ext_resource type="Script" uid="uid://bhk0fte3pmxj0" path="res://Scripts/Resources/Ships/ShipRailgunAI.gd" id="4_xavrn"]
+[ext_resource type="Script" uid="uid://ditbwu2d2t3si" path="res://Scripts/Resources/Ships/ShipUpCorrection.gd" id="5_e80g8"]
+[ext_resource type="Script" uid="uid://b12614lyhsf3s" path="res://Scripts/Resources/Ships/ShipDecoratorFighter.gd" id="6_nji7h"]
+[ext_resource type="Script" uid="uid://ce4qf3q713jub" path="res://Scripts/Common/EnergyStore.gd" id="7_v1yhv"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="8_c72ia"]
+[ext_resource type="Script" uid="uid://chahj6p5gtbru" path="res://Scripts/Common/CrystalStore.gd" id="9_r7pjt"]
+[ext_resource type="Script" uid="uid://ctvund3t471s0" path="res://Scripts/Friendlies/TurretController.gd" id="10_ntn2v"]
+[ext_resource type="Script" uid="uid://dcfpflhjqvdd1" path="res://Scripts/Resources/Turrets/TurretAmmoContinuous.gd" id="11_xxf7v"]
+[ext_resource type="Script" uid="uid://dic0esm2c4f5m" path="res://Scripts/Resources/Turrets/TurretReactRecoil.gd" id="12_7tcf4"]
+[ext_resource type="PackedScene" uid="uid://ick0dx1lotqi" path="res://Scenes/Projectiles/Rail Bolt.tscn" id="14_xavrn"]
+
+[sub_resource type="Resource" id="Resource_j3pel"]
+script = ExtResource("4_xavrn")
+Distance = 100
+ThrustP = 0.4
+MaxSpeed = 30.0
+StrafeRange = 1.0
+StrafeRate = 1.0
+Altitude = 20.0
+TurnP = 4
+TurnD = 3
+AimingP = 60
+AimingD = 35
+StrafeP = 0.3
+StrafeD = 0.2
+LiftP = 0.4
+metadata/_custom_type_script = "uid://bhk0fte3pmxj0"
+
+[sub_resource type="Resource" id="Resource_47l0r"]
+resource_local_to_scene = true
+script = ExtResource("5_e80g8")
+P = 30
+D = 20
+metadata/_custom_type_script = "uid://ditbwu2d2t3si"
+
+[sub_resource type="Resource" id="Resource_j1lws"]
+resource_local_to_scene = true
+script = ExtResource("6_nji7h")
+metadata/_custom_type_script = "uid://b12614lyhsf3s"
+
+[sub_resource type="Resource" id="Resource_dmvmm"]
+resource_local_to_scene = true
+script = ExtResource("11_xxf7v")
+amount = 4.0
+metadata/_custom_type_script = "uid://dcfpflhjqvdd1"
+
+[sub_resource type="Resource" id="Resource_7nftp"]
+resource_local_to_scene = true
+script = ExtResource("12_7tcf4")
+coolDown = 5.0
+PushDistance = 0.0
+metadata/_custom_type_script = "uid://dic0esm2c4f5m"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2jow"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1b7w5"]
+points = PackedVector3Array(1.3000002, 0.49980426, 13, 1.3000002, -0.5000979, 13, 1.3000002, 0.49980426, -14, 0.19953036, 1.5, 9.99765, -3.3000002, 0.49980426, 13, -3.3000002, -0.5000979, 13, 0.19953036, -1.5, 9.99765, 1.3000002, -0.5000979, -14, 0.19953036, 1.5, -10.001272, -3.3000002, 0.49980426, -14, -2.2004309, 1.5, 9.99765, -2.2004309, -1.5, 9.99765, -3.3000002, -0.5000979, -14, 0.19953036, -1.5, -10.001272, -2.2004309, 1.5, -10.001272, -2.2004309, -1.5, -10.001272)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8fogj"]
+points = PackedVector3Array(0.75, -1, 11.499363, -2.75, -1, 11.499363, 0.19978476, -1.3001175, 12.5, 0.59994125, -2.5, 9.999559, 0.75, -1, -0.0022029877, -2.6002839, -2.5, 9.999559, -2.2001271, -1.3001175, 12.5, -2.75, -1, -0.0022029877, -0.0002937317, -2.5, 10.997894, 0.59994125, -2.5, 3.998042, 0.19978476, -1.3001175, -10.001664, -2.0000489, -2.5, 10.997894, -2.6002839, -2.5, 3.998042, -2.2001271, -1.3001175, -10.001664, -0.0002937317, -2.5, 1.9990702, -0.6001859, -2.0000489, -11, -0.6001859, -1.6000881, -11, -2.0000489, -2.5, 1.9990702, -1.4001566, -2.0000489, -11, -1.4001566, -1.6000881, -11)
+
+[node name="RailGun Ship" type="RigidBody3D" unique_id=601450215]
+script = ExtResource("1_1b7w5")
+ViewerName = "Rail Gun Ship"
+
+[node name="Destructible" type="Node" parent="." unique_id=695123486]
+script = ExtResource("2_n0gpe")
+HPMax = 300.0
+TargetType = 0
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="ShipNavigator" type="Node3D" parent="." unique_id=828248741 node_paths=PackedStringArray("Parent")]
+script = ExtResource("3_s2jow")
+TargType = 1
+Parent = NodePath("..")
+AI = SubResource("Resource_j3pel")
+UpRighter = SubResource("Resource_47l0r")
+Decorator = SubResource("Resource_j1lws")
+metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="EnergyStore" type="Node" parent="." unique_id=1575511130]
+script = ExtResource("7_v1yhv")
+EnergyMax = 200.0
+metadata/_custom_type_script = "uid://ce4qf3q713jub"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=307787906]
+script = ExtResource("8_c72ia")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
+
+[node name="CrystalStore" type="Node" parent="." unique_id=29041498]
+script = ExtResource("9_r7pjt")
+Crystals = 50.0
+CrystalsMax = 100
+HardLimit = true
+metadata/_custom_type_script = "uid://chahj6p5gtbru"
+
+[node name="TurretControllerL" type="Node3D" parent="." unique_id=1020702922 node_paths=PackedStringArray("Parent", "Store", "Yaw", "Pitch", "Reactor", "Emiter")]
+script = ExtResource("10_ntn2v")
+Parent = NodePath("..")
+Store = NodePath("../EnergyStore")
+Yaw = NodePath("../RailGun Ship/Origin Railgun Ship Track/Railgun Ship Compas Y")
+Pitch = NodePath("../RailGun Ship/Origin Railgun Ship Track/Railgun Ship Compas P")
+Reactor = NodePath(".")
+Emiter = NodePath("..")
+IdleRotationRange = 0.0
+RotationRange = Vector2(30, 20)
+RotationRate = 10.0
+consumer = SubResource("Resource_dmvmm")
+reaction = SubResource("Resource_7nftp")
+projectile = ExtResource("14_xavrn")
+
+[node name="RailGun Ship" parent="." unique_id=943954067 instance=ExtResource("2_8fogj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="Railgun Ship Compas P" parent="RailGun Ship/Origin Railgun Ship Track" parent_id_path=PackedInt32Array(943954067, 435961023) index="1" unique_id=2070776618]
+surface_material_override/0 = SubResource("StandardMaterial3D_s2jow")
+
+[node name="Railgun Ship Compas Y" parent="RailGun Ship/Origin Railgun Ship Track" parent_id_path=PackedInt32Array(943954067, 435961023) index="2" unique_id=2074107203]
+surface_material_override/0 = SubResource("StandardMaterial3D_s2jow")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=446515512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+shape = SubResource("ConvexPolygonShape3D_1b7w5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1357056926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+shape = SubResource("ConvexPolygonShape3D_8fogj")
+
+[editable path="RailGun Ship"]

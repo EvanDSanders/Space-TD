@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://p08sgblua1p"]
+
+[ext_resource type="Script" uid="uid://cckexlt6biahg" path="res://Scripts/Station/ShipConstructionLane.gd" id="1_1snkb"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pvw56"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_a3r72"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_hdvmk"]
+parameter_name = "Texture2DParameter"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bpubw"]
+source = 5
+
+[sub_resource type="VisualShader" id="VisualShader_bajww"]
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_pvw56")
+nodes/fragment/2/position = Vector2(-720, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeVectorDecompose_a3r72")
+nodes/fragment/3/position = Vector2(-320, 106.666664)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_hdvmk")
+nodes/fragment/4/position = Vector2(-346.66666, 320)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_bpubw")
+nodes/fragment/5/position = Vector2(53.333332, 133.33333)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 5, 2, 3, 0, 5, 0, 5, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_bajww"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.88378596, 0.9604633)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fmh3w"]
+gradient = SubResource("Gradient_bajww")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk8ew"]
+shader = SubResource("VisualShader_bajww")
+shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_fmh3w")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvw56"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+draw_center = false
+border_width_right = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_detail = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_l8aq3"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_1snkb"]
+parameter_name = "A"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_lo2yc"]
+parameter_name = "B"
+
+[sub_resource type="VisualShader" id="VisualShader_t1nho"]
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_l8aq3")
+nodes/fragment/2/position = Vector2(-853.3333, 106.666664)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_1snkb")
+nodes/fragment/3/position = Vector2(-826.6667, 213.33333)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_lo2yc")
+nodes/fragment/4/position = Vector2(-826.6667, 400)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eoje4"]
+shader = SubResource("VisualShader_t1nho")
+shader_parameter/A = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1snkb"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[node name="ShipContructionLane" type="PanelContainer" unique_id=953987821]
+material = SubResource("ShaderMaterial_jk8ew")
+custom_minimum_size = Vector2(400, 80)
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 403.0
+offset_bottom = 83.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_pvw56")
+script = ExtResource("1_1snkb")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=697655935]
+layout_mode = 2
+theme_override_constants/margin_right = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1230949924]
+layout_mode = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/HBoxContainer" unique_id=510635159]
+custom_minimum_size = Vector2(400, 80)
+custom_maximum_size = Vector2(400, 80)
+layout_mode = 2
+mouse_filter = 1
+border_color = Color(0.3530996, 0.9757012, 0.59933037, 0.36078432)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=125913305]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1909848629]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=115332293]
+visible = false
+material = SubResource("ShaderMaterial_eoje4")
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_1snkb")
+
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=2119335972]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+mouse_filter = 1

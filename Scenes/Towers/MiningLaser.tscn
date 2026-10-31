@@ -22,6 +22,8 @@ Damage = 30.0
 YawObject = &"Mining Laser Base"
 PitchObject = &"Mining Laser Head"
 RecoilObject = &"Mining Laser Unset"
+ViewerName = "Mining Laser"
+manaFill = 4.0
 
 [node name="Destructible" type="Node" parent="." unique_id=1654658326]
 script = ExtResource("1_2ja6k")

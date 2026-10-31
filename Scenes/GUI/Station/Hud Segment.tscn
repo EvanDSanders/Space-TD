@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://b2i18chyy11qw"]
+
+[sub_resource type="GDScript" id="GDScript_ghhat"]
+script/source = "@tool
+extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	reSize()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+@onready var polygon: Polygon2D = $Polygon2D
+
+func reSize():
+	var h = size.y
+	var w = size.x
+	polygon.polygon = [
+		Vector2(h/2, 0),
+		Vector2(w + h/2, 0),
+		Vector2(w + h/2 - h, h),
+		Vector2(-h/2, h),
+	]
+	print(h, \"  \", w)
+
+
+
+
+
+
+
+
+
+
+
+# EOF
+
+
+func _on_resized() -> void:
+	reSize()
+"
+
+[node name="LineSegment" type="Control" unique_id=1692229615]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1.0
+offset_bottom = 4.0
+script = SubResource("GDScript_ghhat")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2050104726]
+polygon = PackedVector2Array(2, 0, 3, 0, -1, 4, -2, 4)
+
+[connection signal="resized" from="." to="." method="_on_resized"]

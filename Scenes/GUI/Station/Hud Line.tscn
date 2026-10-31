@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bcu8vahxos4fw"]
+
+[sub_resource type="GDScript" id="GDScript_m5ke4"]
+script/source = "@tool
+extends HBoxContainer
+
+var seg = preload(\"res://Scenes/GUI/Station/Hud Segment.tscn\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	reSize()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+@export var segments : int = 20
+func reSize():
+	if get_child_count() != segments:
+		for c in self.get_children(): c.queue_free()
+		
+		for x in range(segments):
+			var s = seg.instantiate()
+			self.add_child( s )
+			
+	var sizes := [ ]
+	var total :=  0
+	for x in range( get_child_count() ):
+		var siz =  x ** 2 
+		sizes.append(siz)
+		total += siz + 2 # Theme seperation
+	
+	sizes.reverse()
+	print(sizes)
+	for x in range( get_child_count() ):
+		var s : Control = get_child(x)
+		#s.size_flags_stretch_ratio = (20. / ( x + 1 ))
+		s.size.x = sizes[x]
+		s.custom_minimum_size.x = sizes[x]
+		s.custom_minimum_size.x = sizes[x]
+		
+"
+
+[node name="Control" type="HBoxContainer" unique_id=1248514045]
+offset_right = 297.0
+offset_bottom = 3.0
+theme_override_constants/separation = 2
+script = SubResource("GDScript_m5ke4")
+
+[connection signal="resized" from="." to="." method="reSize"]
+[connection signal="resized" from="LineSegment" to="LineSegment" method="_on_resized"]
+[connection signal="resized" from="@Control@39139" to="@Control@39139" method="_on_resized"]
+[connection signal="resized" from="@Control@39140" to="@Control@39140" method="_on_resized"]
+[connection signal="resized" from="@Control@39141" to="@Control@39141" method="_on_resized"]
+[connection signal="resized" from="@Control@39142" to="@Control@39142" method="_on_resized"]
+[connection signal="resized" from="@Control@39143" to="@Control@39143" method="_on_resized"]
+[connection signal="resized" from="@Control@39144" to="@Control@39144" method="_on_resized"]
+[connection signal="resized" from="@Control@39145" to="@Control@39145" method="_on_resized"]
+[connection signal="resized" from="@Control@39146" to="@Control@39146" method="_on_resized"]
+[connection signal="resized" from="@Control@39147" to="@Control@39147" method="_on_resized"]
+[connection signal="resized" from="@Control@39148" to="@Control@39148" method="_on_resized"]
+[connection signal="resized" from="@Control@39149" to="@Control@39149" method="_on_resized"]
+[connection signal="resized" from="@Control@39150" to="@Control@39150" method="_on_resized"]
+[connection signal="resized" from="@Control@39151" to="@Control@39151" method="_on_resized"]
+[connection signal="resized" from="@Control@39152" to="@Control@39152" method="_on_resized"]
+[connection signal="resized" from="@Control@39153" to="@Control@39153" method="_on_resized"]
+[connection signal="resized" from="@Control@39154" to="@Control@39154" method="_on_resized"]
+[connection signal="resized" from="@Control@39155" to="@Control@39155" method="_on_resized"]
+[connection signal="resized" from="@Control@39156" to="@Control@39156" method="_on_resized"]
+[connection signal="resized" from="@Control@39157" to="@Control@39157" method="_on_resized"]

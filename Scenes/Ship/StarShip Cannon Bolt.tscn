@@ -77,7 +77,7 @@ mesh = SubResource("SphereMesh_eoje4")
 
 [node name="Main" parent="." unique_id=746103590 instance=ExtResource("2_c573j")]
 
-[node name="Origin MagicSquare" parent="Main" index="0" unique_id=1418699091]
+[node name="Origin MagicSquare" parent="Main" index="0" unique_id=1616980107]
 surface_material_override/0 = SubResource("ShaderMaterial_mb75s")
 
 [editable path="Main"]

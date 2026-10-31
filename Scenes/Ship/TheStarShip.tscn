@@ -160,9 +160,9 @@ pushesOverflow = true
 exportsMana = true
 importsOverflow = true
 importPriority = -1000
-ManaMax = 400.0
+ManaMax = 1500.0
 showMeter = false
-generationRate = 15.0
+generationRate = 20.0
 MaxLinks = 0
 LinkableRange = 0
 metadata/_custom_type_script = "uid://c352samjcijuc"
@@ -183,10 +183,10 @@ gizmo_extents = 1.46
 [node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
 transform = Transform3D(0.9954457, 0, 0, 0, 0.9954457, 0, 0, 0, 0.9954457, -0.01760292, 0.016902924, -0.0010299683)
 
-[node name="Cube 008" parent="Star Ship" index="2" unique_id=260675371]
+[node name="Cube 008" parent="Star Ship" index="2" unique_id=767565850]
 layers = 513
 
-[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1828271936]
+[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1924704704]
 layers = 513
 
 [node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]
@@ -194,6 +194,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16)
 collision_layer = 132
 idleAngleRange = 120
 isPartOfStarShip = true
+ViewerName = "Star Ship Turret"
+hasMenu = false
+hasUpgrades = false
 
 [node name="TurretL" parent="Star Ship" unique_id=18677659 instance=ExtResource("3_vxvel")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 8, 14)
@@ -201,6 +204,9 @@ collision_layer = 132
 idleAngle = 120
 idleAngleRange = 120
 isPartOfStarShip = true
+ViewerName = "Star Ship Turret"
+hasMenu = false
+hasUpgrades = false
 
 [node name="TurretR" parent="Star Ship" unique_id=510374793 instance=ExtResource("3_vxvel")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 12, 8, 14)
@@ -208,9 +214,13 @@ collision_layer = 132
 idleAngle = -120
 idleAngleRange = 120
 isPartOfStarShip = true
+ViewerName = "Star Ship Turret"
+hasMenu = false
+hasUpgrades = false
 
 [node name="Main Cannon" parent="Star Ship" unique_id=1573750634 instance=ExtResource("4_re7vq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -14)
+MainCannonManaUse = 850
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639702785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01760292, 0.016902924, -0.0010299683)

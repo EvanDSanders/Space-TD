@@ -74,7 +74,26 @@ func _process(_delta: float) -> void:
 	
 var Tw : Tween
 
+var Flaten := false
+var Background2D : Node
+
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("Toon"):
+		isToon = not isToon
+		if isToon: becomeToon()
+		else: becomeReal()
+	
+	if Input.is_action_just_pressed("Flat"):
+		Flaten = not Flaten
+		
+		if Flaten:
+			Background2D = preload("res://Scenes/Game/Background2D.tscn").instantiate()
+			self.add_child(Background2D)
+			#$WorldEnvironment.environment.background_mode = Environment.BG_CLEAR_COLOR
+		else:
+			Background2D.queue_free()
+			#$WorldEnvironment.environment.background_mode = Environment.BG_SKY
+	
 	if not StarShip: return
 	var VelLin := StarShip.linear_velocity
 	var VelRot := StarShip.angular_velocity
@@ -100,9 +119,32 @@ func _physics_process(delta: float) -> void:
 	Tw.tween_property(GUI, "offset_transform_position", displayVel, 0.2); Tw.parallel()
 	Tw.tween_property(GUI, "offset_transform_rotation", displayRet, 0.2)
 	
+
+	
+var isToon : bool
 	
 var gameOver
 func GameOver():
 	gameOver = preload('res://Scenes/GUI/GameOver.tscn').instantiate()
 	G.Main.add_child(gameOver)
 	
+
+func becomeToon(): 
+	print("Become Toon")
+	for meshI : MeshInstance3D in find_children("*", "MeshInstance3D", true, false):
+		
+		var mesh = meshI.mesh.create_outline(1)
+		var ToonMesh = MeshInstance3D.new()
+		ToonMesh.mesh = mesh
+		ToonMesh.set_meta("isToon", true)
+		ToonMesh.set_surface_override_material(0, load("res://Materials/Common/ToonOutline.tres"))
+		meshI.add_child(ToonMesh)
+		ToonMesh.owner = meshI.owner
+		
+func becomeReal():
+	print("Become Real")
+	for meshI : MeshInstance3D in find_children("*", "MeshInstance3D", true, false):
+		if meshI.has_meta("isToon") and meshI.get_meta("isToon"): meshI.queue_free()
+		
+		
+		

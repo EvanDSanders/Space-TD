@@ -51,6 +51,7 @@ var onHit : Callable
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	for emtr in EmittersObjects:
 		Emitters.append(find_child(emtr))
 		
@@ -67,7 +68,7 @@ func _ready() -> void:
 
 
 
-# Function to get the x, y rotations to look at a target, with lead
+## Function to get the x, y rotations to look at a target, with lead
 func get_heading(	shooter_pos:Vector3,
 					bullet_speed:float,
 					target_position:Vector3,
@@ -112,9 +113,9 @@ func _physics_process(delta: float) -> void:
 	if constructor: return
 	
 	if isPartOfStarShip:
-		self.mana.pushMana(  RangingOrigin.mana.pullMana( clamp(10 * delta, 0, mana.ManaMax - mana.Mana ))  )
+		self.mana.pushMana(  RangingOrigin.mana.pullMana( clamp(manaFill * delta, 0, mana.ManaMax - mana.Mana ))  )
 	else:
-		self.mana.pushMana(  Linker.pullMana( clamp(10 * delta, 0, mana.ManaMax - mana.Mana ), self.mana)  )
+		self.fillMana(delta)
 	
 	
 	if not Target or TickID == Engine.get_physics_frames() or not Target.health.isAlive:

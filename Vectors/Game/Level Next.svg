@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200"
+   height="200"
+   viewBox="0 0 20 20"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="Level Next.svg"
+   inkscape:version="1.4.4 (1:1.4.4+202605061436+dcaf3e7d9e)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     inkscape:zoom="5.0058853"
+     inkscape:cx="122.15621"
+     inkscape:cy="104.67679"
+     inkscape:window-width="2560"
+     inkscape:window-height="1372"
+     inkscape:window-x="0"
+     inkscape:window-y="1480"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="0,0"
+       orientation="20,0"
+       id="guide2"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="2,0"
+       orientation="20,0"
+       id="guide3"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="4,0"
+       orientation="20,0"
+       id="guide4"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="6,0"
+       orientation="20,0"
+       id="guide5"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="8,0"
+       orientation="20,0"
+       id="guide6"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="10,0"
+       orientation="20,0"
+       id="guide7"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="12,0"
+       orientation="20,0"
+       id="guide8"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="14,0"
+       orientation="20,0"
+       id="guide9"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="16,0"
+       orientation="20,0"
+       id="guide10"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="18,0"
+       orientation="20,0"
+       id="guide11"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="20,0"
+       orientation="20,0"
+       id="guide12"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,0"
+       orientation="0,20"
+       id="guide13"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,2"
+       orientation="0,20"
+       id="guide14"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,4"
+       orientation="0,20"
+       id="guide15"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,6"
+       orientation="0,20"
+       id="guide16"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,8"
+       orientation="0,20"
+       id="guide17"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,10"
+       orientation="0,20"
+       id="guide18"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,12"
+       orientation="0,20"
+       id="guide19"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,14"
+       orientation="0,20"
+       id="guide20"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,16"
+       orientation="0,20"
+       id="guide21"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,18"
+       orientation="0,20"
+       id="guide22"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,20"
+       orientation="0,20"
+       id="guide23"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect1"
+       style="font-variation-settings:'wght' 400;fill:#ffffff;fill-opacity:1;stroke-width:0.251339;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       d="M 5,5 3,1 V 3 H 1 Z m 12,14 v -2 h 2 l -4,-2 z"
+       sodipodi:nodetypes="cccccccccc" />
+    <path
+       id="path61"
+       style="font-variation-settings:'wght' 400;baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+       d="m 18,2 -1.973437,1.315625 c 0.230388,0.2078478 0.449964,0.4274241 0.657812,0.6578125 z M 3.315625,16.026563 2,18 3.9734375,16.684375 C 3.7430491,16.476527 3.5234728,16.256952 3.315625,16.026563 Z"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       id="path58"
+       style="font-variation-settings:'wght' 400;baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers;enable-background:accumulate;stop-color:#000000;stop-opacity:1;fill-opacity:1"
+       d="M 10 1 C 8.3390902 0.99999489 6.7105729 1.4595976 5.2947266 2.3279297 L 6.2236328 2.9472656 L 6.2238281 2.9472656 C 7.3853454 2.3253782 8.6824772 1.9999883 10 2 C 11.586702 2 13.065596 2.4618766 14.309375 3.2585938 L 15.208203 2.659375 C 13.738193 1.6145362 11.940842 1 10 1 z M 17.340625 4.7917969 L 16.741406 5.690625 C 17.538124 6.9344041 18 8.4132975 18 10 C 18.000012 11.317523 17.674622 12.614655 17.052734 13.776172 L 17.052734 13.776367 L 17.67207 14.705273 C 18.540402 13.289427 19.000005 11.66091 19 10 C 19 8.0591579 18.385464 6.2618073 17.340625 4.7917969 z M 2.3279297 5.2947266 C 1.4595976 6.7105729 0.99999489 8.3390902 1 10 C 1 11.940842 1.6145362 13.738193 2.659375 15.208203 L 3.2585938 14.309375 C 2.4618767 13.065596 2 11.586702 2 10 C 1.9999883 8.6824772 2.3253782 7.3853454 2.9472656 6.2238281 L 2.9472656 6.2236328 L 2.3279297 5.2947266 z M 5.690625 16.741406 L 4.7917969 17.340625 C 6.2618073 18.385464 8.0591579 19 10 19 C 11.66091 19.000005 13.289427 18.540402 14.705273 17.67207 L 13.776367 17.052734 L 13.776172 17.052734 C 12.614655 17.674622 11.317523 18.000012 10 18 C 8.4132975 18 6.9344041 17.538124 5.690625 16.741406 z " />
+  </g>
+</svg>

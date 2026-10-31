@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b5rpwjtte3gpx"]
+
+[ext_resource type="Script" uid="uid://8k8utn5k0h7n" path="res://Scripts/Station/StationExchangePoint.gd" id="1_vr1am"]
+
+[sub_resource type="Curve" id="Curve_vr1am"]
+_data = [Vector2(0.50034726, 0), 0.0, 1.0077789, 0, 0, Vector2(1, 1), 4.0457172, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6f2km"]
+radius = 15.0
+
+[node name="Station Exchange Point" type="Area3D" unique_id=1480126036]
+input_ray_pickable = false
+script = ExtResource("1_vr1am")
+curve = SubResource("Curve_vr1am")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1361479411]
+shape = SubResource("SphereShape3D_6f2km")
+debug_fill = false
+
+[node name="Mount" type="Marker3D" parent="." unique_id=184246182]
+gizmo_extents = 20.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

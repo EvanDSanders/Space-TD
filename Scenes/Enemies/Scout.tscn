@@ -4,7 +4,17 @@
 [ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_hg6gh"]
 [ext_resource type="PackedScene" uid="uid://hx2q3oq4njou" path="res://Objects/Enemies/Scout.glb" id="2_hreat"]
 [ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="3_hg6gh"]
+[ext_resource type="Script" uid="uid://7ol4h6mlsrlw" path="res://Scripts/Resources/Ships/ShipAI.gd" id="4_05g7u"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="5_6lqb0"]
 [ext_resource type="PackedScene" uid="uid://bxm46tvbw3ms5" path="res://Scenes/Projectiles/SimpleLaser.tscn" id="6_05g7u"]
+
+[sub_resource type="Resource" id="Resource_0msde"]
+resource_local_to_scene = true
+script = ExtResource("4_05g7u")
+Distance = 35
+ThrustD = 1.0
+StrafeRange = 35.0
+metadata/_custom_type_script = "uid://7ol4h6mlsrlw"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r0du0"]
 radius = 3.0
@@ -61,15 +71,13 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 [node name="Scout" type="RigidBody3D" unique_id=638495765]
 collision_layer = 8713
 collision_mask = 9
-axis_lock_angular_x = true
-axis_lock_angular_z = true
 mass = 0.8
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 3
-linear_damp = 0.2
-angular_damp = 1.0
 script = ExtResource("1_4e0fl")
+ViewerName = "Scout"
+faction = 1
 
 [node name="Destructible" type="Node" parent="." unique_id=96407037]
 script = ExtResource("2_hg6gh")
@@ -80,7 +88,12 @@ metadata/_custom_type_script = "uid://c1w7pinsldpa8"
 [node name="ShipNavigator" type="Node3D" parent="." unique_id=946208268 node_paths=PackedStringArray("Parent")]
 script = ExtResource("3_hg6gh")
 Parent = NodePath("..")
+AI = SubResource("Resource_0msde")
 metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=2064444646]
+script = ExtResource("5_6lqb0")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=8862303]
 shape = SubResource("SphereShape3D_r0du0")

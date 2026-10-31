@@ -1,3 +1,4 @@
+@icon("res://EditorIcons/pinMeter.svg")
 extends ScreenPin
 class_name MeterPin
 
@@ -16,6 +17,7 @@ var value : float = 0.0:
 		fill.size.x = remap(value, min, max, 0, base.size.x)
 		if oldValue != value:
 			oldValue = value
+			if isPinBoard: queue_redraw()
 			doShow()
 		
 var max   : float = 1.0:
@@ -45,14 +47,24 @@ func applySize():
 	base.custom_maximum_size = Vector2(width, height)
 	value = value
 
+const TrackableProps = [
+		^":min",
+		^":max",
+		^":value",
+	]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	applySize()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	super(delta)
 
+func _draw() -> void:
+	if isPinBoard:
+		draw_string(self.get_theme_default_font(), Vector2(-180, 6), "%d%%" % G.remap(min, max, 0, 100, value), 0, -1, 16, fill.self_modulate * 0.8 + base.self_modulate * 0.2)
 
 func setColor(
 		Foreground : Color,

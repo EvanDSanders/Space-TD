@@ -1,3 +1,4 @@
+@icon("res://EditorIcons/pinDial.svg")
 extends ScreenPin
 class_name DialPin
 
@@ -30,6 +31,12 @@ var radius   : float = 100.0:
 func applySize(): 
 	value = value
 	queue_redraw()
+
+const TrackableProps = [
+		^":min",
+		^":max",
+		^":value",
+	]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bh6yfkukb4v46"]
+
+[ext_resource type="Texture2D" uid="uid://dr51lf61j6apv" path="res://Vectors/Game/Level Locked.svg" id="1_kj520"]
+[ext_resource type="Script" uid="uid://d2acd4ohprb18" path="res://Scripts/Game/LevelNode.gd" id="2_jsl4s"]
+[ext_resource type="Texture2D" uid="uid://j2sah5v7v6id" path="res://Vectors/Game/Level Center.svg" id="3_kj520"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_kj520"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_m5w8y"]
+default_input_values = [1, 0.0, 2, 1.0, 3, -1.0, 4, 1.0, 0, Vector2(0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeVectorDistance" id="VisualShaderNodeVectorDistance_ech03"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_drmhy"]
+default_input_values = [1, 0.81, 2, 0.29, 3, 0.0, 4, 1.0]
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_np44p"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_kj520"]
+default_input_values = [0, 0.0, 1, 0.6]
+operator = 5
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_m5w8y"]
+default_input_values = [0, 0.0, 1, 0.6]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_f26sm"]
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1280, 106.666664)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_kj520")
+nodes/fragment/2/position = Vector2(-933.3333, 106.666664)
+nodes/fragment/3/node = SubResource("VisualShaderNodeRemap_m5w8y")
+nodes/fragment/3/position = Vector2(-506.66666, 80)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorDistance_ech03")
+nodes/fragment/4/position = Vector2(-186.66667, 80)
+nodes/fragment/5/node = SubResource("VisualShaderNodeRemap_drmhy")
+nodes/fragment/5/position = Vector2(106.666664, 53.333332)
+nodes/fragment/6/node = SubResource("VisualShaderNodeClamp_np44p")
+nodes/fragment/6/position = Vector2(373.33334, 80)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatOp_kj520")
+nodes/fragment/7/position = Vector2(693.3333, 80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_m5w8y")
+nodes/fragment/8/position = Vector2(1013.3333, 133.33333)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 5, 0, 6, 0, 7, 0, 7, 0, 8, 0, 8, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gmfe7"]
+shader = SubResource("VisualShader_f26sm")
+
+[node name="Level Node" type="Sprite2D" unique_id=784145780]
+modulate = Color(0.29022402, 0.34424162, 0.748, 0.729)
+z_index = 10
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_kj520")
+script = ExtResource("2_jsl4s")
+
+[node name="Center" type="Sprite2D" parent="." unique_id=1519063361]
+z_index = -1
+material = SubResource("ShaderMaterial_gmfe7")
+rotation = -0.0817289
+scale = Vector2(1.063, 1.063)
+texture = ExtResource("3_kj520")
+
+[node name="Control" type="Control" parent="." unique_id=543937127]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

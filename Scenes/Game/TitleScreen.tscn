@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c0wsmkaots3ab" path="res://Themes/Control3D.tres" id="1_4qkgp"]
 [ext_resource type="Texture2D" uid="uid://dvho4wlray5ye" path="res://Vectors/MainMenu Land.png" id="2_sycpf"]
+[ext_resource type="PackedScene" uid="uid://0416x3sjf50f" path="res://Objects/StarShip/Star Ship.glb" id="3_xaqdv"]
 
 [sub_resource type="GDScript" id="GDScript_eoje4"]
 script/source = "extends Control
@@ -9,7 +10,9 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
+	#Callable( func(): _on_station_pressed() ).call_deferred()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,19 +22,34 @@ func _process(delta: float) -> void:
 
 
 func _on_mining_pressed() -> void:
-	Loader.Load(\"res://Resources/MiningRandom.tres\")
+	Loader.LoadDisk(\"res://Resources/MiningRandom.tres\")
 
 func _on_farming_pressed() -> void:
-	Loader.Load(\"res://Resources/FarmingRandom.tres\")
+	Loader.LoadDisk(\"res://Resources/FarmingRandom.tres\")
 
 func _on_battle_pressed() -> void:
-	Loader.Load(\"res://Resources/BattleTest.tres\")
+	Loader.LoadDisk(\"res://Resources/BattleTest.tres\")
 
 func _on_protect_pressed() -> void:
-	Loader.Load(\"res://Resources/ProtectRandom.tres\")
+	Loader.LoadDisk(\"res://Resources/ProtectRandom.tres\")
 
 func _on_station_pressed() -> void:
-	Loader.Load(\"res://Resources/MiningRandomAlt.tres\")
+	Loader.LoadDisk(\"res://Resources/MiningRandomAlt.tres\")
+"
+
+[sub_resource type="GDScript" id="GDScript_xaqdv"]
+script/source = "@tool
+extends SubViewportContainer
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	#$SubViewport.size = $\".\".size
+	pass
 "
 
 [node name="Main" type="Control" unique_id=1705955178]
@@ -97,7 +115,7 @@ text = "Battle
 [node name="Station" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1857021399]
 custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
-text = "Furry Station
+text = "Station
 "
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1595346068]
@@ -105,6 +123,37 @@ custom_minimum_size = Vector2(0, 77.07)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2037347416]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -404.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = SubResource("GDScript_xaqdv")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=998338353]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1324, 887)
+render_target_update_mode = 0
+
+[node name="Star Ship" parent="SubViewportContainer/SubViewport" unique_id=393449670 instance=ExtResource("3_xaqdv")]
+
+[node name="Y" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=698978016]
+transform = Transform3D(0.5174957, 0, -0.8556858, 0, 1, 0, 0.8556858, 0, 0.5174957, 0, 0, 0)
+
+[node name="P" type="Node3D" parent="SubViewportContainer/SubViewport/Y" unique_id=820671767]
+transform = Transform3D(1, 1.4901161e-08, 0, 0, 0.9785011, -0.2062415, 0, 0.20624153, 0.9785011, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Y/P" unique_id=1522827812]
+transform = Transform3D(-1.0000001, -3.058229e-08, -1.2008982e-07, 0, 0.99917084, -0.040713675, 1.1920929e-07, -0.040713705, -0.9991709, 1.1527692e-05, -3.3099606, -152.38362)
+fov = 37.849285
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Mining" to="." method="_on_mining_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Farming" to="." method="_on_farming_pressed"]

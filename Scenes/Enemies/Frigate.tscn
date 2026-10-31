@@ -4,7 +4,16 @@
 [ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="1_oncsw"]
 [ext_resource type="Script" uid="uid://c40c5s502bx2r" path="res://Scripts/Game/ShipNavigator.gd" id="2_edr3l"]
 [ext_resource type="PackedScene" uid="uid://dgjvyam5x4g3g" path="res://Objects/Enemies/Frigate.glb" id="3_ocv7h"]
+[ext_resource type="Script" uid="uid://7ol4h6mlsrlw" path="res://Scripts/Resources/Ships/ShipAI.gd" id="4_plfn5"]
+[ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="5_ae3bd"]
 [ext_resource type="PackedScene" uid="uid://bxm46tvbw3ms5" path="res://Scenes/Projectiles/SimpleLaser.tscn" id="6_plfn5"]
+
+[sub_resource type="Resource" id="Resource_6lqb0"]
+resource_local_to_scene = true
+script = ExtResource("4_plfn5")
+ThrustD = 1.0
+StrafeRange = 50.0
+metadata/_custom_type_script = "uid://7ol4h6mlsrlw"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hg6gh"]
 size = Vector3(15.796875, 4.7280273, 21.184021)
@@ -61,12 +70,10 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 [node name="Frigate" type="RigidBody3D" unique_id=855368948]
 collision_layer = 8713
 collision_mask = 9
-axis_lock_angular_x = true
-axis_lock_angular_z = true
 mass = 2.0
-linear_damp = 0.2
-angular_damp = 1.0
 script = ExtResource("1_edr3l")
+ViewerName = "Frigate"
+faction = 1
 
 [node name="Destructible" type="Node" parent="." unique_id=1892614650]
 script = ExtResource("1_oncsw")
@@ -77,8 +84,12 @@ metadata/_custom_type_script = "uid://c1w7pinsldpa8"
 [node name="ShipNavigator" type="Node3D" parent="." unique_id=2096607121 node_paths=PackedStringArray("Parent")]
 script = ExtResource("2_edr3l")
 Parent = NodePath("..")
-Distance = 60
+AI = SubResource("Resource_6lqb0")
 metadata/_custom_type_script = "uid://c40c5s502bx2r"
+
+[node name="CursorDialogue" type="Node" parent="." unique_id=384728509]
+script = ExtResource("5_ae3bd")
+metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1658372050]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5690918, -0.13998413)

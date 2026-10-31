@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://8cyil7m7k0oj"]
+
+[ext_resource type="Theme" uid="uid://dlgt0u8hu0b4a" path="res://Themes/StationBuildBlocks.tres" id="1_pguo0"]
+
+[sub_resource type="GDScript" id="GDScript_eoje4"]
+script/source = "extends Panel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+		
+	var light = Color.from_hsv(0.804, 0.726, 1.0, 1.0)
+	var dark = Color.from_hsv(0.772, 0.936, 0.607, 1.0)
+	
+	modulate = Color.from_hsv(
+		randf_range(light.h, dark.h),
+		randf_range(light.s, dark.s),
+		randf_range(light.v, dark.v),
+	)
+	
+	self_modulate = Color.TRANSPARENT
+	
+	
+func place():
+	self_modulate = Color.WHITE
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Panel" type="Panel" unique_id=134412311]
+custom_minimum_size = Vector2(5, 5)
+offset_right = 25.0
+offset_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_pguo0")
+script = SubResource("GDScript_eoje4")

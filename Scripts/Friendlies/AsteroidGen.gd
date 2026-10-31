@@ -54,7 +54,8 @@ func updateAsteroid():
 	var CRNG = RandomNumberGenerator.new()
 	CRNG.seed = Size
 	
-	for x in range(remap(Size, 2, 20, 15, 50)):
+	#for x in range(remap(Size, 2, 20, 15, 50)):
+	for x in range(0):
 		var shard := MeshInstance3D.new()
 		shard.name = "Shard ITN %d" % x
 		

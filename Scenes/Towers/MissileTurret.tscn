@@ -25,6 +25,7 @@ PitchObject = &"Missile Pitch"
 EmittersObjects = ["Missle Head"]
 ProjectileResource = ExtResource("2_ipfro")
 scanArea3D = NodePath("ScanArea3D")
+manaFill = 6.0
 
 [node name="Destructible" type="Node" parent="." unique_id=1624067928]
 script = ExtResource("2_5sbfs")
@@ -33,7 +34,7 @@ metadata/_custom_type_script = "uid://c1w7pinsldpa8"
 
 [node name="ManaStore" type="Node" parent="." unique_id=463760264]
 script = ExtResource("3_ipfro")
-ManaMax = 50.0
+ManaMax = 20.0
 metadata/_custom_type_script = "uid://c352samjcijuc"
 
 [node name="CursorDialogue" type="Node" parent="." unique_id=1304437935]

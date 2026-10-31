@@ -16,6 +16,7 @@ ProgressBar/styles/background = SubResource("StyleBoxFlat_t1nho")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_jk8ew")
 
 [node name="DisplayMeter" type="Control" unique_id=522616605]
+visible = false
 custom_maximum_size = Vector2(0, 0)
 layout_mode = 3
 anchors_preset = 8

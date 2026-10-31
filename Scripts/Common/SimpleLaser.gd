@@ -22,7 +22,7 @@ func Fire(target:Node3D):
 	self.visible = true
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 	
-	print("Fire! ", self.get_parent().name, " : ", Start.global_position, " ", End.global_position)
+	# print("Fire! ", self.get_parent().name, " : ", Start.global_position, " ", End.global_position)
 	
 	if Tw: Tw.kill()
 	Tw = create_tween()

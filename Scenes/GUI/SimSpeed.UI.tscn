@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b6603ew1ojd47"]
+
+[ext_resource type="Theme" uid="uid://gfkutjw0o1go" path="res://Themes/ButtonsNoColor.tres" id="1_eceyg"]
+[ext_resource type="Texture2D" uid="uid://uhnrrwpf8j2s" path="res://Images/batch_Page 1.png" id="2_sbya1"]
+[ext_resource type="Texture2D" uid="uid://yib6i18hdije" path="res://Images/batch_Page 2.png" id="3_0wf2v"]
+[ext_resource type="Texture2D" uid="uid://gixtvuer76mo" path="res://Images/batch_Page 3.png" id="4_ell84"]
+[ext_resource type="Texture2D" uid="uid://db0l2l7eqr2td" path="res://Images/batch_Page 4.png" id="5_l64u0"]
+[ext_resource type="Texture2D" uid="uid://ca2u3531uo825" path="res://Images/batch_Page 5.png" id="6_krb6l"]
+
+[sub_resource type="GDScript" id="GDScript_60git"]
+script/source = "extends MarginContainer
+
+@onready var normal: Button = $Control/Normal
+@onready var control: HBoxContainer = $Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for each : BaseButton in control.get_children():
+		each.toggled.connect(onChange)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
+func onChange(_on: bool):
+	var thisButton = normal.button_group.get_pressed_button()
+	for button in control.get_children():
+		if button == thisButton: 
+			var rate = button.get_meta(\"Speed\")
+			G.setGameSpeed(rate)
+			button.modulate = button.get_meta(\"Color\")
+		else: 
+			button.modulate = Color.WHITE
+		
+"
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_eoje4"]
+
+[node name="SimSpeed Dock" type="MarginContainer" unique_id=659319413]
+process_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_right = 174.0
+grow_vertical = 0
+theme = ExtResource("1_eceyg")
+script = SubResource("GDScript_60git")
+
+[node name="Control" type="HBoxContainer" parent="." unique_id=1608207430]
+layout_mode = 2
+alignment = 1
+
+[node name="Pause" type="Button" parent="Control" unique_id=1240923055]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+icon = ExtResource("2_sbya1")
+icon_alignment = 1
+expand_icon = true
+metadata/Color = Color(0, 0, 1, 1)
+metadata/Speed = 0.0
+
+[node name="Half" type="Button" parent="Control" unique_id=296235699]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+icon = ExtResource("3_0wf2v")
+icon_alignment = 1
+expand_icon = true
+metadata/Color = Color(0, 1, 1, 1)
+metadata/Speed = 0.5
+
+[node name="Normal" type="Button" parent="Control" unique_id=2044053645]
+modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_eoje4")
+icon = ExtResource("4_ell84")
+icon_alignment = 1
+expand_icon = true
+metadata/Color = Color(0, 1, 0, 1)
+metadata/Speed = 1.0
+
+[node name="Double" type="Button" parent="Control" unique_id=655098768]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+icon = ExtResource("5_l64u0")
+icon_alignment = 1
+expand_icon = true
+metadata/Color = Color(0.79673934, 1, 0, 1)
+metadata/Speed = 2.0
+
+[node name="Quad" type="Button" parent="Control" unique_id=1454912617]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_eoje4")
+icon = ExtResource("6_krb6l")
+icon_alignment = 1
+expand_icon = true
+metadata/Color = Color(1, 0.41821092, 0, 1)
+metadata/Speed = 4.0

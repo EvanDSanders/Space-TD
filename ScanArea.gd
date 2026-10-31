@@ -6,6 +6,7 @@ class_name ScanArea3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	self.input_ray_pickable = false
 	for shape : CollisionShape3D in self.find_children("*", "CollisionShape3D"):
 		shape.debug_fill = false
 		shape.debug_color = Color.TRANSPARENT * 0.8 + shape.debug_color * 0.2

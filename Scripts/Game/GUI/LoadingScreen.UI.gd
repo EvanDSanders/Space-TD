@@ -1,8 +1,9 @@
 @tool
-extends SubViewportContainer
+extends CanvasLayer
 class_name LoadingScreenBase
 
-@onready var Main: LoadingScreenMain = $"SubViewport/Loading Screen"
+@onready var Main: LoadingScreenMain = $"SubViewportContainer/SubViewport/Loading Screen"
+@onready var Screen: SubViewportContainer = $SubViewportContainer
 
 signal fullyDisplayed
 signal fullyDissipated
@@ -10,8 +11,8 @@ signal fullyDissipated
 #@export_range(-1, 1, 0.01, "prefer_slider") var offset : float = 0
 #@export_range(0, 1, 0.01, "prefer_slider") var phase : float = 0
 
-var offset : PackedFloat32Array = range(50)
-var phase : PackedFloat32Array = range(50)
+var Offset : PackedFloat32Array = range(50)
+var Phase : PackedFloat32Array = range(50)
 var Tw : Tween
 
 # Called when the node enters the scene tree for the first time.
@@ -27,12 +28,12 @@ func run(rev:bool=false):
 	
 	for i:int in range(50):
 		var id : int = i
-		offset[i] = randf_range(-1, 1)
-		phase[i]  = 0. if not rev else 1.
+		Offset[i] = randf_range(-1, 1)
+		Phase[i]  = 0. if not rev else 1.
 		if not rev:
-			Tw.tween_method(func(val:float): phase[id] = val, 0., 1., .3).set_delay(randf()*.3+(50-i)/80.).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+			Tw.tween_method(func(val:float): Phase[id] = val, 0., 1., .3).set_delay(randf()*.3+(50-i)/80.).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 		else:
-			Tw.tween_method(func(val:float): phase[id] = val, 1., 0., .3).set_delay(randf()*.3+(50-i)/80.).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+			Tw.tween_method(func(val:float): Phase[id] = val, 1., 0., .3).set_delay(randf()*.3+(50-i)/80.).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	
 	if not rev:
 		Tw.chain().tween_callback(fullyDisplayed.emit)
@@ -46,11 +47,11 @@ func Complete(): run(true)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
-	$SubViewport.size = $".".size
+	$SubViewportContainer/SubViewport.size = $SubViewportContainer.size
 	
 	if doRun:
 		doRun = false
 		run()
 	
-	self.material.set_shader_parameter("offset", offset)
-	self.material.set_shader_parameter("phase", phase)
+	Screen.material.set_shader_parameter("offset", Offset)
+	Screen.material.set_shader_parameter("phase", Phase)

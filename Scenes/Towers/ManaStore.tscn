@@ -15,6 +15,7 @@ height = 4.9140625
 
 [node name="Mana Store" type="StaticBody3D" unique_id=133972696]
 script = ExtResource("1_kvjnf")
+ViewerName = "Mana Storage"
 
 [node name="Destructible" type="Node" parent="." unique_id=1597373795]
 script = ExtResource("1_q1n6x")

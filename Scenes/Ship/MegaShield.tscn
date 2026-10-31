@@ -136,7 +136,7 @@ maxShots = 2
 
 [node name="MegaShield" parent="." unique_id=97542385 instance=ExtResource("1_0r2yf")]
 
-[node name="Origin MegaShield" parent="MegaShield" index="0" unique_id=394030941]
+[node name="Origin MegaShield" parent="MegaShield" index="0" unique_id=130337409]
 cast_shadow = 0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MegaShield" unique_id=326282902]

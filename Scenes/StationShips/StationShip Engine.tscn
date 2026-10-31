@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://sw8p4gu0cwty"]
+
+[ext_resource type="Script" uid="uid://c1y7qtbt0ldxq" path="res://Scripts/Friendlies/StationShip Engine.gd" id="1_d8sdb"]
+[ext_resource type="PackedScene" uid="uid://cjp6jortsf7ng" path="res://Objects/Friendlies/StationShip Engine.glb" id="1_pqwnv"]
+[ext_resource type="Material" uid="uid://cogat8q6mswkb" path="res://Materials/Friendlies/StationShip/Fighter Thrust.tres" id="3_d8sdb"]
+
+[sub_resource type="Curve" id="Curve_eoje4"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_d8sdb"]
+
+[node name="StationShip Engine" type="Node3D" unique_id=775499608]
+script = ExtResource("1_d8sdb")
+
+[node name="StationShip Engine" parent="." unique_id=966752392 instance=ExtResource("1_pqwnv")]
+
+[node name="ShipThrusterBack" parent="StationShip Engine/Origin ShipThrusterBase" parent_id_path=PackedInt32Array(966752392, 1495782620) index="0" unique_id=1888893382]
+instance_shader_parameters/Thrust = 1.0
+instance_shader_parameters/isTrail = false
+
+[node name="ShipThrusterFront" parent="StationShip Engine/Origin ShipThrusterBase" parent_id_path=PackedInt32Array(966752392, 1495782620) index="1" unique_id=1856940038]
+instance_shader_parameters/Thrust = 0.0
+instance_shader_parameters/isTrail = false
+
+[node name="VaporTrail R" type="VaporTrail" parent="." unique_id=135857499]
+config/num_points = 25
+config/update_interval = 0.0
+visual/material = ExtResource("3_d8sdb")
+visual/size = 1.0
+visual/size_curve = SubResource("Curve_eoje4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.4460106)
+
+[node name="VaporTrail F" type="VaporTrail" parent="." unique_id=116052276]
+config/num_points = 25
+config/update_interval = 0.0
+visual/material = ExtResource("3_d8sdb")
+visual/size = 1.0
+visual/size_curve = SubResource("Curve_eoje4")
+visual/color_gradient = SubResource("Gradient_d8sdb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3765988)
+
+[editable path="StationShip Engine"]

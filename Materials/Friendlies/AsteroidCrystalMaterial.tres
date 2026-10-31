@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bfqmy0ov6q2kx"]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_wovlh"]
-constant = Color(0.32693827, 1, 0.1865195, 1)
+constant = Color(0.60931516, 0.18823528, 1, 1)
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_wovlh"]
 constant = 1.0

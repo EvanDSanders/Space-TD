@@ -1,3 +1,4 @@
+@icon("res://EditorIcons/manaProxy.svg")
 extends ManaStore
 class_name ManaProxy
 

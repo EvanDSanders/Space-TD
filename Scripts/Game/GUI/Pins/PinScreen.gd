@@ -1,3 +1,4 @@
+@icon("res://EditorIcons/pinScreen.svg")
 extends Control
 class_name ScreenPin
 
@@ -5,7 +6,9 @@ class_name ScreenPin
 const MARGIN = 8
 
 ## If `true`, the waypoint sticks to the viewport's edges when moving off-screen.
-@export var sticky: bool = true
+@export var sticky: bool = false
+var wasOnScreen := false
+signal exitScreen
 
 @onready var camera := get_viewport().get_camera_3d()
 
@@ -38,8 +41,22 @@ func doShow():
 func forceShow(force):
 	forceShown = force
 
+func clicked():
+	pass
+
+var isPinBoard := false
+var offset := Vector2.ZERO
+
 func _process(delta: float) -> void:
+	#forceShown = true
 	if not parent: queue_free(); return;
+	
+	if isPinBoard and offset:
+		self.global_position = offset
+		self.visible = true
+		return
+
+
 	if Hide: return
 	
 	if time <= 0.0 and not forceShown:
@@ -77,6 +94,12 @@ func _process(delta: float) -> void:
 		# the position if the waypoint goes off screen.
 		position = unprojected_position
 		visible = not is_behind
+		
+		if visible != wasOnScreen:
+			wasOnScreen = visible
+			if not visible:
+				exitScreen.emit()
+		
 		return
 		
 	else: 

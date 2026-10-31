@@ -71,6 +71,8 @@ var priorY := 0.
 var priorX := 0.
 
 var Tw : Tween
+@export var MainCannonManaUse : int
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -94,7 +96,7 @@ func _physics_process(_delta: float) -> void:
 	
 	Aimed = is_zero_approx(angle_difference(Yaw.rotation.y, y)) and is_zero_approx(angle_difference(Pitch.rotation.x, x))
 		
-	if the_star_ship.mana.Mana > 300 and CDown <= 0 and Aimed and the_star_ship.FiringInput and not G.isBuilding:
+	if the_star_ship.mana.Mana > MainCannonManaUse and CDown <= 0 and Aimed and the_star_ship.FiringInput and not G.isBuilding:
 		var pos = G.Cursor.global_position
 		
 		if is_instance_valid(Sound): Sound.play()
@@ -122,7 +124,7 @@ func _physics_process(_delta: float) -> void:
 			
 			
 		
-		the_star_ship.mana.pullMana(300)
+		the_star_ship.mana.pullMana(MainCannonManaUse)
 		CDown = 4
 		
 			

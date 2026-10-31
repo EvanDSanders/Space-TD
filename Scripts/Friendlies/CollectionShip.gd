@@ -37,9 +37,9 @@ func _physics_process(delta: float) -> void:
 	target = E.getTarget(E.TargetType.Collectible, self.global_position)
 
 	if target and store.Crystals < 200:
-		Nav.Target = target
-	else: 
-		Nav.Target = G.StarShip.get_node("CrystalDeposit")
+		Nav.Target = target.global_position
+	else:
+		Nav.Target = G.StarShip.get_node("CrystalDeposit").global_position
 	
 	
 	var v = linear_velocity / 150

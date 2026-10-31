@@ -4,83 +4,76 @@ class_name ShipNavigator
 
 @onready var TickID : int = randi_range(0, 20)
 @export var TargType : E.TargetType = E.TargetType.Friend
-@export var Parent : RigidBody3D
-var Target : Node3D
+@export var Parent : ShipBase
+var Target : Vector3
 
-@export var Distance : int = 50
+@export var AI : ShipControllerBase
+@export var UpRighter := ShipUpCorrector.new()
+@export var Decorator : ShipDecorator
+
+@onready var debug := DrawDebug.fabricate(self)
+
+@export var Controllable := false
+var ControlAI : ShipControllerBase
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-
+	AI.Nav = self
+	AI.Parent = Parent
+	UpRighter.Nav = self
+	UpRighter.Parent = Parent
+	if Decorator:
+		Decorator.Nav = self
+		Decorator.Parent = Parent
 	
-func Turn(torque: Vector3) -> void:
-	Parent.apply_torque(Parent.global_transform.basis * torque)
 
-func Thrust(force: Vector3, pos: Vector3 = Vector3.ZERO) -> void:
-	Parent.apply_central_force(Parent.global_transform.basis * force)
+var TurnRate : Vector3
+var LinearRate : Vector3
 
-func ThrustLocked(force: Vector3, pos: Vector3 = Vector3.ZERO) -> void:
-	var yaw := Parent.rotation.y
-	var world_force := Vector3(force.x, 0.0, force.z).rotated(Vector3.UP, yaw)
-	world_force.y = force.y
-	Parent.apply_central_force(world_force)
-	
-	
+
+func ControlStart():
+	if not ControlAI:
+		ControlAI = ShipOperatorControl.new()
+		ControlAI.Nav = self
+		ControlAI.Parent = Parent
+
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if not Parent.health.isAlive: return
+	if not Parent.health.isAlive: debug.clear(); return
 	
-	var hasTarg : bool = is_instance_valid(Target)
-	var target : Node3D
-	if hasTarg:
-		target = Target
+	debug.begin()
+	
+	debug.drawLine(self.global_position, Target)
+	
+	if (
+		abs(Parent.linear_velocity.x) / 10 + 
+		abs(Parent.linear_velocity.y) / 10 + 
+		abs(Parent.linear_velocity.z) / 10 + 
+		abs(Parent.angular_velocity.x) + 
+		abs(Parent.angular_velocity.y) + 
+		abs(Parent.angular_velocity.z) 
+	) / 6 > 5:
+		Parent.linear_velocity = Vector3.ZERO
+		#Parent.global_rotation = Vector3.ZERO
+		Parent.global_rotation.x = 0
+		Parent.global_rotation.z = 0
+		Parent.angular_velocity = Vector3.ZERO
+		print("Instibility detected in %s! Motion reset." % Parent.name)
+	
+	var choise : ShipControllerBase.AIChoice
+	
+	if ControlAI and ( Parent.State == StationShip.SysState.Normal if Parent is StationShip else false ):
+		choise = ControlAI.proc(delta)
 	else:
-		target = Parent
+		AI.target = Target
+		choise = AI.proc(delta)
+	choise = choise.add( UpRighter.proc(delta) )
 	
+	if Parent is StationShip and not Parent.usageImmune: Parent.energy.pullEnergy( choise.charge() )
 	
-	var dir := self.global_transform.origin - target.global_transform.origin
-	var dot := dir.normalized().dot(self.global_transform.basis.z)
+	if Decorator: Decorator.proc(choise)
 	
-	var heading : float = atan2(dir.x, dir.z)
-	
-	Turn(Vector3( 0, angle_difference(global_rotation.y, heading) * 40 * Parent.mass, 0 ))
-	
-	
-	var forward : float = 0.
-	var lift : float = 0.
-	var strafe : float = 0.
-	
-	match TargType:
-		E.Friend, E.Enemy:
-			
-			if hasTarg and dot > 0.5:
-			
-				if Parent.global_position.distance_to(target.global_position) >  50:
-					forward = -(dot-.5) * 40
-				elif Parent.global_position.distance_to(target.global_position) < 30:
-					forward = - -(dot-.5) * 40
-				else: 
-					strafe = 10
-				
-			lift = 10 - Parent.global_position.y
-			
-			
-		E.Collectible:
-			if dot > 0.5:
-				forward = -(dot-.5) * 40 * 5
-				
-			if Parent.global_position.distance_to(target.global_position) >  50:
-				lift = 15 - Parent.global_position.y
-			else:
-				lift  = target.global_position.y - Parent.global_position.y
-			
-				
-	ThrustLocked(Vector3(strafe, lift, forward) * Parent.mass)
-	
-	#if get_node("../DebugPin"):
-		#$"../DebugPin".get_node("Label").text  = "%f" % Parent.global_position.y 
-		
-	
+	debug.end()

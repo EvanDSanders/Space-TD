@@ -8,6 +8,7 @@ func PreLoad() -> Array[LoadableResource]:
 	self.resource_name = "Asteroid Generator"
 
 	for x in range(randi_range(10, 15)):
+	#for x in range(randi_range(1, 1)):
 		list.append( AsteroidResource.new() )
 		
 	return list;

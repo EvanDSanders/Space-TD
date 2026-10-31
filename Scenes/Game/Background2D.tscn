@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://h3ok2vevfyi2"]
+
+[ext_resource type="Script" uid="uid://bplos2iy4fcpj" path="res://Scripts/Game/BackGround2D.gd" id="1_m2ax6"]
+[ext_resource type="Script" uid="uid://itwc60iiay6j" path="res://Shaders/Nodes/NodeNoise4D.gd" id="1_vu15b"]
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_vu15b"]
+parameter_name = "Offset"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_m2ax6"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_yxd11"]
+parameter_name = "Rate"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ljn12"]
+parameter_name = "RNG"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_uusg0"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_vu15b"]
+parameter_name = "Scale"
+default_value_enabled = true
+default_value = 8.0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_vu15b"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_m2ax6"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+default_value = Color(0.105882354, 0.105882354, 0.21176471, 1)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_yxd11"]
+parameter_name = "ColorParameter2"
+default_value_enabled = true
+default_value = Color(0.18039216, 0.18039216, 0.3882353, 1)
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_m2ax6"]
+default_input_values = [0, Vector3(0, 0, 0), 1, 0.0, 2, 3.0, 3, 5.0, 4, 0.7, 5, 0.1]
+initialized = true
+script = ExtResource("1_vu15b")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_vu15b"]
+default_input_values = [0, 0.0, 1, 100.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_m2ax6"]
+default_input_values = [0, 0.0, 1, 200.0]
+operator = 3
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_yxd11"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(1, 1, 1, 1), 2, 0.5]
+expanded_output_ports = [0]
+op_type = 6
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ljn12"]
+constant = Color(0.107099995, 0.107099995, 0.21, 1)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_uusg0"]
+constant = Color(0.17939998, 0.17939998, 0.39, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_7uje7"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_m2ax6"]
+parameter_name = "Size"
+default_value_enabled = true
+default_value = Vector2(1920, 1080)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_yxd11"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ljn12"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 3
+
+[sub_resource type="VisualShader" id="VisualShader_vu15b"]
+mode = 1
+flags/unshaded = true
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_m2ax6")
+nodes/fragment/2/position = Vector2(-693.3333, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeMix_yxd11")
+nodes/fragment/3/position = Vector2(-266.66666, 106.666664)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_ljn12")
+nodes/fragment/4/position = Vector2(-240, 426.66666)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_uusg0")
+nodes/fragment/5/position = Vector2(-240, 506.66666)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_7uje7")
+nodes/fragment/6/position = Vector2(-2106.6667, 0)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVec2Parameter_m2ax6")
+nodes/fragment/7/position = Vector2(-2080, 106.666664)
+nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_yxd11")
+nodes/fragment/8/position = Vector2(-1360, 0)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_ljn12")
+nodes/fragment/9/position = Vector2(-1146.6666, 0)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVec2Parameter_vu15b")
+nodes/fragment/11/position = Vector2(-2080, 373.33334)
+nodes/fragment/12/node = SubResource("VisualShaderNodeVectorOp_m2ax6")
+nodes/fragment/12/position = Vector2(-933.3333, 0)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_yxd11")
+nodes/fragment/13/position = Vector2(-2080, 640)
+nodes/fragment/14/node = SubResource("VisualShaderNodeFloatParameter_ljn12")
+nodes/fragment/14/position = Vector2(-1146.6666, 426.66666)
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_uusg0")
+nodes/fragment/15/position = Vector2(-1146.6666, 213.33333)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatParameter_vu15b")
+nodes/fragment/16/position = Vector2(-2080, 880)
+nodes/fragment/17/node = SubResource("VisualShaderNodeVectorCompose_vu15b")
+nodes/fragment/17/position = Vector2(106.666664, 133.33333)
+nodes/fragment/18/node = SubResource("VisualShaderNodeColorParameter_m2ax6")
+nodes/fragment/18/position = Vector2(-1146.6666, 666.6667)
+nodes/fragment/19/node = SubResource("VisualShaderNodeColorParameter_yxd11")
+nodes/fragment/19/position = Vector2(-1146.6666, 906.6667)
+nodes/fragment/20/node = SubResource("VisualShaderNodeFloatOp_vu15b")
+nodes/fragment/20/position = Vector2(-1493.3334, 800)
+nodes/fragment/21/node = SubResource("VisualShaderNodeFloatOp_m2ax6")
+nodes/fragment/21/position = Vector2(-1493.3334, 533.3333)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 6, 0, 8, 0, 7, 0, 8, 1, 8, 0, 9, 0, 9, 0, 12, 0, 12, 0, 2, 0, 14, 0, 2, 1, 11, 0, 15, 0, 15, 0, 12, 1, 17, 0, 0, 0, 3, 1, 17, 0, 3, 2, 17, 1, 3, 3, 17, 2, 3, 4, 0, 1, 18, 0, 3, 0, 19, 0, 3, 1, 16, 0, 20, 0, 20, 0, 9, 1, 13, 0, 21, 0, 21, 0, 15, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2ax6"]
+shader = SubResource("VisualShader_vu15b")
+shader_parameter/ColorParameter = Color(0.105, 0.105, 0.21, 1)
+shader_parameter/ColorParameter2 = Color(0.24313724, 0.26455247, 0.52156866, 1)
+shader_parameter/Size = Vector2(1920, 1080)
+shader_parameter/Scale = 8.0
+shader_parameter/Offset = Vector2(0, 0)
+shader_parameter/Rate = 1.0
+shader_parameter/RNG = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uje7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qe710"]
+shader = SubResource("VisualShader_vu15b")
+shader_parameter/ColorParameter = Color(0.105, 0.105, 0.21, 0)
+shader_parameter/ColorParameter2 = Color(0.34790003, 0.3857933, 0.49, 1)
+shader_parameter/Size = Vector2(1920, 1080)
+shader_parameter/Scale = 10.0
+shader_parameter/Offset = Vector2(0, 0)
+shader_parameter/Rate = 2.0
+shader_parameter/RNG = 99.0
+
+[node name="Background2D" type="SubViewport" unique_id=1931202279]
+script = ExtResource("1_m2ax6")
+
+[node name="Control" type="Panel" parent="." unique_id=1525114683]
+material = SubResource("ShaderMaterial_m2ax6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7uje7")
+
+[node name="Control2" type="Panel" parent="." unique_id=971280225]
+material = SubResource("ShaderMaterial_qe710")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7uje7")
