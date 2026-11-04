@@ -140,6 +140,8 @@ sky_material = SubResource("ShaderMaterial_remuw")
 resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("Sky_fos0i")
+glow_enabled = true
+glow_normalized = true
 glow_bloom = 1.0
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.0
@@ -203,8 +205,8 @@ initialized = true
 script = ExtResource("2_hhptb")
 
 [sub_resource type="Curve" id="Curve_rnsaj"]
-_data = [Vector2(0.10458408, 0.03486848), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.7240503, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0.26806933, 0.049957633), 0.0, 0.0, 0, 0, Vector2(0.70732236, 0.35737318), 2.1093426, 2.1093426, 0, 0, Vector2(0.86522114, 1), 8.670469, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_oyab2"]
 curve = SubResource("Curve_rnsaj")
@@ -443,6 +445,7 @@ debug_shape_custom_color = Color(0, 1, 0.40510178, 1)
 collision_layer = 1052676
 collision_mask = 0
 input_ray_pickable = false
+motion_mode = 1
 script = ExtResource("4_rnsaj")
 
 [node name="DestructibleFake" type="Node" parent="ShipPushAxis/CharacterBody3D" unique_id=190127573]
@@ -455,9 +458,8 @@ shape = SubResource("SphereShape3D_hnj2s")
 debug_color = Color(1, 0.98233336, 0.47000003, 1)
 debug_fill = false
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="ShipPushAxis" unique_id=1305065636]
+[node name="Shield" type="MeshInstance3D" parent="ShipPushAxis" unique_id=1305065636]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8214054)
-visible = false
 mesh = SubResource("SphereMesh_gyfnl")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="ShipPushAxis" unique_id=1344440104]
@@ -787,7 +789,6 @@ offset_bottom = 100.0
 scale = Vector2(0.59366727, 0.59366727)
 offset_transform_enabled = true
 offset_transform_pivot_ratio = Vector2(0.5, 1)
-showNodes = Array[NodePath]([NodePath("../../ShipPushAxis/MeshInstance3D4"), NodePath("../../ShipPushAxis/MeshInstance3D5")])
 image = ExtResource("20_6d2th")
 image_scale = Vector2(0.685, 0.685)
 image_offset = Vector2(0, -5.695)
