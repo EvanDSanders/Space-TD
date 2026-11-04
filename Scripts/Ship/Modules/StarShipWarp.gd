@@ -1,11 +1,17 @@
 extends Node
 class_name StarShipWarp
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var ship: TheStarShip
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func setup(p_ship: TheStarShip) -> void:
+	ship = p_ship
+	set_physics_process(false)
+
+
+func activate() -> void:
+	pass
+
+
+func deactivate() -> void:
 	pass

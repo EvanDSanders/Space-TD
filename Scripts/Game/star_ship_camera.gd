@@ -12,6 +12,10 @@ class_name RiggedCamera
 @onready var Move:		CameraObjectScript = $"../CShipMount/CMove"
 @onready var Build:		CameraObjectScript = $"../CBuild"
 
+@onready var Forward:		CameraObjectScript = $"../../FighterModeOrigin/CForward"
+@onready var SideScroll:	CameraObjectScript = $"../../FighterModeOrigin/CSide"
+@onready var TopDown:		CameraObjectScript = $"../../FighterModeOrigin/CTopDown"
+
 @onready var Current  : CameraObjectScript = Move
 
 var Tw : Tween
@@ -69,10 +73,10 @@ func setMove():
 	$Timer.start(TwT)
 	$Timer.timeout.connect(endMove)
 
-var EvadeStyle: StringName = "Attack"
+var FightStyle: StringName = "Attack"
 
-func setEvadeStyle(style: StringName): 
-	EvadeStyle = style
+func setFightStyle(style: StringName): 
+	FightStyle = style
 
 func onChange():
 	NodeStart = self.get_parent_node_3d()
@@ -85,18 +89,13 @@ func onChange():
 			Current = Build
 			setMove()
 			
-		StarShip.ShipModes.Maneuver:
-			NodeEnd = Move.Post
-			Current = Move
-			setMove()
-			
 		StarShip.ShipModes.Warp:
 			NodeEnd = Build.Post
 			Current = Build
 			setMove()
 			
-		StarShip.ShipModes.Evasion:
-			match EvadeStyle:
+		StarShip.ShipModes.Fighter:
+			match FightStyle:
 				"Evade":
 					NodeEnd = Evade.Post
 					Current = Evade
@@ -105,6 +104,19 @@ func onChange():
 					NodeEnd = Attack.Post
 					Current = Attack
 					StarShip.faceWithCamera = true
+					
+				"Forward":
+					NodeEnd = Forward.Post
+					Current = Forward
+				"SideScroll":
+					NodeEnd = SideScroll.Post
+					Current = SideScroll
+				"SideFire":
+					NodeEnd = SideScroll.Post
+					Current = SideScroll
+				"TopDown":
+					NodeEnd = TopDown.Post
+					Current = TopDown
 			setMove()
 			
 
@@ -121,7 +133,7 @@ func setupAlt():
 
 
 func _orbit(relative: Vector2) -> void:
-	if G.isMainLevel: if StarShip.ShipMode == StarShip.ShipModes.Evasion and StarShip.faceWithCamera == false: return
+	if G.isMainLevel: if StarShip.ShipMode == StarShip.ShipModes.Fighter and StarShip.faceWithCamera == false: return
 	Current.doYaw(relative.x * -0.005)
 	Current.doPitch(relative.y * -0.005)
 
@@ -140,7 +152,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		match event.button_index:
 			MOUSE_BUTTON_MIDDLE:
 				if event.pressed:
-					if not G.Main.Flaten and G.isMainLevel and StarShip.ShipMode == StarShip.ShipModes.Evasion:
+					if not G.Main.Flaten and G.isMainLevel and StarShip.ShipMode == StarShip.ShipModes.Fighter:
 						_nav_mode = NavMode.ORBIT
 					else:
 						_nav_mode = NavMode.PAN if event.shift_pressed else NavMode.ORBIT
@@ -184,12 +196,7 @@ func _process(delta: float) -> void:
 				
 				
 				
-			StarShip.ShipModes.Maneuver:
-				Move.global_position = StarShip.global_position
-				
-				
-				
-			StarShip.ShipModes.Evasion:
+			StarShip.ShipModes.Fighter:
 				Evade.global_position  = StarShip.global_position
 				Attack.global_position = StarShip.global_position
 				

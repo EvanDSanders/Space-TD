@@ -118,6 +118,7 @@ func schedule(function, delay):
 	timer.timeout.connect(timer.queue_free)
 	timer.wait_time = delay
 	timer.start()
+	
 
 
 

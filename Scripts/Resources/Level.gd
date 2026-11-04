@@ -55,7 +55,7 @@ func Load() -> Binder:
 		LevelType.MINING:
 			G.StarShip.ShipMode = TheStarShip.ShipModes.Build
 		LevelType.BATTLE:
-			G.StarShip.ShipMode = TheStarShip.ShipModes.Evasion
+			G.StarShip.ShipMode = TheStarShip.ShipModes.Fighter
 		LevelType.SCRIPTED:
 			G.StarShip.ShipMode = TheStarShip.ShipModes.Warp
 		LevelType.MINING_ALT:

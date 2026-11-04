@@ -16,7 +16,7 @@ bg_color = Color(1, 1, 1, 1)
 corner_detail = 1
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_k1r6e"]
-constant = Color(1, 0, 0, 1)
+constant = Color(1, 0.0680936, 0, 1)
 
 [sub_resource type="VisualShader" id="VisualShader_jk8ew"]
 flags/unshaded = true
@@ -41,7 +41,7 @@ input_name = "normal"
 input_name = "view"
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_c58mc"]
-constant = Color(1, 0, 0, 1)
+constant = Color(1, 0.13711202, 0, 1)
 
 [sub_resource type="Curve" id="Curve_56pfc"]
 _data = [Vector2(0, 0), 0.0, -0.053586148, 0, 0, Vector2(0.59301853, 0.428976), 2.171682, 2.171682, 0, 0, Vector2(0.7208122, 1), 4.4683275, 0.0, 1, 0, Vector2(0.8358391, 1), 0.0, 0.0, 0, 0, Vector2(0.84010154, 0), 0.0, 0.0, 0, 0]
@@ -86,6 +86,7 @@ script = ExtResource("1_3g5np")
 curve = SubResource("Curve_k1r6e")
 
 [node name="Panel" type="Panel" parent="." unique_id=468047279]
+visible = false
 modulate = Color(1, 1, 1, 0)
 oversampling_with_scale = 1
 z_index = 4020

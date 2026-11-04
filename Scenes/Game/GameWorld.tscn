@@ -4,9 +4,12 @@
 [ext_resource type="Script" uid="uid://itwc60iiay6j" path="res://Shaders/Nodes/NodeNoise4D.gd" id="2_hhptb"]
 [ext_resource type="PackedScene" uid="uid://dl2746vfs23cv" path="res://Scenes/GUI/ScanRange.tscn" id="2_mrqri"]
 [ext_resource type="PackedScene" uid="uid://bnymp03h1qh3x" path="res://Scenes/Ship/TheStarShip.tscn" id="3_1w6w2"]
-[ext_resource type="Script" uid="uid://bjig3axgkdun8" path="res://Scripts/Ship/star_ship_camera.gd" id="5_6d2th"]
+[ext_resource type="Script" uid="uid://cold1c643dykm" path="res://Scripts/Ship/ShieldBubble.gd" id="4_rnsaj"]
+[ext_resource type="Script" uid="uid://bjig3axgkdun8" path="res://Scripts/Game/star_ship_camera.gd" id="5_6d2th"]
+[ext_resource type="Script" uid="uid://d0r3yk1ec14ax" path="res://Scripts/Common/DestructibleFake.gd" id="5_rfnty"]
+[ext_resource type="Material" uid="uid://cf04rhish5grg" path="res://Materials/Friendlies/DeflectSheild.tres" id="5_wp0ge"]
 [ext_resource type="AudioStream" uid="uid://8qn56nowqvu5" path="res://Sounds/ZoomClick.wav" id="6_wp0ge"]
-[ext_resource type="Script" uid="uid://bmk2cpj8yot7v" path="res://Scripts/Ship/camera_object.gd" id="7_gyfnl"]
+[ext_resource type="Script" uid="uid://bmk2cpj8yot7v" path="res://Scripts/Game/camera_object.gd" id="7_gyfnl"]
 [ext_resource type="Script" uid="uid://bqbwen3vttji8" path="res://Scripts/Game/GUI/MouseInteraction.UI.gd" id="8_hnj2s"]
 [ext_resource type="Theme" uid="uid://gfkutjw0o1go" path="res://Themes/ButtonsNoColor.tres" id="9_hhptb"]
 [ext_resource type="Script" uid="uid://brpmeraea1bjc" path="res://Scripts/Game/GUI/Map.UI.gd" id="10_rfnty"]
@@ -18,9 +21,14 @@
 [ext_resource type="Script" uid="uid://do02wye0j26aa" path="res://Scripts/Game/GUI/Warnings.UI.gd" id="17_5epoo"]
 [ext_resource type="AudioStream" uid="uid://bv7k8bl07afod" path="res://Sounds/BellRing.ogg" id="18_hhptb"]
 [ext_resource type="PackedScene" uid="uid://cwrfs8obyks" path="res://Objects/StarShip/Resources.glb" id="19_0licu"]
+[ext_resource type="PackedScene" uid="uid://bkv4002tofme2" path="res://Scenes/GUI/MagicUserMeter.tscn" id="19_6d2th"]
 [ext_resource type="Script" uid="uid://bo281dodcecpw" path="res://Scripts/Game/GUI/Resources3D.gd" id="20_1it0e"]
+[ext_resource type="Texture2D" uid="uid://c17dj0v1qt2gi" path="res://Vectors/Chars/Albiar.png" id="20_6d2th"]
 [ext_resource type="PackedScene" uid="uid://h3ok2vevfyi2" path="res://Scenes/Game/Background2D.tscn" id="21_mrqri"]
+[ext_resource type="Texture2D" uid="uid://bmkt70cl82pvx" path="res://Vectors/Chars/Julianna.png" id="21_wp0ge"]
 [ext_resource type="PackedScene" uid="uid://b6603ew1ojd47" path="res://Scenes/GUI/SimSpeed.UI.tscn" id="22_1w6w2"]
+[ext_resource type="Texture2D" uid="uid://u4u0ykpk2oxu" path="res://Vectors/Chars/Elyiara.png" id="23_gyfnl"]
+[ext_resource type="PackedScene" uid="uid://dbuit5p2de021" path="res://Scenes/Enemies/BossA/BossA.tscn" id="27_hnj2s"]
 
 [sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_hhptb"]
 
@@ -118,16 +126,11 @@ nodes/sky/12/node = SubResource("VisualShaderNodeTexture_c45g0")
 nodes/sky/12/position = Vector2(320, 240)
 nodes/sky/13/node = SubResource("VisualShaderNodeBooleanParameter_6d2th")
 nodes/sky/13/position = Vector2(293.33334, -213.33333)
-nodes/sky/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 5, 0, 5, 0, 6, 2, 7, 0, 6, 0, 8, 0, 6, 1, 4, 0, 10, 0, 6, 0, 11, 0, 11, 0, 0, 0, 9, 0, 12, 2, 2, 0, 12, 0, 12, 0, 11, 1, 10, 2, 11, 2, 13, 0, 11, 3)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_1w6w2"]
-viewport_path = NodePath("Background2D")
+nodes/sky/connections = PackedInt32Array(3, 0, 4, 0, 4, 0, 5, 0, 5, 0, 6, 2, 7, 0, 6, 0, 8, 0, 6, 1, 4, 0, 10, 0, 6, 0, 11, 0, 9, 0, 12, 2, 2, 0, 12, 0, 12, 0, 11, 1, 10, 2, 11, 2, 13, 0, 11, 3, 6, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_remuw"]
 resource_local_to_scene = true
 shader = SubResource("VisualShader_hhptb")
-shader_parameter/Background2D = SubResource("ViewportTexture_1w6w2")
-shader_parameter/BooleanParameter = true
 
 [sub_resource type="Sky" id="Sky_fos0i"]
 resource_local_to_scene = true
@@ -138,7 +141,9 @@ resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("Sky_fos0i")
 glow_bloom = 1.0
+fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.0
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_length = 1000.0
 
@@ -184,6 +189,122 @@ radius = 10.0
 height = 50.0
 radius = 30.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_hnj2s"]
+radius = 37.523
+
+[sub_resource type="SphereMesh" id="SphereMesh_gyfnl"]
+material = ExtResource("5_wp0ge")
+radius = 37.523
+height = 75.046
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_hnj2s"]
+default_input_values = [0, Vector3(0, 0, 0), 1, 0.0, 2, 0.1, 3, 2.0, 4, 0.6, 5, 1.0]
+initialized = true
+script = ExtResource("2_hhptb")
+
+[sub_resource type="Curve" id="Curve_rnsaj"]
+_data = [Vector2(0.10458408, 0.03486848), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.7240503, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_oyab2"]
+curve = SubResource("Curve_rnsaj")
+
+[sub_resource type="VisualShaderNodeCurveTexture" id="VisualShaderNodeCurveTexture_rfnty"]
+size = Vector2(420.00003, 0)
+texture = SubResource("CurveTexture_oyab2")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_e4rwt"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_5sydc"]
+varying_name = "Pos"
+varying_type = 4
+
+[sub_resource type="Curve" id="Curve_232mr"]
+_data = [Vector2(0.40155885, 0.049719214), 0.0, 0.0, 0, 0, Vector2(0.62497514, 1), 9.539735, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fxsn2"]
+curve = SubResource("Curve_232mr")
+
+[sub_resource type="VisualShaderNodeCurveTexture" id="VisualShaderNodeCurveTexture_cuaso"]
+size = Vector2(420.00003, 0)
+texture = SubResource("CurveTexture_fxsn2")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_d1vsm"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_tscym"]
+constant = 10.0
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_5epoo"]
+constant = Color(0.62144136, 0.23921569, 0.972549, 1)
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_y6qqk"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0licu"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1it0e"]
+input_name = "view"
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_55rh1"]
+varying_name = "Pos"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_8hs4r"]
+input_name = "vertex"
+
+[sub_resource type="VisualShader" id="VisualShader_i3fwu"]
+modes/cull = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/fog_disabled = true
+varyings/Pos = "0,4"
+nodes/vertex/1/node = SubResource("VisualShaderNodeVaryingSetter_55rh1")
+nodes/vertex/1/position = Vector2(0, 200)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_8hs4r")
+nodes/vertex/2/position = Vector2(-420, 200)
+nodes/vertex/connections = PackedInt32Array(2, 0, 1, 0)
+nodes/fragment/0/position = Vector2(1240, -20)
+nodes/fragment/1/node = SubResource("VisualShaderNodeCustom_hnj2s")
+nodes/fragment/1/position = Vector2(-580, 180)
+nodes/fragment/2/node = SubResource("VisualShaderNodeVaryingGetter_5sydc")
+nodes/fragment/2/position = Vector2(-840, 200)
+nodes/fragment/3/node = SubResource("VisualShaderNodeCurveTexture_cuaso")
+nodes/fragment/3/position = Vector2(-260, 160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_d1vsm")
+nodes/fragment/4/position = Vector2(40, -120)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatConstant_tscym")
+nodes/fragment/5/position = Vector2(-320, 40)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_5epoo")
+nodes/fragment/6/position = Vector2(-280, -80)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFresnel_y6qqk")
+nodes/fragment/7/position = Vector2(-60, 560)
+nodes/fragment/8/node = SubResource("VisualShaderNodeInput_0licu")
+nodes/fragment/8/position = Vector2(-460, 600)
+nodes/fragment/9/node = SubResource("VisualShaderNodeInput_1it0e")
+nodes/fragment/9/position = Vector2(-460, 680)
+nodes/fragment/10/node = SubResource("VisualShaderNodeCurveTexture_rfnty")
+nodes/fragment/10/position = Vector2(200, 520)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatOp_e4rwt")
+nodes/fragment/11/position = Vector2(940, 180)
+nodes/fragment/connections = PackedInt32Array(2, 0, 1, 0, 1, 0, 3, 0, 5, 0, 4, 1, 6, 0, 4, 0, 4, 0, 0, 0, 8, 0, 7, 0, 9, 0, 7, 1, 7, 0, 10, 0, 11, 0, 0, 1, 10, 0, 11, 1, 3, 0, 11, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05pq4"]
+render_priority = 1
+shader = SubResource("VisualShader_i3fwu")
+
+[sub_resource type="SphereMesh" id="SphereMesh_431d2"]
+material = SubResource("ShaderMaterial_05pq4")
+radius = 80.0
+height = 160.0
+
+[sub_resource type="FogMaterial" id="FogMaterial_mhf2c"]
+albedo = Color(0.48246264, 0.9722645, 1, 1)
+emission = Color(0, 0.73816633, 1.1319368, 1)
+height_falloff = 7.727491e-05
+
 [sub_resource type="Curve" id="Curve_bg4s2"]
 _limits = [0.4, 10.0, 0.0, 1.0]
 _data = [Vector2(0, 0.4), 0.0, 16.262047, 0, 0, Vector2(0.46310437, 6.485714), 9.624, 9.624491, 0, 0, Vector2(1, 10), 0.73229915, 0.0, 0, 0]
@@ -207,6 +328,42 @@ corner_radius_bottom_left = 24
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fpfj3"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="GDScript" id="GDScript_0engo"]
+script/source = "extends VBoxContainer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+@onready var StarShip: TheStarShip = $\"../Friendlies/The Star Ship\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_fw_pressed() -> void:
+	StarShip.fighter.FlightMode = StarShipFighter.FlightModes.Forward
+	G.Camera.setFightStyle('Forward')
+	G.Camera.onChange()
+
+func _on_ss_pressed() -> void:
+	StarShip.fighter.FlightMode = StarShipFighter.FlightModes.SideScroller
+	G.Camera.setFightStyle('SideFire')
+	G.Camera.onChange()
+
+func _on_sf_pressed() -> void:
+	StarShip.fighter.FlightMode = StarShipFighter.FlightModes.SideFire
+	G.Camera.setFightStyle('SideFire')
+	G.Camera.onChange()
+
+func _on_td_pressed() -> void:
+	StarShip.fighter.FlightMode = StarShipFighter.FlightModes.TopDown
+	G.Camera.setFightStyle('TopDown')
+	G.Camera.onChange()
+"
 
 [node name="Main" type="Node3D" unique_id=410800660]
 process_physics_priority = 1000
@@ -280,12 +437,54 @@ shape = SubResource("CylinderShape3D_eoje4")
 collision_mask = 16
 debug_shape_custom_color = Color(0, 1, 0.40510178, 1)
 
+[node name="ShipPushAxis" type="Node3D" parent="." unique_id=695734255]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="ShipPushAxis" unique_id=671119705]
+collision_layer = 1052676
+collision_mask = 0
+input_ray_pickable = false
+script = ExtResource("4_rnsaj")
+
+[node name="DestructibleFake" type="Node" parent="ShipPushAxis/CharacterBody3D" unique_id=190127573]
+script = ExtResource("5_rfnty")
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShipPushAxis/CharacterBody3D" unique_id=719938991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8214054)
+shape = SubResource("SphereShape3D_hnj2s")
+debug_color = Color(1, 0.98233336, 0.47000003, 1)
+debug_fill = false
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="ShipPushAxis" unique_id=1305065636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8214054)
+visible = false
+mesh = SubResource("SphereMesh_gyfnl")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="ShipPushAxis" unique_id=1344440104]
+transform = Transform3D(2.9802322e-08, 0, 1.0950001, 0, 1.095, 0, -1.0950001, 0, 2.9802322e-08, 0, 0, 1.8214054)
+visible = false
+mesh = SubResource("SphereMesh_gyfnl")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="ShipPushAxis" unique_id=213043933]
+transform = Transform3D(2.9802322e-08, 0, 1.0950001, 0, 1.095, 0, -1.0950001, 0, 2.9802322e-08, 0, 0, 1.8214054)
+visible = false
+mesh = SubResource("SphereMesh_431d2")
+
+[node name="FogVolume2" type="FogVolume" parent="ShipPushAxis" unique_id=1863879517]
+transform = Transform3D(2.9802322e-08, 0, 1.0950001, 0, 1.095, 0, -1.0950001, 0, 2.9802322e-08, 2.1094065e-06, 0, -105.41746)
+visible = false
+size = Vector3(139.21364, 9.234375, 11.908447)
+material = SubResource("FogMaterial_mhf2c")
+
 [node name="Friendlies" type="Marker3D" parent="." unique_id=1848505711]
 
 [node name="The Star Ship" parent="Friendlies" unique_id=81731908 instance=ExtResource("3_1w6w2")]
 collision_layer = 5
 collision_mask = 1
 faceWithCamera = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Friendlies/The Star Ship" unique_id=1143063905]
+remote_path = NodePath("../../../ShipPushAxis")
 
 [node name="Enemies" type="Marker3D" parent="." unique_id=2055970417]
 
@@ -384,10 +583,7 @@ process_physics_priority = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
-offset_top = -91.0
-offset_right = 36.0
-offset_bottom = -91.0
+offset_left = -6.1035156e-05
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
@@ -582,6 +778,66 @@ vertical_alignment = 1
 [node name="SimSpeed Dock" parent="GUI Mount" unique_id=659319413 instance=ExtResource("22_1w6w2")]
 layout_mode = 1
 
+[node name="Defender" parent="GUI Mount" unique_id=1134694507 instance=ExtResource("19_6d2th")]
+layout_mode = 1
+offset_left = -524.99994
+offset_top = -150.0
+offset_right = -224.99994
+offset_bottom = 100.0
+scale = Vector2(0.59366727, 0.59366727)
+offset_transform_enabled = true
+offset_transform_pivot_ratio = Vector2(0.5, 1)
+showNodes = Array[NodePath]([NodePath("../../ShipPushAxis/MeshInstance3D4"), NodePath("../../ShipPushAxis/MeshInstance3D5")])
+image = ExtResource("20_6d2th")
+image_scale = Vector2(0.685, 0.685)
+image_offset = Vector2(0, -5.695)
+useRate = 0.8
+regenRate = 0.3
+tireRateMult = 0.2
+tireRecoverFac = 0.0
+collapse_threshold = 20.0
+collapse_time = 1.0
+button = &"Up"
+
+[node name="AttackerL" parent="GUI Mount" unique_id=1515302029 instance=ExtResource("19_6d2th")]
+layout_mode = 1
+offset_left = -711.99994
+offset_top = -150.0
+offset_right = -411.99994
+offset_bottom = 100.0
+scale = Vector2(0.59366727, 0.59366727)
+showNodes = Array[NodePath]([NodePath("../../ShipPushAxis/FogVolume2")])
+image = ExtResource("21_wp0ge")
+image_scale = Vector2(1.19, 1.19)
+image_offset = Vector2(0, 61.735)
+hue = 0.574
+hue_max = 0.588
+useRate = 0.6
+regenRate = 0.2
+tireRateMult = 0.1
+tireRecoverFac = 0.0
+collapse_threshold = 10.0
+button = &"LClick"
+
+[node name="AttackerR" parent="GUI Mount" unique_id=282736969 instance=ExtResource("19_6d2th")]
+layout_mode = 1
+offset_left = -338.99994
+offset_top = -150.0
+offset_right = -38.99994
+offset_bottom = 100.0
+scale = Vector2(0.59366727, 0.59366727)
+showNodes = Array[NodePath]([NodePath("../../ShipPushAxis/MeshInstance3D6")])
+image = ExtResource("23_gyfnl")
+image_scale = Vector2(1.405, 1.405)
+image_offset = Vector2(0, 35.085)
+hue = 0.692
+hue_max = 0.697
+useRate = 2.0
+regenRate = 0.5
+tireRateMult = 0.4
+tireRecoverFac = 0.2
+button = &"RClick"
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1545136599]
 transparent_bg = true
 size = Vector2i(250, 500)
@@ -618,3 +874,78 @@ layers = 512
 
 [node name="Background2D" parent="." unique_id=1931202279 instance=ExtResource("21_mrqri")]
 size = Vector2i(1082, 673)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1147078494]
+offset_left = 25.0
+offset_top = 23.0
+offset_right = 55.0
+offset_bottom = 159.0
+script = SubResource("GDScript_0engo")
+
+[node name="Fw" type="Button" parent="VBoxContainer" unique_id=1776701122]
+layout_mode = 2
+text = "Fw"
+
+[node name="SS" type="Button" parent="VBoxContainer" unique_id=2017848293]
+layout_mode = 2
+text = "SS"
+
+[node name="SF" type="Button" parent="VBoxContainer" unique_id=430727949]
+layout_mode = 2
+text = "SF"
+
+[node name="Td" type="Button" parent="VBoxContainer" unique_id=215706386]
+layout_mode = 2
+text = "Td"
+
+[node name="FighterModeOrigin" type="Node3D" parent="." unique_id=1127705609]
+
+[node name="CForward" type="Node3D" parent="FighterModeOrigin" unique_id=199347054]
+script = ExtResource("7_gyfnl")
+canPan = false
+canOrbitPitch = false
+canOrbitYaw = false
+
+[node name="Yaw" type="Node3D" parent="FighterModeOrigin/CForward" unique_id=1825778824]
+
+[node name="Pitch" type="Node3D" parent="FighterModeOrigin/CForward/Yaw" unique_id=1234958920]
+
+[node name="Post" type="Node3D" parent="FighterModeOrigin/CForward/Yaw/Pitch" unique_id=874278605]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 100, 170)
+
+[node name="CSide" type="Node3D" parent="FighterModeOrigin" unique_id=1464188957]
+script = ExtResource("7_gyfnl")
+canPan = false
+canOrbitPitch = false
+canOrbitYaw = false
+
+[node name="Yaw" type="Node3D" parent="FighterModeOrigin/CSide" unique_id=26839959]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Pitch" type="Node3D" parent="FighterModeOrigin/CSide/Yaw" unique_id=1206054510]
+
+[node name="Post" type="Node3D" parent="FighterModeOrigin/CSide/Yaw/Pitch" unique_id=1495724975]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 100, 170)
+
+[node name="CTopDown" type="Node3D" parent="FighterModeOrigin" unique_id=377845952]
+script = ExtResource("7_gyfnl")
+canPan = false
+canOrbitPitch = false
+canOrbitYaw = false
+
+[node name="Yaw" type="Node3D" parent="FighterModeOrigin/CTopDown" unique_id=1202147833]
+
+[node name="Pitch" type="Node3D" parent="FighterModeOrigin/CTopDown/Yaw" unique_id=1554863890]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Post" type="Node3D" parent="FighterModeOrigin/CTopDown/Yaw/Pitch" unique_id=862231380]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 190)
+
+[node name="Node3D" parent="FighterModeOrigin" unique_id=1018765293 instance=ExtResource("27_hnj2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -568.37463, 0, 0)
+
+[connection signal="onActivate" from="GUI Mount/Defender" to="ShipPushAxis/CharacterBody3D" method="_on_defender_on_activate"]
+[connection signal="pressed" from="VBoxContainer/Fw" to="VBoxContainer" method="_on_fw_pressed"]
+[connection signal="pressed" from="VBoxContainer/SS" to="VBoxContainer" method="_on_ss_pressed"]
+[connection signal="pressed" from="VBoxContainer/SF" to="VBoxContainer" method="_on_sf_pressed"]
+[connection signal="pressed" from="VBoxContainer/Td" to="VBoxContainer" method="_on_td_pressed"]

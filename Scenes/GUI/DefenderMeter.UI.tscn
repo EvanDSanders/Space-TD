@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://d1m1rstkqsitp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylc3l"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.44705883, 0.0670719, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_5d0u6"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_fd88k"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ds8dp"]
+default_input_values = [0, 0.0, 1, 1.0]
+operator = 3
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_5d0u6"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_f08p0"]
+default_input_values = [0, 0.0, 1, 0.1]
+operator = 4
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_q180v"]
+default_input_values = [0, 0.0, 1, 0.05, 2, 1e-05]
+function = 2
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_i78uq"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_bsjnn"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_pxht0"]
+default_input_values = [0, 0.0, 1, 0.1]
+operator = 2
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_1kxph"]
+default_input_values = [0, false, 1, Quaternion(1, 1, 1, 1), 2, Quaternion(0, 0, 0, 0)]
+op_type = 5
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ox7ep"]
+constant = Color(0, 0, 0, 0)
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_gc001"]
+constant = Color(0.33339494, 0, 0, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_f08p0"]
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1360, 160)
+nodes/fragment/1/node = SubResource("VisualShaderNodeInput_5d0u6")
+nodes/fragment/1/position = Vector2(-1280, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeFloatOp_f08p0")
+nodes/fragment/2/position = Vector2(-40, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeCompare_q180v")
+nodes/fragment/3/position = Vector2(160, 140)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorDecompose_i78uq")
+nodes/fragment/4/position = Vector2(-840, 140)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_bsjnn")
+nodes/fragment/5/position = Vector2(-400, 140)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatOp_pxht0")
+nodes/fragment/6/position = Vector2(-620, 260)
+nodes/fragment/7/node = SubResource("VisualShaderNodeSwitch_1kxph")
+nodes/fragment/7/position = Vector2(460, 160)
+nodes/fragment/8/node = SubResource("VisualShaderNodeColorConstant_ox7ep")
+nodes/fragment/8/position = Vector2(160, 340)
+nodes/fragment/9/node = SubResource("VisualShaderNodeColorConstant_gc001")
+nodes/fragment/9/position = Vector2(160, 440)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorDecompose_fd88k")
+nodes/fragment/10/position = Vector2(720, 260)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatOp_ds8dp")
+nodes/fragment/11/position = Vector2(-220, 140)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_5d0u6")
+nodes/fragment/12/position = Vector2(1020, 300)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 1, 0, 4, 0, 4, 0, 5, 0, 4, 1, 6, 0, 6, 0, 5, 1, 3, 0, 7, 0, 7, 0, 0, 0, 8, 0, 7, 1, 9, 0, 7, 2, 7, 0, 10, 0, 5, 0, 11, 0, 11, 0, 2, 0, 10, 3, 12, 0, 12, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ds8dp"]
+shader = SubResource("VisualShader_f08p0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d0u6"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nk7f"]
+bg_color = Color(1, 0.94933337, 0.24000001, 0.3647059)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.70167977, 0.67691463, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ta8ly"]
+bg_color = Color(1, 0.93848294, 0.34216368, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.999694, 1, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd88k"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+expand_margin_left = 2.0
+
+[node name="MarginContainer" type="MarginContainer" unique_id=363571695]
+custom_minimum_size = Vector2(500, 30)
+custom_maximum_size = Vector2(500, 30)
+offset_right = 300.0
+offset_bottom = 25.0
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1907249027]
+z_index = 2
+propagate_maximum_size = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ylc3l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=758084166]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=67114991]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/HBoxContainer/MarginContainer" unique_id=863491624]
+z_index = -5
+material = SubResource("ShaderMaterial_ds8dp")
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5d0u6")
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/HBoxContainer" unique_id=264389945]
+z_index = 2
+custom_minimum_size = Vector2(102.79, 0)
+layout_mode = 2
+size_flags_horizontal = 20
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_4nk7f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ta8ly")
+value = 80.0
+show_percentage = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=2053648352]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/HBoxContainer/MarginContainer2" unique_id=1067600981]
+z_index = -5
+material = SubResource("ShaderMaterial_ds8dp")
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fd88k")

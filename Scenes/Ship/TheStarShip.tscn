@@ -9,7 +9,11 @@
 [ext_resource type="Script" uid="uid://chahj6p5gtbru" path="res://Scripts/Common/CrystalStore.gd" id="4_vbsd5"]
 [ext_resource type="ArrayMesh" uid="uid://c03p1wq8x7grl" path="res://Shaders/Smoke_Project/Mesh.tres" id="5_0xris"]
 [ext_resource type="Script" uid="uid://bsxpa0ykikhsh" path="res://Scripts/Common/CursorDialogue.gd" id="5_50x4y"]
+[ext_resource type="Script" uid="uid://ckylntg6f1cnp" path="res://Scripts/Ship/Modules/StarShipAnimator.gd" id="6_6m2vr"]
 [ext_resource type="Script" uid="uid://c352samjcijuc" path="res://Scripts/Common/ManaStore.gd" id="6_vbsd5"]
+[ext_resource type="Script" uid="uid://dfrleytt3e8y1" path="res://Scripts/Ship/Modules/StarShipBuilder.gd" id="7_ab8xo"]
+[ext_resource type="Script" uid="uid://dogjt1nygkb5o" path="res://Scripts/Ship/Modules/StarShipFighter.gd" id="8_pp8cm"]
+[ext_resource type="Script" uid="uid://d0scd1vltsqgj" path="res://Scripts/Ship/Modules/StarShipWarp.gd" id="9_klpbu"]
 [ext_resource type="Script" uid="uid://4gtjosoa60yp" path="res://Scripts/Misc/SmokeController.gd" id="11_0xris"]
 [ext_resource type="PackedScene" uid="uid://r2c1xnv1e5ea" path="res://Scenes/Friendlies/CollectionArea3D.tscn" id="12_0xris"]
 [ext_resource type="Script" uid="uid://b1lekmlrs6hfj" path="res://ScanArea.gd" id="13_vfujq"]
@@ -27,6 +31,10 @@ colors = PackedColorArray(1, 1, 0, 1, 1.0354114, 0.81522506, 0.00087751984, 1, 1
 [sub_resource type="Gradient" id="Gradient_50x4y"]
 offsets = PackedFloat32Array(0, 0.23186529, 0.5634715, 0.7733161, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.44152188, 0, 1, 1, 0.9147645, 0, 1, 0, 0.97696304, 1, 1, 0, 0.115311146, 0.58111036, 1)
+
+[sub_resource type="Gradient" id="Gradient_mrqri"]
+offsets = PackedFloat32Array(0, 0.67597765, 1)
+colors = PackedColorArray(1, 0.9176781, 0, 1, 1, 0, 0.07846451, 1, 1, 0, 0.5267916, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_re7vq"]
 size = Vector3(12.481445, 8.208008, 13.192383)
@@ -180,13 +188,53 @@ metadata/_custom_type_script = "uid://bsxpa0ykikhsh"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 5)
 gizmo_extents = 1.46
 
+[node name="StarShipAnimator" type="Node" parent="." unique_id=271609874]
+script = ExtResource("6_6m2vr")
+metadata/_custom_type_script = "uid://ckylntg6f1cnp"
+
+[node name="StarShipBuilder" type="Node" parent="." unique_id=70703599]
+script = ExtResource("7_ab8xo")
+metadata/_custom_type_script = "uid://dfrleytt3e8y1"
+
+[node name="StarShipFighter" type="Node" parent="." unique_id=2067626056]
+script = ExtResource("8_pp8cm")
+ForwardSpeed = 250.0
+Limits = {
+0: {
+"max": Vector2(180, 140),
+"min": Vector2(-180, -70)
+},
+1: {
+"max": Vector2(200, 140),
+"min": Vector2(-200, -60)
+},
+2: {
+"max": Vector2(200, 140),
+"min": Vector2(-200, -60)
+},
+3: {
+"max": Vector2(200, 100),
+"min": Vector2(-200, -100)
+}
+}
+MaxSpeed = 300.0
+Acceleration = 10.0
+TurnRate = 10.0
+BoostMultiplier = 1.5
+EngineColors = SubResource("Gradient_mrqri")
+metadata/_custom_type_script = "uid://dogjt1nygkb5o"
+
+[node name="StarShipWarp" type="Node" parent="." unique_id=285119071]
+script = ExtResource("9_klpbu")
+metadata/_custom_type_script = "uid://d0scd1vltsqgj"
+
 [node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
 transform = Transform3D(0.9954457, 0, 0, 0, 0.9954457, 0, 0, 0, 0.9954457, -0.01760292, 0.016902924, -0.0010299683)
 
-[node name="Cube 008" parent="Star Ship" index="2" unique_id=767565850]
+[node name="Cube 008" parent="Star Ship" index="2" unique_id=352102282]
 layers = 513
 
-[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1924704704]
+[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=666250498]
 layers = 513
 
 [node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]

@@ -22,7 +22,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var speed
-	if StarShip.ShipMode == StarShip.ShipModes.Evasion:
+	if StarShip.ShipMode == StarShip.ShipModes.Fighter:
 		#speed = StarShip.Velocity.length()
 		speed = StarShip.linear_velocity.length()
 	else:
@@ -74,20 +74,16 @@ func _on_build_button_up() -> void:
 	StarShip.ShipMode = StarShip.ShipModes.Build
 	onSet()
 
-func _on_maneuver_button_up() -> void:
-	StarShip.ShipMode = StarShip.ShipModes.Maneuver
-	onSet()
-
 func _on_warp_button_up() -> void:
 	StarShip.ShipMode = StarShip.ShipModes.Warp
 	onSet()
 
 func _on_evasion_button_up() -> void:
-	StarShip.ShipMode = StarShip.ShipModes.Evasion
+	StarShip.ShipMode = StarShip.ShipModes.Fighter
 	Camera.setEvadeStyle("Evade")
 	onSet()
 
 func _on_attack_button_up() -> void:
-	StarShip.ShipMode = StarShip.ShipModes.Evasion
+	StarShip.ShipMode = StarShip.ShipModes.Fighter
 	Camera.setEvadeStyle("Attack")
 	onSet()

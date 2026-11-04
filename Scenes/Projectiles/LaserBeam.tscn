@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bhe0fs1k3qbu0"]
+
+[ext_resource type="Script" uid="uid://0hs4x0gfgydw" path="res://Scripts/Game/projectile.gd" id="1_hc056"]
+[ext_resource type="Script" uid="uid://c5tc5ksdonfo2" path="res://Scripts/Resources/Turrets/TurretOnHitExplode.gd" id="2_u431u"]
+
+[sub_resource type="Resource" id="Resource_hc056"]
+script = ExtResource("2_u431u")
+metadata/_custom_type_script = "uid://c5tc5ksdonfo2"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_hc056"]
+constant = Color(1, 0.09957206, 0, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_yf1ts"]
+flags/unshaded = true
+nodes/fragment/1/node = SubResource("VisualShaderNodeColorConstant_hc056")
+nodes/fragment/1/position = Vector2(0, 180)
+nodes/fragment/connections = PackedInt32Array(1, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_usb22"]
+render_priority = 0
+shader = SubResource("VisualShader_yf1ts")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hc056"]
+material = SubResource("ShaderMaterial_usb22")
+top_radius = 0.0
+bottom_radius = 2.5
+height = 4.0
+radial_segments = 4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iuut6"]
+material = SubResource("ShaderMaterial_usb22")
+top_radius = 0.0
+bottom_radius = 2.5
+height = 8.0
+radial_segments = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hc056"]
+radius = 2.5
+
+[sub_resource type="Curve" id="Curve_ck4gr"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="LaserBeam" type="CharacterBody3D" unique_id=314718670]
+script = ExtResource("1_hc056")
+onHit = SubResource("Resource_hc056")
+strong = true
+homingDeflect = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=727228431]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 2)
+mesh = SubResource("CylinderMesh_hc056")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=577449070]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -2.6226834e-07, -4)
+mesh = SubResource("CylinderMesh_iuut6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=433539164]
+shape = SubResource("SphereShape3D_hc056")
+debug_color = Color(0.70196074, 0.2693832, 0, 0.41960785)
+
+[node name="Trail3D" type="Trail3D" parent="." unique_id=2098629938]
+custom_aabb = AABB(-3, -3, -3, 6, 6, 6)
+lifetime = 1.0
+width = 3.0
+width_curve = SubResource("Curve_ck4gr")
+color = Color(2.454227, 0.31365427, 0, 1)

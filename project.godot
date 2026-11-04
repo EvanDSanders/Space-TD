@@ -557,15 +557,17 @@ Toon={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+jolt_physics_3d/limits/max_linear_velocity=2000.0
 3d/default_gravity=0.0
 3d/default_gravity_vector=Vector3(0, 0, 0)
 
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method.mobile="forward_plus"
 textures/vram_compression/import_etc2_astc=true
-environment/volumetric_fog/volume_size=32
-environment/volumetric_fog/volume_depth=32
+anti_aliasing/quality/msaa_2d=1
+anti_aliasing/quality/msaa_3d=1
 
 [shader_globals]
 

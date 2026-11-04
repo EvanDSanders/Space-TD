@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://costjd1yo7liu"]
+
+[ext_resource type="Script" uid="uid://ccx2aw7hcfoij" path="res://Scripts/Enemies/BossA/BossALaser.gd" id="1_ei4i6"]
+[ext_resource type="PackedScene" uid="uid://58unt80we128" path="res://Objects/Enemies/BossA/Boss A Laser.glb" id="1_v0itl"]
+[ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_vaxha"]
+[ext_resource type="AudioStream" uid="uid://n4gf35k13juv" path="res://Sounds/LaserCharging.ogg" id="3_qfmxi"]
+
+[sub_resource type="Curve" id="Curve_vaxha"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.97208124, 1), 3.0640934, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_usb22"]
+height = 26.407585
+radius = 66.229004
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_k1r6e"]
+constant = Color(1, 0.0680936, 0, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_jk8ew"]
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_k1r6e")
+nodes/fragment/2/position = Vector2(106.666664, 186.66667)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1nho"]
+render_priority = 0
+shader = SubResource("VisualShader_jk8ew")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_eoje4"]
+material = SubResource("ShaderMaterial_t1nho")
+height = 20.365723
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_3g5np"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_k1r6e"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_3qh4g"]
+input_name = "view"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_c58mc"]
+constant = Color(1, 0.13711202, 0, 1)
+
+[sub_resource type="Curve" id="Curve_56pfc"]
+_data = [Vector2(0, 0), 0.0, -0.053586148, 0, 0, Vector2(0.59301853, 0.428976), 2.171682, 2.171682, 0, 0, Vector2(0.7208122, 1), 4.4683275, 0.0, 1, 0, Vector2(0.8358391, 1), 0.0, 0.0, 0, 0, Vector2(0.84010154, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_q8uu5"]
+curve = SubResource("Curve_56pfc")
+
+[sub_resource type="VisualShaderNodeCurveTexture" id="VisualShaderNodeCurveTexture_0letw"]
+texture = SubResource("CurveTexture_q8uu5")
+
+[sub_resource type="VisualShader" id="VisualShader_jqtv7"]
+flags/depth_prepass_alpha = true
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeFresnel_3g5np")
+nodes/fragment/2/position = Vector2(-293.33334, 133.33333)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_k1r6e")
+nodes/fragment/3/position = Vector2(-693.3333, 133.33333)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_3qh4g")
+nodes/fragment/4/position = Vector2(-693.3333, 240)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_c58mc")
+nodes/fragment/5/position = Vector2(73.53494, 82.1739)
+nodes/fragment/6/node = SubResource("VisualShaderNodeCurveTexture_0letw")
+nodes/fragment/6/position = Vector2(-80, 213.33333)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 2, 1, 5, 0, 0, 0, 2, 0, 6, 0, 6, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqyl4"]
+render_priority = 0
+shader = SubResource("VisualShader_jqtv7")
+
+[sub_resource type="SphereMesh" id="SphereMesh_eoje4"]
+material = SubResource("ShaderMaterial_bqyl4")
+radius = 5.0
+height = 10.0
+
+[node name="Boss A Laser" type="CharacterBody3D" unique_id=1965906567]
+collision_layer = 8200
+collision_mask = 0
+script = ExtResource("1_ei4i6")
+curve = SubResource("Curve_vaxha")
+
+[node name="Destructible" type="Node" parent="." unique_id=798106873]
+script = ExtResource("2_vaxha")
+metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1873906812]
+transform = Transform3D(1.1920929e-07, -1, -1.1920929e-07, 0, 1.1920929e-07, -1, 1, 1.1920929e-07, 0, 1.1106968, -5.3525173e-07, -5.3525173e-07)
+shape = SubResource("CylinderShape3D_usb22")
+debug_color = Color(0.7, 0.21000001, 0, 1)
+debug_fill = false
+
+[node name="Boss A Laser" parent="." unique_id=924733241 instance=ExtResource("1_v0itl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3793201, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2042940008]
+stream = ExtResource("3_qfmxi")
+attenuation_model = 3
+volume_db = -3.547
+unit_size = 100.0
+bus = &"WarningBeeper"
+playback_type = 1
+attenuation_filter_cutoff_hz = 20500.0
+attenuation_filter_db = 0.0
+parameters/looping = true
+
+[node name="Timer" type="Timer" parent="." unique_id=92127978]
+wait_time = 12.0
+autostart = true
+
+[node name="DoomLaser" type="RayCast3D" parent="." unique_id=1546375172]
+visible = false
+target_position = Vector3(0, 0, -10000)
+collision_mask = 1048580
+debug_shape_custom_color = Color(0, 0, 0, 0)
+debug_shape_thickness = 1
+
+[node name="Node3D" type="Node3D" parent="DoomLaser" unique_id=412536380]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoomLaser/Node3D" unique_id=233408741]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_eoje4")
+
+[node name="End" type="Node3D" parent="DoomLaser" unique_id=1108043417]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoomLaser/End" unique_id=543189909]
+mesh = SubResource("SphereMesh_eoje4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DoomLaser/End" unique_id=1407449117]
+mesh = SubResource("SphereMesh_eoje4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="DoomLaser/End" unique_id=604558063]
+mesh = SubResource("SphereMesh_eoje4")
+
+[connection signal="timeout" from="Timer" to="DoomLaser" method="startBlast"]
+
+[editable path="Boss A Laser"]

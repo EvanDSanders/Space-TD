@@ -115,9 +115,9 @@ func _physics_process(delta: float) -> void:
 	PriorVelRot = VelRot
 	
 	if Tw: Tw.kill()
-	Tw = create_tween()
-	Tw.tween_property(GUI, "offset_transform_position", displayVel, 0.2); Tw.parallel()
-	Tw.tween_property(GUI, "offset_transform_rotation", displayRet, 0.2)
+	#Tw = create_tween()
+	#Tw.tween_property(GUI, "offset_transform_position", displayVel, 0.2); Tw.parallel()
+	#Tw.tween_property(GUI, "offset_transform_rotation", displayRet, 0.2)
 	
 
 	
