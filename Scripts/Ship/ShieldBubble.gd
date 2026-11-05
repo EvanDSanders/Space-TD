@@ -7,6 +7,8 @@ var isDeflecting = true
 @onready var defender: MagicUserMeter = $"../../GUI Mount/Defender"
 var Tw : Tween
 
+var killBossMode := false
+
 func _ready() -> void:
 	disable_mode = CollisionObject3D.DISABLE_MODE_REMOVE
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -20,6 +22,9 @@ func onHit(damage): # hitter: CollisionObject3D):
 
 
 func onParry():
+	if killBossMode:
+		$"../FinalShield".visible = false
+	
 	defender.Boost(10, 25)
 	G.setGameSpeed(0.2)
 	G.Main.create_tween().tween_method( G.setGameSpeed , 0.1, 1.0, 0.3 ).set_delay(0.2)
@@ -42,8 +47,8 @@ func _on_defender_on_activate(on: bool) -> void:
 	
 	state = on
 	
-	
 	if on:
+		if killBossMode: KillBossMove(); return
 		$CollisionShape3D.debug_color = Color.ANTIQUE_WHITE
 		DeflectPow = 1.0
 		Brightness = 0.0
@@ -77,3 +82,9 @@ func _on_defender_on_activate(on: bool) -> void:
 		Tw = G.Main.create_tween()
 		Tw.tween_property(self, 'Brightness', 0.0, 0.15)
 		
+		
+func KillBossMove():
+	isDeflecting = true
+	$"../FinalShield".visible = true
+	$CollisionShape3D.debug_color = Color.YELLOW
+	process_mode = Node.PROCESS_MODE_INHERIT

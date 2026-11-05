@@ -26,7 +26,7 @@ buses/default_bus_layout="uid://pkntc60dd6d2"
 G="*uid://crbv2jmsxq1c3"
 E="*uid://bryavc8jyskqi"
 Linker="*uid://myabc7oy536t"
-DiscordRPCLoader="*uid://b3sib4t2yv4i5"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Loader="*uid://kdgsbw5jym0i"
 Pins="*uid://dldfavbofsnva"
 
@@ -37,7 +37,7 @@ window/size/viewport_height=972
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/icosphere/plugin.cfg", "res://addons/proton_trail/plugin.cfg")
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addons/icosphere/plugin.cfg")
 
 [file_customization]
 

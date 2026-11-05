@@ -197,7 +197,7 @@ nodes/fragment/44/position = Vector2(400, 460)
 nodes/fragment/connections = PackedInt32Array(2, 0, 12, 0, 8, 0, 12, 1, 9, 0, 12, 2, 36, 0, 35, 0, 37, 0, 35, 1, 35, 0, 34, 0, 38, 0, 35, 2, 39, 0, 40, 0, 40, 0, 34, 1, 39, 0, 41, 0, 41, 0, 42, 0, 12, 0, 43, 1, 42, 0, 43, 0, 43, 0, 0, 1, 34, 0, 0, 0, 13, 0, 44, 0, 44, 0, 12, 3)
 
 [resource]
-render_priority = 1
+render_priority = 4
 shader = SubResource("VisualShader_yl5qy")
-shader_parameter/DeflectPow = 0.0
+shader_parameter/DeflectPow = 1.0
 shader_parameter/Brightness = 10.0

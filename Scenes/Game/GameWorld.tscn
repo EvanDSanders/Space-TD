@@ -307,7 +307,7 @@ nodes/7/node = SubResource("VisualShaderNodeCurveTexture_x0a2o")
 nodes/7/position = Vector2(820, 700)
 nodes/8/node = SubResource("VisualShaderNodeFloatOp_ni62a")
 nodes/8/position = Vector2(1980, 140)
-nodes/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 0, 5, 0, 6, 1, 4, 0, 6, 0, 0, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 1, 2, 0, 7, 0, 8, 0, 1, 0, 7, 0, 8, 1, 6, 0, 8, 0, 0, 3, 3, 1)
+nodes/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 0, 5, 0, 6, 1, 4, 0, 6, 0, 0, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 1, 2, 0, 7, 0, 7, 0, 8, 1, 6, 0, 8, 0, 0, 3, 3, 1, 8, 0, 1, 0)
 
 [sub_resource type="VisualShaderNodeGroup" id="VisualShaderNodeGroup_e4rwt"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0), 2, Vector3(0, 0, 0), 3, 27.3]
@@ -849,7 +849,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5sydc")
 script = SubResource("GDScript_e4rwt")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="ShipPushAxis" unique_id=1344440104]
+[node name="FinalShield" type="MeshInstance3D" parent="ShipPushAxis" unique_id=1344440104]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_e4rwt")

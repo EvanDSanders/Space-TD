@@ -74,6 +74,7 @@ func laserDestroied():
 		G.StarShip.fighter.FlightMode = StarShipFighter.FlightModes.Forward
 		G.Camera.setFightStyle('Forward')
 		G.Camera.onChange()
+		G.Main.get_node("ShipPushAxis/CharacterBody3D").killBossMode = true
 	)
 	Tw.tween_property(self, 'position:z', -100000, 5).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
 	
@@ -101,6 +102,7 @@ func _physics_process(delta: float) -> void:
 		for each in bodies:
 			if each is ShieldBubble:
 				if each.isDeflecting and not complete == 'I': 
+					print("!!! Parry Boss! ", Engine.get_physics_frames())
 					each.onParry()
 					each.onHit(111111111)
 					each.defender.useEnergy(111111111, 111)
@@ -112,13 +114,26 @@ func _physics_process(delta: float) -> void:
 					health.Hit(1111111)
 					complete = "L"
 				else:
+					print("!!! Boss obliderate shield! ", Engine.get_physics_frames())
+					
 					each.onHit(111111111)
 					each.defender.useEnergy(1111111, 111)
 					complete = "I"
 					
-					
+			
 			elif each is TheStarShip:
-				each.health.Hit( 1111111111111, Vector3(0, 0, 10000) )
+				print("!!! Boss obliderate ship queued ", Engine.get_physics_frames())
+				Callable(func(): 
+					if self.complete == "L": 
+						print("!!! Boss failed to obliderate ship! ", Engine.get_physics_frames())
+						
+						return
+					print("!!! Boss obliderate ship! ", Engine.get_physics_frames())
+					
+					each.health.Hit( 1111111111111, Vector3(0, 0, 10000) )
+					complete = "W"
+				
+				).call_deferred()
 				
 func destroy():
 	print("Man, I'm ded!, Noooooooooooooo")

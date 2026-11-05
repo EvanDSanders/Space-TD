@@ -231,10 +231,10 @@ metadata/_custom_type_script = "uid://d0scd1vltsqgj"
 [node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
 transform = Transform3D(0.9954457, 0, 0, 0, 0.9954457, 0, 0, 0, 0.9954457, -0.01760292, 0.016902924, -0.0010299683)
 
-[node name="Cube 008" parent="Star Ship" index="2" unique_id=163292594]
+[node name="Cube 008" parent="Star Ship" index="2" unique_id=2071535963]
 layers = 513
 
-[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1501175150]
+[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1501854988]
 layers = 513
 
 [node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]

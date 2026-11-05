@@ -19,6 +19,7 @@ points = PackedVector3Array(337.9373, 74.29083, 199.97055, 249.97763, 74.25067, 
 points = PackedVector3Array(-87.534256, -200.00002, -475.13702, 87.46576, -200.00002, -475.13702, -175, -200.00002, -375.0979, -175, 47.49414, -900.13214, -87.49999, 47.49414, -1000, 174.96576, -200.00002, -375.0979, 87.46576, 47.49414, -1000, 174.96576, 47.49414, -900.13214, -175, -200.00002, 674.9706, -175, 100.000015, -900.13214, -87.49999, 100.000015, -1000, 174.96576, -200.00002, 674.9706, 87.46576, 100.000015, -1000, 174.96576, 100.000015, -900.13214, -87.534256, -200.00002, 750, -175, 200.00005, 674.9706, -175, 200.00005, -773.71277, -87.49999, 200.00005, -873.75195, 174.96576, 200.00005, 674.9706, 87.46576, -200.00002, 750, 87.46576, 200.00005, -873.75195, 174.96576, 200.00005, -773.71277, -87.534256, 1.5258789e-05, 750, -87.49999, 200.00005, 750, 87.46576, 200.00005, 750)
 
 [node name="BossA" type="CharacterBody3D" unique_id=1364594043]
+motion_mode = 1
 script = ExtResource("1_ap18u")
 
 [node name="Destructible" type="Node" parent="." unique_id=1759298242]
@@ -85,6 +86,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170, -100, 250)
 [node name="LaserA" parent="Side R" unique_id=84340313 instance=ExtResource("2_vbubn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, -250)
 
+[node name="LaserB" parent="Side R" unique_id=1618662686 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, -1.3113416e-06)
+
+[node name="LaserC" parent="Side R" unique_id=1610368311 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, 250)
+
+[node name="LaserD" parent="Side R" unique_id=1817111960 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -250)
+
+[node name="LaserE" parent="Side R" unique_id=2092716341 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -1.3113416e-06)
+
+[node name="LaserF" parent="Side R" unique_id=293870316 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, 250)
+
 [node name="Timer" type="Timer" parent="." unique_id=520248020]
 process_callback = 0
 wait_time = 6.0
@@ -116,21 +132,6 @@ debug_fill = false
 shape = SubResource("ConvexPolygonShape3D_ryrx7")
 debug_color = Color(1, 0.050000012, 0, 0.78039217)
 debug_fill = false
-
-[node name="LaserB" parent="Final Attack Zone" unique_id=1618662686 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, -1.3113416e-06)
-
-[node name="LaserC" parent="Final Attack Zone" unique_id=1610368311 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, 250)
-
-[node name="LaserD" parent="Final Attack Zone" unique_id=1817111960 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -250)
-
-[node name="LaserE" parent="Final Attack Zone" unique_id=2092716341 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -1.3113416e-06)
-
-[node name="LaserF" parent="Final Attack Zone" unique_id=293870316 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, 250)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
