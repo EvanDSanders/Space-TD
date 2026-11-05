@@ -50,11 +50,11 @@ func _on_defender_on_activate(on: bool) -> void:
 		isDeflecting = false
 		if Tw: Tw.kill()
 		print('ON')
-		Tw = create_tween()
+		Tw = G.Main.create_tween()
 		Tw.tween_property(self, 'Brightness', 10.0, 0.2)
 		Tw.parallel().tween_callback(func():
 			$CollisionShape3D.debug_color = Color.YELLOW
-			#process_mode = Node.PROCESS_MODE_INHERIT
+			process_mode = Node.PROCESS_MODE_INHERIT
 			#(func(): $CollisionShape3D.disabled = false).call_deferred()
 			isDeflecting = true
 		).set_delay(0.1)
@@ -68,11 +68,12 @@ func _on_defender_on_activate(on: bool) -> void:
 	else:
 		print('OFF')
 		
-		#process_mode = Node.PROCESS_MODE_DISABLED
+		process_mode = Node.PROCESS_MODE_DISABLED
 		#(func(): $CollisionShape3D.disabled = true).call_deferred()
 		$CollisionShape3D.debug_color = Color.RED
+		isDeflecting = false
 		
 		if Tw: Tw.kill()
-		Tw = create_tween()
+		Tw = G.Main.create_tween()
 		Tw.tween_property(self, 'Brightness', 0.0, 0.15)
 		

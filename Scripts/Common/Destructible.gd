@@ -16,6 +16,7 @@ signal onDeath()
 
 @export var color := Color.PALE_GREEN
 @export var showMeter := true
+@export var addFire := true
 
 var STw : Tween
 
@@ -73,8 +74,9 @@ func _afterHit(impulse: Vector3) -> void:
 		self.isAlive = false
 		onDeath.emit()
 		Meter.doHide()
-		var fire = fireLoader.instantiate()
-		Parent.add_child(fire)
+		if addFire:
+			var fire = fireLoader.instantiate()
+			Parent.add_child(fire)
 		if Parent.has_method("destroy"):
 			Parent.destroy()
 

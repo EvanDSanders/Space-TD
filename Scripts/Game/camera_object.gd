@@ -13,6 +13,7 @@ var RigCamera : RiggedCamera
 
 @export var canOrbitPitch: bool = true
 @export var canOrbitYaw: bool = true
+@export var canZoom: bool = true
 
 @onready var ZoomOrigin: float = Post.position.z
 @onready var Zoom : float = ZoomOrigin
@@ -77,6 +78,7 @@ func setZoom(zoom: float, _isContinuous: bool = false):
 	evalZoom()
 
 func doZoom(fac: float, isContinuous: bool = false, delta:float = 1):
+	if not canZoom: return
 	var nonLinearScaler: float = RigCamera.ZoomFactorCurve.sample( G.remap(ZoomMin, ZoomMax, 0, 1, Zoom) )
 	fac = fac * nonLinearScaler
 	RigCamera.get_node("Label").text = "%f" % fac

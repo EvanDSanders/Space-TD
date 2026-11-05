@@ -23,19 +23,19 @@ shader = SubResource("VisualShader_yf1ts")
 [sub_resource type="CylinderMesh" id="CylinderMesh_hc056"]
 material = SubResource("ShaderMaterial_usb22")
 top_radius = 0.0
-bottom_radius = 2.5
-height = 4.0
+bottom_radius = 8.0
+height = 10.0
 radial_segments = 4
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_iuut6"]
 material = SubResource("ShaderMaterial_usb22")
 top_radius = 0.0
-bottom_radius = 2.5
-height = 8.0
+bottom_radius = 8.0
+height = 20.0
 radial_segments = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hc056"]
-radius = 2.5
+radius = 7.10368
 
 [sub_resource type="Curve" id="Curve_ck4gr"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
@@ -48,11 +48,11 @@ strong = true
 homingDeflect = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=727228431]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.3113416e-07, 5)
 mesh = SubResource("CylinderMesh_hc056")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=577449070]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -2.6226834e-07, -4)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -5.245367e-07, -10)
 mesh = SubResource("CylinderMesh_iuut6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=433539164]
@@ -60,8 +60,8 @@ shape = SubResource("SphereShape3D_hc056")
 debug_color = Color(0.70196074, 0.2693832, 0, 0.41960785)
 
 [node name="Trail3D" type="Trail3D" parent="." unique_id=2098629938]
-custom_aabb = AABB(-3, -3, -3, 6, 6, 6)
+custom_aabb = AABB(-9, -9, -9, 18, 18, 18)
 lifetime = 1.0
-width = 3.0
+width = 9.0
 width_curve = SubResource("Curve_ck4gr")
 color = Color(2.454227, 0.31365427, 0, 1)

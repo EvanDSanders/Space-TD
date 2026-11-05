@@ -11,8 +11,3 @@ func _ready() -> void:
 
 func update(HP: float):
 	self.emitting = HP/health.HPMax < threshhold
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

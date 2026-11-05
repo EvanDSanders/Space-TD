@@ -3,11 +3,14 @@ class_name BossA
 
 @onready var SideL: Node3D = $"Side L"
 @onready var SideR: Node3D = $"Side R"
+@onready var audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
+
+@onready var health: Destructible = $Destructible
 
 @onready var final_attack_zone: Area3D = $"Final Attack Zone"
 var isFinalAttack := false
 
-var wobbleAmount := 50.0
+var wobbleAmount := 30.0
 var wobbleTime := 0.0
 @onready var homePosition: Vector3 = position
 
@@ -40,10 +43,21 @@ func _on_timer_timeout() -> void:
 	var laser = pickLaser(SideR)
 	if  laser: laser.startBlast()
 
-func Twr(tw: Tween, pos, rot, scl):
-	tw.tween_property(self, 'position', pos, 0.04).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	tw.parallel().tween_property(self, 'rotation', rot, 0.04).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	tw.parallel().tween_property(self, 'scale',    scl, 0.04).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+func Twr(pos, rot, scl):
+	Tw.tween_property(self, 'position', pos, 0.04).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	Tw.parallel().tween_property(self, 'rotation', rot, 0.04).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	Tw.parallel().tween_property(self, 'scale',    scl, 0.04).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+
+func Mad():
+	audio.play()
+	for x in range(50):
+		var pos = Vector3( randf_range(80, -80), randf_range(80, -80), randf_range(80, -80) ) + self.position
+		var rot = Vector3( randf_range(-.1, .1), randf_range(-.1, .1), randf_range(-.1, .1) )
+		var scl = Vector3( randf_range(0.7, 1.3), randf_range(0.7, 1.3), randf_range(0.7, 1.3) )
+		Twr(pos, rot, scl)
+	
+	Twr(self.position, self.rotation, self.scale)
+
 
 var Tw : Tween
 func laserDestroied():
@@ -52,14 +66,8 @@ func laserDestroied():
 	
 		
 	Tw = create_tween()
+	Mad()
 	
-	for x in range(50):
-		var pos = Vector3( randf_range(80, -80), randf_range(80, -80), randf_range(80, -80) ) + self.position
-		var rot = Vector3( randf_range(-.1, .1), randf_range(-.1, .1), randf_range(-.1, .1) )
-		var scl = Vector3( randf_range(0.7, 1.3), randf_range(0.7, 1.3), randf_range(0.7, 1.3) )
-		Twr(Tw, pos, rot, scl)
-	
-	Twr(Tw, self.position, self.rotation, self.scale)
 	
 	Tw.tween_property(self, 'position:z', 300, 2).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
 	Tw.tween_callback(func():
@@ -75,11 +83,13 @@ func laserDestroied():
 	)
 
 	Tw.tween_property(self, 'position:z', 20000, 8).set_trans(Tween.TRANS_LINEAR)
-	
+
+var complete = ''
 func _physics_process(delta: float) -> void:
+	if complete == 'W' or complete == 'L': return
 	if not isFinalAttack:
 		
-		wobbleTime += delta
+		wobbleTime += delta * 5
 		position = homePosition + Vector3(
 			sin(wobbleTime * 0.31) * wobbleAmount,
 			sin(wobbleTime * 0.23 + 1.7) * wobbleAmount,
@@ -90,16 +100,26 @@ func _physics_process(delta: float) -> void:
 		var bodies = final_attack_zone.get_overlapping_bodies()
 		for each in bodies:
 			if each is ShieldBubble:
-				each.onParry()
-				each.onHit(111111111)
-				each.defender.useEnergy(111111111, 1)
-				if Tw: Tw.kill()
-				Tw = create_tween()
-				Tw.tween_property(self, 'position', Vector3(300, 200, -1800), 5)
-				Tw.parallel().tween_property(self, 'rotation', Vector3(3, -5, 0), 5)
-				Tw.tween_callback(destroy)
-			
-
+				if each.isDeflecting and not complete == 'I': 
+					each.onParry()
+					each.onHit(111111111)
+					each.defender.useEnergy(111111111, 111)
+					if Tw: Tw.kill()
+					Tw = create_tween()
+					Tw.tween_property(self, 'position', Vector3(300, 200, -1800), 5)
+					Tw.parallel().tween_property(self, 'rotation', Vector3(3, -5, 0), 5)
+					Tw.tween_callback(destroy)
+					health.Hit(1111111)
+					complete = "L"
+				else:
+					each.onHit(111111111)
+					each.defender.useEnergy(1111111, 111)
+					complete = "I"
+					
+					
+			elif each is TheStarShip:
+				each.health.Hit( 1111111111111, Vector3(0, 0, 10000) )
+				
 func destroy():
 	print("Man, I'm ded!, Noooooooooooooo")
 	$"Boss A/Cylinder 010".visible = false

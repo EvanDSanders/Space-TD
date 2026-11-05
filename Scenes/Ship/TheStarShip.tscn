@@ -61,14 +61,14 @@ size = Vector3(8, 5, 8)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9073359, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_dtqe4"]
+[sub_resource type="CurveTexture" id="CurveTexture_6m2vr"]
 curve = SubResource("Curve_m87b2")
 
 [sub_resource type="Gradient" id="Gradient_bh1xa"]
 offsets = PackedFloat32Array(0, 0.17596567, 0.26609442, 0.75578034)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0.9019608, 0.22745098, 0, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0xris"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ab8xo"]
 gradient = SubResource("Gradient_bh1xa")
 
 [sub_resource type="Gradient" id="Gradient_wpfmx"]
@@ -77,7 +77,7 @@ gradient = SubResource("Gradient_bh1xa")
 noise_type = 2
 fractal_type = 0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vfujq"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pp8cm"]
 noise = SubResource("FastNoiseLite_6m2vr")
 color_ramp = SubResource("Gradient_wpfmx")
 
@@ -85,9 +85,9 @@ color_ramp = SubResource("Gradient_wpfmx")
 render_priority = 0
 shader = ExtResource("4_dtqe4")
 shader_parameter/Color = Color(1, 1, 1, 1)
-shader_parameter/Color_Gradiant = SubResource("GradientTexture1D_0xris")
-shader_parameter/Vor_Noise = SubResource("NoiseTexture2D_vfujq")
-shader_parameter/Alpha_Curve = SubResource("CurveTexture_dtqe4")
+shader_parameter/Color_Gradiant = SubResource("GradientTexture1D_ab8xo")
+shader_parameter/Vor_Noise = SubResource("NoiseTexture2D_pp8cm")
+shader_parameter/Alpha_Curve = SubResource("CurveTexture_6m2vr")
 shader_parameter/Fernal_Power = 1.0
 shader_parameter/Vor_Scale = 0.8
 shader_parameter/Vor_Speed = 0.2
@@ -98,7 +98,7 @@ shader_parameter/Alpha_Clip = 0.0
 _data = [Vector2(0, 0), 0.0, 1.0236398, 0, 0, Vector2(1, 1), 0.97106856, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_m87b2"]
+[sub_resource type="CurveTexture" id="CurveTexture_klpbu"]
 texture_mode = 1
 curve = SubResource("Curve_pp8cm")
 
@@ -106,7 +106,7 @@ curve = SubResource("Curve_pp8cm")
 _data = [Vector2(0, 0.27411175), 0.0, 0.0, 0, 0, Vector2(0.7670157, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_240oq"]
+[sub_resource type="CurveTexture" id="CurveTexture_e7riv"]
 curve = SubResource("Curve_klpbu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e7riv"]
@@ -123,8 +123,8 @@ initial_velocity_max = 16.0
 gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 3.8
-scale_curve = SubResource("CurveTexture_240oq")
-alpha_curve = SubResource("CurveTexture_m87b2")
+scale_curve = SubResource("CurveTexture_e7riv")
+alpha_curve = SubResource("CurveTexture_klpbu")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = 0.019999977
 turbulence_noise_strength = 0.05
@@ -198,7 +198,7 @@ metadata/_custom_type_script = "uid://dfrleytt3e8y1"
 
 [node name="StarShipFighter" type="Node" parent="." unique_id=2067626056]
 script = ExtResource("8_pp8cm")
-ForwardSpeed = 250.0
+ForwardSpeed = 500.0
 Limits = {
 0: {
 "max": Vector2(180, 140),
@@ -231,10 +231,10 @@ metadata/_custom_type_script = "uid://d0scd1vltsqgj"
 [node name="Star Ship" parent="." unique_id=1398329577 instance=ExtResource("1_tfdsr")]
 transform = Transform3D(0.9954457, 0, 0, 0, 0.9954457, 0, 0, 0, 0.9954457, -0.01760292, 0.016902924, -0.0010299683)
 
-[node name="Cube 008" parent="Star Ship" index="2" unique_id=2071535963]
+[node name="Cube 008" parent="Star Ship" index="2" unique_id=163292594]
 layers = 513
 
-[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1501854988]
+[node name="Origin Star Ship" parent="Star Ship" index="5" unique_id=1501175150]
 layers = 513
 
 [node name="TurretF" parent="Star Ship" unique_id=2073233604 instance=ExtResource("3_vxvel")]

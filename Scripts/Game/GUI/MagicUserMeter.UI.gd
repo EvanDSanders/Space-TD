@@ -8,6 +8,8 @@ signal onActivate(bool)
 @onready var texture_rect: TextureRect = $MarginContainer/PanelContainer/TextureRect
 @onready var arrow: Control = $Control/Control
 @onready var status: Control = $Control/Status
+@onready var mount: Control = $Control/ReactionMount
+
 var Tw : Tween
 var CollapseTw : Tween
 var _nodes_on := false
@@ -96,6 +98,8 @@ func _ready() -> void:
 	_update_meter()
 	_update_hue()
 	_set_nodes_visible(false)
+	
+	G.schedule(self.Boost.bind(0, 0), 2)
 
 
 func _set_nodes_visible(on: bool) -> void:
@@ -186,8 +190,11 @@ func useEnergy(amt: float, tireFac: float = 0.2) -> float:
 func Boost(amt: float, boost: float) -> void:
 	if isCollapsed:
 		return
+		
+	DefenderReaction.exclaim(DefenderReaction.exclaimType.Reflect, mount)
 	max_fuel += boost
 	fuel += amt
+
 
 
 func _collapse() -> void:

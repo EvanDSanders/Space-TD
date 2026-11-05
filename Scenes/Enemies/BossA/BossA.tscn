@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d1m6g0vprgtxo" path="res://Objects/Enemies/BossA/Boss A.glb" id="1_ft8wy"]
 [ext_resource type="Script" uid="uid://c1w7pinsldpa8" path="res://Scripts/Common/Destructible.gd" id="2_nqjxu"]
 [ext_resource type="PackedScene" uid="uid://costjd1yo7liu" path="res://Scenes/Enemies/BossA/BossALaser.tscn" id="2_vbubn"]
+[ext_resource type="AudioStream" uid="uid://dskqkqxgkuovy" path="res://Sounds/BossAMad.wav" id="3_e4ws3"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nqjxu"]
 points = PackedVector3Array(0, -33.865253, -150, 0, 5.964119, -139.36961, 11.77565, -33.865253, -145.12529, 0, -40.71605, -144.39114, -11.805008, -33.865253, -145.12529, -10.9534, 5.964119, -134.84729, 10.924042, 5.964119, -134.84729, 94.2639, -33.865253, -110.972984, 0, -87.09558, -106.39194, -94.29326, -33.865253, -110.972984, -98.55129, 5.964119, -98.55129, 98.52193, 5.964119, -98.55129, 106.03955, -33.865253, -106.06891, 102.07518, -40.71605, -102.10454, 75.20557, -87.09558, -75.234924, -8.369217, -87.09558, -102.92678, -102.10454, -40.71605, -102.10454, -106.06891, -33.865253, -106.06891, -75.234924, -87.09558, -75.234924, -110.972984, -33.865253, -94.29326, -134.84729, 5.964119, -10.9534, 134.81793, 5.964119, -10.9534, 110.943634, -33.865253, -94.29326, 150, -33.865253, 0, 102.897415, -87.09558, -8.369217, -102.92678, -87.09558, -8.369217, -145.12529, -33.865253, -11.805008, -106.39194, -87.09558, 0, -150, -33.865253, 0, -139.36961, 5.964119, 0, 139.34027, 5.964119, 0, 106.03955, -33.865253, 106.03955, 106.92053, -40.71605, 90.41699, 82.81128, -80.445206, 70.00784, 106.36258, -87.09558, 0, 98.52193, 5.964119, 98.52193, -144.39114, -40.71605, 0, -110.972984, -33.865253, 94.2639, -75.234924, -87.09558, 75.20557, -145.12529, -33.865253, 11.77565, -134.84729, 5.964119, 10.924042, 94.2639, -33.865253, 110.943634, 102.07518, -40.71605, 102.07518, 75.20557, -87.09558, 75.20557, 10.924042, 5.964119, 134.81793, -102.10454, -40.71605, 102.07518, -106.06891, -33.865253, 106.03955, -98.55129, 5.964119, 98.52193, -8.369217, -87.09558, 102.897415, 0, -33.865253, 150, -94.29326, -33.865253, 110.943634, 0, -87.09558, 106.36258, 0, 5.964119, 139.34027, -10.9534, 5.964119, 134.81793)
@@ -22,7 +23,17 @@ script = ExtResource("1_ap18u")
 
 [node name="Destructible" type="Node" parent="." unique_id=1759298242]
 script = ExtResource("2_nqjxu")
+HPMax = 10000.0
 metadata/_custom_type_script = "uid://c1w7pinsldpa8"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1665130822]
+stream = ExtResource("3_e4ws3")
+attenuation_model = 3
+unit_size = 100.0
+pitch_scale = 1.09
+max_distance = 4096.0
+attenuation_filter_cutoff_hz = 20500.0
+attenuation_filter_db = 0.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1728891529]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6293945e-06, 47.500004, -800)
@@ -74,21 +85,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170, -100, 250)
 [node name="LaserA" parent="Side R" unique_id=84340313 instance=ExtResource("2_vbubn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, -250)
 
-[node name="LaserB" parent="Side R" unique_id=1618662686 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, -1.3113416e-06)
-
-[node name="LaserC" parent="Side R" unique_id=1610368311 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, 250)
-
-[node name="LaserD" parent="Side R" unique_id=1817111960 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -250)
-
-[node name="LaserE" parent="Side R" unique_id=2092716341 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -1.3113416e-06)
-
-[node name="LaserF" parent="Side R" unique_id=293870316 instance=ExtResource("2_vbubn")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, 250)
-
 [node name="Timer" type="Timer" parent="." unique_id=520248020]
 process_callback = 0
 wait_time = 6.0
@@ -120,6 +116,21 @@ debug_fill = false
 shape = SubResource("ConvexPolygonShape3D_ryrx7")
 debug_color = Color(1, 0.050000012, 0, 0.78039217)
 debug_fill = false
+
+[node name="LaserB" parent="Final Attack Zone" unique_id=1618662686 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, -1.3113416e-06)
+
+[node name="LaserC" parent="Final Attack Zone" unique_id=1610368311 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, 100, 250)
+
+[node name="LaserD" parent="Final Attack Zone" unique_id=1817111960 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -250)
+
+[node name="LaserE" parent="Final Attack Zone" unique_id=2092716341 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, -1.3113416e-06)
+
+[node name="LaserF" parent="Final Attack Zone" unique_id=293870316 instance=ExtResource("2_vbubn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 170, -100, 250)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
