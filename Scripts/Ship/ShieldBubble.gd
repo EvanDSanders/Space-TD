@@ -21,7 +21,9 @@ func onHit(damage): # hitter: CollisionObject3D):
 	defender.useEnergy(0.5 + damage * 0.01)
 
 
-func onParry():
+func onParry(pos: Vector3 = Vector3.ZERO):
+	
+	G.spawnExplosion(G.ExplType.Magic, self, self, 1.0, pos, true)
 	if killBossMode:
 		$"../FinalShield".visible = false
 	
@@ -82,7 +84,7 @@ func _on_defender_on_activate(on: bool) -> void:
 		Tw = G.Main.create_tween()
 		Tw.tween_property(self, 'Brightness', 0.0, 0.15)
 		
-		
+
 func KillBossMove():
 	isDeflecting = true
 	$"../FinalShield".visible = true

@@ -85,6 +85,7 @@ func laserDestroied():
 
 	Tw.tween_property(self, 'position:z', 20000, 8).set_trans(Tween.TRANS_LINEAR)
 
+
 var complete = ''
 func _physics_process(delta: float) -> void:
 	if complete == 'W' or complete == 'L': return
@@ -103,7 +104,7 @@ func _physics_process(delta: float) -> void:
 			if each is ShieldBubble:
 				if each.isDeflecting and not complete == 'I': 
 					print("!!! Parry Boss! ", Engine.get_physics_frames())
-					each.onParry()
+					each.onParry( _shieldHitPoint(each) )
 					each.onHit(111111111)
 					each.defender.useEnergy(111111111, 111)
 					if Tw: Tw.kill()
@@ -113,6 +114,13 @@ func _physics_process(delta: float) -> void:
 					Tw.tween_callback(destroy)
 					health.Hit(1111111)
 					complete = "L"
+					
+					for U: MagicUserMeter in [$"../../GUI Mount/Defender", $"../../GUI Mount/AttackerL", $"../../GUI Mount/AttackerR"]:
+						U.fuel = 0
+						U.max_fuel = 0
+						U.useEnergy(1, 1)
+					G.StarShip.mana.pullMana(1111111)
+					
 				else:
 					print("!!! Boss obliderate shield! ", Engine.get_physics_frames())
 					
@@ -135,6 +143,15 @@ func _physics_process(delta: float) -> void:
 				
 				).call_deferred()
 				
+func _shieldHitPoint(shield: ShieldBubble) -> Vector3:
+	var query := PhysicsRayQueryParameters3D.create(global_position, shield.global_position, shield.collision_layer)
+	query.collide_with_bodies = true
+	query.collide_with_areas = true
+	var result := get_world_3d().direct_space_state.intersect_ray(query)
+	if result.is_empty():
+		return shield.global_position
+	return result.position
+
 func destroy():
 	print("Man, I'm ded!, Noooooooooooooo")
 	$"Boss A/Cylinder 010".visible = false

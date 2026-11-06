@@ -97,14 +97,14 @@ func get_intercept(shooter_pos:Vector3,
 
 
 
-# https://easings.net/
+## https://easings.net/ [br]
+## Cubic easing in/out - acceleration until halfway, then deceleration. [br][br]
+## Examples [br]
+## [code]
+##	0.5 == easeInOutCubic(0.5)
+## 	0.896 == easeInOutCubic(0.8)
+## [/code]
 func EaseIOCubic(x: float) -> float:
-	"""Cubic easing in/out - acceleration until halfway, then deceleration.
-	Examples
-	--------
-		0.5 == easeInOutCubic(0.5)
-		0.896 == easeInOutCubic(0.8)
-	"""
 	if x < 0.5:
 		return 4 * x * x * x
 	else:
@@ -128,7 +128,7 @@ var loadSciFiExplosion = preload("res://Scenes/Misc/ExplosionSciFi.tscn")
 
 enum ExplType {Magic, SciFi}
 
-func spawnExplosion( explosion_type: ExplType, caller: Node3D, parent: Node3D = G.Main, scale: float = 1.0, pos: Vector3 = Vector3.ZERO ):
+func spawnExplosion( explosion_type: ExplType, caller: Node3D, parent: Node3D = G.Main, scale: float = 1.0, pos: Vector3 = Vector3.ZERO, local := false ):
 	var boomL : Resource
 	match explosion_type:
 		ExplType.Magic: boomL = loadMagicExplosion
@@ -136,7 +136,10 @@ func spawnExplosion( explosion_type: ExplType, caller: Node3D, parent: Node3D = 
 		
 	var boom : Node3D = boomL.instantiate()
 	parent.add_child(boom)
-	boom.position = caller.to_global(pos)
+	if local:
+		boom.position = caller.to_local(pos)
+	else: 
+		boom.position = caller.to_global(pos)
 	boom.scale = Vector3.ONE * scale
 
 func spawnExplosionAndFree( explosion_type: ExplType, caller: Node3D, parent: Node3D = G.Main, scale: float = 1.0, pos: Vector3 = Vector3.ZERO ):

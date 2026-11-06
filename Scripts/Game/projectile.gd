@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		var c = collision.get_collider()
 		if canParry and is_instance_valid(attacker) and c.get("isDeflecting") == true:
 			_deflect(c)
-			c.onParry()
+			c.onParry(collision.get_position())
 			return
 			
 		if hitsLeft <= 1:

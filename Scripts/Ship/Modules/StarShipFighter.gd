@@ -32,6 +32,8 @@ enum FlightModes { Forward, SideScroller, SideFire, TopDown }
 @export var BoostMultiplier := 2.0
 @export var EngineColors: Gradient
 
+@onready var allTurrets = [$"../Star Ship/TurretF", $"../Star Ship/TurretL", $"../Star Ship/TurretR", $"../Star Ship/Main Cannon"]
+
 var ship: TheStarShip
 var active := false
 
@@ -65,9 +67,8 @@ func activate() -> void:
 	set_physics_process(true)
 	_applyFlightMode()
 	
-		
-	$"../../../GUI Mount/Warnings"
-	$"../../../GUI Mount/Defender"
+	for T : Node3D in allTurrets: T.process_mode = Node.PROCESS_MODE_DISABLED
+	
 
 
 
@@ -86,6 +87,7 @@ func deactivate() -> void:
 	ship.animator.writeShader(0.0, "StarShipEngineOverheat")
 	ship.animator.setBoostScale(0.001)
 
+	for T : Node3D in allTurrets: T.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _applyFlightMode() -> void:
 	match FlightMode:
@@ -97,7 +99,7 @@ func _applyFlightMode() -> void:
 	_rel = ship.global_position - _originPos()
 	match FlightMode:
 		FlightModes.Forward, FlightModes.SideScroller: _facing = 0.
-		FlightModes.SideFire: _facing = PI / 2
+		FlightModes.SideFire: _facing = PI * 2
 		FlightModes.TopDown: _facing = ship.rotation.y
 
 

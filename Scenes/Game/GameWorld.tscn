@@ -307,7 +307,7 @@ nodes/7/node = SubResource("VisualShaderNodeCurveTexture_x0a2o")
 nodes/7/position = Vector2(820, 700)
 nodes/8/node = SubResource("VisualShaderNodeFloatOp_ni62a")
 nodes/8/position = Vector2(1980, 140)
-nodes/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 0, 5, 0, 6, 1, 4, 0, 6, 0, 0, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 1, 2, 0, 7, 0, 7, 0, 8, 1, 6, 0, 8, 0, 0, 3, 3, 1, 8, 0, 1, 0)
+nodes/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 0, 5, 0, 6, 1, 4, 0, 6, 0, 0, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 1, 2, 0, 7, 0, 8, 0, 1, 0, 7, 0, 8, 1, 6, 0, 8, 0, 0, 3, 3, 1)
 
 [sub_resource type="VisualShaderNodeGroup" id="VisualShaderNodeGroup_e4rwt"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0), 2, Vector3(0, 0, 0), 3, 27.3]
@@ -1179,12 +1179,12 @@ offset_transform_pivot_ratio = Vector2(0.5, 1)
 image = ExtResource("20_6d2th")
 image_scale = Vector2(0.685, 0.685)
 image_offset = Vector2(0, -5.695)
-useRate = 0.8
+useRate = 0.4
 regenRate = 0.3
 tireRateMult = 0.2
 tireRecoverFac = 0.0
 collapse_threshold = 20.0
-collapse_time = 1.0
+collapse_time = 0.4
 button = &"Up"
 
 [node name="AttackerL" parent="GUI Mount" unique_id=1515302029 instance=ExtResource("19_6d2th")]
@@ -1224,6 +1224,7 @@ useRate = 2.0
 regenRate = 0.5
 tireRateMult = 0.4
 tireRecoverFac = 0.2
+collapse_threshold = 0.01
 button = &"RClick"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1545136599]
@@ -1334,6 +1335,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 190)
 
 [node name="Node3D" parent="FighterModeOrigin" unique_id=1018765293 instance=ExtResource("27_hnj2s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -568.37463, 0, 0)
+motion_mode = 0
 
 [connection signal="onActivate" from="GUI Mount/Defender" to="ShipPushAxis/CharacterBody3D" method="_on_defender_on_activate"]
 [connection signal="pressed" from="VBoxContainer/Fw" to="VBoxContainer" method="_on_fw_pressed"]
